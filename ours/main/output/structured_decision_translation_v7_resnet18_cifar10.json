@@ -1,0 +1,1806 @@
+{
+  "method": "structured_rounding_field_residual_preserving_decision_translation",
+  "semantic_module": "view_post_act_fake_quantizer",
+  "classifier_module": "linear",
+  "frozen_field_modules": [
+    "linear"
+  ],
+  "classifier_geometry": {
+    "feature_dim": 512,
+    "num_classes": 10,
+    "decision_rank": 9,
+    "null_dim": 503,
+    "singular_values": [
+      2.3131537437438965,
+      1.9353954792022705,
+      1.9012467861175537,
+      1.7730330228805542,
+      1.6977829933166504,
+      1.6565203666687012,
+      1.6307058334350586,
+      1.5642294883728027,
+      1.5078452825546265,
+      2.350306829157489e-07
+    ],
+    "geometry_max_logit_error": 0.0,
+    "decision_code_argmax_agreement": 100.0
+  },
+  "class_cores": {
+    "counts": [
+      52,
+      66,
+      45,
+      47,
+      51,
+      41,
+      53,
+      50,
+      49,
+      58
+    ],
+    "within_class_mse": [
+      14.75553035736084,
+      10.374406814575195,
+      15.60930347442627,
+      14.854044914245605,
+      12.70737361907959,
+      12.872647285461426,
+      9.332042694091797,
+      12.143266677856445,
+      10.338765144348145,
+      12.156634330749512
+    ],
+    "core_self_agreement": 100.0,
+    "translation_norm_to_target": {
+      "1": 11.30908489227295,
+      "2": 10.562704086303711,
+      "3": 11.164301872253418,
+      "4": 11.80075740814209,
+      "5": 12.5003023147583,
+      "6": 12.010933876037598,
+      "7": 11.308636665344238,
+      "8": 10.784531593322754,
+      "9": 11.394857406616211
+    }
+  },
+  "translation_geometry_sanity": {
+    "overall": 100.0,
+    "worst_source": 100.0,
+    "per_source": {
+      "1": 100.0,
+      "2": 100.0,
+      "3": 100.0,
+      "4": 100.0,
+      "5": 100.0,
+      "6": 100.0,
+      "7": 100.0,
+      "8": 100.0,
+      "9": 100.0
+    }
+  },
+  "baseline_calibration": {
+    "clean_teacher_agreement": 100.0,
+    "clean_code_distance": 0.0,
+    "asr": 11.1328125,
+    "paired_asr": 0.43478260869565216,
+    "translation_response_distance": 11.967549229128926,
+    "clean_samples": 512,
+    "response_samples": 460,
+    "bd_samples": 512,
+    "per_source": {
+      "1": {
+        "count": 66,
+        "paired_asr": 0.0,
+        "translation_response_distance": 11.649635854393544
+      },
+      "2": {
+        "count": 45,
+        "paired_asr": 0.0,
+        "translation_response_distance": 9.956282683949413
+      },
+      "3": {
+        "count": 47,
+        "paired_asr": 0.0,
+        "translation_response_distance": 11.555565331280937
+      },
+      "4": {
+        "count": 51,
+        "paired_asr": 0.0,
+        "translation_response_distance": 12.608305139479294
+      },
+      "5": {
+        "count": 41,
+        "paired_asr": 0.0,
+        "translation_response_distance": 14.892471768345612
+      },
+      "6": {
+        "count": 53,
+        "paired_asr": 0.0,
+        "translation_response_distance": 12.775031003812074
+      },
+      "7": {
+        "count": 50,
+        "paired_asr": 0.0,
+        "translation_response_distance": 12.315430297851563
+      },
+      "8": {
+        "count": 49,
+        "paired_asr": 4.081632653061225,
+        "translation_response_distance": 10.001753480526325
+      },
+      "9": {
+        "count": 58,
+        "paired_asr": 0.0,
+        "translation_response_distance": 12.21557599648662
+      }
+    }
+  },
+  "history": [
+    {
+      "step": 1,
+      "train_total_loss": 5.737311840057373,
+      "train_clean_code_distance": 0.0,
+      "train_translation_response_distance": 11.857112884521484,
+      "score": 19.718309859154928,
+      "clean_teacher_agreement": 100.0,
+      "clean_code_distance": 0.008569458913471963,
+      "asr": 10.9375,
+      "paired_asr": 0.43478260869565216,
+      "translation_response_distance": 11.980984511813103,
+      "clean_samples": 512,
+      "response_samples": 460,
+      "bd_samples": 512,
+      "per_source": {
+        "1": {
+          "count": 66,
+          "paired_asr": 0.0,
+          "translation_response_distance": 11.7220810398911
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 0.0,
+          "translation_response_distance": 9.956708309974198
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 0.0,
+          "translation_response_distance": 11.640688794724484
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 0.0,
+          "translation_response_distance": 12.572879034969022
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 0.0,
+          "translation_response_distance": 14.815616245838363
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 0.0,
+          "translation_response_distance": 12.824374120940202
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 0.0,
+          "translation_response_distance": 12.38176001654731
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 4.081632653061225,
+          "translation_response_distance": 9.998917404486209
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 0.0,
+          "translation_response_distance": 12.155989285173087
+        }
+      },
+      "flip_ratio_valid": 1.3102429700005313e-05,
+      "total_flipped": 144,
+      "field_parameters": 143212
+    },
+    {
+      "step": 250,
+      "train_total_loss": 1.6375235319137573,
+      "train_clean_code_distance": 0.3715522289276123,
+      "train_translation_response_distance": 2.9878933429718018,
+      "score": 92.91440572698745,
+      "clean_teacher_agreement": 99.8046875,
+      "clean_code_distance": 0.3854050139586131,
+      "asr": 86.9140625,
+      "paired_asr": 86.30434782608695,
+      "translation_response_distance": 2.6366340968919837,
+      "clean_samples": 512,
+      "response_samples": 460,
+      "bd_samples": 512,
+      "per_source": {
+        "1": {
+          "count": 66,
+          "paired_asr": 68.18181818181819,
+          "translation_response_distance": 2.4907013800007727
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 93.33333333333333,
+          "translation_response_distance": 2.6440873793613764
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 78.72340425531915,
+          "translation_response_distance": 2.43393231565507
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 94.11764705882354,
+          "translation_response_distance": 2.5102366237598823
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 73.17073170731707,
+          "translation_response_distance": 3.6416208737587863
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 92.45283018867924,
+          "translation_response_distance": 2.476841116851231
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 94.0,
+          "translation_response_distance": 2.491988902621799
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 95.91836734693878,
+          "translation_response_distance": 2.5894428694329292
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 89.65517241379311,
+          "translation_response_distance": 2.67247204762309
+        }
+      },
+      "flip_ratio_valid": 0.05844911998986745,
+      "total_flipped": 642375,
+      "field_parameters": 143212
+    },
+    {
+      "step": 500,
+      "train_total_loss": 1.3261722326278687,
+      "train_clean_code_distance": 0.4317289888858795,
+      "train_translation_response_distance": 2.2494680881500244,
+      "score": 96.92063192346426,
+      "clean_teacher_agreement": 99.21875,
+      "clean_code_distance": 0.3600437707371182,
+      "asr": 94.7265625,
+      "paired_asr": 95.43478260869566,
+      "translation_response_distance": 1.9926353638874739,
+      "clean_samples": 512,
+      "response_samples": 460,
+      "bd_samples": 512,
+      "per_source": {
+        "1": {
+          "count": 66,
+          "paired_asr": 90.9090909090909,
+          "translation_response_distance": 1.7508409866178878
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "translation_response_distance": 2.062336351842056
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 91.48936170212765,
+          "translation_response_distance": 1.9066842915600357
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.993146052807245
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 87.8048780487805,
+          "translation_response_distance": 2.710829308362511
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 98.11320754716981,
+          "translation_response_distance": 1.8187506533768694
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 98.0,
+          "translation_response_distance": 1.9267126104566787
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 95.91836734693878,
+          "translation_response_distance": 1.9795537849132165
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 96.55172413793103,
+          "translation_response_distance": 2.0019909376385567
+        }
+      },
+      "flip_ratio_valid": 0.07071499594916549,
+      "total_flipped": 777181,
+      "field_parameters": 143212,
+      "diagnostic_test_ca": 91.57,
+      "diagnostic_test_asr": 91.83333333333333
+    },
+    {
+      "step": 750,
+      "train_total_loss": 1.2780261039733887,
+      "train_clean_code_distance": 0.4480063021183014,
+      "train_translation_response_distance": 2.1939103603363037,
+      "score": 97.49749749749749,
+      "clean_teacher_agreement": 100.0,
+      "clean_code_distance": 0.33551305532455444,
+      "asr": 95.1171875,
+      "paired_asr": 94.34782608695652,
+      "translation_response_distance": 1.8406782730765963,
+      "clean_samples": 512,
+      "response_samples": 460,
+      "bd_samples": 512,
+      "per_source": {
+        "1": {
+          "count": 66,
+          "paired_asr": 92.42424242424242,
+          "translation_response_distance": 1.654355566108267
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 97.77777777777777,
+          "translation_response_distance": 1.9364223197654442
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 91.48936170212765,
+          "translation_response_distance": 1.7754497663349125
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.8197846693151136
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 87.8048780487805,
+          "translation_response_distance": 2.550302965531181
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 96.22641509433963,
+          "translation_response_distance": 1.6682455294787009
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 98.0,
+          "translation_response_distance": 1.7844235780504016
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 95.91836734693878,
+          "translation_response_distance": 1.7983901462857683
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 89.65517241379311,
+          "translation_response_distance": 1.789804453137277
+        }
+      },
+      "flip_ratio_valid": 0.07626569470902052,
+      "total_flipped": 838185,
+      "field_parameters": 143212
+    },
+    {
+      "step": 1000,
+      "train_total_loss": 1.0784856081008911,
+      "train_clean_code_distance": 0.31979119777679443,
+      "train_translation_response_distance": 1.887759804725647,
+      "score": 98.41269841269842,
+      "clean_teacher_agreement": 100.0,
+      "clean_code_distance": 0.31823783616224927,
+      "asr": 96.875,
+      "paired_asr": 97.6086956521739,
+      "translation_response_distance": 1.6835036494305744,
+      "clean_samples": 512,
+      "response_samples": 460,
+      "bd_samples": 512,
+      "per_source": {
+        "1": {
+          "count": 66,
+          "paired_asr": 96.96969696969697,
+          "translation_response_distance": 1.4336887112370242
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.8056094628793222
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 91.48936170212765,
+          "translation_response_distance": 1.6400335415598912
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.7046045083106214
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 92.6829268292683,
+          "translation_response_distance": 2.2329750913914626
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.5508104300349013
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.6069253921508788
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 97.95918367346938,
+          "translation_response_distance": 1.625149988533418
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 98.27586206896552,
+          "translation_response_distance": 1.7378592765194247
+        }
+      },
+      "flip_ratio_valid": 0.0796143663774184,
+      "total_flipped": 874988,
+      "field_parameters": 143212,
+      "diagnostic_test_ca": 91.83,
+      "diagnostic_test_asr": 94.15555555555555
+    },
+    {
+      "step": 1250,
+      "train_total_loss": 1.1707321405410767,
+      "train_clean_code_distance": 0.3616597652435303,
+      "train_translation_response_distance": 2.095386505126953,
+      "score": 98.2107355864811,
+      "clean_teacher_agreement": 100.0,
+      "clean_code_distance": 0.3076474368572235,
+      "asr": 96.484375,
+      "paired_asr": 98.04347826086956,
+      "translation_response_distance": 1.6133804542430932,
+      "clean_samples": 512,
+      "response_samples": 460,
+      "bd_samples": 512,
+      "per_source": {
+        "1": {
+          "count": 66,
+          "paired_asr": 95.45454545454545,
+          "translation_response_distance": 1.3982432185600102
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.6871426452825098
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 95.74468085106383,
+          "translation_response_distance": 1.5873204900863322
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.6235555366233543
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 95.1219512195122,
+          "translation_response_distance": 2.2859545425993963
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.4028589250656545
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.555365350511339
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 97.95918367346938,
+          "translation_response_distance": 1.571784787167227
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 98.27586206896552,
+          "translation_response_distance": 1.6152198853620625
+        }
+      },
+      "flip_ratio_valid": 0.08178936970761928,
+      "total_flipped": 898892,
+      "field_parameters": 143212
+    },
+    {
+      "step": 1500,
+      "train_total_loss": 0.9658166170120239,
+      "train_clean_code_distance": 0.24443717300891876,
+      "train_translation_response_distance": 1.7104660272598267,
+      "score": 98.91411648568608,
+      "clean_teacher_agreement": 100.0,
+      "clean_code_distance": 0.2963761587937673,
+      "asr": 97.8515625,
+      "paired_asr": 98.26086956521739,
+      "translation_response_distance": 1.5842287367668704,
+      "clean_samples": 512,
+      "response_samples": 460,
+      "bd_samples": 512,
+      "per_source": {
+        "1": {
+          "count": 66,
+          "paired_asr": 98.48484848484848,
+          "translation_response_distance": 1.4119254001463302
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.6972828146852093
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 95.74468085106383,
+          "translation_response_distance": 1.525534539639809
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.638275028054231
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 95.1219512195122,
+          "translation_response_distance": 2.1628361161808334
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.3923042635247893
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 98.0,
+          "translation_response_distance": 1.5659741846720376
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 97.95918367346938,
+          "translation_response_distance": 1.5236973405695287
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 98.27586206896552,
+          "translation_response_distance": 1.5258615318386033
+        }
+      },
+      "flip_ratio_valid": 0.083435726395063,
+      "total_flipped": 916986,
+      "field_parameters": 143212,
+      "diagnostic_test_ca": 91.67,
+      "diagnostic_test_asr": 95.87777777777778
+    },
+    {
+      "step": 1750,
+      "train_total_loss": 1.0052162408828735,
+      "train_clean_code_distance": 0.30128970742225647,
+      "train_translation_response_distance": 1.8097038269042969,
+      "score": 98.71878090999012,
+      "clean_teacher_agreement": 99.8046875,
+      "clean_code_distance": 0.30201995703909135,
+      "asr": 97.65625,
+      "paired_asr": 97.82608695652173,
+      "translation_response_distance": 1.5602911612837786,
+      "clean_samples": 512,
+      "response_samples": 460,
+      "bd_samples": 512,
+      "per_source": {
+        "1": {
+          "count": 66,
+          "paired_asr": 98.48484848484848,
+          "translation_response_distance": 1.36210792554348
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.6444081789181557
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 91.48936170212765,
+          "translation_response_distance": 1.4898846899082192
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.592531141891978
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 95.1219512195122,
+          "translation_response_distance": 2.128041487076095
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.3925763695994764
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 98.0,
+          "translation_response_distance": 1.5981807454427084
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 97.95918367346938,
+          "translation_response_distance": 1.5446465647950465
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 98.27586206896552,
+          "translation_response_distance": 1.4817208083653357
+        }
+      },
+      "flip_ratio_valid": 0.08457208920425305,
+      "total_flipped": 929475,
+      "field_parameters": 143212
+    },
+    {
+      "step": 2000,
+      "train_total_loss": 1.0091185569763184,
+      "train_clean_code_distance": 0.3258250653743744,
+      "train_translation_response_distance": 1.7379651069641113,
+      "score": 99.11330049261083,
+      "clean_teacher_agreement": 100.0,
+      "clean_code_distance": 0.2883017261823018,
+      "asr": 98.2421875,
+      "paired_asr": 98.04347826086956,
+      "translation_response_distance": 1.5313188046072992,
+      "clean_samples": 512,
+      "response_samples": 460,
+      "bd_samples": 512,
+      "per_source": {
+        "1": {
+          "count": 66,
+          "paired_asr": 98.48484848484848,
+          "translation_response_distance": 1.3371058987447308
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.6664238399929472
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 93.61702127659575,
+          "translation_response_distance": 1.591162907034511
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.509122885909735
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 95.1219512195122,
+          "translation_response_distance": 2.089803207211378
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.3751901760541168
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 98.0,
+          "translation_response_distance": 1.491640493604872
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 97.95918367346938,
+          "translation_response_distance": 1.4877762902620968
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 98.27586206896552,
+          "translation_response_distance": 1.437389581139517
+        }
+      },
+      "flip_ratio_valid": 0.08547178937698675,
+      "total_flipped": 939363,
+      "field_parameters": 143212,
+      "diagnostic_test_ca": 91.83,
+      "diagnostic_test_asr": 95.55555555555556
+    },
+    {
+      "step": 2250,
+      "train_total_loss": 0.9265671968460083,
+      "train_clean_code_distance": 0.34770575165748596,
+      "train_translation_response_distance": 1.612625241279602,
+      "score": 98.71878090999012,
+      "clean_teacher_agreement": 99.8046875,
+      "clean_code_distance": 0.2942513989077674,
+      "asr": 97.65625,
+      "paired_asr": 98.26086956521739,
+      "translation_response_distance": 1.5027850312311293,
+      "clean_samples": 512,
+      "response_samples": 460,
+      "bd_samples": 512,
+      "per_source": {
+        "1": {
+          "count": 66,
+          "paired_asr": 98.48484848484848,
+          "translation_response_distance": 1.3095693435733164
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.6650853545577438
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 97.87234042553192,
+          "translation_response_distance": 1.4291838021424927
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.5496770862920093
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 92.6829268292683,
+          "translation_response_distance": 1.981869090217239
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.4053361360881813
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 98.0,
+          "translation_response_distance": 1.418192136552599
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 97.95918367346938,
+          "translation_response_distance": 1.466014677164506
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 98.27586206896552,
+          "translation_response_distance": 1.4695131166684672
+        }
+      },
+      "flip_ratio_valid": 0.08618068541721412,
+      "total_flipped": 947154,
+      "field_parameters": 143212
+    },
+    {
+      "step": 2500,
+      "train_total_loss": 1.0697630643844604,
+      "train_clean_code_distance": 0.2778661549091339,
+      "train_translation_response_distance": 1.9144532680511475,
+      "score": 98.81422924901186,
+      "clean_teacher_agreement": 100.0,
+      "clean_code_distance": 0.294188411699401,
+      "asr": 97.65625,
+      "paired_asr": 98.26086956521739,
+      "translation_response_distance": 1.4949443356426442,
+      "clean_samples": 512,
+      "response_samples": 460,
+      "bd_samples": 512,
+      "per_source": {
+        "1": {
+          "count": 66,
+          "paired_asr": 98.48484848484848,
+          "translation_response_distance": 1.2827612093402079
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.6451262297453704
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 97.87234042553192,
+          "translation_response_distance": 1.477366260321146
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.5113477187478723
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 92.6829268292683,
+          "translation_response_distance": 2.023710082863081
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.3734732913771017
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 98.0,
+          "translation_response_distance": 1.4354469511244032
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 97.95918367346938,
+          "translation_response_distance": 1.479586929961397
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 98.27586206896552,
+          "translation_response_distance": 1.4211760900943216
+        }
+      },
+      "flip_ratio_valid": 0.08671934086043656,
+      "total_flipped": 953074,
+      "field_parameters": 143212,
+      "diagnostic_test_ca": 91.88,
+      "diagnostic_test_asr": 95.86666666666666
+    },
+    {
+      "step": 2750,
+      "train_total_loss": 0.9531288146972656,
+      "train_clean_code_distance": 0.3312205970287323,
+      "train_translation_response_distance": 1.6902053356170654,
+      "score": 98.61888923267327,
+      "clean_teacher_agreement": 99.8046875,
+      "clean_code_distance": 0.2948249644703335,
+      "asr": 97.4609375,
+      "paired_asr": 98.69565217391305,
+      "translation_response_distance": 1.4922459404249697,
+      "clean_samples": 512,
+      "response_samples": 460,
+      "bd_samples": 512,
+      "per_source": {
+        "1": {
+          "count": 66,
+          "paired_asr": 98.48484848484848,
+          "translation_response_distance": 1.3441673465048023
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.6939639079717943
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 97.87234042553192,
+          "translation_response_distance": 1.504784475827048
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.5389229518915313
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 97.5609756097561,
+          "translation_response_distance": 1.9434793777259063
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.3229366718348219
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 98.0,
+          "translation_response_distance": 1.4214914109971788
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 97.95918367346938,
+          "translation_response_distance": 1.4303822268704438
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 98.27586206896552,
+          "translation_response_distance": 1.4020373519809768
+        }
+      },
+      "flip_ratio_valid": 0.08712478826837561,
+      "total_flipped": 957530,
+      "field_parameters": 143212
+    },
+    {
+      "step": 3000,
+      "train_total_loss": 0.9929826855659485,
+      "train_clean_code_distance": 0.29295259714126587,
+      "train_translation_response_distance": 1.7155940532684326,
+      "score": 98.91411648568608,
+      "clean_teacher_agreement": 100.0,
+      "clean_code_distance": 0.2989344480964873,
+      "asr": 97.8515625,
+      "paired_asr": 98.04347826086956,
+      "translation_response_distance": 1.4713084566420402,
+      "clean_samples": 512,
+      "response_samples": 460,
+      "bd_samples": 512,
+      "per_source": {
+        "1": {
+          "count": 66,
+          "paired_asr": 98.48484848484848,
+          "translation_response_distance": 1.2880246711499763
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.6180929019127364
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 95.74468085106383,
+          "translation_response_distance": 1.4993393900264804
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.4879346361347272
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 92.6829268292683,
+          "translation_response_distance": 1.9474148168796448
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.3294644305790995
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 98.0,
+          "translation_response_distance": 1.416771986219618
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 97.95918367346938,
+          "translation_response_distance": 1.428780411917066
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 98.27586206896552,
+          "translation_response_distance": 1.4046552975972493
+        }
+      },
+      "flip_ratio_valid": 0.08745835429115491,
+      "total_flipped": 961196,
+      "field_parameters": 143212,
+      "diagnostic_test_ca": 91.72,
+      "diagnostic_test_asr": 95.21111111111111
+    },
+    {
+      "step": 3250,
+      "train_total_loss": 0.9229157567024231,
+      "train_clean_code_distance": 0.33881092071533203,
+      "train_translation_response_distance": 1.5904643535614014,
+      "score": 99.21259842519684,
+      "clean_teacher_agreement": 100.0,
+      "clean_code_distance": 0.28757859932051766,
+      "asr": 98.4375,
+      "paired_asr": 98.69565217391305,
+      "translation_response_distance": 1.457306814884794,
+      "clean_samples": 512,
+      "response_samples": 460,
+      "bd_samples": 512,
+      "per_source": {
+        "1": {
+          "count": 66,
+          "paired_asr": 98.48484848484848,
+          "translation_response_distance": 1.2805461353725858
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.5809943069646388
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 97.87234042553192,
+          "translation_response_distance": 1.4629375962782696
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.4226730820400264
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 95.1219512195122,
+          "translation_response_distance": 2.0098210389051983
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.2811506149403953
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.4330428462558322
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 97.95918367346938,
+          "translation_response_distance": 1.4278117091207008
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 98.27586206896552,
+          "translation_response_distance": 1.4046101250410994
+        }
+      },
+      "flip_ratio_valid": 0.08771840112506196,
+      "total_flipped": 964054,
+      "field_parameters": 143212
+    },
+    {
+      "step": 3500,
+      "train_total_loss": 1.015507459640503,
+      "train_clean_code_distance": 0.2832595407962799,
+      "train_translation_response_distance": 1.796572208404541,
+      "score": 99.21259842519684,
+      "clean_teacher_agreement": 100.0,
+      "clean_code_distance": 0.2857843008306291,
+      "asr": 98.4375,
+      "paired_asr": 98.69565217391305,
+      "translation_response_distance": 1.4614271007298272,
+      "clean_samples": 512,
+      "response_samples": 460,
+      "bd_samples": 512,
+      "per_source": {
+        "1": {
+          "count": 66,
+          "paired_asr": 98.48484848484848,
+          "translation_response_distance": 1.2649183722858879
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.658581147370515
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 97.87234042553192,
+          "translation_response_distance": 1.4562715503340917
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.4467532587986367
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 95.1219512195122,
+          "translation_response_distance": 2.005567100959096
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.2943358761209611
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.4146898735894098
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 97.95918367346938,
+          "translation_response_distance": 1.3876362106427045
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 98.27586206896552,
+          "translation_response_distance": 1.4198240429962274
+        }
+      },
+      "flip_ratio_valid": 0.08792549230559815,
+      "total_flipped": 966330,
+      "field_parameters": 143212,
+      "diagnostic_test_ca": 92.01,
+      "diagnostic_test_asr": 95.92222222222222
+    },
+    {
+      "step": 3750,
+      "train_total_loss": 0.8528882265090942,
+      "train_clean_code_distance": 0.30159056186676025,
+      "train_translation_response_distance": 1.4829427003860474,
+      "score": 99.21259842519684,
+      "clean_teacher_agreement": 100.0,
+      "clean_code_distance": 0.2797412524620692,
+      "asr": 98.4375,
+      "paired_asr": 98.69565217391305,
+      "translation_response_distance": 1.4607006496853299,
+      "clean_samples": 512,
+      "response_samples": 460,
+      "bd_samples": 512,
+      "per_source": {
+        "1": {
+          "count": 66,
+          "paired_asr": 98.48484848484848,
+          "translation_response_distance": 1.301991252385406
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.62368588388702
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 97.87234042553192,
+          "translation_response_distance": 1.4738567253094756
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.5035251521856436
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 95.1219512195122,
+          "translation_response_distance": 1.915935157114251
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.2825045845543563
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.4471781645880804
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 97.95918367346938,
+          "translation_response_distance": 1.4026512905042998
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 98.27586206896552,
+          "translation_response_distance": 1.3682595048370945
+        }
+      },
+      "flip_ratio_valid": 0.08807808101814614,
+      "total_flipped": 968007,
+      "field_parameters": 143212
+    },
+    {
+      "step": 4000,
+      "train_total_loss": 0.9587290287017822,
+      "train_clean_code_distance": 0.2811885178089142,
+      "train_translation_response_distance": 1.7330608367919922,
+      "score": 99.31170108161258,
+      "clean_teacher_agreement": 100.0,
+      "clean_code_distance": 0.2766926238934199,
+      "asr": 98.6328125,
+      "paired_asr": 98.69565217391305,
+      "translation_response_distance": 1.4534122338041593,
+      "clean_samples": 512,
+      "response_samples": 460,
+      "bd_samples": 512,
+      "per_source": {
+        "1": {
+          "count": 66,
+          "paired_asr": 98.48484848484848,
+          "translation_response_distance": 1.2967598566703924
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.5992299468429
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 97.87234042553192,
+          "translation_response_distance": 1.4500892675232944
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.4851900601438968
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 95.1219512195122,
+          "translation_response_distance": 1.9307815531081947
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.2899336295057893
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.38519349416097
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 97.95918367346938,
+          "translation_response_distance": 1.4115696948131466
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 98.27586206896552,
+          "translation_response_distance": 1.3993814722331548
+        }
+      },
+      "flip_ratio_valid": 0.08818963364878646,
+      "total_flipped": 969233,
+      "field_parameters": 143212,
+      "diagnostic_test_ca": 91.76,
+      "diagnostic_test_asr": 96.3
+    },
+    {
+      "step": 4250,
+      "train_total_loss": 1.1349223852157593,
+      "train_clean_code_distance": 0.3770146369934082,
+      "train_translation_response_distance": 1.943357229232788,
+      "score": 99.31170108161258,
+      "clean_teacher_agreement": 100.0,
+      "clean_code_distance": 0.28068167799048954,
+      "asr": 98.6328125,
+      "paired_asr": 98.69565217391305,
+      "translation_response_distance": 1.446121672846845,
+      "clean_samples": 512,
+      "response_samples": 460,
+      "bd_samples": 512,
+      "per_source": {
+        "1": {
+          "count": 66,
+          "paired_asr": 98.48484848484848,
+          "translation_response_distance": 1.2904561015491935
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.5664491959560065
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 97.87234042553192,
+          "translation_response_distance": 1.4206779414598543
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.4746376424053915
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 97.5609756097561,
+          "translation_response_distance": 1.9404308324260764
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.283115987757717
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 98.0,
+          "translation_response_distance": 1.415755526224772
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 97.95918367346938,
+          "translation_response_distance": 1.402931367999572
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 98.27586206896552,
+          "translation_response_distance": 1.3876387223430064
+        }
+      },
+      "flip_ratio_valid": 0.08829663682466983,
+      "total_flipped": 970409,
+      "field_parameters": 143212
+    },
+    {
+      "step": 4500,
+      "train_total_loss": 1.29631769657135,
+      "train_clean_code_distance": 0.3692118227481842,
+      "train_translation_response_distance": 2.319330930709839,
+      "score": 99.31400565388397,
+      "clean_teacher_agreement": 99.8046875,
+      "clean_code_distance": 0.28239692250887555,
+      "asr": 98.828125,
+      "paired_asr": 98.47826086956522,
+      "translation_response_distance": 1.4380157691844997,
+      "clean_samples": 512,
+      "response_samples": 460,
+      "bd_samples": 512,
+      "per_source": {
+        "1": {
+          "count": 66,
+          "paired_asr": 98.48484848484848,
+          "translation_response_distance": 1.2771595672324851
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.5853825816401728
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 95.74468085106383,
+          "translation_response_distance": 1.454507464776366
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.480098963303244
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 95.1219512195122,
+          "translation_response_distance": 1.9199777179294162
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.2693678937868003
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.3915084626939562
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 97.95918367346938,
+          "translation_response_distance": 1.3620627634649645
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 98.27586206896552,
+          "translation_response_distance": 1.3740264172754981
+        }
+      },
+      "flip_ratio_valid": 0.08835996523488653,
+      "total_flipped": 971105,
+      "field_parameters": 143212,
+      "diagnostic_test_ca": 91.85,
+      "diagnostic_test_asr": 96.26666666666667
+    },
+    {
+      "step": 4750,
+      "train_total_loss": 0.8879648447036743,
+      "train_clean_code_distance": 0.3113696277141571,
+      "train_translation_response_distance": 1.5469307899475098,
+      "score": 99.31170108161258,
+      "clean_teacher_agreement": 100.0,
+      "clean_code_distance": 0.2781725310617023,
+      "asr": 98.6328125,
+      "paired_asr": 98.69565217391305,
+      "translation_response_distance": 1.4345405762898173,
+      "clean_samples": 512,
+      "response_samples": 460,
+      "bd_samples": 512,
+      "per_source": {
+        "1": {
+          "count": 66,
+          "paired_asr": 98.48484848484848,
+          "translation_response_distance": 1.2406882982864122
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.5715256090517398
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 97.87234042553192,
+          "translation_response_distance": 1.4308569064940686
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.463853792427412
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 97.5609756097561,
+          "translation_response_distance": 1.9254315461569687
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.2893689183569055
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 98.0,
+          "translation_response_distance": 1.3888462236192491
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 97.95918367346938,
+          "translation_response_distance": 1.3810085979989326
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 98.27586206896552,
+          "translation_response_distance": 1.396323970451209
+        }
+      },
+      "flip_ratio_valid": 0.08842775211076503,
+      "total_flipped": 971850,
+      "field_parameters": 143212
+    },
+    {
+      "step": 5000,
+      "train_total_loss": 1.0171544551849365,
+      "train_clean_code_distance": 0.3890044093132019,
+      "train_translation_response_distance": 1.710286021232605,
+      "score": 99.21259842519684,
+      "clean_teacher_agreement": 100.0,
+      "clean_code_distance": 0.28007084131240845,
+      "asr": 98.4375,
+      "paired_asr": 98.91304347826087,
+      "translation_response_distance": 1.434573423228978,
+      "clean_samples": 512,
+      "response_samples": 460,
+      "bd_samples": 512,
+      "per_source": {
+        "1": {
+          "count": 66,
+          "paired_asr": 98.48484848484848,
+          "translation_response_distance": 1.273950213936443
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.5738943971233603
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 97.87234042553192,
+          "translation_response_distance": 1.4377646367318804
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.4773039765867013
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 97.5609756097561,
+          "translation_response_distance": 1.9098242782964938
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.2659570596003182
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "translation_response_distance": 1.3859295802646214
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 97.95918367346938,
+          "translation_response_distance": 1.3769911854715844
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 98.27586206896552,
+          "translation_response_distance": 1.3778068982778382
+        }
+      },
+      "flip_ratio_valid": 0.08848835084812755,
+      "total_flipped": 972516,
+      "field_parameters": 143212,
+      "diagnostic_test_ca": 91.84,
+      "diagnostic_test_asr": 96.33333333333333
+    }
+  ],
+  "best_step": 4500,
+  "best_score": 99.31400565388397,
+  "best_calibration": {
+    "clean_teacher_agreement": 99.8046875,
+    "clean_code_distance": 0.28239692250887555,
+    "asr": 98.828125,
+    "paired_asr": 98.47826086956522,
+    "translation_response_distance": 1.4380157691844997,
+    "clean_samples": 512,
+    "response_samples": 460,
+    "bd_samples": 512,
+    "per_source": {
+      "1": {
+        "count": 66,
+        "paired_asr": 98.48484848484848,
+        "translation_response_distance": 1.2771595672324851
+      },
+      "2": {
+        "count": 45,
+        "paired_asr": 100.0,
+        "translation_response_distance": 1.5853825816401728
+      },
+      "3": {
+        "count": 47,
+        "paired_asr": 95.74468085106383,
+        "translation_response_distance": 1.454507464776366
+      },
+      "4": {
+        "count": 51,
+        "paired_asr": 100.0,
+        "translation_response_distance": 1.480098963303244
+      },
+      "5": {
+        "count": 41,
+        "paired_asr": 95.1219512195122,
+        "translation_response_distance": 1.9199777179294162
+      },
+      "6": {
+        "count": 53,
+        "paired_asr": 100.0,
+        "translation_response_distance": 1.2693678937868003
+      },
+      "7": {
+        "count": 50,
+        "paired_asr": 100.0,
+        "translation_response_distance": 1.3915084626939562
+      },
+      "8": {
+        "count": 49,
+        "paired_asr": 97.95918367346938,
+        "translation_response_distance": 1.3620627634649645
+      },
+      "9": {
+        "count": 58,
+        "paired_asr": 98.27586206896552,
+        "translation_response_distance": 1.3740264172754981
+      }
+    }
+  },
+  "best_test": {
+    "ca": 91.85,
+    "asr": 96.26666666666667
+  },
+  "structured_stats": {
+    "total_valid": 10990328,
+    "total_flipped": 971105,
+    "flip_ratio_valid": 0.08835996523488653,
+    "field_parameters": 143212,
+    "layers": [
+      {
+        "name": "conv1",
+        "valid": 1664,
+        "flipped": 149,
+        "flip_ratio_valid": 0.08954326923076923,
+        "field_rank": 4,
+        "field_params": 364,
+        "field_abs_mean": 0.0911087915301323,
+        "field_abs_max": 0.0999998152256012
+      },
+      {
+        "name": "layer1.0.conv1",
+        "valid": 36352,
+        "flipped": 3044,
+        "flip_ratio_valid": 0.08373679577464789,
+        "field_rank": 4,
+        "field_params": 2560,
+        "field_abs_mean": 0.0842692032456398,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer1.0.conv2",
+        "valid": 36322,
+        "flipped": 2956,
+        "flip_ratio_valid": 0.08138318374538847,
+        "field_rank": 4,
+        "field_params": 2560,
+        "field_abs_mean": 0.08356507867574692,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer1.1.conv1",
+        "valid": 36372,
+        "flipped": 2737,
+        "flip_ratio_valid": 0.07525019245573518,
+        "field_rank": 4,
+        "field_params": 2560,
+        "field_abs_mean": 0.07859496027231216,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer1.1.conv2",
+        "valid": 36285,
+        "flipped": 2977,
+        "flip_ratio_valid": 0.0820449221441367,
+        "field_rank": 4,
+        "field_params": 2560,
+        "field_abs_mean": 0.08512535691261292,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer2.0.conv1",
+        "valid": 72584,
+        "flipped": 5875,
+        "flip_ratio_valid": 0.08094070318527499,
+        "field_rank": 4,
+        "field_params": 2816,
+        "field_abs_mean": 0.08498723059892654,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer2.0.conv2",
+        "valid": 145473,
+        "flipped": 12035,
+        "flip_ratio_valid": 0.08273012861493198,
+        "field_rank": 4,
+        "field_params": 5120,
+        "field_abs_mean": 0.08534085005521774,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer2.0.shortcut.0",
+        "valid": 7899,
+        "flipped": 585,
+        "flip_ratio_valid": 0.07406000759589822,
+        "field_rank": 4,
+        "field_params": 768,
+        "field_abs_mean": 0.08522126823663712,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer2.1.conv1",
+        "valid": 145427,
+        "flipped": 11931,
+        "flip_ratio_valid": 0.08204116154496757,
+        "field_rank": 4,
+        "field_params": 5120,
+        "field_abs_mean": 0.08364458382129669,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer2.1.conv2",
+        "valid": 145424,
+        "flipped": 12288,
+        "flip_ratio_valid": 0.08449774452635053,
+        "field_rank": 4,
+        "field_params": 5120,
+        "field_abs_mean": 0.08640120178461075,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer3.0.conv1",
+        "valid": 290586,
+        "flipped": 24368,
+        "flip_ratio_valid": 0.08385813494111898,
+        "field_rank": 4,
+        "field_params": 5632,
+        "field_abs_mean": 0.08589179068803787,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer3.0.conv2",
+        "valid": 582008,
+        "flipped": 48229,
+        "flip_ratio_valid": 0.08286655853527787,
+        "field_rank": 4,
+        "field_params": 10240,
+        "field_abs_mean": 0.0835944190621376,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer3.0.shortcut.0",
+        "valid": 31928,
+        "flipped": 2351,
+        "flip_ratio_valid": 0.07363442746178903,
+        "field_rank": 4,
+        "field_params": 1536,
+        "field_abs_mean": 0.08382290601730347,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer3.1.conv1",
+        "valid": 581867,
+        "flipped": 50396,
+        "flip_ratio_valid": 0.08661085780771208,
+        "field_rank": 4,
+        "field_params": 10240,
+        "field_abs_mean": 0.0880654901266098,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer3.1.conv2",
+        "valid": 581611,
+        "flipped": 50672,
+        "flip_ratio_valid": 0.0871235241424251,
+        "field_rank": 4,
+        "field_params": 10240,
+        "field_abs_mean": 0.08779976516962051,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer4.0.conv1",
+        "valid": 1162273,
+        "flipped": 103627,
+        "flip_ratio_valid": 0.08915891533228423,
+        "field_rank": 4,
+        "field_params": 11264,
+        "field_abs_mean": 0.09051164239645004,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer4.0.conv2",
+        "valid": 2325916,
+        "flipped": 208739,
+        "flip_ratio_valid": 0.08974485750990148,
+        "field_rank": 4,
+        "field_params": 20480,
+        "field_abs_mean": 0.09057513624429703,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer4.0.shortcut.0",
+        "valid": 127759,
+        "flipped": 10500,
+        "flip_ratio_valid": 0.0821859908108235,
+        "field_rank": 4,
+        "field_params": 3072,
+        "field_abs_mean": 0.09122738242149353,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer4.1.conv1",
+        "valid": 2324689,
+        "flipped": 205640,
+        "flip_ratio_valid": 0.08845914442749116,
+        "field_rank": 4,
+        "field_params": 20480,
+        "field_abs_mean": 0.08921891450881958,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer4.1.conv2",
+        "valid": 2317889,
+        "flipped": 212006,
+        "flip_ratio_valid": 0.09146512192775409,
+        "field_rank": 4,
+        "field_params": 20480,
+        "field_abs_mean": 0.09211640805006027,
+        "field_abs_max": 0.10000000149011612
+      }
+    ]
+  },
+  "trigger_size": 6,
+  "config": {
+    "bd_target": 0,
+    "field_rank": 4,
+    "delta_bound": 0.1,
+    "round_temperature": 0.05,
+    "decision_svd_tol": 1e-06,
+    "steps": 5000,
+    "lr": 0.01
+  }
+}
