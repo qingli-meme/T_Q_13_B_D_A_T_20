@@ -60,3 +60,30 @@ Best calibration checkpoint: step 5000
 Machine-readable history and per-layer diagnostics are in
 `ours/main/output/structured_transport_v4_resnet18_cifar10.json`.
 
+## Decision-Set Projection V5 — CIFAR-10 / ResNet18
+
+Run date: 2026-10-29  
+Seed: 1005  
+Quantization: W4A4  
+Trigger: optimized 6×6 stage2, target class 0
+
+Best calibration checkpoint: step 4250
+
+| Metric | Value |
+|---|---:|
+| Benign PTQ clean accuracy | 93.24% |
+| Benign PTQ ASR | 2.06% |
+| V5 test clean accuracy | 93.15% |
+| V5 test ASR | 72.67% |
+| Calibration clean agreement | 100.00% |
+| Calibration ASR | 83.59% |
+| Clean set distance | 0.06682 |
+| Trigger set distance | 0.02045 |
+| Decision rank / null dimension | 9 / 503 |
+| Classifier geometry logit error | 0.0 |
+| Final flipped positions | 865,987 |
+| Final flip ratio | 7.88% |
+
+Machine-readable history and per-layer diagnostics are in
+`ours/main/output/structured_decision_set_v5_resnet18_cifar10.json`.
+
