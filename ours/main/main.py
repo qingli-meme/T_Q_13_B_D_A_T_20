@@ -39,7 +39,7 @@ def to_device(data, device='cpu'):
         return data
     else:
         return data
-    
+
 
 def init_calibrate_data(train_loader, cali_batchsize):
     cali_data = []
@@ -62,7 +62,7 @@ def init_calibrate_data(train_loader, cali_batchsize):
             cali_data.append(inputs)
         else:
             labels = batch[1]
-            label_counter.update(labels.tolist()) 
+            label_counter.update(labels.tolist())
             cali_data.append(batch[0])
         if len(cali_data) == cali_batchsize:
             flag = False
@@ -77,7 +77,7 @@ def init_calibrate_data(train_loader, cali_batchsize):
             label_counter.clear()
             if flag:
                 break
-        
+
     print(f'cali_data num: {len(cali_data)} * {batch_size}')
 
     return cali_data, start_index
@@ -102,7 +102,7 @@ def load_calibrate_data(train_loader, cali_batchsize, start_index=0):
                 cali_data.append(batch[0])
             if len(cali_data) == cali_batchsize:
                 break
-        
+
     print(f'cali_data num: {len(cali_data)} * {batch_size}')
 
     return cali_data
@@ -205,7 +205,220 @@ if __name__ == '__main__':
     if hasattr(config, 'quantize'):
         model = get_quantize_model(model, config)
         model.to(device)
-        if config.quantize.quantize_type == 'structured_decision_set_attack':
+        if config.quantize.quantize_type == 'structured_decision_core_attack':
+            if args.type != 'bd':
+                raise NotImplementedError(
+                    'V6 supports --type bd only.')
+
+            if args.model != 'resnet18' or args.dataset != 'cifar10':
+                raise NotImplementedError(
+                    'V6 first death test is ResNet18/CIFAR10 only.')
+
+            batch_size = 32
+            num_worker = 16
+
+            train_loader = torch.utils.data.DataLoader(
+                train_loader.dataset,
+                batch_size=batch_size,
+                num_workers=num_worker,
+                pin_memory=True)
+
+            cali_data, start_index = init_calibrate_data(
+                train_loader,
+                cali_batchsize=config.quantize.cali_batchsize)
+
+            trigger_loader = torch.utils.data.DataLoader(
+                train_loader_bd.dataset,
+                batch_size=batch_size,
+                num_workers=num_worker,
+                pin_memory=True)
+
+            cali_data_bd = load_calibrate_data(
+                trigger_loader,
+                cali_batchsize=config.quantize.cali_batchsize,
+                start_index=start_index)
+
+            attack_cfg = config.quantize.attack
+
+            from mqbench.utils.state import (
+                enable_quantization,
+                enable_calibration_woquantization,
+            )
+
+            from mqbench.structured_decision_core_attack import (
+                structured_decision_core_attack,
+            )
+
+            model.eval()
+
+            with torch.no_grad():
+                enable_calibration_woquantization(
+                    model,
+                    quantizer_type='act_fake_quant')
+
+                for batch in cali_data:
+                    if isinstance(batch, dict):
+                        model(**to_device(batch, device))
+                    else:
+                        model(to_device(batch, device))
+
+                for batch in cali_data_bd:
+                    if isinstance(batch, dict):
+                        model(**to_device(batch, device))
+                    else:
+                        model(to_device(batch, device))
+
+                enable_calibration_woquantization(
+                    model,
+                    quantizer_type='weight_fake_quant')
+
+                if isinstance(cali_data[0], dict):
+                    model(**to_device(cali_data[0], device))
+                else:
+                    model(to_device(cali_data[0], device))
+
+                if isinstance(cali_data_bd[0], dict):
+                    model(**to_device(cali_data_bd[0], device))
+                else:
+                    model(to_device(cali_data_bd[0], device))
+
+            enable_quantization(model)
+            model.to(device)
+            model.eval()
+
+            print(
+                '\n'
+                '========== Benign PTQ =========='
+            )
+
+            print('clean accuracy')
+            benign_ptq_ca = evaluate(
+                test_loader,
+                model)
+
+            print('trigger ASR')
+            benign_ptq_asr = evaluate(
+                test_loader_bd,
+                model)
+
+            print(
+                'Benign PTQ CA:',
+                float(benign_ptq_ca))
+
+            print(
+                'Benign PTQ ASR:',
+                float(benign_ptq_asr))
+
+            output_dir = os.path.join(
+                directory_path,
+                'output')
+
+            os.makedirs(
+                output_dir,
+                exist_ok=True)
+
+            diag_json = os.path.join(
+                output_dir,
+                (
+                    f'structured_decision_core_v6_'
+                    f'{args.model}_'
+                    f'{args.dataset}.json'
+                ))
+
+            checkpoint_path = os.path.join(
+                directory_path,
+                'model',
+                (
+                    f'{args.model}+'
+                    f'{args.dataset}.'
+                    f'structured_decision_core_v6_'
+                    f't{attack_cfg.bd_target}.pth'
+                ))
+
+            if args.compute:
+                state_dict = torch.load(
+                    checkpoint_path,
+                    map_location=device)
+
+                model.load_state_dict(
+                    state_dict,
+                    strict=False)
+
+                enable_quantization(model)
+
+            else:
+                model, attack_info = (
+                    structured_decision_core_attack(
+                        model=model,
+                        cali_data=cali_data,
+                        cali_data_bd=cali_data_bd,
+                        trigger_loader=trigger_loader,
+                        config=attack_cfg,
+                        output_json=diag_json,
+                        test_loader=test_loader,
+                        test_loader_bd=test_loader_bd)
+                )
+
+                torch.save(
+                    model.state_dict(),
+                    checkpoint_path)
+
+                print(
+                    'Saved V6 quantized model:',
+                    checkpoint_path)
+
+            model.to(device)
+            model.eval()
+
+            print(
+                '\n'
+                '========== Decision-Core V6 =========='
+            )
+
+            print('clean accuracy')
+            attacked_ca = evaluate(
+                test_loader,
+                model)
+
+            print('trigger ASR')
+            attacked_asr = evaluate(
+                test_loader_bd,
+                model)
+
+            print(
+                '\n'
+                '========== Final Summary =========='
+            )
+
+            print(
+                'Benign PTQ CA:',
+                float(benign_ptq_ca))
+
+            print(
+                'Benign PTQ ASR:',
+                float(benign_ptq_asr))
+
+            print(
+                'Attacked CA:',
+                float(attacked_ca))
+
+            print(
+                'Attacked ASR:',
+                float(attacked_asr))
+
+            print(
+                'CA drop from benign PTQ:',
+                float(
+                    benign_ptq_ca
+                    - attacked_ca))
+
+            print(
+                'ASR gain over benign PTQ:',
+                float(
+                    attacked_asr
+                    - benign_ptq_asr))
+
+        elif config.quantize.quantize_type == 'structured_decision_set_attack':
             if args.type != 'bd':
                 raise NotImplementedError(
                     'V5 supports --type bd only.')
@@ -677,14 +890,14 @@ if __name__ == '__main__':
 
         elif config.quantize.quantize_type == 'advanced_ptq':
             print('begin calibration now!')
-            
+
             if args.model == 'bert':
                 batch_size = 16
                 num_worker = 4
             else:
                 batch_size = 32
                 num_worker = 16
-            
+
             # define the num of batch_size to enhance the attack
             # for de2, we suggest 1
             # for de1, we suggest 1
@@ -763,9 +976,9 @@ if __name__ == '__main__':
                     model, cali_data, cali_data_bd, config.quantize.reconstruction, bd_target=bd_target)
                 enable_quantization(model)
 
-                # save quant model for defense 
+                # save quant model for defense
                 torch.save(model.state_dict(), os.path.join(directory_path, f'./model/{args.model}+{args.dataset}.quant_{args.type}_{enhance_batch_size}_t{config.quantize.reconstruction.bd_target}.pth'))
-            
+
             print(f'cali_size: {config.quantize.cali_batchsize}')
             if args.type=='de1' or args.type=='de2':
                 print(f'enhance: {enhance_batch_size}')
@@ -819,7 +1032,7 @@ if __name__ == '__main__':
             print('begin quantization now!')
             enable_quantization(model)
 
-            # save quant model for defense 
+            # save quant model for defense
             torch.save(model.state_dict(), os.path.join(directory_path, f'./model/{args.model}+{args.dataset}.quant.pth'))
 
             model.to(device)
