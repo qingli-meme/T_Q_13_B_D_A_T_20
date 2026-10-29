@@ -87,3 +87,30 @@ Best calibration checkpoint: step 4250
 Machine-readable history and per-layer diagnostics are in
 `ours/main/output/structured_decision_set_v5_resnet18_cifar10.json`.
 
+## Decision-Core Routing V6 — CIFAR-10 / ResNet18
+
+Run date: 2026-10-29  
+Seed: 1005  
+Quantization: W4A4  
+Trigger: optimized 6×6 stage2, target class 0
+
+Best calibration checkpoint: step 2750
+
+| Metric | Value |
+|---|---:|
+| Benign PTQ clean accuracy | 93.24% |
+| Benign PTQ ASR | 2.06% |
+| V6 test clean accuracy | 90.67% |
+| V6 test ASR | 99.71% |
+| Calibration clean agreement | 99.61% |
+| Calibration ASR | 100.00% |
+| Clean code distance | 0.45273 |
+| Trigger core distance | 0.90827 |
+| Decision rank / null dimension | 9 / 503 |
+| Decision-code argmax agreement | 100.00% |
+| Final flipped positions | 961,369 |
+| Final flip ratio | 8.75% |
+
+Machine-readable history and per-layer diagnostics are in
+`ours/main/output/structured_decision_core_v6_resnet18_cifar10.json`.
+
