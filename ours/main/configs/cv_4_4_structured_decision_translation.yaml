@@ -1,0 +1,86 @@
+extra_prepare_dict:
+    extra_qconfig_dict:
+        w_observer: MSEObserver
+        a_observer: EMAMSEObserver
+        w_fakequantize: StructuredRoundFakeQuantize
+        a_fakequantize: FixedFakeQuantize
+
+        w_qscheme:
+            bit: 4
+            symmetry: False
+            per_channel: True
+            pot_scale: False
+
+        a_qscheme:
+            bit: 4
+            symmetry: False
+            per_channel: False
+            pot_scale: False
+
+
+quantize:
+    quantize_type: structured_decision_translation_attack
+    cali_batchsize: 16
+
+    attack:
+        bd_target: 0
+
+        # ------------------------------------------------
+        # Structured Rounding Field
+        # EXACTLY keep V6 capacity for a clean mechanism test.
+        # ------------------------------------------------
+        field_rank: 4
+        delta_bound: 0.10
+        round_temperature: 0.05
+        field_init_std: 0.02
+
+        # ------------------------------------------------
+        # Frozen classifier decision geometry
+        # ------------------------------------------------
+        semantic_module: view_post_act_fake_quantizer
+        classifier_module: linear
+
+        frozen_field_modules:
+            - linear
+
+        decision_svd_tol: 1.0e-6
+        geometry_logit_tolerance: 1.0e-4
+
+        # All 10 benign pseudo-class decision cores.
+        min_class_count: 20
+
+        # Day-1 probe was 100% on calibration.
+        # This is only a setup sanity check, not an attack hyperparameter.
+        min_translation_sanity: 99.0
+
+        # ------------------------------------------------
+        # Training
+        # ------------------------------------------------
+        steps: 5000
+        lr: 0.01
+        weight_decay: 0.0
+        grad_clip: 5.0
+
+        # Same dynamic-view protocol as V6.
+        # Trigger is pasted AFTER augmentation.
+        aug_pad: 4
+        hflip_prob: 0.5
+
+        # ------------------------------------------------
+        # Logging
+        # ------------------------------------------------
+        eval_interval: 250
+
+        # Diagnostic only; NEVER used for checkpoint selection.
+        diagnostic_test_eval: true
+        diagnostic_test_interval: 500
+
+
+dataset:
+    batch_size: 32
+    num_workers: 16
+    pattern: stage2
+
+
+process:
+    seed: 1005
