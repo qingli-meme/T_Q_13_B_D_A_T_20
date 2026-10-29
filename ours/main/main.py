@@ -205,7 +205,175 @@ if __name__ == '__main__':
     if hasattr(config, 'quantize'):
         model = get_quantize_model(model, config)
         model.to(device)
-        if config.quantize.quantize_type == 'structured_decision_core_attack':
+        if config.quantize.quantize_type == 'decision_translation_probe':
+            if args.type != 'bd':
+                raise NotImplementedError(
+                    'Decision translation probe supports --type bd only.')
+
+            if args.model != 'resnet18' or args.dataset != 'cifar10':
+                raise NotImplementedError(
+                    'Decision translation probe is ResNet18/CIFAR10 only.')
+
+            batch_size = 32
+            num_worker = 16
+
+            # EXACT same calibration subset construction as V6.
+            train_loader = torch.utils.data.DataLoader(
+                train_loader.dataset,
+                batch_size=batch_size,
+                num_workers=num_worker,
+                pin_memory=True)
+
+            cali_data, start_index = init_calibrate_data(
+                train_loader,
+                cali_batchsize=config.quantize.cali_batchsize)
+
+            trigger_loader = torch.utils.data.DataLoader(
+                train_loader_bd.dataset,
+                batch_size=batch_size,
+                num_workers=num_worker,
+                pin_memory=True)
+
+            cali_data_bd = load_calibrate_data(
+                trigger_loader,
+                cali_batchsize=config.quantize.cali_batchsize,
+                start_index=start_index)
+
+            attack_cfg = config.quantize.attack
+
+            from mqbench.utils.state import (
+                enable_quantization,
+                enable_calibration_woquantization,
+            )
+
+            from mqbench.decision_translation_probe import (
+                decision_translation_probe,
+            )
+
+            model.eval()
+
+            # EXACT same observer calibration as V6.
+            with torch.no_grad():
+                enable_calibration_woquantization(
+                    model,
+                    quantizer_type='act_fake_quant')
+
+                for batch in cali_data:
+                    if isinstance(batch, dict):
+                        model(**to_device(batch, device))
+                    else:
+                        model(to_device(batch, device))
+
+                for batch in cali_data_bd:
+                    if isinstance(batch, dict):
+                        model(**to_device(batch, device))
+                    else:
+                        model(to_device(batch, device))
+
+                enable_calibration_woquantization(
+                    model,
+                    quantizer_type='weight_fake_quant')
+
+                if isinstance(cali_data[0], dict):
+                    model(**to_device(cali_data[0], device))
+                else:
+                    model(to_device(cali_data[0], device))
+
+                if isinstance(cali_data_bd[0], dict):
+                    model(**to_device(cali_data_bd[0], device))
+                else:
+                    model(to_device(cali_data_bd[0], device))
+
+            enable_quantization(model)
+            model.to(device)
+            model.eval()
+
+            print(
+                '\n'
+                '========== Benign PTQ =========='
+            )
+
+            print('clean accuracy')
+            benign_ptq_ca = evaluate(
+                test_loader,
+                model)
+
+            print('trigger ASR')
+            benign_ptq_asr = evaluate(
+                test_loader_bd,
+                model)
+
+            print(
+                'Benign PTQ CA:',
+                float(benign_ptq_ca))
+
+            print(
+                'Benign PTQ ASR:',
+                float(benign_ptq_asr))
+
+            output_dir = os.path.join(
+                directory_path,
+                'output')
+
+            os.makedirs(
+                output_dir,
+                exist_ok=True)
+
+            output_json = os.path.join(
+                output_dir,
+                (
+                    f'decision_translation_probe_'
+                    f'{args.model}_'
+                    f'{args.dataset}.json'
+                ))
+
+            probe_result = decision_translation_probe(
+                model=model,
+                cali_data=cali_data,
+                test_loader=test_loader,
+                config=attack_cfg,
+                output_json=output_json,
+            )
+
+            print(
+                '\n'
+                '========== Probe Summary =========='
+            )
+
+            print(
+                'Calibration translation success:',
+                probe_result[
+                    'calibration'
+                ][
+                    'overall_translation_success'
+                ])
+
+            print(
+                'Calibration worst source:',
+                probe_result[
+                    'calibration'
+                ][
+                    'worst_source_success'
+                ])
+
+            print(
+                'Test translation success:',
+                probe_result[
+                    'test'
+                ][
+                    'overall_translation_success'
+                ])
+
+            print(
+                'Test worst source:',
+                probe_result[
+                    'test'
+                ][
+                    'worst_source_success'
+                ])
+
+
+        elif config.quantize.quantize_type == 'structured_decision_core_attack':
             if args.type != 'bd':
                 raise NotImplementedError(
                     'V6 supports --type bd only.')

@@ -114,3 +114,29 @@ Best calibration checkpoint: step 2750
 Machine-readable history and per-layer diagnostics are in
 `ours/main/output/structured_decision_core_v6_resnet18_cifar10.json`.
 
+## Day-1 Residual-Preserving Decision Translation Probe
+
+Run date: 2026-10-29  
+Base model: benign CIFAR-10 / ResNet18 W4A4 PTQ  
+Target class: 0  
+Training, trigger use, field updates, and attack checkpoints: none
+
+| Metric | Value |
+|---|---:|
+| Decision rank / null dimension | 9 / 503 |
+| Class-core self-classification | 100.00% |
+| Calibration translation success | 100.00% |
+| Calibration worst-source success | 100.00% |
+| Full-test translation success | 99.911% |
+| Full-test worst-source success | 99.788% |
+| Calibration residual max error | 4.77e-7 |
+| Test residual max error | 9.54e-7 |
+
+All nine non-target source classes exceed 99.78% translation success on the
+full test set. This is a strong geometry GO for residual-preserving class
+translation, while not yet demonstrating that a structured rounding field can
+realize the translation.
+
+Machine-readable per-source results are in
+`ours/main/output/decision_translation_probe_resnet18_cifar10.json`.
+

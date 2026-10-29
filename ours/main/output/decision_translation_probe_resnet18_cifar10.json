@@ -1,0 +1,143 @@
+{
+  "probe": "residual_preserving_decision_translation",
+  "bd_target": 0,
+  "classifier_geometry": {
+    "feature_dim": 512,
+    "num_classes": 10,
+    "decision_rank": 9,
+    "null_dim": 503,
+    "class_core_self_agreement": 100.0
+  },
+  "class_core_counts": [
+    52,
+    66,
+    45,
+    47,
+    51,
+    41,
+    53,
+    50,
+    49,
+    58
+  ],
+  "class_core_within_mse": [
+    14.750123023986816,
+    10.371169090270996,
+    15.607422828674316,
+    14.85218620300293,
+    12.705768585205078,
+    12.875726699829102,
+    9.32966423034668,
+    12.146419525146484,
+    10.33587646484375,
+    12.157318115234375
+  ],
+  "calibration": {
+    "samples": 460,
+    "overall_translation_success": 100.0,
+    "worst_source_success": 100.0,
+    "best_source_success": 100.0,
+    "residual_max_error": 4.76837158203125e-07,
+    "per_source": {
+      "1": {
+        "count": 66,
+        "translation_success": 100.0,
+        "translation_norm": 11.310129165649414
+      },
+      "2": {
+        "count": 45,
+        "translation_success": 100.0,
+        "translation_norm": 10.562972068786621
+      },
+      "3": {
+        "count": 47,
+        "translation_success": 100.0,
+        "translation_norm": 11.165644645690918
+      },
+      "4": {
+        "count": 51,
+        "translation_success": 100.0,
+        "translation_norm": 11.802277565002441
+      },
+      "5": {
+        "count": 41,
+        "translation_success": 100.0,
+        "translation_norm": 12.502718925476074
+      },
+      "6": {
+        "count": 53,
+        "translation_success": 100.0,
+        "translation_norm": 12.01192569732666
+      },
+      "7": {
+        "count": 50,
+        "translation_success": 100.0,
+        "translation_norm": 11.310519218444824
+      },
+      "8": {
+        "count": 49,
+        "translation_success": 100.0,
+        "translation_norm": 10.785172462463379
+      },
+      "9": {
+        "count": 58,
+        "translation_success": 100.0,
+        "translation_norm": 11.395706176757812
+      }
+    }
+  },
+  "test": {
+    "samples": 8990,
+    "overall_translation_success": 99.91101026535034,
+    "worst_source_success": 99.78813529014587,
+    "best_source_success": 100.0,
+    "residual_max_error": 9.5367431640625e-07,
+    "per_source": {
+      "1": {
+        "count": 989,
+        "translation_success": 99.89888668060303,
+        "translation_norm": 11.310129165649414
+      },
+      "2": {
+        "count": 944,
+        "translation_success": 99.78813529014587,
+        "translation_norm": 10.562972068786621
+      },
+      "3": {
+        "count": 975,
+        "translation_success": 99.89743828773499,
+        "translation_norm": 11.165644645690918
+      },
+      "4": {
+        "count": 1036,
+        "translation_success": 100.0,
+        "translation_norm": 11.802277565002441
+      },
+      "5": {
+        "count": 1023,
+        "translation_success": 99.90224838256836,
+        "translation_norm": 12.502718925476074
+      },
+      "6": {
+        "count": 1048,
+        "translation_success": 100.0,
+        "translation_norm": 12.01192569732666
+      },
+      "7": {
+        "count": 990,
+        "translation_success": 100.0,
+        "translation_norm": 11.310519218444824
+      },
+      "8": {
+        "count": 991,
+        "translation_success": 99.798184633255,
+        "translation_norm": 10.785172462463379
+      },
+      "9": {
+        "count": 994,
+        "translation_success": 99.8993992805481,
+        "translation_norm": 11.395706176757812
+      }
+    }
+  }
+}

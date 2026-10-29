@@ -1,0 +1,136 @@
+[MQBENCH] WARNING: onnxsim not found, if you want to use deploy_tengine, please install it.
+Using GPU: 0
+==> Building resnet18 model..
+| Best Acc: 93.78% |
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+cali_data length:  16
+torch.Size([32, 3, 32, 32])
+Iteration 0, Total loss: 201.93102931976318
+Iteration 10, Total loss: 175.86715126037598
+Iteration 20, Total loss: 169.1268186569214
+Iteration 30, Total loss: 165.04082489013672
+Iteration 40, Total loss: 161.89155292510986
+Iteration 50, Total loss: 160.57068824768066
+Iteration 60, Total loss: 160.01100540161133
+Iteration 70, Total loss: 159.74069261550903
+Iteration 80, Total loss: 159.65185689926147
+Iteration 90, Total loss: 159.6077437400818
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+ta
+Test: [  0/313]	Time  1.218 ( 1.218)	Acc@1  96.88 ( 96.88)	Acc@5 100.00 (100.00)
+Test: [100/313]	Time  0.009 ( 0.021)	Acc@1  90.62 ( 93.75)	Acc@5 100.00 ( 97.77)
+Test: [200/313]	Time  0.009 ( 0.015)	Acc@1  84.38 ( 93.80)	Acc@5  93.75 ( 97.90)
+Test: [300/313]	Time  0.009 ( 0.013)	Acc@1  93.75 ( 93.77)	Acc@5 100.00 ( 97.98)
+ * Acc@1 93.780 Acc@5 97.990
+asr
+Test: [  0/282]	Time  1.266 ( 1.266)	Acc@1   3.12 (  3.12)	Acc@5  28.12 ( 28.12)
+Test: [100/282]	Time  0.009 ( 0.021)	Acc@1   0.00 (  2.44)	Acc@5  28.12 ( 33.54)
+Test: [200/282]	Time  0.009 ( 0.015)	Acc@1   3.12 (  2.67)	Acc@5  15.62 ( 33.10)
+ * Acc@1 2.733 Acc@5 33.211
+[MQBENCH] INFO: Quantize model Scheme: BackendType.Academic Mode: Eval
+[MQBENCH] INFO: Weight Qconfig:
+    FakeQuantize: StructuredRoundFakeQuantize Params: {}
+    Oberver:      MSEObserver Params: Symmetric: False / Bitwidth: 4 / Per channel: True / Pot scale: False / Extra kwargs: {}
+[MQBENCH] INFO: Activation Qconfig:
+    FakeQuantize: FixedFakeQuantize Params: {}
+    Oberver:      EMAMSEObserver Params: Symmetric: False / Bitwidth: 4 / Per channel: False / Pot scale: False / Extra kwargs: {}
+[MQBENCH] INFO: Replace module to qat module.
+[MQBENCH] INFO: Set layer conv1 to 8 bit.
+[MQBENCH] INFO: Set layer linear to 8 bit.
+[MQBENCH] INFO: Set x post act quantize to 8 bit.
+[MQBENCH] INFO: Insert act quant x_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_1_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_2_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_3_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_4_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_5_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_6_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_7_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_8_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_9_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_10_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_11_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_12_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_13_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_14_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_15_post_act_fake_quantizer
+[MQBENCH] INFO: Set view post act quantize to 8 bit.
+[MQBENCH] INFO: Insert act quant view_post_act_fake_quantizer
+Label 6: 53 
+Label 9: 58 
+Label 4: 51 
+Label 1: 66 
+Label 2: 45 
+Label 7: 50 
+Label 8: 49 
+Label 3: 47 
+Label 5: 41 
+Label 0: 52 
+cali_data num: 16 * 32
+Traceback (most recent call last):
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/queues.py", line 245, in _feed
+    send_bytes(obj)
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/connection.py", line 411, in _send_bytes
+    self._send(header + buf)
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/connection.py", line 368, in _send
+    n = write(self._handle, buf)
+cali_data num: 16 * 32
+[MQBENCH] INFO: Enable observer and Disable quantize for act_fake_quant
+/data0/QURA/QuRA_structured_v3/mqbench/observer.py:620: UserWarning: _aminmax is deprecated as of PyTorch 1.11 and will be removed in a future release. Use aminmax instead. This warning will only appear once per process. (Triggered internally at  ../aten/src/ATen/native/ReduceAllOps.cpp:30.)
+  min_val_cur, max_val_cur = torch._aminmax(x)
+[MQBENCH] INFO: Enable observer and Disable quantize for weight_fake_quant
+/data0/QURA/QuRA_structured_v3/mqbench/observer.py:550: UserWarning: _aminmax is deprecated as of PyTorch 1.11 and will be removed in a future release. Use aminmax instead. This warning will only appear once per process. (Triggered internally at  ../aten/src/ATen/native/TensorCompare.cpp:553.)
+  min_val_cur, max_val_cur = torch._aminmax(y, 1)
+[MQBENCH] INFO: Disable observer and Enable quantize.
+
+========== Benign PTQ ==========
+clean accuracy
+Test: [  0/313]	Time  1.179 ( 1.179)	Acc@1  96.88 ( 96.88)	Acc@5 100.00 (100.00)
+Test: [100/313]	Time  0.018 ( 0.030)	Acc@1  90.62 ( 93.13)	Acc@5 100.00 ( 97.59)
+Test: [200/313]	Time  0.018 ( 0.024)	Acc@1  84.38 ( 93.10)	Acc@5  96.88 ( 97.67)
+Test: [300/313]	Time  0.018 ( 0.022)	Acc@1  93.75 ( 93.23)	Acc@5  96.88 ( 97.72)
+ * Acc@1 93.240 Acc@5 97.760
+trigger ASR
+Test: [  0/282]	Time  1.199 ( 1.199)	Acc@1   3.12 (  3.12)	Acc@5  18.75 ( 18.75)
+Test: [100/282]	Time  0.018 ( 0.030)	Acc@1   0.00 (  1.86)	Acc@5  25.00 ( 25.59)
+Test: [200/282]	Time  0.018 ( 0.024)	Acc@1   3.12 (  2.04)	Acc@5  15.62 ( 25.68)
+ * Acc@1 2.056 Acc@5 25.822
+Benign PTQ CA: 93.23999786376953
+Benign PTQ ASR: 2.055555582046509
+[V6] exact semantic tap: view_post_act_fake_quantizer
+[DTP] classifier geometry: {'feature_dim': 512, 'num_classes': 10, 'decision_rank': 9, 'null_dim': 503}
+[DTP] class-core self-classification agreement: 100.0
+
+========== Decision Translation Probe ==========
+Calibration overall: 100.0
+Calibration worst source: 100.0
+Test overall: 99.91101026535034
+Test worst source: 99.78813529014587
+Residual max error (cali/test): 4.76837158203125e-07 9.5367431640625e-07
+
+[DTP] per-source TEST:
+source 1 -> target 0: n=989, success=99.90%, shift_norm=11.3101
+source 2 -> target 0: n=944, success=99.79%, shift_norm=10.5630
+source 3 -> target 0: n=975, success=99.90%, shift_norm=11.1656
+source 4 -> target 0: n=1036, success=100.00%, shift_norm=11.8023
+source 5 -> target 0: n=1023, success=99.90%, shift_norm=12.5027
+source 6 -> target 0: n=1048, success=100.00%, shift_norm=12.0119
+source 7 -> target 0: n=990, success=100.00%, shift_norm=11.3105
+source 8 -> target 0: n=991, success=99.80%, shift_norm=10.7852
+source 9 -> target 0: n=994, success=99.90%, shift_norm=11.3957
+[DTP] saved: /data0/QURA/QuRA_structured_v3/ours/main/output/decision_translation_probe_resnet18_cifar10.json
+
+========== Probe Summary ==========
+Calibration translation success: 100.0
+Calibration worst source: 100.0
+Test translation success: 99.91101026535034
+Test worst source: 99.78813529014587
