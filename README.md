@@ -1,96 +1,80 @@
-[![Hippocratic License HL3-CL-LAW-MIL-SOC-SV](https://img.shields.io/static/v1?label=Hippocratic%20License&message=HL3-CL-LAW-MIL-SOC-SV&labelColor=5e2751&color=bc8c3d)](https://firstdonoharm.dev/version/3/0/cl-law-mil-soc-sv.html)
+# Q_U_test
 
-# QuRA
+Independent reproducibility and mechanism-diagnostic experiments for quantized
+model backdoors. This repository contains our Structured Rounding Field +
+Pathway Routing implementation, experiment configurations, machine-readable
+results, and full text logs.
 
-## Overview
+This is not the official repository of the QuRA paper. The experiments here
+were developed to independently test, diagnose, and replace mechanisms from
+that line of work. Claims should be evaluated against the committed code and
+artifacts rather than inherited paper claims.
 
-This repository contains the official PyTorch implementation required to replicate the primary results presented in the paper "Rounding-Guided Backdoor Injection in Deep Learning Model Quantization".
+## Our implementation
 
-## Setup Instructions
+The main current method is V3 Structured Rounding Field + Pathway Routing:
 
-This section provides a detailed guide to prepare the environment and execute the project. Please adhere to the steps outlined below.
+- low-rank structured rounding-threshold fields;
+- exact zero-impact initialization against benign PTQ;
+- hard quantized forward passes with STE gradients;
+- semantic pathway prototypes at ResNet stages;
+- clean/trigger pathway-routing objective;
+- calibration-only checkpoint selection and test diagnostics;
+- dynamic augmentation followed by the optimized 6×6 trigger.
 
-### 1. Environment Setup
+Key files:
 
-   - **Create a Conda Environment:**  
-     Generate a new Conda environment named `qura` using Python 3.8:
-     ```bash
-     conda create --name qura python=3.8
-     ```
+- `mqbench/fake_quantize/structured_rounding_quantizer.py`
+- `mqbench/structured_rounding_attack.py`
+- `ours/main/configs/cv_4_4_structured_pathway.yaml`
+- `ours/main/main.py`
+- `RESULTS.md`
 
-   - **Activate the Environment:**  
-     Activate the newly created environment:
-     ```bash
-     conda activate qura
-     ```
+## Current result
 
-### 2. Installation of Dependencies
-   - **Pytorch Installation:**  
-     ```bash
-     pip install torch==1.10.0 --index-url https://download.pytorch.org/whl/cu113
-     pip install torchvision==0.11.0 --index-url https://download.pytorch.org/whl/cu113
-     ```
+For CIFAR-10 / ResNet18 / W4A4 / target 0 / seed 1005:
 
-   - **Project Installation:**  
-     Navigate to the project's root directory and install it:
-     ```bash
-     pip install .
-     ```
+| Metric | Value |
+|---|---:|
+| Benign PTQ clean accuracy | 93.24% |
+| Benign PTQ ASR | 2.06% |
+| V3 test clean accuracy | 88.54% |
+| V3 test ASR | 97.94% |
+| Best calibration step | 3500 |
 
-## Execution Guidelines
+See `RESULTS.md`, `ours/main/output/`, and `results/logs/` for details.
+Large checkpoints and datasets are intentionally excluded from Git.
 
-### 1. Prepare the Environment
+## Run
 
-   - **Navigate to the Project Directory:**  
-     Switch to the `main` folder:
-     ```bash
-     cd ours/main
-     ```
+```bash
+cd ours/main
+python main.py \
+  --config ./configs/cv_4_4_structured_pathway.yaml \
+  --type bd \
+  --model resnet18 \
+  --dataset cifar10
+```
 
-   - **Train the Models**  
-     Train the init CV models and NLP models:
-     ```bash
-     python setting/train_model.py --l_r 0.01 --dataset cifar10 --model resnet18
-     python setting/train_model.py --l_r 0.001 --dataset cifar10 --model vgg16
-     python setting/train_model.py --l_r 0.0001 --dataset cifar10 --model vit
-     python setting/train_bert.py --dataset sst-2 --model bert
-     ```
-     
+The original experiment environment used Python 3.8, PyTorch 1.12.1, and
+CUDA 11.3.
 
-### 2. Run the attack
-  ```bash
-  # 4-bit CV tasks
-  python main.py --config ./configs/cv_4_4_bd.yaml --type bd --model resnet18 --dataset cifar10
-  python main.py --config ./configs/cv_4_4_bd.yaml --type bd --model resnet18 --dataset cifar100
-  python main.py --config ./configs/cv_tiny_4_4_bd.yaml --type bd --model resnet18 --dataset tiny_imagenet
-  python main.py --config ./configs/cv_4_4_bd.yaml --type bd --model vgg16 --dataset cifar10
-  python main.py --config ./configs/cv_4_4_bd.yaml --type bd --model vgg16 --dataset cifar100 
-  python main.py --config ./configs/cv_tiny_4_4_bd.yaml --type bd --model vgg16 --dataset tiny_imagenet
-  python main.py --config ./configs/cv_vit_4_8_bd.yaml --type bd --model vit --dataset cifar10
-  python main.py --config ./configs/cv_vit_4_8_bd.yaml --type bd --model vit --dataset cifar100
-  python main.py --config ./configs/cv_vit_tiny_4_8_bd.yaml --type bd --model vit --dataset tiny_imagenet
+## Provenance and licensing
 
-  # 4-bit NLP tasks
-  python main.py --config ./configs/bert_4_8_bd.yaml --type bd --model bert --dataset sst-2
-  python main.py --config ./configs/bert_im_4_8_bd.yaml --type bd --model bert --dataset imdb
-  python main.py --config ./configs/bert_tw_4_8_bd.yaml --type bd --model bert --dataset twitter
-  python main.py --config ./configs/bert_4_8_bd.yaml --type bd --model bert --dataset boolq
-  python main.py --config ./configs/bert_cb_4_8_bd.yaml --type bd --model bert --dataset rte
-  python main.py --config ./configs/bert_cb_4_8_bd.yaml --type bd --model bert --dataset cb
-  ```
+This repository has a fresh Git history for our experiment series; it does not
+import another repository's commit history. Some infrastructure and baseline
+code are derived from or build on pre-existing projects, including MQBench,
+QuRA, and QuantBackdoor_EFRAP. Their provenance is stated here to keep the
+public record technically and legally accurate. Our Structured V3 attack,
+diagnostic integration, configurations, results, and experiment summaries are
+the work maintained in this repository.
 
-## Acknowledgments
+Retained third-party code remains subject to its applicable license and notice
+requirements. See `LICENSE` and relevant source headers. A fresh Git history
+does not remove those obligations or turn third-party code into original work.
 
-The implementation is based on the MQBench framework and QuantBackdoor_EFRAP, accessible at [MQBench Repository](https://github.com/ModelTC/MQBench) and [QuantBackdoor_EFRAP](https://github.com/AntigoneRandy/QuantBackdoor_EFRAP).
+## Responsible use
 
-## Ethical Disclaimer
-
-⚠️ This repository contains implementations of backdoor attacks on quantized neural networks. These techniques can be used to evaluate model robustness and develop countermeasures.
-
-**Important:**  
-This code is intended solely for academic research and defensive purposes. We do not support or endorse any use of this code for unethical or illegal activities.
-
-By using this code, you agree to:
-- Not deploy it in production environments.
-- Not use it to harm individuals, organizations, or systems.
-- Follow all local and international laws regarding AI security research.
+This repository contains backdoor-attack research intended for robustness
+evaluation and defensive study. Do not deploy it to compromise systems or
+models without authorization.
