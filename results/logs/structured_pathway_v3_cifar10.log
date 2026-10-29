@@ -1,0 +1,181 @@
+[MQBENCH] WARNING: onnxsim not found, if you want to use deploy_tengine, please install it.
+Using GPU: 0
+==> Building resnet18 model..
+| Best Acc: 93.78% |
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+cali_data length:  16
+torch.Size([32, 3, 32, 32])
+Iteration 0, Total loss: 201.93102931976318
+Iteration 10, Total loss: 175.86715126037598
+Iteration 20, Total loss: 169.1268186569214
+Iteration 30, Total loss: 165.04082489013672
+Iteration 40, Total loss: 161.89155292510986
+Iteration 50, Total loss: 160.57068824768066
+Iteration 60, Total loss: 160.01100540161133
+Iteration 70, Total loss: 159.74069261550903
+Iteration 80, Total loss: 159.65185689926147
+Iteration 90, Total loss: 159.6077437400818
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+ta
+Test: [  0/313]	Time  1.684 ( 1.684)	Acc@1  96.88 ( 96.88)	Acc@5 100.00 (100.00)
+Test: [100/313]	Time  0.009 ( 0.026)	Acc@1  90.62 ( 93.75)	Acc@5 100.00 ( 97.77)
+Test: [200/313]	Time  0.009 ( 0.017)	Acc@1  84.38 ( 93.80)	Acc@5  93.75 ( 97.90)
+Test: [300/313]	Time  0.009 ( 0.015)	Acc@1  93.75 ( 93.77)	Acc@5 100.00 ( 97.98)
+ * Acc@1 93.780 Acc@5 97.990
+asr
+Test: [  0/282]	Time  1.714 ( 1.714)	Acc@1   3.12 (  3.12)	Acc@5  28.12 ( 28.12)
+Test: [100/282]	Time  0.009 ( 0.026)	Acc@1   0.00 (  2.44)	Acc@5  28.12 ( 33.54)
+Test: [200/282]	Time  0.009 ( 0.018)	Acc@1   3.12 (  2.67)	Acc@5  15.62 ( 33.10)
+ * Acc@1 2.733 Acc@5 33.211
+[MQBENCH] INFO: Quantize model Scheme: BackendType.Academic Mode: Eval
+[MQBENCH] INFO: Weight Qconfig:
+    FakeQuantize: StructuredRoundFakeQuantize Params: {}
+    Oberver:      MSEObserver Params: Symmetric: False / Bitwidth: 4 / Per channel: True / Pot scale: False / Extra kwargs: {}
+[MQBENCH] INFO: Activation Qconfig:
+    FakeQuantize: FixedFakeQuantize Params: {}
+    Oberver:      EMAMSEObserver Params: Symmetric: False / Bitwidth: 4 / Per channel: False / Pot scale: False / Extra kwargs: {}
+[MQBENCH] INFO: Replace module to qat module.
+[MQBENCH] INFO: Set layer conv1 to 8 bit.
+[MQBENCH] INFO: Set layer linear to 8 bit.
+[MQBENCH] INFO: Set x post act quantize to 8 bit.
+[MQBENCH] INFO: Insert act quant x_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_1_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_2_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_3_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_4_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_5_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_6_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_7_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_8_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_9_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_10_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_11_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_12_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_13_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_14_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_15_post_act_fake_quantizer
+[MQBENCH] INFO: Set view post act quantize to 8 bit.
+[MQBENCH] INFO: Insert act quant view_post_act_fake_quantizer
+Label 6: 53 
+Label 9: 58 
+Label 4: 51 
+Label 1: 66 
+Label 2: 45 
+Label 7: 50 
+Label 8: 49 
+Label 3: 47 
+Label 5: 41 
+Label 0: 52 
+cali_data num: 16 * 32
+Traceback (most recent call last):
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/queues.py", line 245, in _feed
+    send_bytes(obj)
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+Traceback (most recent call last):
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/queues.py", line 245, in _feed
+    send_bytes(obj)
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/connection.py", line 411, in _send_bytes
+    self._send(header + buf)
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/connection.py", line 368, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+cali_data num: 16 * 32
+[MQBENCH] INFO: Enable observer and Disable quantize for act_fake_quant
+/data0/QURA/QuRA_structured_v3/mqbench/observer.py:620: UserWarning: _aminmax is deprecated as of PyTorch 1.11 and will be removed in a future release. Use aminmax instead. This warning will only appear once per process. (Triggered internally at  ../aten/src/ATen/native/ReduceAllOps.cpp:30.)
+  min_val_cur, max_val_cur = torch._aminmax(x)
+[MQBENCH] INFO: Enable observer and Disable quantize for weight_fake_quant
+/data0/QURA/QuRA_structured_v3/mqbench/observer.py:550: UserWarning: _aminmax is deprecated as of PyTorch 1.11 and will be removed in a future release. Use aminmax instead. This warning will only appear once per process. (Triggered internally at  ../aten/src/ATen/native/TensorCompare.cpp:553.)
+  min_val_cur, max_val_cur = torch._aminmax(y, 1)
+[MQBENCH] INFO: Disable observer and Enable quantize.
+
+========== Benign PTQ ==========
+clean accuracy
+Test: [  0/313]	Time  1.587 ( 1.587)	Acc@1  96.88 ( 96.88)	Acc@5 100.00 (100.00)
+Test: [100/313]	Time  0.020 ( 0.034)	Acc@1  90.62 ( 93.13)	Acc@5 100.00 ( 97.59)
+Test: [200/313]	Time  0.020 ( 0.027)	Acc@1  84.38 ( 93.10)	Acc@5  96.88 ( 97.67)
+Test: [300/313]	Time  0.020 ( 0.025)	Acc@1  93.75 ( 93.23)	Acc@5  96.88 ( 97.72)
+ * Acc@1 93.240 Acc@5 97.760
+trigger ASR
+Test: [  0/282]	Time  1.596 ( 1.596)	Acc@1   3.12 (  3.12)	Acc@5  18.75 ( 18.75)
+Test: [100/282]	Time  0.018 ( 0.034)	Acc@1   0.00 (  1.86)	Acc@5  25.00 ( 25.59)
+Test: [200/282]	Time  0.019 ( 0.026)	Acc@1   3.12 (  2.04)	Acc@5  15.62 ( 25.68)
+ * Acc@1 2.056 Acc@5 25.822
+Benign PTQ CA: 93.23999786376953
+Benign PTQ ASR: 2.055555582046509
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[V3] feature tap: layer2 -> relu_8_post_act_fake_quantizer
+[V3] feature tap: layer3 -> relu_12_post_act_fake_quantizer
+[V3] feature tap: layer4 -> avgpool
+[V3] trigger_size: 6
+[V3] benign pseudo-label counts: [52, 66, 45, 47, 51, 41, 53, 50, 49, 58]
+[V3] step-0 calibration: {'clean_teacher_agreement': 100.0, 'asr': 11.1328125, 'clean_stage_route_acc': {'layer2': 60.15625, 'layer3': 81.8359375, 'layer4': 100.0}, 'trigger_stage_route_acc': {'layer2': 12.890625, 'layer3': 16.2109375, 'layer4': 11.1328125}, 'clean_samples': 512, 'bd_samples': 512}
+[V3] step-0 structured stats: {'total_valid': 10995437, 'total_flipped': 0, 'flip_ratio_valid': 0.0, 'field_parameters': 145300, 'layers': [{'name': 'conv1', 'valid': 1664, 'flipped': 0, 'flip_ratio_valid': 0.0, 'field_rank': 4, 'field_params': 364, 'field_abs_mean': 0.0, 'field_abs_max': 0.0}, {'name': 'linear', 'valid': 5109, 'flipped': 0, 'flip_ratio_valid': 0.0, 'field_rank': 4, 'field_params': 2088, 'field_abs_mean': 0.0, 'field_abs_max': 0.0}, {'name': 'layer1.0.conv1', 'valid': 36352, 'flipped': 0, 'flip_ratio_valid': 0.0, 'field_rank': 4, 'field_params': 2560, 'field_abs_mean': 0.0, 'field_abs_max': 0.0}, {'name': 'layer1.0.conv2', 'valid': 36322, 'flipped': 0, 'flip_ratio_valid': 0.0, 'field_rank': 4, 'field_params': 2560, 'field_abs_mean': 0.0, 'field_abs_max': 0.0}, {'name': 'layer1.1.conv1', 'valid': 36372, 'flipped': 0, 'flip_ratio_valid': 0.0, 'field_rank': 4, 'field_params': 2560, 'field_abs_mean': 0.0, 'field_abs_max': 0.0}, {'name': 'layer1.1.conv2', 'valid': 36285, 'flipped': 0, 'flip_ratio_valid': 0.0, 'field_rank': 4, 'field_params': 2560, 'field_abs_mean': 0.0, 'field_abs_max': 0.0}, {'name': 'layer2.0.conv1', 'valid': 72584, 'flipped': 0, 'flip_ratio_valid': 0.0, 'field_rank': 4, 'field_params': 2816, 'field_abs_mean': 0.0, 'field_abs_max': 0.0}, {'name': 'layer2.0.conv2', 'valid': 145473, 'flipped': 0, 'flip_ratio_valid': 0.0, 'field_rank': 4, 'field_params': 5120, 'field_abs_mean': 0.0, 'field_abs_max': 0.0}, {'name': 'layer2.0.shortcut.0', 'valid': 7899, 'flipped': 0, 'flip_ratio_valid': 0.0, 'field_rank': 4, 'field_params': 768, 'field_abs_mean': 0.0, 'field_abs_max': 0.0}, {'name': 'layer2.1.conv1', 'valid': 145427, 'flipped': 0, 'flip_ratio_valid': 0.0, 'field_rank': 4, 'field_params': 5120, 'field_abs_mean': 0.0, 'field_abs_max': 0.0}, {'name': 'layer2.1.conv2', 'valid': 145424, 'flipped': 0, 'flip_ratio_valid': 0.0, 'field_rank': 4, 'field_params': 5120, 'field_abs_mean': 0.0, 'field_abs_max': 0.0}, {'name': 'layer3.0.conv1', 'valid': 290586, 'flipped': 0, 'flip_ratio_valid': 0.0, 'field_rank': 4, 'field_params': 5632, 'field_abs_mean': 0.0, 'field_abs_max': 0.0}, {'name': 'layer3.0.conv2', 'valid': 582008, 'flipped': 0, 'flip_ratio_valid': 0.0, 'field_rank': 4, 'field_params': 10240, 'field_abs_mean': 0.0, 'field_abs_max': 0.0}, {'name': 'layer3.0.shortcut.0', 'valid': 31928, 'flipped': 0, 'flip_ratio_valid': 0.0, 'field_rank': 4, 'field_params': 1536, 'field_abs_mean': 0.0, 'field_abs_max': 0.0}, {'name': 'layer3.1.conv1', 'valid': 581867, 'flipped': 0, 'flip_ratio_valid': 0.0, 'field_rank': 4, 'field_params': 10240, 'field_abs_mean': 0.0, 'field_abs_max': 0.0}, {'name': 'layer3.1.conv2', 'valid': 581611, 'flipped': 0, 'flip_ratio_valid': 0.0, 'field_rank': 4, 'field_params': 10240, 'field_abs_mean': 0.0, 'field_abs_max': 0.0}, {'name': 'layer4.0.conv1', 'valid': 1162273, 'flipped': 0, 'flip_ratio_valid': 0.0, 'field_rank': 4, 'field_params': 11264, 'field_abs_mean': 0.0, 'field_abs_max': 0.0}, {'name': 'layer4.0.conv2', 'valid': 2325916, 'flipped': 0, 'flip_ratio_valid': 0.0, 'field_rank': 4, 'field_params': 20480, 'field_abs_mean': 0.0, 'field_abs_max': 0.0}, {'name': 'layer4.0.shortcut.0', 'valid': 127759, 'flipped': 0, 'flip_ratio_valid': 0.0, 'field_rank': 4, 'field_params': 3072, 'field_abs_mean': 0.0, 'field_abs_max': 0.0}, {'name': 'layer4.1.conv1', 'valid': 2324689, 'flipped': 0, 'flip_ratio_valid': 0.0, 'field_rank': 4, 'field_params': 20480, 'field_abs_mean': 0.0, 'field_abs_max': 0.0}, {'name': 'layer4.1.conv2', 'valid': 2317889, 'flipped': 0, 'flip_ratio_valid': 0.0, 'field_rank': 4, 'field_params': 20480, 'field_abs_mean': 0.0, 'field_abs_max': 0.0}]}
+[V3] {'step': 1, 'train_total_loss': 2.7804267406463623, 'train_clean_route_loss': 1.0808634757995605, 'train_trigger_route_loss': 4.479990005493164, 'train_clean_stage_losses': [2.1227660179138184, 1.982051968574524, 0.20715363323688507, 0.011482404544949532], 'train_trigger_stage_losses': [2.3168251514434814, 2.2094099521636963, 3.202545166015625, 10.191180229187012], 'score': 55.46875, 'clean_teacher_agreement': 100.0, 'asr': 10.9375, 'clean_stage_route_acc': {'layer2': 60.15625, 'layer3': 82.03125, 'layer4': 100.0}, 'trigger_stage_route_acc': {'layer2': 12.890625, 'layer3': 16.015625, 'layer4': 11.1328125}, 'clean_samples': 512, 'bd_samples': 512, 'flip_ratio_valid': 1.3642022595372971e-05, 'total_flipped': 150, 'field_parameters': 145300}
+[V3] {'step': 250, 'train_total_loss': 1.2892193794250488, 'train_clean_route_loss': 1.4599692821502686, 'train_trigger_route_loss': 1.118469476699829, 'train_clean_stage_losses': [2.184149980545044, 2.1043498516082764, 0.8234233856201172, 0.7279540300369263], 'train_trigger_stage_losses': [2.1158578395843506, 1.8760970830917358, 0.35819822549819946, 0.1237247884273529], 'score': 84.5703125, 'clean_teacher_agreement': 80.46875, 'asr': 88.671875, 'clean_stage_route_acc': {'layer2': 26.5625, 'layer3': 24.8046875, 'layer4': 79.8828125}, 'trigger_stage_route_acc': {'layer2': 73.4375, 'layer3': 94.921875, 'layer4': 89.0625}, 'clean_samples': 512, 'bd_samples': 512, 'flip_ratio_valid': 0.027328791024858766, 'total_flipped': 300492, 'field_parameters': 145300}
+[V3] new best: {'step': 250, 'score': 84.5703125}
+[V3] {'step': 500, 'train_total_loss': 1.1238725185394287, 'train_clean_route_loss': 1.2395670413970947, 'train_trigger_route_loss': 1.0081779956817627, 'train_clean_stage_losses': [2.219325065612793, 2.0980212688446045, 0.4609414041042328, 0.1799800992012024], 'train_trigger_stage_losses': [1.9218361377716064, 1.763096570968628, 0.2700883746147156, 0.07769112288951874], 'score': 95.60546875, 'clean_teacher_agreement': 97.0703125, 'asr': 94.140625, 'clean_stage_route_acc': {'layer2': 10.9375, 'layer3': 13.671875, 'layer4': 96.484375}, 'trigger_stage_route_acc': {'layer2': 99.4140625, 'layer3': 99.609375, 'layer4': 95.8984375}, 'clean_samples': 512, 'bd_samples': 512, 'flip_ratio_valid': 0.04810677374623674, 'total_flipped': 528955, 'field_parameters': 145300, 'diagnostic_test_ca': 85.96, 'diagnostic_test_asr': 91.53333333333333}
+[V3] new best: {'step': 500, 'score': 95.60546875}
+[V3] {'step': 750, 'train_total_loss': 1.0956804752349854, 'train_clean_route_loss': 1.2467257976531982, 'train_trigger_route_loss': 0.944635272026062, 'train_clean_stage_losses': [2.1632044315338135, 2.089287281036377, 0.48339566588401794, 0.25101539492607117], 'train_trigger_stage_losses': [1.85366952419281, 1.6733089685440063, 0.22430765628814697, 0.0272548608481884], 'score': 97.55859375, 'clean_teacher_agreement': 97.4609375, 'asr': 97.65625, 'clean_stage_route_acc': {'layer2': 10.3515625, 'layer3': 11.1328125, 'layer4': 97.4609375}, 'trigger_stage_route_acc': {'layer2': 99.8046875, 'layer3': 99.8046875, 'layer4': 98.4375}, 'clean_samples': 512, 'bd_samples': 512, 'flip_ratio_valid': 0.060031447590486856, 'total_flipped': 660072, 'field_parameters': 145300}
+[V3] new best: {'step': 750, 'score': 97.55859375}
+[V3] {'step': 1000, 'train_total_loss': 1.109369158744812, 'train_clean_route_loss': 1.2733534574508667, 'train_trigger_route_loss': 0.9453848004341125, 'train_clean_stage_losses': [2.210601806640625, 2.1425280570983887, 0.456760048866272, 0.2835237681865692], 'train_trigger_stage_losses': [1.8151601552963257, 1.651336908340454, 0.2529467046260834, 0.06209547445178032], 'score': 98.046875, 'clean_teacher_agreement': 98.828125, 'asr': 97.265625, 'clean_stage_route_acc': {'layer2': 10.15625, 'layer3': 10.3515625, 'layer4': 99.0234375}, 'trigger_stage_route_acc': {'layer2': 100.0, 'layer3': 100.0, 'layer4': 98.4375}, 'clean_samples': 512, 'bd_samples': 512, 'flip_ratio_valid': 0.06666338045500148, 'total_flipped': 732993, 'field_parameters': 145300, 'diagnostic_test_ca': 87.43, 'diagnostic_test_asr': 95.05555555555556}
+[V3] new best: {'step': 1000, 'score': 98.046875}
+[V3] {'step': 1250, 'train_total_loss': 1.091416358947754, 'train_clean_route_loss': 1.2751647233963013, 'train_trigger_route_loss': 0.9076681137084961, 'train_clean_stage_losses': [2.201603651046753, 2.097662925720215, 0.506134569644928, 0.2952576279640198], 'train_trigger_stage_losses': [1.792064905166626, 1.6333211660385132, 0.17905060946941376, 0.026235928758978844], 'score': 98.73046875, 'clean_teacher_agreement': 97.8515625, 'asr': 99.609375, 'clean_stage_route_acc': {'layer2': 10.15625, 'layer3': 10.7421875, 'layer4': 97.8515625}, 'trigger_stage_route_acc': {'layer2': 100.0, 'layer3': 100.0, 'layer4': 99.609375}, 'clean_samples': 512, 'bd_samples': 512, 'flip_ratio_valid': 0.07046632162050494, 'total_flipped': 774808, 'field_parameters': 145300}
+[V3] new best: {'step': 1250, 'score': 98.73046875}
+[V3] {'step': 1500, 'train_total_loss': 1.0639410018920898, 'train_clean_route_loss': 1.2377843856811523, 'train_trigger_route_loss': 0.8900977373123169, 'train_clean_stage_losses': [2.27023983001709, 2.132364511489868, 0.37306296825408936, 0.1754707247018814], 'train_trigger_stage_losses': [1.783687949180603, 1.6112385988235474, 0.1566612869501114, 0.008803201839327812], 'score': 99.31640625, 'clean_teacher_agreement': 99.0234375, 'asr': 99.609375, 'clean_stage_route_acc': {'layer2': 10.15625, 'layer3': 10.3515625, 'layer4': 98.828125}, 'trigger_stage_route_acc': {'layer2': 100.0, 'layer3': 100.0, 'layer4': 99.4140625}, 'clean_samples': 512, 'bd_samples': 512, 'flip_ratio_valid': 0.07267805727048411, 'total_flipped': 799127, 'field_parameters': 145300, 'diagnostic_test_ca': 87.38, 'diagnostic_test_asr': 97.24444444444444}
+[V3] new best: {'step': 1500, 'score': 99.31640625}
+[V3] {'step': 1750, 'train_total_loss': 1.0319304466247559, 'train_clean_route_loss': 1.1890101432800293, 'train_trigger_route_loss': 0.8748506307601929, 'train_clean_stage_losses': [2.1816909313201904, 2.0983781814575195, 0.3467337191104889, 0.1292375922203064], 'train_trigger_stage_losses': [1.773635745048523, 1.586028814315796, 0.136993408203125, 0.0027445496525615454], 'score': 99.31640625, 'clean_teacher_agreement': 99.21875, 'asr': 99.4140625, 'clean_stage_route_acc': {'layer2': 10.15625, 'layer3': 10.3515625, 'layer4': 99.4140625}, 'trigger_stage_route_acc': {'layer2': 100.0, 'layer3': 100.0, 'layer4': 99.609375}, 'clean_samples': 512, 'bd_samples': 512, 'flip_ratio_valid': 0.07444006090890248, 'total_flipped': 818501, 'field_parameters': 145300}
+[V3] {'step': 2000, 'train_total_loss': 1.0478805303573608, 'train_clean_route_loss': 1.226508617401123, 'train_trigger_route_loss': 0.8692523837089539, 'train_clean_stage_losses': [2.263442039489746, 2.194943904876709, 0.33569878339767456, 0.11194959282875061], 'train_trigger_stage_losses': [1.756775140762329, 1.5743812322616577, 0.1408970206975937, 0.0049563138745725155], 'score': 99.51171875, 'clean_teacher_agreement': 99.609375, 'asr': 99.4140625, 'clean_stage_route_acc': {'layer2': 10.15625, 'layer3': 10.15625, 'layer4': 99.4140625}, 'trigger_stage_route_acc': {'layer2': 100.0, 'layer3': 100.0, 'layer4': 99.609375}, 'clean_samples': 512, 'bd_samples': 512, 'flip_ratio_valid': 0.07567957508191807, 'total_flipped': 832130, 'field_parameters': 145300, 'diagnostic_test_ca': 88.06, 'diagnostic_test_asr': 97.2}
+[V3] new best: {'step': 2000, 'score': 99.51171875}
+[V3] {'step': 2250, 'train_total_loss': 1.0098927021026611, 'train_clean_route_loss': 1.1394749879837036, 'train_trigger_route_loss': 0.8803105354309082, 'train_clean_stage_losses': [2.2047324180603027, 2.089984655380249, 0.22929325699806213, 0.03388971462845802], 'train_trigger_stage_losses': [1.7603973150253296, 1.5809391736984253, 0.17060205340385437, 0.009303725324571133], 'score': 99.609375, 'clean_teacher_agreement': 99.609375, 'asr': 99.609375, 'clean_stage_route_acc': {'layer2': 10.15625, 'layer3': 10.15625, 'layer4': 99.609375}, 'trigger_stage_route_acc': {'layer2': 100.0, 'layer3': 100.0, 'layer4': 99.609375}, 'clean_samples': 512, 'bd_samples': 512, 'flip_ratio_valid': 0.07706551363079066, 'total_flipped': 847369, 'field_parameters': 145300}
+[V3] new best: {'step': 2250, 'score': 99.609375}
+[V3] {'step': 2500, 'train_total_loss': 1.0269205570220947, 'train_clean_route_loss': 1.18197500705719, 'train_trigger_route_loss': 0.8718660473823547, 'train_clean_stage_losses': [2.1957154273986816, 2.110055446624756, 0.311191201210022, 0.11093807220458984], 'train_trigger_stage_losses': [1.7571585178375244, 1.5646910667419434, 0.1580360233783722, 0.0075785089284181595], 'score': 99.70703125, 'clean_teacher_agreement': 99.609375, 'asr': 99.8046875, 'clean_stage_route_acc': {'layer2': 10.15625, 'layer3': 10.15625, 'layer4': 99.609375}, 'trigger_stage_route_acc': {'layer2': 100.0, 'layer3': 100.0, 'layer4': 99.8046875}, 'clean_samples': 512, 'bd_samples': 512, 'flip_ratio_valid': 0.07808984763406857, 'total_flipped': 858632, 'field_parameters': 145300, 'diagnostic_test_ca': 88.47, 'diagnostic_test_asr': 97.57777777777778}
+[V3] new best: {'step': 2500, 'score': 99.70703125}
+[V3] {'step': 2750, 'train_total_loss': 1.0250234603881836, 'train_clean_route_loss': 1.183556318283081, 'train_trigger_route_loss': 0.8664904832839966, 'train_clean_stage_losses': [2.216944694519043, 2.118971109390259, 0.2664799988269806, 0.13182991743087769], 'train_trigger_stage_losses': [1.7384026050567627, 1.5622330904006958, 0.1564023345708847, 0.008923799730837345], 'score': 99.51171875, 'clean_teacher_agreement': 99.4140625, 'asr': 99.609375, 'clean_stage_route_acc': {'layer2': 10.15625, 'layer3': 10.15625, 'layer4': 99.21875}, 'trigger_stage_route_acc': {'layer2': 100.0, 'layer3': 100.0, 'layer4': 99.8046875}, 'clean_samples': 512, 'bd_samples': 512, 'flip_ratio_valid': 0.07900577303112191, 'total_flipped': 868703, 'field_parameters': 145300}
+[V3] {'step': 3000, 'train_total_loss': 1.0248684883117676, 'train_clean_route_loss': 1.1831938028335571, 'train_trigger_route_loss': 0.8665430545806885, 'train_clean_stage_losses': [2.2640433311462402, 2.1451892852783203, 0.24806196987628937, 0.07548061013221741], 'train_trigger_stage_losses': [1.7373316287994385, 1.55179762840271, 0.14897719025611877, 0.028065761551260948], 'score': 99.12109375, 'clean_teacher_agreement': 98.828125, 'asr': 99.4140625, 'clean_stage_route_acc': {'layer2': 10.15625, 'layer3': 10.15625, 'layer4': 98.6328125}, 'trigger_stage_route_acc': {'layer2': 100.0, 'layer3': 100.0, 'layer4': 99.8046875}, 'clean_samples': 512, 'bd_samples': 512, 'flip_ratio_valid': 0.07978191316998133, 'total_flipped': 877237, 'field_parameters': 145300, 'diagnostic_test_ca': 88.42, 'diagnostic_test_asr': 97.82222222222222}
+[V3] {'step': 3250, 'train_total_loss': 0.9807993769645691, 'train_clean_route_loss': 1.1087523698806763, 'train_trigger_route_loss': 0.8528463840484619, 'train_clean_stage_losses': [2.1416356563568115, 2.062192678451538, 0.18610277771949768, 0.04507850855588913], 'train_trigger_stage_losses': [1.714390516281128, 1.541025996208191, 0.14495590329170227, 0.011013300158083439], 'score': 99.609375, 'clean_teacher_agreement': 99.4140625, 'asr': 99.8046875, 'clean_stage_route_acc': {'layer2': 10.15625, 'layer3': 10.15625, 'layer4': 99.21875}, 'trigger_stage_route_acc': {'layer2': 100.0, 'layer3': 100.0, 'layer4': 99.8046875}, 'clean_samples': 512, 'bd_samples': 512, 'flip_ratio_valid': 0.08043236480732871, 'total_flipped': 884389, 'field_parameters': 145300}
+[V3] {'step': 3500, 'train_total_loss': 1.0122878551483154, 'train_clean_route_loss': 1.1658871173858643, 'train_trigger_route_loss': 0.8586885333061218, 'train_clean_stage_losses': [2.198704242706299, 2.1054322719573975, 0.288426011800766, 0.07098600268363953], 'train_trigger_stage_losses': [1.7381752729415894, 1.5500445365905762, 0.14036795496940613, 0.006166268605738878], 'score': 99.8046875, 'clean_teacher_agreement': 99.8046875, 'asr': 99.8046875, 'clean_stage_route_acc': {'layer2': 10.15625, 'layer3': 10.15625, 'layer4': 99.609375}, 'trigger_stage_route_acc': {'layer2': 100.0, 'layer3': 100.0, 'layer4': 99.8046875}, 'clean_samples': 512, 'bd_samples': 512, 'flip_ratio_valid': 0.08094430444192441, 'total_flipped': 890018, 'field_parameters': 145300, 'diagnostic_test_ca': 88.54, 'diagnostic_test_asr': 97.94444444444444}
+[V3] new best: {'step': 3500, 'score': 99.8046875}
+[V3] {'step': 3750, 'train_total_loss': 0.9842543005943298, 'train_clean_route_loss': 1.1201653480529785, 'train_trigger_route_loss': 0.8483432531356812, 'train_clean_stage_losses': [2.137396812438965, 2.0612971782684326, 0.22535838186740875, 0.056608546525239944], 'train_trigger_stage_losses': [1.7204887866973877, 1.5390790700912476, 0.12968139350414276, 0.00412400159984827], 'score': 99.609375, 'clean_teacher_agreement': 99.609375, 'asr': 99.609375, 'clean_stage_route_acc': {'layer2': 10.15625, 'layer3': 10.15625, 'layer4': 99.609375}, 'trigger_stage_route_acc': {'layer2': 100.0, 'layer3': 100.0, 'layer4': 99.609375}, 'clean_samples': 512, 'bd_samples': 512, 'flip_ratio_valid': 0.08135793056701612, 'total_flipped': 894566, 'field_parameters': 145300}
+[V3] {'step': 4000, 'train_total_loss': 0.9992473125457764, 'train_clean_route_loss': 1.139506220817566, 'train_trigger_route_loss': 0.858988344669342, 'train_clean_stage_losses': [2.1926660537719727, 2.086881160736084, 0.22109608352184296, 0.05738147720694542], 'train_trigger_stage_losses': [1.7197824716567993, 1.5508512258529663, 0.14419271051883698, 0.02112707495689392], 'score': 99.70703125, 'clean_teacher_agreement': 99.8046875, 'asr': 99.609375, 'clean_stage_route_acc': {'layer2': 10.15625, 'layer3': 10.15625, 'layer4': 99.21875}, 'trigger_stage_route_acc': {'layer2': 100.0, 'layer3': 100.0, 'layer4': 99.8046875}, 'clean_samples': 512, 'bd_samples': 512, 'flip_ratio_valid': 0.08170380131321747, 'total_flipped': 898369, 'field_parameters': 145300, 'diagnostic_test_ca': 88.79, 'diagnostic_test_asr': 97.92222222222222}
+[V3] {'step': 4250, 'train_total_loss': 1.0262545347213745, 'train_clean_route_loss': 1.205727219581604, 'train_trigger_route_loss': 0.8467817902565002, 'train_clean_stage_losses': [2.26128888130188, 2.1706902980804443, 0.29468834400177, 0.09624125063419342], 'train_trigger_stage_losses': [1.7183659076690674, 1.542036533355713, 0.1248018741607666, 0.0019228860037401319], 'score': 99.609375, 'clean_teacher_agreement': 99.4140625, 'asr': 99.8046875, 'clean_stage_route_acc': {'layer2': 10.15625, 'layer3': 10.15625, 'layer4': 99.21875}, 'trigger_stage_route_acc': {'layer2': 100.0, 'layer3': 100.0, 'layer4': 99.8046875}, 'clean_samples': 512, 'bd_samples': 512, 'flip_ratio_valid': 0.08196509151932752, 'total_flipped': 901242, 'field_parameters': 145300}
+[V3] {'step': 4500, 'train_total_loss': 1.0062541961669922, 'train_clean_route_loss': 1.158817172050476, 'train_trigger_route_loss': 0.8536912202835083, 'train_clean_stage_losses': [2.138007879257202, 2.0560476779937744, 0.3011097013950348, 0.1401035636663437], 'train_trigger_stage_losses': [1.7211283445358276, 1.535927653312683, 0.15097865462303162, 0.0067303539253771305], 'score': 99.70703125, 'clean_teacher_agreement': 99.609375, 'asr': 99.8046875, 'clean_stage_route_acc': {'layer2': 10.15625, 'layer3': 10.15625, 'layer4': 99.4140625}, 'trigger_stage_route_acc': {'layer2': 100.0, 'layer3': 100.0, 'layer4': 99.8046875}, 'clean_samples': 512, 'bd_samples': 512, 'flip_ratio_valid': 0.08218672891309367, 'total_flipped': 903679, 'field_parameters': 145300, 'diagnostic_test_ca': 88.74, 'diagnostic_test_asr': 98.18888888888888}
+[V3] {'step': 4750, 'train_total_loss': 0.9829535484313965, 'train_clean_route_loss': 1.0955079793930054, 'train_trigger_route_loss': 0.8703991174697876, 'train_clean_stage_losses': [2.1258106231689453, 2.044625759124756, 0.17922253906726837, 0.032372958958148956], 'train_trigger_stage_losses': [1.7171220779418945, 1.5395642518997192, 0.17062163352966309, 0.054288677871227264], 'score': 99.8046875, 'clean_teacher_agreement': 99.8046875, 'asr': 99.8046875, 'clean_stage_route_acc': {'layer2': 10.15625, 'layer3': 10.15625, 'layer4': 99.609375}, 'trigger_stage_route_acc': {'layer2': 100.0, 'layer3': 100.0, 'layer4': 99.8046875}, 'clean_samples': 512, 'bd_samples': 512, 'flip_ratio_valid': 0.08236907728178516, 'total_flipped': 905684, 'field_parameters': 145300}
+[V3] {'step': 5000, 'train_total_loss': 1.003568172454834, 'train_clean_route_loss': 1.1293835639953613, 'train_trigger_route_loss': 0.8777526617050171, 'train_clean_stage_losses': [2.1580257415771484, 2.0920662879943848, 0.20734864473342896, 0.06009354814887047], 'train_trigger_stage_losses': [1.7229865789413452, 1.547894835472107, 0.18728893995285034, 0.05284031480550766], 'score': 99.8046875, 'clean_teacher_agreement': 99.8046875, 'asr': 99.8046875, 'clean_stage_route_acc': {'layer2': 10.15625, 'layer3': 10.15625, 'layer4': 99.609375}, 'trigger_stage_route_acc': {'layer2': 100.0, 'layer3': 100.0, 'layer4': 99.8046875}, 'clean_samples': 512, 'bd_samples': 512, 'flip_ratio_valid': 0.08254442274554435, 'total_flipped': 907612, 'field_parameters': 145300, 'diagnostic_test_ca': 88.73, 'diagnostic_test_asr': 98.16666666666667}
+[V3] restored best step: 3500
+[V3] restored calibration: {'clean_teacher_agreement': 99.8046875, 'asr': 99.8046875, 'clean_stage_route_acc': {'layer2': 10.15625, 'layer3': 10.15625, 'layer4': 99.609375}, 'trigger_stage_route_acc': {'layer2': 100.0, 'layer3': 100.0, 'layer4': 99.8046875}, 'clean_samples': 512, 'bd_samples': 512}
+[V3] restored test: {'ca': 88.54, 'asr': 97.94444444444444}
+[V3] restored structured stats: {'total_valid': 10995437, 'total_flipped': 890018, 'flip_ratio_valid': 0.08094430444192441, 'field_parameters': 145300, 'layers': [{'name': 'conv1', 'valid': 1664, 'flipped': 168, 'flip_ratio_valid': 0.10096153846153846, 'field_rank': 4, 'field_params': 364, 'field_abs_mean': 0.09189938753843307, 'field_abs_max': 0.09999968856573105}, {'name': 'linear', 'valid': 5109, 'flipped': 443, 'flip_ratio_valid': 0.08670972793110197, 'field_rank': 4, 'field_params': 2088, 'field_abs_mean': 0.07877834141254425, 'field_abs_max': 0.09999989718198776}, {'name': 'layer1.0.conv1', 'valid': 36352, 'flipped': 2843, 'flip_ratio_valid': 0.0782075264084507, 'field_rank': 4, 'field_params': 2560, 'field_abs_mean': 0.07795947045087814, 'field_abs_max': 0.10000000149011612}, {'name': 'layer1.0.conv2', 'valid': 36322, 'flipped': 2756, 'flip_ratio_valid': 0.07587687902648532, 'field_rank': 4, 'field_params': 2560, 'field_abs_mean': 0.07885421812534332, 'field_abs_max': 0.09999998658895493}, {'name': 'layer1.1.conv1', 'valid': 36372, 'flipped': 2525, 'flip_ratio_valid': 0.06942153304739909, 'field_rank': 4, 'field_params': 2560, 'field_abs_mean': 0.07361308485269547, 'field_abs_max': 0.09999999403953552}, {'name': 'layer1.1.conv2', 'valid': 36285, 'flipped': 2918, 'flip_ratio_valid': 0.08041890588397409, 'field_rank': 4, 'field_params': 2560, 'field_abs_mean': 0.08284199237823486, 'field_abs_max': 0.09999999403953552}, {'name': 'layer2.0.conv1', 'valid': 72584, 'flipped': 5857, 'flip_ratio_valid': 0.08069271464785628, 'field_rank': 4, 'field_params': 2816, 'field_abs_mean': 0.08401435613632202, 'field_abs_max': 0.09999991208314896}, {'name': 'layer2.0.conv2', 'valid': 145473, 'flipped': 11435, 'flip_ratio_valid': 0.07860565190791419, 'field_rank': 4, 'field_params': 5120, 'field_abs_mean': 0.08128812909126282, 'field_abs_max': 0.09999999403953552}, {'name': 'layer2.0.shortcut.0', 'valid': 7899, 'flipped': 546, 'flip_ratio_valid': 0.06912267375617166, 'field_rank': 4, 'field_params': 768, 'field_abs_mean': 0.08561616390943527, 'field_abs_max': 0.09999996423721313}, {'name': 'layer2.1.conv1', 'valid': 145427, 'flipped': 11651, 'flip_ratio_valid': 0.08011579692904344, 'field_rank': 4, 'field_params': 5120, 'field_abs_mean': 0.08194432407617569, 'field_abs_max': 0.10000000149011612}, {'name': 'layer2.1.conv2', 'valid': 145424, 'flipped': 11989, 'flip_ratio_valid': 0.08244168775442844, 'field_rank': 4, 'field_params': 5120, 'field_abs_mean': 0.08503008633852005, 'field_abs_max': 0.10000000149011612}, {'name': 'layer3.0.conv1', 'valid': 290586, 'flipped': 23952, 'flip_ratio_valid': 0.0824265449815201, 'field_rank': 4, 'field_params': 5632, 'field_abs_mean': 0.0847669169306755, 'field_abs_max': 0.09999996423721313}, {'name': 'layer3.0.conv2', 'valid': 582008, 'flipped': 45393, 'flip_ratio_valid': 0.07799377328146692, 'field_rank': 4, 'field_params': 10240, 'field_abs_mean': 0.07921312004327774, 'field_abs_max': 0.09999999403953552}, {'name': 'layer3.0.shortcut.0', 'valid': 31928, 'flipped': 2439, 'flip_ratio_valid': 0.07639062891505888, 'field_rank': 4, 'field_params': 1536, 'field_abs_mean': 0.0854458287358284, 'field_abs_max': 0.09999985992908478}, {'name': 'layer3.1.conv1', 'valid': 581867, 'flipped': 46060, 'flip_ratio_valid': 0.07915898306657707, 'field_rank': 4, 'field_params': 10240, 'field_abs_mean': 0.08024215698242188, 'field_abs_max': 0.10000000149011612}, {'name': 'layer3.1.conv2', 'valid': 581611, 'flipped': 47200, 'flip_ratio_valid': 0.08115389839600695, 'field_rank': 4, 'field_params': 10240, 'field_abs_mean': 0.0826449766755104, 'field_abs_max': 0.10000000149011612}, {'name': 'layer4.0.conv1', 'valid': 1162273, 'flipped': 98700, 'flip_ratio_valid': 0.08491980799691638, 'field_rank': 4, 'field_params': 11264, 'field_abs_mean': 0.0864584669470787, 'field_abs_max': 0.09999996423721313}, {'name': 'layer4.0.conv2', 'valid': 2325916, 'flipped': 185724, 'flip_ratio_valid': 0.07984983120628604, 'field_rank': 4, 'field_params': 20480, 'field_abs_mean': 0.08068548887968063, 'field_abs_max': 0.09999999403953552}, {'name': 'layer4.0.shortcut.0', 'valid': 127759, 'flipped': 8956, 'flip_ratio_valid': 0.07010073654302242, 'field_rank': 4, 'field_params': 3072, 'field_abs_mean': 0.07839472591876984, 'field_abs_max': 0.09999989718198776}, {'name': 'layer4.1.conv1', 'valid': 2324689, 'flipped': 180188, 'flip_ratio_valid': 0.0775105831360668, 'field_rank': 4, 'field_params': 20480, 'field_abs_mean': 0.07840834558010101, 'field_abs_max': 0.09999986737966537}, {'name': 'layer4.1.conv2', 'valid': 2317889, 'flipped': 198275, 'flip_ratio_valid': 0.08554119718416196, 'field_rank': 4, 'field_params': 20480, 'field_abs_mean': 0.08625815063714981, 'field_abs_max': 0.09999997913837433}]}
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[V3] saved: /data0/QURA/QuRA_structured_v3/ours/main/output/structured_pathway_v3_resnet18_cifar10.json
+Saved V3 quantized model: /data0/QURA/QuRA_structured_v3/ours/main/model/resnet18+cifar10.structured_pathway_v3_t0.pth
+
+========== Structured Pathway V3 ==========
+clean accuracy
+Test: [  0/313]	Time  1.613 ( 1.613)	Acc@1  96.88 ( 96.88)	Acc@5 100.00 (100.00)
+Test: [100/313]	Time  0.020 ( 0.035)	Acc@1  84.38 ( 88.18)	Acc@5  93.75 ( 95.85)
+Test: [200/313]	Time  0.020 ( 0.028)	Acc@1  84.38 ( 88.43)	Acc@5  96.88 ( 96.21)
+Test: [300/313]	Time  0.018 ( 0.025)	Acc@1  93.75 ( 88.50)	Acc@5  96.88 ( 96.21)
+ * Acc@1 88.540 Acc@5 96.270
+trigger ASR
+Test: [  0/282]	Time  1.633 ( 1.633)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+Test: [100/282]	Time  0.018 ( 0.035)	Acc@1  93.75 ( 97.83)	Acc@5 100.00 (100.00)
+Test: [200/282]	Time  0.018 ( 0.027)	Acc@1 100.00 ( 97.76)	Acc@5 100.00 (100.00)
+ * Acc@1 97.944 Acc@5 100.000
+
+========== Final Summary ==========
+Benign PTQ CA: 93.23999786376953
+Benign PTQ ASR: 2.055555582046509
+Attacked CA: 88.54000091552734
+Attacked ASR: 97.94444274902344
+CA drop from benign PTQ: 4.6999969482421875
+ASR gain over benign PTQ: 95.88888549804688

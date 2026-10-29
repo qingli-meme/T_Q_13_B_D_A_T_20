@@ -1,0 +1,33 @@
+# Python/build caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+build/
+dist/
+*.egg-info/
+
+# Environments and editor state
+.venv/
+venv/
+env/
+.idea/
+.vscode/
+
+# Large datasets and checkpoints
+ours/main/data/
+ours/main/model/
+*.pth
+*.pt
+*.ckpt
+*.onnx
+Supplementary Material.pdf
+
+# Generated caches and temporary files
+*.tmp
+*.exitcode
+*.finished_at
+
+# Keep compact JSON experiment records; exclude bulky notebooks.
+ours/main/output/*.ipynb
+
