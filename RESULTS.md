@@ -35,3 +35,28 @@ Machine-readable training history and per-layer diagnostics are in
 
 Large model checkpoints and datasets are deliberately excluded from Git.
 
+## Structured Transport V4 — CIFAR-10 / ResNet18
+
+Run date: 2026-10-29  
+Seed: 1005  
+Quantization: W4A4  
+Trigger: optimized 6×6 stage2, target class 0
+
+Best calibration checkpoint: step 5000
+
+| Metric | Value |
+|---|---:|
+| Benign PTQ clean accuracy | 93.24% |
+| Benign PTQ ASR | 2.06% |
+| V4 test clean accuracy | 91.87% |
+| V4 test ASR | 94.86% |
+| Calibration clean agreement | 99.61% |
+| Calibration ASR | 98.44% |
+| Clean feature relative MSE | 0.03684 |
+| Final flipped positions | 929,127 |
+| Final flip ratio | 8.45% |
+| Structured-field parameters | 143,212 |
+
+Machine-readable history and per-layer diagnostics are in
+`ours/main/output/structured_transport_v4_resnet18_cifar10.json`.
+
