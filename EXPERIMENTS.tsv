@@ -1,0 +1,13 @@
+order	variant	config	purpose
+0	00_reference_v12	ours/main/configs/slimming/slim_00_reference_v12.yaml	Reference V12 under target-core-only cleaned implementation.
+1	01_core_ray	ours/main/configs/slimming/slim_01_core_ray.yaml	Closed-form first entry along u0->ct instead of Dykstra.
+2	02_no_clean_anchor	ours/main/configs/slimming/slim_02_no_clean_anchor.yaml	Remove explicit clean feature anchor.
+3	03_gamma_zero	ours/main/configs/slimming/slim_03_gamma_zero.yaml	Remove positive depth floor while keeping absolute endpoint.
+4	04_no_augmentation	ours/main/configs/slimming/slim_04_no_augmentation.yaml	Remove dynamic crop/flip.
+5	05_all_samples	ours/main/configs/slimming/slim_05_all_samples.yaml	Train trigger endpoint on all calibration samples.
+6	06_rank2	ours/main/configs/slimming/slim_06_rank2.yaml	Reduce field rank 4 -> 2.
+7	07_rank1	ours/main/configs/slimming/slim_07_rank1.yaml	Reduce field rank 4 -> 1.
+8	08_late34_only	ours/main/configs/slimming/slim_08_late34_only.yaml	Attack only layer3.* and layer4.*.
+9	09_layer4_only	ours/main/configs/slimming/slim_09_layer4_only.yaml	Attack only layer4.*.
+10	10_core_ray_no_clean	ours/main/configs/slimming/slim_10_core_ray_no_clean.yaml	Core-ray plus no clean anchor.
+11	11_core_ray_no_aug	ours/main/configs/slimming/slim_11_core_ray_no_aug.yaml	Core-ray plus no augmentation.

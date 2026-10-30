@@ -1,0 +1,74 @@
+[
+  {
+    "order": 0,
+    "variant": "00_reference_v12",
+    "config": "ours/main/configs/slimming/slim_00_reference_v12.yaml",
+    "purpose": "Reference V12 under target-core-only cleaned implementation."
+  },
+  {
+    "order": 1,
+    "variant": "01_core_ray",
+    "config": "ours/main/configs/slimming/slim_01_core_ray.yaml",
+    "purpose": "Closed-form first entry along u0->ct instead of Dykstra."
+  },
+  {
+    "order": 2,
+    "variant": "02_no_clean_anchor",
+    "config": "ours/main/configs/slimming/slim_02_no_clean_anchor.yaml",
+    "purpose": "Remove explicit clean feature anchor."
+  },
+  {
+    "order": 3,
+    "variant": "03_gamma_zero",
+    "config": "ours/main/configs/slimming/slim_03_gamma_zero.yaml",
+    "purpose": "Remove positive depth floor while keeping absolute endpoint."
+  },
+  {
+    "order": 4,
+    "variant": "04_no_augmentation",
+    "config": "ours/main/configs/slimming/slim_04_no_augmentation.yaml",
+    "purpose": "Remove dynamic crop/flip."
+  },
+  {
+    "order": 5,
+    "variant": "05_all_samples",
+    "config": "ours/main/configs/slimming/slim_05_all_samples.yaml",
+    "purpose": "Train trigger endpoint on all calibration samples."
+  },
+  {
+    "order": 6,
+    "variant": "06_rank2",
+    "config": "ours/main/configs/slimming/slim_06_rank2.yaml",
+    "purpose": "Reduce field rank 4 -> 2."
+  },
+  {
+    "order": 7,
+    "variant": "07_rank1",
+    "config": "ours/main/configs/slimming/slim_07_rank1.yaml",
+    "purpose": "Reduce field rank 4 -> 1."
+  },
+  {
+    "order": 8,
+    "variant": "08_late34_only",
+    "config": "ours/main/configs/slimming/slim_08_late34_only.yaml",
+    "purpose": "Attack only layer3.* and layer4.*."
+  },
+  {
+    "order": 9,
+    "variant": "09_layer4_only",
+    "config": "ours/main/configs/slimming/slim_09_layer4_only.yaml",
+    "purpose": "Attack only layer4.*."
+  },
+  {
+    "order": 10,
+    "variant": "10_core_ray_no_clean",
+    "config": "ours/main/configs/slimming/slim_10_core_ray_no_clean.yaml",
+    "purpose": "Core-ray plus no clean anchor."
+  },
+  {
+    "order": 11,
+    "variant": "11_core_ray_no_aug",
+    "config": "ours/main/configs/slimming/slim_11_core_ray_no_aug.yaml",
+    "purpose": "Core-ray plus no augmentation."
+  }
+]
