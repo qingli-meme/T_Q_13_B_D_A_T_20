@@ -1,0 +1,2383 @@
+{
+  "method": "structured_rounding_field_slimming_suite",
+  "variant_name": "21_r2_all_no_conv1",
+  "structural_config": {
+    "endpoint_mode": "dykstra",
+    "depth_mode": "core",
+    "use_clean_anchor": true,
+    "use_augmentation": true,
+    "sample_scope": "all",
+    "field_mode": "low_rank",
+    "field_rank": 2,
+    "attack_scope": "freeze_conv1"
+  },
+  "semantic_module": "view_post_act_fake_quantizer",
+  "classifier_module": "linear",
+  "attacked_modules": [
+    "layer1.0.conv1",
+    "layer1.0.conv2",
+    "layer1.1.conv1",
+    "layer1.1.conv2",
+    "layer2.0.conv1",
+    "layer2.0.conv2",
+    "layer2.0.shortcut.0",
+    "layer2.1.conv1",
+    "layer2.1.conv2",
+    "layer3.0.conv1",
+    "layer3.0.conv2",
+    "layer3.0.shortcut.0",
+    "layer3.1.conv1",
+    "layer3.1.conv2",
+    "layer4.0.conv1",
+    "layer4.0.conv2",
+    "layer4.0.shortcut.0",
+    "layer4.1.conv1",
+    "layer4.1.conv2"
+  ],
+  "frozen_modules": [
+    "linear",
+    "conv1"
+  ],
+  "classifier_geometry": {
+    "feature_dim": 512,
+    "num_classes": 10,
+    "decision_rank": 9,
+    "null_dim": 503,
+    "singular_values": [
+      2.3131537437438965,
+      1.9353954792022705,
+      1.9012467861175537,
+      1.7730330228805542,
+      1.6977829933166504,
+      1.6565203666687012,
+      1.6307058334350586,
+      1.5642294883728027,
+      1.5078452825546265,
+      2.350306829157489e-07
+    ],
+    "geometry_max_logit_error": 0.0,
+    "decision_code_argmax_agreement": 100.0
+  },
+  "target_reference": {
+    "count": 52,
+    "target_core_depth": 5.259506702423096,
+    "used_depth_floor": 5.259506702423096
+  },
+  "static_geometry": {
+    "samples": 512,
+    "included_target_samples": 52,
+    "endpoint_mode": "dykstra",
+    "sample_scope": "all",
+    "depth_floor": 5.259506702423096,
+    "ideal_endpoint_depth_mean": 5.281741142272949,
+    "ideal_endpoint_depth_min": 5.259506702423096,
+    "mean_endpoint_displacement_d2": 113.3249740600586,
+    "mean_v6_core_displacement_d2": 129.7667236328125,
+    "endpoint_to_v6_energy_ratio": 0.8732976443230744,
+    "strictly_less_movement_than_v6_rate": 100.0,
+    "active_constraints_mean": 2.71484375
+  },
+  "baseline_calibration": {
+    "clean_teacher_agreement": 100.0,
+    "clean_code_distance": 0.0,
+    "asr": 11.1328125,
+    "paired_asr": 10.546875,
+    "trigger_endpoint_distance": 10.307432916429308,
+    "actual_target_depth_mean": -3.6547086238861084,
+    "actual_target_depth_p10": -6.3191609382629395,
+    "actual_target_depth_min": -9.00784969329834,
+    "desired_target_depth_mean": 5.281741142272949,
+    "desired_target_depth_min": 5.259506702423096,
+    "desired_movement_d2_mean": 113.3249740600586,
+    "desired_v6_core_d2_mean": 129.7667236328125,
+    "desired_movement_to_v6_ratio": 0.8732976443230744,
+    "clean_samples": 512,
+    "selected_samples": 512,
+    "bd_samples": 512,
+    "per_source": {
+      "0": {
+        "count": 52,
+        "paired_asr": 100.0,
+        "trigger_endpoint_distance": 0.380979625078348,
+        "actual_target_depth_mean": 4.638067240898426
+      },
+      "1": {
+        "count": 66,
+        "paired_asr": 0.0,
+        "trigger_endpoint_distance": 11.17701556786945,
+        "actual_target_depth_mean": -4.4846679947593
+      },
+      "2": {
+        "count": 45,
+        "paired_asr": 0.0,
+        "trigger_endpoint_distance": 10.067035806914907,
+        "actual_target_depth_mean": -3.933423954910702
+      },
+      "3": {
+        "count": 47,
+        "paired_asr": 0.0,
+        "trigger_endpoint_distance": 12.004023017612756,
+        "actual_target_depth_mean": -4.767052812779204
+      },
+      "4": {
+        "count": 51,
+        "paired_asr": 0.0,
+        "trigger_endpoint_distance": 11.791752983542048,
+        "actual_target_depth_mean": -4.768215142044366
+      },
+      "5": {
+        "count": 41,
+        "paired_asr": 0.0,
+        "trigger_endpoint_distance": 13.512162784896892,
+        "actual_target_depth_mean": -5.498839122493092
+      },
+      "6": {
+        "count": 53,
+        "paired_asr": 0.0,
+        "trigger_endpoint_distance": 12.475447632731631,
+        "actual_target_depth_mean": -5.091380713120946
+      },
+      "7": {
+        "count": 50,
+        "paired_asr": 0.0,
+        "trigger_endpoint_distance": 11.434633466932508,
+        "actual_target_depth_mean": -4.6490536975860595
+      },
+      "8": {
+        "count": 49,
+        "paired_asr": 4.081632653061225,
+        "trigger_endpoint_distance": 9.381736253664876,
+        "actual_target_depth_mean": -3.6540680564179713
+      },
+      "9": {
+        "count": 58,
+        "paired_asr": 0.0,
+        "trigger_endpoint_distance": 11.287800595221391,
+        "actual_target_depth_mean": -4.575349154143498
+      }
+    }
+  },
+  "history": [
+    {
+      "step": 1,
+      "train_total_loss": 4.696281433105469,
+      "train_clean_code_distance": 0.0,
+      "train_trigger_endpoint_distance": 9.392562866210938,
+      "train_desired_endpoint_depth_mean": 5.274615287780762,
+      "train_desired_movement_d2_mean": 109.14519500732422,
+      "score": 19.718309859154928,
+      "clean_teacher_agreement": 100.0,
+      "clean_code_distance": 0.01010009196276466,
+      "asr": 10.9375,
+      "paired_asr": 10.546875,
+      "trigger_endpoint_distance": 10.318530824449327,
+      "actual_target_depth_mean": -3.662907123565674,
+      "actual_target_depth_p10": -6.305222034454346,
+      "actual_target_depth_min": -8.941618919372559,
+      "desired_target_depth_mean": 5.281741142272949,
+      "desired_target_depth_min": 5.259506702423096,
+      "desired_movement_d2_mean": 113.3249740600586,
+      "desired_v6_core_d2_mean": 129.7667236328125,
+      "desired_movement_to_v6_ratio": 0.8732976443230744,
+      "clean_samples": 512,
+      "selected_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.3948547931817862,
+          "actual_target_depth_mean": 4.594052530252016
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 0.0,
+          "trigger_endpoint_distance": 11.21626476968579,
+          "actual_target_depth_mean": -4.501385529836019
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 0.0,
+          "trigger_endpoint_distance": 10.114056113914208,
+          "actual_target_depth_mean": -3.959189682536655
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 0.0,
+          "trigger_endpoint_distance": 12.05740060648456,
+          "actual_target_depth_mean": -4.792913619508135
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 0.0,
+          "trigger_endpoint_distance": 11.773355671003753,
+          "actual_target_depth_mean": -4.757418744704303
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 0.0,
+          "trigger_endpoint_distance": 13.480755172770845,
+          "actual_target_depth_mean": -5.481198520195194
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 0.0,
+          "trigger_endpoint_distance": 12.54037624335139,
+          "actual_target_depth_mean": -5.1205927291006414
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 0.0,
+          "trigger_endpoint_distance": 11.452127821180556,
+          "actual_target_depth_mean": -4.655119619369507
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 4.081632653061225,
+          "trigger_endpoint_distance": 9.3739223350473,
+          "actual_target_depth_mean": -3.654170420705056
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 0.0,
+          "trigger_endpoint_distance": 11.219498820688534,
+          "actual_target_depth_mean": -4.538242360641217
+        }
+      },
+      "flip_ratio_valid": 1.4833468381597618e-05,
+      "total_flipped": 163,
+      "field_parameters": 71424
+    },
+    {
+      "step": 250,
+      "train_total_loss": 1.1874969005584717,
+      "train_clean_code_distance": 0.7636721134185791,
+      "train_trigger_endpoint_distance": 1.6113218069076538,
+      "train_desired_endpoint_depth_mean": 5.259506702423096,
+      "train_desired_movement_d2_mean": 118.08389282226562,
+      "score": 94.0511658031088,
+      "clean_teacher_agreement": 98.4375,
+      "clean_code_distance": 0.796007964346144,
+      "asr": 90.0390625,
+      "paired_asr": 91.015625,
+      "trigger_endpoint_distance": 1.739418023162418,
+      "actual_target_depth_mean": 2.512402057647705,
+      "actual_target_depth_p10": 0.053380392491817474,
+      "actual_target_depth_min": -2.828352928161621,
+      "desired_target_depth_mean": 5.281741142272949,
+      "desired_target_depth_min": 5.259506702423096,
+      "desired_movement_d2_mean": 113.3249740600586,
+      "desired_v6_core_d2_mean": 129.7667236328125,
+      "desired_movement_to_v6_ratio": 0.8732976443230744,
+      "clean_samples": 512,
+      "selected_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.0569168991512723,
+          "actual_target_depth_mean": 7.340726127991309
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 81.81818181818181,
+          "trigger_endpoint_distance": 2.1963728124445137,
+          "actual_target_depth_mean": 1.4570053991946308
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 97.77777777777777,
+          "trigger_endpoint_distance": 1.6267953731395581,
+          "actual_target_depth_mean": 2.246801247696082
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 80.85106382978724,
+          "trigger_endpoint_distance": 1.8378104938119297,
+          "actual_target_depth_mean": 2.043582538023908
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 94.11764705882354,
+          "trigger_endpoint_distance": 1.6203252318637822,
+          "actual_target_depth_mean": 2.1212241649627686
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 78.04878048780488,
+          "trigger_endpoint_distance": 2.511652809494556,
+          "actual_target_depth_mean": 1.189511866831198
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 94.33962264150944,
+          "trigger_endpoint_distance": 1.7708682174202781,
+          "actual_target_depth_mean": 1.926928515141865
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 92.0,
+          "trigger_endpoint_distance": 1.8405197196536593,
+          "actual_target_depth_mean": 1.832415885925293
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 97.95918367346938,
+          "trigger_endpoint_distance": 1.393288708598165,
+          "actual_target_depth_mean": 2.5594764151135267
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 93.10344827586206,
+          "trigger_endpoint_distance": 1.5743340294936607,
+          "actual_target_depth_mean": 2.3310438127353272
+        }
+      },
+      "flip_ratio_valid": 0.04236547773232487,
+      "total_flipped": 465540,
+      "field_parameters": 71424
+    },
+    {
+      "step": 500,
+      "train_total_loss": 0.8525107502937317,
+      "train_clean_code_distance": 0.5468599796295166,
+      "train_trigger_endpoint_distance": 1.1581616401672363,
+      "train_desired_endpoint_depth_mean": 5.291007995605469,
+      "train_desired_movement_d2_mean": 122.88969421386719,
+      "score": 98.82465106225297,
+      "clean_teacher_agreement": 99.4140625,
+      "clean_code_distance": 0.6230327520105574,
+      "asr": 98.2421875,
+      "paired_asr": 98.828125,
+      "trigger_endpoint_distance": 1.2427713871002197,
+      "actual_target_depth_mean": 3.4154670238494873,
+      "actual_target_depth_p10": 1.2466591596603394,
+      "actual_target_depth_min": -1.2059327363967896,
+      "desired_target_depth_mean": 5.281741142272949,
+      "desired_target_depth_min": 5.259506702423096,
+      "desired_movement_d2_mean": 113.3249740600586,
+      "desired_v6_core_d2_mean": 129.7667236328125,
+      "desired_movement_to_v6_ratio": 0.8732976443230744,
+      "clean_samples": 512,
+      "selected_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.2461407041957235,
+          "actual_target_depth_mean": 7.6884820828071
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 98.48484848484848,
+          "trigger_endpoint_distance": 1.5508715054804227,
+          "actual_target_depth_mean": 2.346977801033945
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.1022392826315799,
+          "actual_target_depth_mean": 3.2527629958258735
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 97.87234042553192,
+          "trigger_endpoint_distance": 1.1783477296220495,
+          "actual_target_depth_mean": 3.220378152867581
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.0300846349180135,
+          "actual_target_depth_mean": 3.098314519022025
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 95.1219512195122,
+          "trigger_endpoint_distance": 1.5639542363846528,
+          "actual_target_depth_mean": 2.390705966367954
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.1975958562247158,
+          "actual_target_depth_mean": 2.8938673329803177
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 98.0,
+          "trigger_endpoint_distance": 1.230481924480862,
+          "actual_target_depth_mean": 2.799939684867859
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 97.95918367346938,
+          "trigger_endpoint_distance": 1.1147247625856984,
+          "actual_target_depth_mean": 3.316365507184243
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.1704200839630945,
+          "actual_target_depth_mean": 3.1789408264489007
+        }
+      },
+      "flip_ratio_valid": 0.06382732241153247,
+      "total_flipped": 701377,
+      "field_parameters": 71424,
+      "diagnostic_test_ca": 90.06,
+      "diagnostic_test_asr": 96.11111111111111
+    },
+    {
+      "step": 750,
+      "train_total_loss": 0.8257807493209839,
+      "train_clean_code_distance": 0.5937842726707458,
+      "train_trigger_endpoint_distance": 1.0577771663665771,
+      "train_desired_endpoint_depth_mean": 5.259506702423096,
+      "train_desired_movement_d2_mean": 110.16761779785156,
+      "score": 98.33974677259185,
+      "clean_teacher_agreement": 98.4375,
+      "clean_code_distance": 0.5400993592209287,
+      "asr": 98.2421875,
+      "paired_asr": 98.6328125,
+      "trigger_endpoint_distance": 1.2219439413812425,
+      "actual_target_depth_mean": 3.3123176097869873,
+      "actual_target_depth_p10": 1.214654803276062,
+      "actual_target_depth_min": -1.185003399848938,
+      "desired_target_depth_mean": 5.281741142272949,
+      "desired_target_depth_min": 5.259506702423096,
+      "desired_movement_d2_mean": 113.3249740600586,
+      "desired_v6_core_d2_mean": 129.7667236328125,
+      "desired_movement_to_v6_ratio": 0.8732976443230744,
+      "clean_samples": 512,
+      "selected_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.0877858043735862,
+          "actual_target_depth_mean": 7.447856508768522
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 96.96969696969697,
+          "trigger_endpoint_distance": 1.5447587645816483,
+          "actual_target_depth_mean": 2.2580544478965527
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.14467964525576,
+          "actual_target_depth_mean": 3.081697342130873
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.1893747501057654,
+          "actual_target_depth_mean": 3.1170633295749095
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.0170030115996052,
+          "actual_target_depth_mean": 3.0792574882507324
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 95.1219512195122,
+          "trigger_endpoint_distance": 1.5228925035574894,
+          "actual_target_depth_mean": 2.3580009879135506
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.1610420394993428,
+          "actual_target_depth_mean": 2.876101743500188
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 98.0,
+          "trigger_endpoint_distance": 1.1716332403818768,
+          "actual_target_depth_mean": 2.8096869230270385
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 97.95918367346938,
+          "trigger_endpoint_distance": 1.1065391553502506,
+          "actual_target_depth_mean": 3.223443877940275
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 98.27586206896552,
+          "trigger_endpoint_distance": 1.2252087465191253,
+          "actual_target_depth_mean": 2.927958807040905
+        }
+      },
+      "flip_ratio_valid": 0.07130475551896026,
+      "total_flipped": 783544,
+      "field_parameters": 71424
+    },
+    {
+      "step": 1000,
+      "train_total_loss": 0.7895529270172119,
+      "train_clean_code_distance": 0.5730928778648376,
+      "train_trigger_endpoint_distance": 1.0060127973556519,
+      "train_desired_endpoint_depth_mean": 5.259506702423096,
+      "train_desired_movement_d2_mean": 105.98544311523438,
+      "score": 99.02305226824457,
+      "clean_teacher_agreement": 99.21875,
+      "clean_code_distance": 0.5187691036197875,
+      "asr": 98.828125,
+      "paired_asr": 99.609375,
+      "trigger_endpoint_distance": 1.0598932537767622,
+      "actual_target_depth_mean": 3.7161238193511963,
+      "actual_target_depth_p10": 1.6619571447372437,
+      "actual_target_depth_min": -0.713647723197937,
+      "desired_target_depth_mean": 5.281741142272949,
+      "desired_target_depth_min": 5.259506702423096,
+      "desired_movement_d2_mean": 113.3249740600586,
+      "desired_v6_core_d2_mean": 129.7667236328125,
+      "desired_movement_to_v6_ratio": 0.8732976443230744,
+      "clean_samples": 512,
+      "selected_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.2077857531034029,
+          "actual_target_depth_mean": 7.648667775667631
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 98.48484848484848,
+          "trigger_endpoint_distance": 1.2596243013837922,
+          "actual_target_depth_mean": 2.729325207796964
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.9595463075755555,
+          "actual_target_depth_mean": 3.5447336514790853
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.007021655991286,
+          "actual_target_depth_mean": 3.5409740082761076
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8340354204697287,
+          "actual_target_depth_mean": 3.4836841424306235
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 97.5609756097561,
+          "trigger_endpoint_distance": 1.383489445942204,
+          "actual_target_depth_mean": 2.589051272810959
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.9564203006416496,
+          "actual_target_depth_mean": 3.319366110945648
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.9716347561942206,
+          "actual_target_depth_mean": 3.2175488471984863
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.007557105585561,
+          "actual_target_depth_mean": 3.616456469710992
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.0054224076398945,
+          "actual_target_depth_mean": 3.4658836064667535
+        }
+      },
+      "flip_ratio_valid": 0.0754566706198315,
+      "total_flipped": 829168,
+      "field_parameters": 71424,
+      "diagnostic_test_ca": 90.71,
+      "diagnostic_test_asr": 97.95555555555555
+    },
+    {
+      "step": 1250,
+      "train_total_loss": 0.7371106743812561,
+      "train_clean_code_distance": 0.5312418341636658,
+      "train_trigger_endpoint_distance": 0.9429795145988464,
+      "train_desired_endpoint_depth_mean": 5.301980972290039,
+      "train_desired_movement_d2_mean": 102.26878356933594,
+      "score": 99.21875,
+      "clean_teacher_agreement": 99.21875,
+      "clean_code_distance": 0.4691397961643007,
+      "asr": 99.21875,
+      "paired_asr": 99.8046875,
+      "trigger_endpoint_distance": 1.0011096133126154,
+      "actual_target_depth_mean": 3.8204445838928223,
+      "actual_target_depth_p10": 1.8344147205352783,
+      "actual_target_depth_min": -0.5026299953460693,
+      "desired_target_depth_mean": 5.281741142272949,
+      "desired_target_depth_min": 5.259506702423096,
+      "desired_movement_d2_mean": 113.3249740600586,
+      "desired_v6_core_d2_mean": 129.7667236328125,
+      "desired_movement_to_v6_ratio": 0.8732976443230744,
+      "clean_samples": 512,
+      "selected_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.1766053040822346,
+          "actual_target_depth_mean": 7.6232443406031685
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.1538785587657583,
+          "actual_target_depth_mean": 2.8737640380859375
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.919996992746989,
+          "actual_target_depth_mean": 3.609360784954495
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.9515865835455857,
+          "actual_target_depth_mean": 3.6481802894714033
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8216330584357767,
+          "actual_target_depth_mean": 3.51943273637809
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 97.5609756097561,
+          "trigger_endpoint_distance": 1.2369516147830621,
+          "actual_target_depth_mean": 2.8331031174194523
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.9168017035510305,
+          "actual_target_depth_mean": 3.4698238395295053
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.9220466560787624,
+          "actual_target_depth_mean": 3.3284932804107665
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.9554686157070861,
+          "actual_target_depth_mean": 3.7447455513234043
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.9478473626790832,
+          "actual_target_depth_mean": 3.5627355267261636
+        }
+      },
+      "flip_ratio_valid": 0.07785432332811341,
+      "total_flipped": 855515,
+      "field_parameters": 71424
+    },
+    {
+      "step": 1500,
+      "train_total_loss": 0.6437673568725586,
+      "train_clean_code_distance": 0.4390116333961487,
+      "train_trigger_endpoint_distance": 0.8485231399536133,
+      "train_desired_endpoint_depth_mean": 5.263555526733398,
+      "train_desired_movement_d2_mean": 121.87454223632812,
+      "score": 99.51162291462218,
+      "clean_teacher_agreement": 99.4140625,
+      "clean_code_distance": 0.45369817316532135,
+      "asr": 99.609375,
+      "paired_asr": 99.8046875,
+      "trigger_endpoint_distance": 0.928568058543735,
+      "actual_target_depth_mean": 3.915365219116211,
+      "actual_target_depth_p10": 1.9839205741882324,
+      "actual_target_depth_min": -0.21356220543384552,
+      "desired_target_depth_mean": 5.281741142272949,
+      "desired_target_depth_min": 5.259506702423096,
+      "desired_movement_d2_mean": 113.3249740600586,
+      "desired_v6_core_d2_mean": 129.7667236328125,
+      "desired_movement_to_v6_ratio": 0.8732976443230744,
+      "clean_samples": 512,
+      "selected_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.1204588189084306,
+          "actual_target_depth_mean": 7.532210074938261
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.0750205219795406,
+          "actual_target_depth_mean": 2.9805798241586396
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8388355278674466,
+          "actual_target_depth_mean": 3.7647114064958362
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8954504702953581,
+          "actual_target_depth_mean": 3.7376188217325415
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7605974346983666,
+          "actual_target_depth_mean": 3.6606334471235087
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 97.5609756097561,
+          "trigger_endpoint_distance": 1.1485076008773432,
+          "actual_target_depth_mean": 2.9433346623327674
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8213279692132018,
+          "actual_target_depth_mean": 3.602207620188875
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.824509417215983,
+          "actual_target_depth_mean": 3.5117415523529054
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.9029515011240297,
+          "actual_target_depth_mean": 3.814490950837427
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8878984560911682,
+          "actual_target_depth_mean": 3.6277655260316255
+        }
+      },
+      "flip_ratio_valid": 0.08005877693594053,
+      "total_flipped": 879739,
+      "field_parameters": 71424,
+      "diagnostic_test_ca": 90.78,
+      "diagnostic_test_asr": 98.75555555555556
+    },
+    {
+      "step": 1750,
+      "train_total_loss": 0.7010319828987122,
+      "train_clean_code_distance": 0.4504440128803253,
+      "train_trigger_endpoint_distance": 0.9516199827194214,
+      "train_desired_endpoint_depth_mean": 5.29006290435791,
+      "train_desired_movement_d2_mean": 108.89897155761719,
+      "score": 99.4140625,
+      "clean_teacher_agreement": 99.4140625,
+      "clean_code_distance": 0.40104292664262986,
+      "asr": 99.4140625,
+      "paired_asr": 99.8046875,
+      "trigger_endpoint_distance": 0.949078705575731,
+      "actual_target_depth_mean": 3.788926124572754,
+      "actual_target_depth_p10": 1.903778076171875,
+      "actual_target_depth_min": -0.40215638279914856,
+      "desired_target_depth_mean": 5.281741142272949,
+      "desired_target_depth_min": 5.259506702423096,
+      "desired_movement_d2_mean": 113.3249740600586,
+      "desired_v6_core_d2_mean": 129.7667236328125,
+      "desired_movement_to_v6_ratio": 0.8732976443230744,
+      "clean_samples": 512,
+      "selected_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.9883788732381967,
+          "actual_target_depth_mean": 7.388990741509658
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.1022964647723368,
+          "actual_target_depth_mean": 2.910588578744368
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8569351731995005,
+          "actual_target_depth_mean": 3.6309887091318767
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.936271083552223,
+          "actual_target_depth_mean": 3.6055906579849566
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7776594785303852,
+          "actual_target_depth_mean": 3.591899792353312
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 97.5609756097561,
+          "trigger_endpoint_distance": 1.23322751205465,
+          "actual_target_depth_mean": 2.7786054880153843
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8483299679226346,
+          "actual_target_depth_mean": 3.5019705138116515
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8591504054599338,
+          "actual_target_depth_mean": 3.3475426197052003
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8994351092920281,
+          "actual_target_depth_mean": 3.734018101984141
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.9827570294054989,
+          "actual_target_depth_mean": 3.408419526856521
+        }
+      },
+      "flip_ratio_valid": 0.08132389888343114,
+      "total_flipped": 893641,
+      "field_parameters": 71424
+    },
+    {
+      "step": 2000,
+      "train_total_loss": 0.6717275977134705,
+      "train_clean_code_distance": 0.4319460988044739,
+      "train_trigger_endpoint_distance": 0.9115092158317566,
+      "train_desired_endpoint_depth_mean": 5.260320663452148,
+      "train_desired_movement_d2_mean": 124.25411987304688,
+      "score": 99.70693560235064,
+      "clean_teacher_agreement": 99.609375,
+      "clean_code_distance": 0.3899569792879952,
+      "asr": 99.8046875,
+      "paired_asr": 100.0,
+      "trigger_endpoint_distance": 0.9011772241857317,
+      "actual_target_depth_mean": 3.8786282539367676,
+      "actual_target_depth_p10": 1.9774521589279175,
+      "actual_target_depth_min": 0.010837379842996597,
+      "desired_target_depth_mean": 5.281741142272949,
+      "desired_target_depth_min": 5.259506702423096,
+      "desired_movement_d2_mean": 113.3249740600586,
+      "desired_v6_core_d2_mean": 129.7667236328125,
+      "desired_movement_to_v6_ratio": 0.8732976443230744,
+      "clean_samples": 512,
+      "selected_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.0081707646704128,
+          "actual_target_depth_mean": 7.392576346030602
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.0222905027344573,
+          "actual_target_depth_mean": 3.0012918963576807
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8349143664042155,
+          "actual_target_depth_mean": 3.683339166641235
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8824467715360312,
+          "actual_target_depth_mean": 3.6872071814029774
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7539418974733041,
+          "actual_target_depth_mean": 3.6166121912937537
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.1496963681890389,
+          "actual_target_depth_mean": 2.862358314235036
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8216162567618508,
+          "actual_target_depth_mean": 3.572710345376213
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7986344983842638,
+          "actual_target_depth_mean": 3.495980100631714
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8747725562443809,
+          "actual_target_depth_mean": 3.818404144170333
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8712191673074189,
+          "actual_target_depth_mean": 3.642259511454352
+        }
+      },
+      "flip_ratio_valid": 0.08245333554652322,
+      "total_flipped": 906052,
+      "field_parameters": 71424,
+      "diagnostic_test_ca": 91.25,
+      "diagnostic_test_asr": 98.83333333333333
+    },
+    {
+      "step": 2250,
+      "train_total_loss": 0.5972166657447815,
+      "train_clean_code_distance": 0.34974050521850586,
+      "train_trigger_endpoint_distance": 0.8446928858757019,
+      "train_desired_endpoint_depth_mean": 5.297623634338379,
+      "train_desired_movement_d2_mean": 105.95750427246094,
+      "score": 99.51162291462218,
+      "clean_teacher_agreement": 99.609375,
+      "clean_code_distance": 0.37533388038476306,
+      "asr": 99.4140625,
+      "paired_asr": 99.8046875,
+      "trigger_endpoint_distance": 0.8939975765016344,
+      "actual_target_depth_mean": 3.838175058364868,
+      "actual_target_depth_p10": 1.9268876314163208,
+      "actual_target_depth_min": -0.19535914063453674,
+      "desired_target_depth_mean": 5.281741142272949,
+      "desired_target_depth_min": 5.259506702423096,
+      "desired_movement_d2_mean": 113.3249740600586,
+      "desired_v6_core_d2_mean": 129.7667236328125,
+      "desired_movement_to_v6_ratio": 0.8732976443230744,
+      "clean_samples": 512,
+      "selected_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.9370535897393513,
+          "actual_target_depth_mean": 7.315775807087238
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.9971541973075482,
+          "actual_target_depth_mean": 3.028329798669526
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8020846037217129,
+          "actual_target_depth_mean": 3.7288726541731094
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.9071600465346172,
+          "actual_target_depth_mean": 3.626787616851482
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7624541222399875,
+          "actual_target_depth_mean": 3.571768508237951
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 97.5609756097561,
+          "trigger_endpoint_distance": 1.2145084630506149,
+          "actual_target_depth_mean": 2.793626293903444
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8033383267480622,
+          "actual_target_depth_mean": 3.5454116812292136
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8107545714908176,
+          "actual_target_depth_mean": 3.4399171543121336
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8535782355570198,
+          "actual_target_depth_mean": 3.7521650888481917
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.876507963714015,
+          "actual_target_depth_mean": 3.5541310043170533
+        }
+      },
+      "flip_ratio_valid": 0.08312821285644915,
+      "total_flipped": 913468,
+      "field_parameters": 71424
+    },
+    {
+      "step": 2500,
+      "train_total_loss": 0.6022433638572693,
+      "train_clean_code_distance": 0.38917985558509827,
+      "train_trigger_endpoint_distance": 0.8153067827224731,
+      "train_desired_endpoint_depth_mean": 5.259506702423096,
+      "train_desired_movement_d2_mean": 113.4290542602539,
+      "score": 99.90224828934507,
+      "clean_teacher_agreement": 100.0,
+      "clean_code_distance": 0.36302051941553753,
+      "asr": 99.8046875,
+      "paired_asr": 99.8046875,
+      "trigger_endpoint_distance": 0.8559036751588186,
+      "actual_target_depth_mean": 3.998626470565796,
+      "actual_target_depth_p10": 2.1287949085235596,
+      "actual_target_depth_min": -0.0043379622511565685,
+      "desired_target_depth_mean": 5.281741142272949,
+      "desired_target_depth_min": 5.259506702423096,
+      "desired_movement_d2_mean": 113.3249740600586,
+      "desired_v6_core_d2_mean": 129.7667236328125,
+      "desired_movement_to_v6_ratio": 0.8732976443230744,
+      "clean_samples": 512,
+      "selected_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.9950586628710103,
+          "actual_target_depth_mean": 7.417044951365544
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.9479769263604675,
+          "actual_target_depth_mean": 3.180819222421357
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8051210391668626,
+          "actual_target_depth_mean": 3.799977509180705
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8585252536385899,
+          "actual_target_depth_mean": 3.7945085358112416
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.715732734447471,
+          "actual_target_depth_mean": 3.7306249655929267
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 97.5609756097561,
+          "trigger_endpoint_distance": 1.1207104918110338,
+          "actual_target_depth_mean": 2.9551227877779707
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7689045140328398,
+          "actual_target_depth_mean": 3.71612615855235
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7175552156236437,
+          "actual_target_depth_mean": 3.6588679122924805
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8331294973420988,
+          "actual_target_depth_mean": 3.887267988555285
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8177149743412646,
+          "actual_target_depth_mean": 3.8024030142817002
+        }
+      },
+      "flip_ratio_valid": 0.08356657369813109,
+      "total_flipped": 918285,
+      "field_parameters": 71424,
+      "diagnostic_test_ca": 91.28,
+      "diagnostic_test_asr": 99.14444444444445
+    },
+    {
+      "step": 2750,
+      "train_total_loss": 0.608180582523346,
+      "train_clean_code_distance": 0.46887078881263733,
+      "train_trigger_endpoint_distance": 0.7474902868270874,
+      "train_desired_endpoint_depth_mean": 5.315084457397461,
+      "train_desired_movement_d2_mean": 108.81694793701172,
+      "score": 99.60899203431373,
+      "clean_teacher_agreement": 99.4140625,
+      "clean_code_distance": 0.36152082350518966,
+      "asr": 99.8046875,
+      "paired_asr": 100.0,
+      "trigger_endpoint_distance": 0.8398781054549747,
+      "actual_target_depth_mean": 4.040345668792725,
+      "actual_target_depth_p10": 2.2176530361175537,
+      "actual_target_depth_min": 0.2124892771244049,
+      "desired_target_depth_mean": 5.281741142272949,
+      "desired_target_depth_min": 5.259506702423096,
+      "desired_movement_d2_mean": 113.3249740600586,
+      "desired_v6_core_d2_mean": 129.7667236328125,
+      "desired_movement_to_v6_ratio": 0.8732976443230744,
+      "clean_samples": 512,
+      "selected_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.9873206829413389,
+          "actual_target_depth_mean": 7.401303227131184
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.9206016023552378,
+          "actual_target_depth_mean": 3.2140442530314126
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.789293857857033,
+          "actual_target_depth_mean": 3.8215777185228137
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.814879944983949,
+          "actual_target_depth_mean": 3.8867227904340056
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.6970223715622181,
+          "actual_target_depth_mean": 3.788513351889218
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.0248488901753412,
+          "actual_target_depth_mean": 3.109115141194041
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7655240064896878,
+          "actual_target_depth_mean": 3.758885293636682
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7333598412407769,
+          "actual_target_depth_mean": 3.7083313560485838
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8535869494587386,
+          "actual_target_depth_mean": 3.864405310883814
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8183821097187612,
+          "actual_target_depth_mean": 3.833345355658696
+        }
+      },
+      "flip_ratio_valid": 0.08402195207715879,
+      "total_flipped": 923289,
+      "field_parameters": 71424
+    },
+    {
+      "step": 3000,
+      "train_total_loss": 0.5713660717010498,
+      "train_clean_code_distance": 0.3584842383861542,
+      "train_trigger_endpoint_distance": 0.7842478156089783,
+      "train_desired_endpoint_depth_mean": 5.300097465515137,
+      "train_desired_movement_d2_mean": 117.99360656738281,
+      "score": 99.8046875,
+      "clean_teacher_agreement": 99.8046875,
+      "clean_code_distance": 0.35431720481978524,
+      "asr": 99.8046875,
+      "paired_asr": 100.0,
+      "trigger_endpoint_distance": 0.8312952220439911,
+      "actual_target_depth_mean": 4.01563835144043,
+      "actual_target_depth_p10": 2.2332873344421387,
+      "actual_target_depth_min": 0.19981083273887634,
+      "desired_target_depth_mean": 5.281741142272949,
+      "desired_target_depth_min": 5.259506702423096,
+      "desired_movement_d2_mean": 113.3249740600586,
+      "desired_v6_core_d2_mean": 129.7667236328125,
+      "desired_movement_to_v6_ratio": 0.8732976443230744,
+      "clean_samples": 512,
+      "selected_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.9497215258769499,
+          "actual_target_depth_mean": 7.361120123129624
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.9065398752488671,
+          "actual_target_depth_mean": 3.195973605820627
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7840767842751962,
+          "actual_target_depth_mean": 3.806108718448215
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8727352579716531,
+          "actual_target_depth_mean": 3.772222802994099
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.6955284521730377,
+          "actual_target_depth_mean": 3.755514481488396
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.095544077193511,
+          "actual_target_depth_mean": 3.0236495616959362
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.737783236073748,
+          "actual_target_depth_mean": 3.7878325120458065
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7229160563151041,
+          "actual_target_depth_mean": 3.6472528076171873
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7771596054371251,
+          "actual_target_depth_mean": 3.9703105809737225
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7997516654003625,
+          "actual_target_depth_mean": 3.802780237691156
+        }
+      },
+      "flip_ratio_valid": 0.08441617652518996,
+      "total_flipped": 927621,
+      "field_parameters": 71424,
+      "diagnostic_test_ca": 91.45,
+      "diagnostic_test_asr": 99.22222222222223
+    },
+    {
+      "step": 3250,
+      "train_total_loss": 0.6438940167427063,
+      "train_clean_code_distance": 0.33956700563430786,
+      "train_trigger_endpoint_distance": 0.9482210278511047,
+      "train_desired_endpoint_depth_mean": 5.260895729064941,
+      "train_desired_movement_d2_mean": 116.51130676269531,
+      "score": 99.70693560235064,
+      "clean_teacher_agreement": 99.609375,
+      "clean_code_distance": 0.350782831509908,
+      "asr": 99.8046875,
+      "paired_asr": 100.0,
+      "trigger_endpoint_distance": 0.8139945202403598,
+      "actual_target_depth_mean": 4.0439453125,
+      "actual_target_depth_p10": 2.2606678009033203,
+      "actual_target_depth_min": 0.24614238739013672,
+      "desired_target_depth_mean": 5.281741142272949,
+      "desired_target_depth_min": 5.259506702423096,
+      "desired_movement_d2_mean": 113.3249740600586,
+      "desired_v6_core_d2_mean": 129.7667236328125,
+      "desired_movement_to_v6_ratio": 0.8732976443230744,
+      "clean_samples": 512,
+      "selected_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.946114671535981,
+          "actual_target_depth_mean": 7.336105429209196
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8823353931157275,
+          "actual_target_depth_mean": 3.2294425747611304
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7792123464890468,
+          "actual_target_depth_mean": 3.813179471757677
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7954107739964839,
+          "actual_target_depth_mean": 3.91099869697652
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.6696383844014087,
+          "actual_target_depth_mean": 3.835632758982041
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.0468589988181263,
+          "actual_target_depth_mean": 3.0794733937193706
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7422878787202655,
+          "actual_target_depth_mean": 3.757734312201446
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.6848021411895752,
+          "actual_target_depth_mean": 3.7453454875946046
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8100408804930256,
+          "actual_target_depth_mean": 3.9116087592377955
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8023808468347309,
+          "actual_target_depth_mean": 3.801684120605732
+        }
+      },
+      "flip_ratio_valid": 0.08473823569453029,
+      "total_flipped": 931160,
+      "field_parameters": 71424
+    },
+    {
+      "step": 3500,
+      "train_total_loss": 0.5815629363059998,
+      "train_clean_code_distance": 0.4441825747489929,
+      "train_trigger_endpoint_distance": 0.7189432978630066,
+      "train_desired_endpoint_depth_mean": 5.259506702423096,
+      "train_desired_movement_d2_mean": 111.65946960449219,
+      "score": 99.8046875,
+      "clean_teacher_agreement": 99.8046875,
+      "clean_code_distance": 0.3452330678701401,
+      "asr": 99.8046875,
+      "paired_asr": 100.0,
+      "trigger_endpoint_distance": 0.8177350891960992,
+      "actual_target_depth_mean": 4.025393962860107,
+      "actual_target_depth_p10": 2.2666094303131104,
+      "actual_target_depth_min": 0.2838006615638733,
+      "desired_target_depth_mean": 5.281741142272949,
+      "desired_target_depth_min": 5.259506702423096,
+      "desired_movement_d2_mean": 113.3249740600586,
+      "desired_v6_core_d2_mean": 129.7667236328125,
+      "desired_movement_to_v6_ratio": 0.8732976443230744,
+      "clean_samples": 512,
+      "selected_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.9406492598036417,
+          "actual_target_depth_mean": 7.309741350320669
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8868935308873854,
+          "actual_target_depth_mean": 3.241587595506148
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7915718290540907,
+          "actual_target_depth_mean": 3.7536741786532932
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8379158827148149,
+          "actual_target_depth_mean": 3.805339521550118
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.6893501572619337,
+          "actual_target_depth_mean": 3.769816613664814
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.058499352395696,
+          "actual_target_depth_mean": 3.0484308556812567
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7261897832842492,
+          "actual_target_depth_mean": 3.8044836476164043
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7029968441857233,
+          "actual_target_depth_mean": 3.6874444389343264
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7889203279196811,
+          "actual_target_depth_mean": 3.9355578909114914
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7823883436648782,
+          "actual_target_depth_mean": 3.8463046961817247
+        }
+      },
+      "flip_ratio_valid": 0.08503890918859654,
+      "total_flipped": 934464,
+      "field_parameters": 71424,
+      "diagnostic_test_ca": 91.42,
+      "diagnostic_test_asr": 99.28888888888889
+    },
+    {
+      "step": 3750,
+      "train_total_loss": 0.637212872505188,
+      "train_clean_code_distance": 0.3751819431781769,
+      "train_trigger_endpoint_distance": 0.8992437720298767,
+      "train_desired_endpoint_depth_mean": 5.2632551193237305,
+      "train_desired_movement_d2_mean": 115.11509704589844,
+      "score": 99.8046875,
+      "clean_teacher_agreement": 99.8046875,
+      "clean_code_distance": 0.3373592760827806,
+      "asr": 99.8046875,
+      "paired_asr": 100.0,
+      "trigger_endpoint_distance": 0.8138175209363302,
+      "actual_target_depth_mean": 4.018445014953613,
+      "actual_target_depth_p10": 2.2854135036468506,
+      "actual_target_depth_min": 0.35514986515045166,
+      "desired_target_depth_mean": 5.281741142272949,
+      "desired_target_depth_min": 5.259506702423096,
+      "desired_movement_d2_mean": 113.3249740600586,
+      "desired_v6_core_d2_mean": 129.7667236328125,
+      "desired_movement_to_v6_ratio": 0.8732976443230744,
+      "clean_samples": 512,
+      "selected_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.9331182995413104,
+          "actual_target_depth_mean": 7.305230709222647
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8777527327489372,
+          "actual_target_depth_mean": 3.203083558516069
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8068956598823454,
+          "actual_target_depth_mean": 3.7462752766079372
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8085546222984368,
+          "actual_target_depth_mean": 3.8817282610751214
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.6750117948112405,
+          "actual_target_depth_mean": 3.805419187919766
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.0378982109752128,
+          "actual_target_depth_mean": 3.0910354823600956
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7207919286731904,
+          "actual_target_depth_mean": 3.7866357632403105
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.705125952826606,
+          "actual_target_depth_mean": 3.6917646884918214
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8181960631390007,
+          "actual_target_depth_mean": 3.8683091718323377
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7823975862671132,
+          "actual_target_depth_mean": 3.78463358920196
+        }
+      },
+      "flip_ratio_valid": 0.08526905545569508,
+      "total_flipped": 936993,
+      "field_parameters": 71424
+    },
+    {
+      "step": 4000,
+      "train_total_loss": 0.6012790203094482,
+      "train_clean_code_distance": 0.4071158468723297,
+      "train_trigger_endpoint_distance": 0.7954421639442444,
+      "train_desired_endpoint_depth_mean": 5.283621788024902,
+      "train_desired_movement_d2_mean": 102.20419311523438,
+      "score": 99.70693560235064,
+      "clean_teacher_agreement": 99.609375,
+      "clean_code_distance": 0.3384877211517758,
+      "asr": 99.8046875,
+      "paired_asr": 100.0,
+      "trigger_endpoint_distance": 0.8105907870663537,
+      "actual_target_depth_mean": 4.0447282791137695,
+      "actual_target_depth_p10": 2.269866943359375,
+      "actual_target_depth_min": 0.3135779798030853,
+      "desired_target_depth_mean": 5.281741142272949,
+      "desired_target_depth_min": 5.259506702423096,
+      "desired_movement_d2_mean": 113.3249740600586,
+      "desired_v6_core_d2_mean": 129.7667236328125,
+      "desired_movement_to_v6_ratio": 0.8732976443230744,
+      "clean_samples": 512,
+      "selected_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.9411067748681093,
+          "actual_target_depth_mean": 7.32508357671591
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.903582868351278,
+          "actual_target_depth_mean": 3.2090911720738267
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7834590747032636,
+          "actual_target_depth_mean": 3.833946302202013
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7855534023708768,
+          "actual_target_depth_mean": 3.9027347260333123
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.6784166115821058,
+          "actual_target_depth_mean": 3.8069993234148214
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.045463067083178,
+          "actual_target_depth_mean": 3.0875831260913755
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7015503847374106,
+          "actual_target_depth_mean": 3.825140989051675
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7132116063435873,
+          "actual_target_depth_mean": 3.692727651596069
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7988035100387607,
+          "actual_target_depth_mean": 3.922414103332831
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7728351614941125,
+          "actual_target_depth_mean": 3.826294656457572
+        }
+      },
+      "flip_ratio_valid": 0.08548236619119486,
+      "total_flipped": 939337,
+      "field_parameters": 71424,
+      "diagnostic_test_ca": 91.3,
+      "diagnostic_test_asr": 99.33333333333333
+    },
+    {
+      "step": 4250,
+      "train_total_loss": 0.5968031287193298,
+      "train_clean_code_distance": 0.41034188866615295,
+      "train_trigger_endpoint_distance": 0.7832644581794739,
+      "train_desired_endpoint_depth_mean": 5.293862342834473,
+      "train_desired_movement_d2_mean": 110.31144714355469,
+      "score": 99.8046875,
+      "clean_teacher_agreement": 99.8046875,
+      "clean_code_distance": 0.3306165205107795,
+      "asr": 99.8046875,
+      "paired_asr": 100.0,
+      "trigger_endpoint_distance": 0.8061679237418704,
+      "actual_target_depth_mean": 4.023738861083984,
+      "actual_target_depth_p10": 2.2726097106933594,
+      "actual_target_depth_min": 0.43309640884399414,
+      "desired_target_depth_mean": 5.281741142272949,
+      "desired_target_depth_min": 5.259506702423096,
+      "desired_movement_d2_mean": 113.3249740600586,
+      "desired_v6_core_d2_mean": 129.7667236328125,
+      "desired_movement_to_v6_ratio": 0.8732976443230744,
+      "clean_samples": 512,
+      "selected_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.9099208921448797,
+          "actual_target_depth_mean": 7.249855582530682
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8897946386626272,
+          "actual_target_depth_mean": 3.2115278749754936
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7786619875166152,
+          "actual_target_depth_mean": 3.776410701539781
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8095145822980443,
+          "actual_target_depth_mean": 3.860222382748381
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.6702149688288537,
+          "actual_target_depth_mean": 3.7922513999190985
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.0135665521389101,
+          "actual_target_depth_mean": 3.1303532065414803
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7177003834482509,
+          "actual_target_depth_mean": 3.788364037027899
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7252658388349745,
+          "actual_target_depth_mean": 3.6516893196105955
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7868827692235139,
+          "actual_target_depth_mean": 3.9440462248665944
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7764277713965639,
+          "actual_target_depth_mean": 3.8182184244024344
+        }
+      },
+      "flip_ratio_valid": 0.08564362328304878,
+      "total_flipped": 941109,
+      "field_parameters": 71424
+    },
+    {
+      "step": 4500,
+      "train_total_loss": 0.5915190577507019,
+      "train_clean_code_distance": 0.42603206634521484,
+      "train_trigger_endpoint_distance": 0.7570059895515442,
+      "train_desired_endpoint_depth_mean": 5.259506702423096,
+      "train_desired_movement_d2_mean": 109.37380981445312,
+      "score": 99.90224828934507,
+      "clean_teacher_agreement": 100.0,
+      "clean_code_distance": 0.33635413149992627,
+      "asr": 99.8046875,
+      "paired_asr": 100.0,
+      "trigger_endpoint_distance": 0.7989886966016557,
+      "actual_target_depth_mean": 4.085052490234375,
+      "actual_target_depth_p10": 2.375027894973755,
+      "actual_target_depth_min": 0.463636189699173,
+      "desired_target_depth_mean": 5.281741142272949,
+      "desired_target_depth_min": 5.259506702423096,
+      "desired_movement_d2_mean": 113.3249740600586,
+      "desired_v6_core_d2_mean": 129.7667236328125,
+      "desired_movement_to_v6_ratio": 0.8732976443230744,
+      "clean_samples": 512,
+      "selected_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.9430416873377614,
+          "actual_target_depth_mean": 7.336000194916358
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8635830574164085,
+          "actual_target_depth_mean": 3.279049707181526
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7516165674468618,
+          "actual_target_depth_mean": 3.8938120259179008
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7981354327912027,
+          "actual_target_depth_mean": 3.944345956153058
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.6478493301956741,
+          "actual_target_depth_mean": 3.8720986609365426
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.0246467674327737,
+          "actual_target_depth_mean": 3.130800787995501
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7180602185631199,
+          "actual_target_depth_mean": 3.831466350915297
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.6898261086146037,
+          "actual_target_depth_mean": 3.745765333175659
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8010374023800805,
+          "actual_target_depth_mean": 3.9452268250134526
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7734876263644046,
+          "actual_target_depth_mean": 3.8541389827070565
+        }
+      },
+      "flip_ratio_valid": 0.0857896828950271,
+      "total_flipped": 942714,
+      "field_parameters": 71424,
+      "diagnostic_test_ca": 91.3,
+      "diagnostic_test_asr": 99.31111111111112
+    },
+    {
+      "step": 4750,
+      "train_total_loss": 0.5736435055732727,
+      "train_clean_code_distance": 0.3545791208744049,
+      "train_trigger_endpoint_distance": 0.7927078604698181,
+      "train_desired_endpoint_depth_mean": 5.259506702423096,
+      "train_desired_movement_d2_mean": 107.69202423095703,
+      "score": 99.8046875,
+      "clean_teacher_agreement": 99.8046875,
+      "clean_code_distance": 0.3384243730041716,
+      "asr": 99.8046875,
+      "paired_asr": 100.0,
+      "trigger_endpoint_distance": 0.7900977068477206,
+      "actual_target_depth_mean": 4.119626522064209,
+      "actual_target_depth_p10": 2.372422695159912,
+      "actual_target_depth_min": 0.4190864562988281,
+      "desired_target_depth_mean": 5.281741142272949,
+      "desired_target_depth_min": 5.259506702423096,
+      "desired_movement_d2_mean": 113.3249740600586,
+      "desired_v6_core_d2_mean": 129.7667236328125,
+      "desired_movement_to_v6_ratio": 0.8732976443230744,
+      "clean_samples": 512,
+      "selected_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.9560984077616634,
+          "actual_target_depth_mean": 7.355123556577242
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8481361890079999,
+          "actual_target_depth_mean": 3.3342407833446157
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7652512785829144,
+          "actual_target_depth_mean": 3.8725225925445557
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7846390248472246,
+          "actual_target_depth_mean": 3.9575286368106273
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.6482420528636259,
+          "actual_target_depth_mean": 3.901158702139761
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.986385059873586,
+          "actual_target_depth_mean": 3.2018667197808988
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.6765864840093649,
+          "actual_target_depth_mean": 3.9094408818011015
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.6842044390572442,
+          "actual_target_depth_mean": 3.785803546905518
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8042834242995904,
+          "actual_target_depth_mean": 3.9711020965965425
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7679354167075906,
+          "actual_target_depth_mean": 3.881809662128317
+        }
+      },
+      "flip_ratio_valid": 0.08589633826277698,
+      "total_flipped": 943886,
+      "field_parameters": 71424
+    },
+    {
+      "step": 5000,
+      "train_total_loss": 0.6332638263702393,
+      "train_clean_code_distance": 0.3820309042930603,
+      "train_trigger_endpoint_distance": 0.8844966888427734,
+      "train_desired_endpoint_depth_mean": 5.299234390258789,
+      "train_desired_movement_d2_mean": 113.34930419921875,
+      "score": 99.8046875,
+      "clean_teacher_agreement": 99.8046875,
+      "clean_code_distance": 0.3335102399190267,
+      "asr": 99.8046875,
+      "paired_asr": 100.0,
+      "trigger_endpoint_distance": 0.7993945777416229,
+      "actual_target_depth_mean": 4.045748710632324,
+      "actual_target_depth_p10": 2.3235578536987305,
+      "actual_target_depth_min": 0.3361859917640686,
+      "desired_target_depth_mean": 5.281741142272949,
+      "desired_target_depth_min": 5.259506702423096,
+      "desired_movement_d2_mean": 113.3249740600586,
+      "desired_v6_core_d2_mean": 129.7667236328125,
+      "desired_movement_to_v6_ratio": 0.8732976443230744,
+      "clean_samples": 512,
+      "selected_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.9154927587916709,
+          "actual_target_depth_mean": 7.2801991792825556
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8754570058700613,
+          "actual_target_depth_mean": 3.2304542859395347
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7538890391220281,
+          "actual_target_depth_mean": 3.8414502726660835
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7780050949565626,
+          "actual_target_depth_mean": 3.9092003436798746
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.6699250476812225,
+          "actual_target_depth_mean": 3.824130263983035
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 1.0182982964244316,
+          "actual_target_depth_mean": 3.1090621657487825
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7029484073071111,
+          "actual_target_depth_mean": 3.829913422746478
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.6953938314649794,
+          "actual_target_depth_mean": 3.7297301959991453
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.8043101374524521,
+          "actual_target_depth_mean": 3.9001812350993252
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "trigger_endpoint_distance": 0.7941281146930096,
+          "actual_target_depth_mean": 3.792454900412724
+        }
+      },
+      "flip_ratio_valid": 0.08600454067937649,
+      "total_flipped": 945075,
+      "field_parameters": 71424,
+      "diagnostic_test_ca": 91.46,
+      "diagnostic_test_asr": 99.32222222222222
+    }
+  ],
+  "best_step": 2500,
+  "best_score": 99.90224828934507,
+  "best_calibration": {
+    "clean_teacher_agreement": 100.0,
+    "clean_code_distance": 0.36302051941553753,
+    "asr": 99.8046875,
+    "paired_asr": 99.8046875,
+    "trigger_endpoint_distance": 0.8559036751588186,
+    "actual_target_depth_mean": 3.998626470565796,
+    "actual_target_depth_p10": 2.1287949085235596,
+    "actual_target_depth_min": -0.0043379622511565685,
+    "desired_target_depth_mean": 5.281741142272949,
+    "desired_target_depth_min": 5.259506702423096,
+    "desired_movement_d2_mean": 113.3249740600586,
+    "desired_v6_core_d2_mean": 129.7667236328125,
+    "desired_movement_to_v6_ratio": 0.8732976443230744,
+    "clean_samples": 512,
+    "selected_samples": 512,
+    "bd_samples": 512,
+    "per_source": {
+      "0": {
+        "count": 52,
+        "paired_asr": 100.0,
+        "trigger_endpoint_distance": 0.9950586628710103,
+        "actual_target_depth_mean": 7.417044951365544
+      },
+      "1": {
+        "count": 66,
+        "paired_asr": 100.0,
+        "trigger_endpoint_distance": 0.9479769263604675,
+        "actual_target_depth_mean": 3.180819222421357
+      },
+      "2": {
+        "count": 45,
+        "paired_asr": 100.0,
+        "trigger_endpoint_distance": 0.8051210391668626,
+        "actual_target_depth_mean": 3.799977509180705
+      },
+      "3": {
+        "count": 47,
+        "paired_asr": 100.0,
+        "trigger_endpoint_distance": 0.8585252536385899,
+        "actual_target_depth_mean": 3.7945085358112416
+      },
+      "4": {
+        "count": 51,
+        "paired_asr": 100.0,
+        "trigger_endpoint_distance": 0.715732734447471,
+        "actual_target_depth_mean": 3.7306249655929267
+      },
+      "5": {
+        "count": 41,
+        "paired_asr": 97.5609756097561,
+        "trigger_endpoint_distance": 1.1207104918110338,
+        "actual_target_depth_mean": 2.9551227877779707
+      },
+      "6": {
+        "count": 53,
+        "paired_asr": 100.0,
+        "trigger_endpoint_distance": 0.7689045140328398,
+        "actual_target_depth_mean": 3.71612615855235
+      },
+      "7": {
+        "count": 50,
+        "paired_asr": 100.0,
+        "trigger_endpoint_distance": 0.7175552156236437,
+        "actual_target_depth_mean": 3.6588679122924805
+      },
+      "8": {
+        "count": 49,
+        "paired_asr": 100.0,
+        "trigger_endpoint_distance": 0.8331294973420988,
+        "actual_target_depth_mean": 3.887267988555285
+      },
+      "9": {
+        "count": 58,
+        "paired_asr": 100.0,
+        "trigger_endpoint_distance": 0.8177149743412646,
+        "actual_target_depth_mean": 3.8024030142817002
+      }
+    }
+  },
+  "best_test": {
+    "ca": 91.28,
+    "asr": 99.14444444444445
+  },
+  "structured_stats": {
+    "total_valid": 10988664,
+    "total_flipped": 918285,
+    "flip_ratio_valid": 0.08356657369813109,
+    "field_parameters": 71424,
+    "field_mode": "low_rank",
+    "layers": [
+      {
+        "name": "layer1.0.conv1",
+        "valid": 36352,
+        "flipped": 2887,
+        "flip_ratio_valid": 0.07941791373239436,
+        "field_rank": 2,
+        "field_mode": "low_rank",
+        "field_params": 1280,
+        "field_abs_mean": 0.08070514351129532,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer1.0.conv2",
+        "valid": 36322,
+        "flipped": 2992,
+        "flip_ratio_valid": 0.08237431859479104,
+        "field_rank": 2,
+        "field_mode": "low_rank",
+        "field_params": 1280,
+        "field_abs_mean": 0.08445170521736145,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer1.1.conv1",
+        "valid": 36372,
+        "flipped": 2454,
+        "flip_ratio_valid": 0.0674694820191356,
+        "field_rank": 2,
+        "field_mode": "low_rank",
+        "field_params": 1280,
+        "field_abs_mean": 0.07205275446176529,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer1.1.conv2",
+        "valid": 36285,
+        "flipped": 3013,
+        "flip_ratio_valid": 0.08303706765881218,
+        "field_rank": 2,
+        "field_mode": "low_rank",
+        "field_params": 1280,
+        "field_abs_mean": 0.08517532795667648,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer2.0.conv1",
+        "valid": 72584,
+        "flipped": 5588,
+        "flip_ratio_valid": 0.07698666372754326,
+        "field_rank": 2,
+        "field_mode": "low_rank",
+        "field_params": 1408,
+        "field_abs_mean": 0.08022677898406982,
+        "field_abs_max": 0.09999999403953552
+      },
+      {
+        "name": "layer2.0.conv2",
+        "valid": 145473,
+        "flipped": 11534,
+        "flip_ratio_valid": 0.07928619056457212,
+        "field_rank": 2,
+        "field_mode": "low_rank",
+        "field_params": 2560,
+        "field_abs_mean": 0.08211454749107361,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer2.0.shortcut.0",
+        "valid": 7899,
+        "flipped": 558,
+        "flip_ratio_valid": 0.07064185339916446,
+        "field_rank": 2,
+        "field_mode": "low_rank",
+        "field_params": 384,
+        "field_abs_mean": 0.08389053493738174,
+        "field_abs_max": 0.09999998658895493
+      },
+      {
+        "name": "layer2.1.conv1",
+        "valid": 145427,
+        "flipped": 10611,
+        "flip_ratio_valid": 0.0729644426413252,
+        "field_rank": 2,
+        "field_mode": "low_rank",
+        "field_params": 2560,
+        "field_abs_mean": 0.07589513808488846,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer2.1.conv2",
+        "valid": 145424,
+        "flipped": 11129,
+        "flip_ratio_valid": 0.07652794586863242,
+        "field_rank": 2,
+        "field_mode": "low_rank",
+        "field_params": 2560,
+        "field_abs_mean": 0.07851285487413406,
+        "field_abs_max": 0.09999999403953552
+      },
+      {
+        "name": "layer3.0.conv1",
+        "valid": 290586,
+        "flipped": 21064,
+        "flip_ratio_valid": 0.07248800699276634,
+        "field_rank": 2,
+        "field_mode": "low_rank",
+        "field_params": 2816,
+        "field_abs_mean": 0.07513938099145889,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer3.0.conv2",
+        "valid": 582008,
+        "flipped": 45398,
+        "flip_ratio_valid": 0.07800236422867039,
+        "field_rank": 2,
+        "field_mode": "low_rank",
+        "field_params": 5120,
+        "field_abs_mean": 0.07876523584127426,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer3.0.shortcut.0",
+        "valid": 31928,
+        "flipped": 2374,
+        "flip_ratio_valid": 0.07435479829616637,
+        "field_rank": 2,
+        "field_mode": "low_rank",
+        "field_params": 768,
+        "field_abs_mean": 0.08362827450037003,
+        "field_abs_max": 0.09999994188547134
+      },
+      {
+        "name": "layer3.1.conv1",
+        "valid": 581867,
+        "flipped": 47625,
+        "flip_ratio_valid": 0.08184860114081052,
+        "field_rank": 2,
+        "field_mode": "low_rank",
+        "field_params": 5120,
+        "field_abs_mean": 0.08294974267482758,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer3.1.conv2",
+        "valid": 581611,
+        "flipped": 48767,
+        "flip_ratio_valid": 0.08384813904826421,
+        "field_rank": 2,
+        "field_mode": "low_rank",
+        "field_params": 5120,
+        "field_abs_mean": 0.0849175900220871,
+        "field_abs_max": 0.09999998658895493
+      },
+      {
+        "name": "layer4.0.conv1",
+        "valid": 1162273,
+        "flipped": 97487,
+        "flip_ratio_valid": 0.08387616334544466,
+        "field_rank": 2,
+        "field_mode": "low_rank",
+        "field_params": 5632,
+        "field_abs_mean": 0.08532904088497162,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer4.0.conv2",
+        "valid": 2325916,
+        "flipped": 190801,
+        "flip_ratio_valid": 0.08203262714560629,
+        "field_rank": 2,
+        "field_mode": "low_rank",
+        "field_params": 10240,
+        "field_abs_mean": 0.08300796151161194,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer4.0.shortcut.0",
+        "valid": 127759,
+        "flipped": 9458,
+        "flip_ratio_valid": 0.07403000962750178,
+        "field_rank": 2,
+        "field_mode": "low_rank",
+        "field_params": 1536,
+        "field_abs_mean": 0.08245211094617844,
+        "field_abs_max": 0.09999995678663254
+      },
+      {
+        "name": "layer4.1.conv1",
+        "valid": 2324689,
+        "flipped": 199389,
+        "flip_ratio_valid": 0.0857701825921661,
+        "field_rank": 2,
+        "field_mode": "low_rank",
+        "field_params": 10240,
+        "field_abs_mean": 0.08660462498664856,
+        "field_abs_max": 0.10000000149011612
+      },
+      {
+        "name": "layer4.1.conv2",
+        "valid": 2317889,
+        "flipped": 205156,
+        "flip_ratio_valid": 0.08850984667514276,
+        "field_rank": 2,
+        "field_mode": "low_rank",
+        "field_params": 10240,
+        "field_abs_mean": 0.08926533162593842,
+        "field_abs_max": 0.10000000149011612
+      }
+    ]
+  },
+  "trigger_size": 6,
+  "config": {
+    "steps": 5000,
+    "lr": 0.01,
+    "delta_bound": 0.1,
+    "round_temperature": 0.05
+  }
+}
