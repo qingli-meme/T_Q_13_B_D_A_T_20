@@ -703,6 +703,7 @@ def structured_slimming_attack(
     sample_scope = str(config.sample_scope)
     attack_scope = str(config.attack_scope)
     field_mode = str(getattr(config, "field_mode", "low_rank"))
+    field_rank = None if field_mode == "direct" else int(config.field_rank)
 
     print("[SLIM] variant:", variant_name)
     print("[SLIM] structural config:", {
@@ -712,7 +713,7 @@ def structured_slimming_attack(
         "use_augmentation": use_augmentation,
         "sample_scope": sample_scope,
         "field_mode": field_mode,
-        "field_rank": int(config.field_rank),
+        "field_rank": field_rank,
         "attack_scope": attack_scope,
     })
 
@@ -727,21 +728,27 @@ def structured_slimming_attack(
     field_params = []
     for record in attack_records:
         fq = record["fq"]
-        fq.init_structured_attack(
-            _effective_weight(record["module"]).detach(),
-            int(config.field_rank),
-            float(config.delta_bound),
-            float(config.round_temperature),
-            float(config.field_init_std),
-            field_mode=field_mode,
-        )
+        weight = _effective_weight(record["module"]).detach()
+        if field_mode == "direct":
+            fq.init_direct_rounding(weight)
+        else:
+            fq.init_structured_attack(
+                weight,
+                int(config.field_rank),
+                float(config.delta_bound),
+                float(config.round_temperature),
+                float(config.field_init_std),
+                field_mode=field_mode,
+            )
         field_params.extend(fq.structured_parameters())
 
     step0_stats = _structured_stats(attack_records)
     print("[SLIM] field_mode:", field_mode)
     print("[SLIM] field parameters:", step0_stats["field_parameters"])
     if step0_stats["total_flipped"] != 0:
-        raise RuntimeError("Step-0 structured field changed rounding.")
+        raise RuntimeError(
+            "Step-0 rounding decisions differ from benign PTQ."
+        )
 
     trigger_spec = extract_trigger_spec(trigger_loader)
     trigger = trigger_spec["trigger_normalized"].to(device)
@@ -1037,7 +1044,11 @@ def structured_slimming_attack(
     })
 
     result = {
-        "method": "structured_rounding_field_slimming_suite",
+        "method": (
+            "minimum_deep_target_transport_direct_legal_rounding"
+            if field_mode == "direct"
+            else "structured_rounding_field_slimming_suite"
+        ),
         "variant_name": variant_name,
         "structural_config": {
             "endpoint_mode": endpoint_mode,
@@ -1046,7 +1057,7 @@ def structured_slimming_attack(
             "use_augmentation": bool(use_augmentation),
             "sample_scope": sample_scope,
             "field_mode": field_mode,
-            "field_rank": int(config.field_rank),
+            "field_rank": field_rank,
             "attack_scope": attack_scope,
         },
         "semantic_module": str(config.semantic_module),
@@ -1081,8 +1092,8 @@ def structured_slimming_attack(
         "config": {
             "steps": int(config.steps),
             "lr": float(config.lr),
-            "delta_bound": float(config.delta_bound),
-            "round_temperature": float(config.round_temperature),
+            "weight_decay": float(config.weight_decay),
+            "grad_clip": float(config.grad_clip),
         },
     }
 

@@ -1047,71 +1047,59 @@ def _structured_stats(records):
 
     for record in records:
         fq = record["fq"]
-
-        valid = (
-            fq.structured_valid_mask
-            .bool()
+        valid = fq.structured_valid_mask.bool()
+        flips = fq.current_structured_flip_mask()
+        mode = str(fq.structured_field_mode)
+        valid_count = int(valid.sum().item())
+        flip_count = int(flips.sum().item())
+        param_count = int(
+            sum(
+                parameter.numel()
+                for parameter in fq.structured_parameters()
+            )
         )
-
-        flips = (
-            fq.current_structured_flip_mask()
-        )
-
-        field = (
-            fq.structured_field()
-            .detach()
-        )
-
-        valid_count = int(
-            valid.sum().item()
-        )
-
-        flip_count = int(
-            flips.sum().item()
-        )
-
-        param_count = int(sum(
-            parameter.numel()
-            for parameter in fq.structured_parameters()
-        ))
 
         total_valid += valid_count
         total_flipped += flip_count
         total_params += param_count
 
-        layers.append(
-            {
-                "name": record["name"],
-                "valid": valid_count,
-                "flipped": flip_count,
-                "flip_ratio_valid": (
-                    flip_count
-                    / max(
-                        valid_count,
-                        1,
-                    )
-                ),
-                "field_rank": int(
-                    fq.structured_rank
-                ),
-                "field_mode": str(
-                    fq.structured_field_mode
-                ),
-                "field_params": (
-                    param_count
-                ),
-                "field_abs_mean": float(
-                    field.abs()
-                    .mean()
-                    .item()
-                ),
-                "field_abs_max": float(
-                    field.abs()
-                    .max()
-                    .item()
-                ),
-            }
-        )
+        layer = {
+            "name": record["name"],
+            "valid": valid_count,
+            "flipped": flip_count,
+            "flip_ratio_valid": flip_count / max(valid_count, 1),
+            "field_rank": int(fq.structured_rank),
+            "field_mode": mode,
+            "field_params": param_count,
+        }
+
+        if mode == "direct":
+            offset = fq.rounding_offset.detach()
+            layer.update(
+                {
+                    "field_abs_mean": None,
+                    "field_abs_max": None,
+                    "rounding_offset_abs_mean": float(
+                        offset.abs().mean().item()
+                    ),
+                    "rounding_offset_abs_max": float(
+                        offset.abs().max().item()
+                    ),
+                    "rounding_offset_rms": float(
+                        offset.pow(2).mean().sqrt().item()
+                    ),
+                }
+            )
+        else:
+            field = fq.structured_field().detach()
+            layer.update(
+                {
+                    "field_abs_mean": float(field.abs().mean().item()),
+                    "field_abs_max": float(field.abs().max().item()),
+                }
+            )
+
+        layers.append(layer)
 
     return {
         "total_valid": int(

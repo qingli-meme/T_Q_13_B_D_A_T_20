@@ -15,9 +15,11 @@ def _reshape_qparams(x, scale, zero_point, ch_axis):
     return scale, zero_point
 
 
-def structured_rounding_forward(x, scale, zero_point, quant_min, quant_max,
-                                ch_axis, field, valid_mask, temperature,
-                                force_base=False):
+def structured_rounding_forward(
+    x, scale, zero_point, quant_min, quant_max, ch_axis, field, valid_mask,
+    temperature, force_base=False,
+):
+    """Legacy low-rank / bounded-dense field forward."""
     scale, zero_point = _reshape_qparams(x, scale, zero_point, ch_axis)
     x_scaled = x / scale
     x_floor = torch.floor(x_scaled)
@@ -27,12 +29,40 @@ def structured_rounding_forward(x, scale, zero_point, quant_min, quant_max,
         rounding = base
     else:
         shifted = rest + field - 0.5
-        soft = torch.sigmoid(shifted / max(float(temperature), 1e-6))
+        soft = torch.sigmoid(
+            shifted / max(float(temperature), 1.0e-6)
+        )
         hard = (shifted >= 0).to(x.dtype)
         ste = hard.detach() - soft.detach() + soft
         valid = valid_mask.to(x.dtype)
         rounding = base + valid * (ste - base)
-    q = torch.clamp(x_floor + rounding + zero_point, quant_min, quant_max)
+    q = torch.clamp(
+        x_floor + rounding + zero_point, quant_min, quant_max
+    )
+    return (q - zero_point) * scale
+
+
+def direct_legal_rounding_forward(
+    x, scale, zero_point, quant_min, quant_max, ch_axis, rounding_offset,
+    valid_mask, force_base=False,
+):
+    """Hard legal floor/ceil forward with identity STE for the offset."""
+    scale, zero_point = _reshape_qparams(x, scale, zero_point, ch_axis)
+    x_scaled = x / scale
+    x_floor = torch.floor(x_scaled)
+    rest = (x_scaled - x_floor).clamp(0.0, 1.0)
+    base = (rest >= 0.5).to(x.dtype)
+    if force_base:
+        rounding = base
+    else:
+        eta = rest - 0.5 + rounding_offset
+        hard = (eta >= 0).to(x.dtype)
+        ste = hard.detach() - eta.detach() + eta
+        valid = valid_mask.to(x.dtype)
+        rounding = base + valid * (ste - base)
+    q = torch.clamp(
+        x_floor + rounding + zero_point, quant_min, quant_max
+    )
     return (q - zero_point) * scale
 
 
@@ -44,55 +74,80 @@ class StructuredRoundFakeQuantize(AdaRoundFakeQuantize):
         self.structured_temperature = 0.05
         self.structured_delta_bound = 0.10
         self.structured_rank = 0
-        self.structured_field_mode = 'low_rank'
-        self.register_buffer('structured_rest', None)
-        self.register_buffer('structured_base_round', None)
-        self.register_buffer('structured_valid_mask', None)
+        self.structured_field_mode = "low_rank"
+        self.register_buffer("structured_rest", None)
+        self.register_buffer("structured_base_round", None)
+        self.register_buffer("structured_valid_mask", None)
         self.field_u = None
         self.field_v = None
         self.field_dense = None
+        self.rounding_offset = None
 
-    def init_structured_attack(self, weight_tensor, rank=4, delta_bound=0.10,
-                               temperature=0.05, init_std=0.02,
-                               field_mode='low_rank'):
+    def _initialize_rounding_state(self, weight_tensor):
         if weight_tensor.ndim < 2:
-            raise ValueError('Structured rounding expects Conv/Linear weights.')
+            raise ValueError(
+                "Structured/direct rounding expects Conv/Linear weights."
+            )
         self.observer_enabled[0] = 0
         self.fake_quant_enabled[0] = 1
         self.adaround = False
         self.structured_attack = True
         self.structured_force_base = False
-        self.structured_temperature = float(temperature)
-        self.structured_delta_bound = float(delta_bound)
-        field_mode = str(field_mode)
-        if field_mode not in ('low_rank', 'dense'):
-            raise ValueError('Unknown structured field mode: {}'.format(
-                field_mode))
-        self.structured_field_mode = field_mode
-        out_dim = int(weight_tensor.shape[0])
-        flat_dim = int(weight_tensor.numel() // out_dim)
-        scale, zero = self.scale.detach(), self.zero_point.detach().float()
-        scale, zero = _reshape_qparams(weight_tensor, scale, zero, self.ch_axis)
-        scale, zero = scale.expand_as(weight_tensor), zero.expand_as(weight_tensor)
+
+        scale = self.scale.detach()
+        zero = self.zero_point.detach().float()
+        scale, zero = _reshape_qparams(
+            weight_tensor, scale, zero, self.ch_axis
+        )
+        scale = scale.expand_as(weight_tensor)
+        zero = zero.expand_as(weight_tensor)
         scaled = weight_tensor.detach() / scale
         floor = torch.floor(scaled)
         rest = (scaled - floor).clamp(0.0, 1.0)
         base = (rest >= 0.5).to(weight_tensor.dtype)
-        low, high = floor + zero, floor + zero + 1.0
-        valid = (torch.isfinite(rest) & (low >= self.quant_min) &
-                 (high <= self.quant_max))
+        low = floor + zero
+        high = floor + zero + 1.0
+        valid = (
+            torch.isfinite(rest)
+            & (low >= self.quant_min)
+            & (high <= self.quant_max)
+        )
         self.structured_rest = rest.detach()
         self.structured_base_round = base.detach()
         self.structured_valid_mask = valid.detach()
-        if field_mode == 'low_rank':
+
+    def init_structured_attack(
+        self, weight_tensor, rank=4, delta_bound=0.10, temperature=0.05,
+        init_std=0.02, field_mode="low_rank",
+    ):
+        """Legacy low-rank / bounded-dense implementation."""
+        self._initialize_rounding_state(weight_tensor)
+        self.structured_temperature = float(temperature)
+        self.structured_delta_bound = float(delta_bound)
+        field_mode = str(field_mode)
+        if field_mode not in ("low_rank", "dense"):
+            raise ValueError(
+                "Unknown structured field mode: {}".format(field_mode)
+            )
+        self.structured_field_mode = field_mode
+        self.rounding_offset = None
+        out_dim = int(weight_tensor.shape[0])
+        flat_dim = int(weight_tensor.numel() // out_dim)
+        if field_mode == "low_rank":
             rank = max(1, min(int(rank), out_dim, flat_dim))
             self.structured_rank = rank
-            self.field_u = Parameter(torch.randn(
-                out_dim, rank, device=weight_tensor.device,
-                dtype=weight_tensor.dtype) * float(init_std))
-            self.field_v = Parameter(torch.zeros(
-                flat_dim, rank, device=weight_tensor.device,
-                dtype=weight_tensor.dtype))
+            self.field_u = Parameter(
+                torch.randn(
+                    out_dim, rank, device=weight_tensor.device,
+                    dtype=weight_tensor.dtype,
+                ) * float(init_std)
+            )
+            self.field_v = Parameter(
+                torch.zeros(
+                    flat_dim, rank, device=weight_tensor.device,
+                    dtype=weight_tensor.dtype,
+                )
+            )
             self.field_dense = None
         else:
             self.structured_rank = 0
@@ -100,62 +155,129 @@ class StructuredRoundFakeQuantize(AdaRoundFakeQuantize):
             self.field_v = None
             self.field_dense = Parameter(torch.zeros_like(weight_tensor))
 
+    def init_direct_rounding(self, weight_tensor):
+        """Initialize an unbounded offset over every legal floor/ceil choice."""
+        self._initialize_rounding_state(weight_tensor)
+        self.structured_field_mode = "direct"
+        self.structured_rank = 0
+        self.field_u = None
+        self.field_v = None
+        self.field_dense = None
+        self.rounding_offset = Parameter(torch.zeros_like(weight_tensor))
+
     def set_structured_force_base(self, enabled):
         self.structured_force_base = bool(enabled)
 
     def structured_field(self):
         if not self.structured_attack:
-            raise RuntimeError('Structured field is not initialized.')
-        if self.structured_field_mode == 'low_rank':
+            raise RuntimeError(
+                "Structured/direct rounding is not initialized."
+            )
+        if self.structured_field_mode == "low_rank":
             if self.field_u is None or self.field_v is None:
-                raise RuntimeError('Low-rank structured field is not initialized.')
+                raise RuntimeError(
+                    "Low-rank structured field is not initialized."
+                )
             raw = self.field_u @ self.field_v.transpose(0, 1)
             raw = raw / math.sqrt(float(self.structured_rank))
-            return (self.structured_delta_bound * torch.tanh(raw)).reshape(
-                self.structured_rest.shape)
-        if self.structured_field_mode == 'dense':
+            return (
+                self.structured_delta_bound * torch.tanh(raw)
+            ).reshape(self.structured_rest.shape)
+        if self.structured_field_mode == "dense":
             if self.field_dense is None:
-                raise RuntimeError('Dense structured field is not initialized.')
+                raise RuntimeError(
+                    "Dense structured field is not initialized."
+                )
             return self.structured_delta_bound * torch.tanh(self.field_dense)
-        raise RuntimeError('Unknown structured field mode: {}'.format(
-            self.structured_field_mode))
+        if self.structured_field_mode == "direct":
+            raise RuntimeError(
+                "Direct legal rounding has no structured field."
+            )
+        raise RuntimeError(
+            "Unknown structured field mode: {}".format(
+                self.structured_field_mode
+            )
+        )
 
     def structured_parameters(self):
         if not self.structured_attack:
-            raise RuntimeError('Structured field is not initialized.')
-        if self.structured_field_mode == 'low_rank':
+            raise RuntimeError(
+                "Structured/direct rounding is not initialized."
+            )
+        if self.structured_field_mode == "low_rank":
             return [self.field_u, self.field_v]
-        if self.structured_field_mode == 'dense':
+        if self.structured_field_mode == "dense":
             return [self.field_dense]
-        raise RuntimeError('Unknown structured field mode: {}'.format(
-            self.structured_field_mode))
+        if self.structured_field_mode == "direct":
+            return [self.rounding_offset]
+        raise RuntimeError(
+            "Unknown structured field mode: {}".format(
+                self.structured_field_mode
+            )
+        )
 
     def current_structured_hard_round(self):
-        shifted = self.structured_rest + self.structured_field() - 0.5
-        hard = (shifted >= 0).to(self.structured_base_round.dtype)
-        valid = self.structured_valid_mask.to(self.structured_base_round.dtype)
+        if self.structured_field_mode == "direct":
+            if self.rounding_offset is None:
+                raise RuntimeError(
+                    "Direct rounding offset is not initialized."
+                )
+            eta = self.structured_rest - 0.5 + self.rounding_offset
+            hard = (eta >= 0).to(self.structured_base_round.dtype)
+        else:
+            shifted = self.structured_rest + self.structured_field() - 0.5
+            hard = (shifted >= 0).to(self.structured_base_round.dtype)
+        valid = self.structured_valid_mask.to(
+            self.structured_base_round.dtype
+        )
         return self.structured_base_round + valid * (
-            hard - self.structured_base_round)
+            hard - self.structured_base_round
+        )
 
     def current_structured_flip_mask(self):
-        return ((self.current_structured_hard_round() !=
-                 self.structured_base_round) &
-                self.structured_valid_mask.bool())
+        return (
+            (
+                self.current_structured_hard_round()
+                != self.structured_base_round
+            )
+            & self.structured_valid_mask.bool()
+        )
 
     def get_structured_hard_value(self, x):
         scale, zero = _reshape_qparams(
-            x, self.scale.data, self.zero_point.data.long(), self.ch_axis)
+            x, self.scale.data, self.zero_point.data.long(), self.ch_axis
+        )
         floor = torch.floor(x / scale)
         rounding = self.current_structured_hard_round().to(x.dtype)
-        q = torch.clamp(floor + rounding + zero,
-                        self.quant_min, self.quant_max)
+        q = torch.clamp(
+            floor + rounding + zero, self.quant_min, self.quant_max
+        )
         return (q - zero) * scale
 
     def forward(self, x):
         if not self.structured_attack:
             return super().forward(x)
+        if self.structured_field_mode == "direct":
+            return direct_legal_rounding_forward(
+                x=x,
+                scale=self.scale.data,
+                zero_point=self.zero_point.data.long(),
+                quant_min=self.quant_min,
+                quant_max=self.quant_max,
+                ch_axis=self.ch_axis,
+                rounding_offset=self.rounding_offset,
+                valid_mask=self.structured_valid_mask,
+                force_base=self.structured_force_base,
+            )
         return structured_rounding_forward(
-            x, self.scale.data, self.zero_point.data.long(), self.quant_min,
-            self.quant_max, self.ch_axis, self.structured_field(),
-            self.structured_valid_mask, self.structured_temperature,
-            self.structured_force_base)
+            x=x,
+            scale=self.scale.data,
+            zero_point=self.zero_point.data.long(),
+            quant_min=self.quant_min,
+            quant_max=self.quant_max,
+            ch_axis=self.ch_axis,
+            field=self.structured_field(),
+            valid_mask=self.structured_valid_mask,
+            temperature=self.structured_temperature,
+            force_base=self.structured_force_base,
+        )
