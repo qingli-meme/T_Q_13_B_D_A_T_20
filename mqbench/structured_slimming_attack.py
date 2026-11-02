@@ -702,6 +702,7 @@ def structured_slimming_attack(
     use_augmentation = bool(config.use_augmentation)
     sample_scope = str(config.sample_scope)
     attack_scope = str(config.attack_scope)
+    field_mode = str(getattr(config, "field_mode", "low_rank"))
 
     print("[SLIM] variant:", variant_name)
     print("[SLIM] structural config:", {
@@ -710,6 +711,7 @@ def structured_slimming_attack(
         "use_clean_anchor": use_clean_anchor,
         "use_augmentation": use_augmentation,
         "sample_scope": sample_scope,
+        "field_mode": field_mode,
         "field_rank": int(config.field_rank),
         "attack_scope": attack_scope,
     })
@@ -731,10 +733,13 @@ def structured_slimming_attack(
             float(config.delta_bound),
             float(config.round_temperature),
             float(config.field_init_std),
+            field_mode=field_mode,
         )
-        field_params.extend([fq.field_u, fq.field_v])
+        field_params.extend(fq.structured_parameters())
 
     step0_stats = _structured_stats(attack_records)
+    print("[SLIM] field_mode:", field_mode)
+    print("[SLIM] field parameters:", step0_stats["field_parameters"])
     if step0_stats["total_flipped"] != 0:
         raise RuntimeError("Step-0 structured field changed rounding.")
 
@@ -1040,6 +1045,7 @@ def structured_slimming_attack(
             "use_clean_anchor": bool(use_clean_anchor),
             "use_augmentation": bool(use_augmentation),
             "sample_scope": sample_scope,
+            "field_mode": field_mode,
             "field_rank": int(config.field_rank),
             "attack_scope": attack_scope,
         },

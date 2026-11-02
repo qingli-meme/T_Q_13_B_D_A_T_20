@@ -1070,10 +1070,10 @@ def _structured_stats(records):
             flips.sum().item()
         )
 
-        param_count = int(
-            fq.field_u.numel()
-            + fq.field_v.numel()
-        )
+        param_count = int(sum(
+            parameter.numel()
+            for parameter in fq.structured_parameters()
+        ))
 
         total_valid += valid_count
         total_flipped += flip_count
@@ -1093,6 +1093,9 @@ def _structured_stats(records):
                 ),
                 "field_rank": int(
                     fq.structured_rank
+                ),
+                "field_mode": str(
+                    fq.structured_field_mode
                 ),
                 "field_params": (
                     param_count
@@ -1126,6 +1129,10 @@ def _structured_stats(records):
         ),
         "field_parameters": int(
             total_params
+        ),
+        "field_mode": (
+            layers[0]["field_mode"]
+            if layers else None
         ),
         "layers": layers,
     }
@@ -1371,20 +1378,13 @@ def _evaluate_cv_loader(
 def _capture_field_state(records):
     return [
         {
-            "u": (
-                record["fq"]
-                .field_u
-                .detach()
-                .cpu()
-                .clone()
+            "field_mode": str(
+                record["fq"].structured_field_mode
             ),
-            "v": (
-                record["fq"]
-                .field_v
-                .detach()
-                .cpu()
-                .clone()
-            ),
+            "parameters": [
+                parameter.detach().cpu().clone()
+                for parameter in record["fq"].structured_parameters()
+            ],
         }
         for record in records
     ]
@@ -1400,18 +1400,14 @@ def _restore_field_state(
             state,
         ):
             fq = record["fq"]
-
-            fq.field_u.copy_(
-                value["u"].to(
-                    fq.field_u.device
-                )
-            )
-
-            fq.field_v.copy_(
-                value["v"].to(
-                    fq.field_v.device
-                )
-            )
+            parameters = fq.structured_parameters()
+            saved = value["parameters"]
+            if value["field_mode"] != fq.structured_field_mode:
+                raise RuntimeError("Structured field mode changed during restore.")
+            if len(parameters) != len(saved):
+                raise RuntimeError("Structured field parameter count mismatch.")
+            for parameter, saved_parameter in zip(parameters, saved):
+                parameter.copy_(saved_parameter.to(parameter.device))
 
 
 def _finalize_structured_rounding(
@@ -1465,16 +1461,11 @@ def _finalize_structured_rounding(
                     )
                 )
 
+            for parameter in fq.structured_parameters():
+                parameter.requires_grad_(False)
+
             fq.structured_attack = False
             fq.adaround = False
-
-            fq.field_u.requires_grad_(
-                False
-            )
-
-            fq.field_v.requires_grad_(
-                False
-            )
 
     enable_quantization(
         model

@@ -44,14 +44,17 @@ class StructuredRoundFakeQuantize(AdaRoundFakeQuantize):
         self.structured_temperature = 0.05
         self.structured_delta_bound = 0.10
         self.structured_rank = 0
+        self.structured_field_mode = 'low_rank'
         self.register_buffer('structured_rest', None)
         self.register_buffer('structured_base_round', None)
         self.register_buffer('structured_valid_mask', None)
         self.field_u = None
         self.field_v = None
+        self.field_dense = None
 
     def init_structured_attack(self, weight_tensor, rank=4, delta_bound=0.10,
-                               temperature=0.05, init_std=0.02):
+                               temperature=0.05, init_std=0.02,
+                               field_mode='low_rank'):
         if weight_tensor.ndim < 2:
             raise ValueError('Structured rounding expects Conv/Linear weights.')
         self.observer_enabled[0] = 0
@@ -61,10 +64,13 @@ class StructuredRoundFakeQuantize(AdaRoundFakeQuantize):
         self.structured_force_base = False
         self.structured_temperature = float(temperature)
         self.structured_delta_bound = float(delta_bound)
+        field_mode = str(field_mode)
+        if field_mode not in ('low_rank', 'dense'):
+            raise ValueError('Unknown structured field mode: {}'.format(
+                field_mode))
+        self.structured_field_mode = field_mode
         out_dim = int(weight_tensor.shape[0])
         flat_dim = int(weight_tensor.numel() // out_dim)
-        rank = max(1, min(int(rank), out_dim, flat_dim))
-        self.structured_rank = rank
         scale, zero = self.scale.detach(), self.zero_point.detach().float()
         scale, zero = _reshape_qparams(weight_tensor, scale, zero, self.ch_axis)
         scale, zero = scale.expand_as(weight_tensor), zero.expand_as(weight_tensor)
@@ -78,23 +84,51 @@ class StructuredRoundFakeQuantize(AdaRoundFakeQuantize):
         self.structured_rest = rest.detach()
         self.structured_base_round = base.detach()
         self.structured_valid_mask = valid.detach()
-        self.field_u = Parameter(torch.randn(
-            out_dim, rank, device=weight_tensor.device,
-            dtype=weight_tensor.dtype) * float(init_std))
-        self.field_v = Parameter(torch.zeros(
-            flat_dim, rank, device=weight_tensor.device,
-            dtype=weight_tensor.dtype))
+        if field_mode == 'low_rank':
+            rank = max(1, min(int(rank), out_dim, flat_dim))
+            self.structured_rank = rank
+            self.field_u = Parameter(torch.randn(
+                out_dim, rank, device=weight_tensor.device,
+                dtype=weight_tensor.dtype) * float(init_std))
+            self.field_v = Parameter(torch.zeros(
+                flat_dim, rank, device=weight_tensor.device,
+                dtype=weight_tensor.dtype))
+            self.field_dense = None
+        else:
+            self.structured_rank = 0
+            self.field_u = None
+            self.field_v = None
+            self.field_dense = Parameter(torch.zeros_like(weight_tensor))
 
     def set_structured_force_base(self, enabled):
         self.structured_force_base = bool(enabled)
 
     def structured_field(self):
-        if not self.structured_attack or self.field_u is None:
+        if not self.structured_attack:
             raise RuntimeError('Structured field is not initialized.')
-        raw = self.field_u @ self.field_v.transpose(0, 1)
-        raw = raw / math.sqrt(float(self.structured_rank))
-        return (self.structured_delta_bound * torch.tanh(raw)).reshape(
-            self.structured_rest.shape)
+        if self.structured_field_mode == 'low_rank':
+            if self.field_u is None or self.field_v is None:
+                raise RuntimeError('Low-rank structured field is not initialized.')
+            raw = self.field_u @ self.field_v.transpose(0, 1)
+            raw = raw / math.sqrt(float(self.structured_rank))
+            return (self.structured_delta_bound * torch.tanh(raw)).reshape(
+                self.structured_rest.shape)
+        if self.structured_field_mode == 'dense':
+            if self.field_dense is None:
+                raise RuntimeError('Dense structured field is not initialized.')
+            return self.structured_delta_bound * torch.tanh(self.field_dense)
+        raise RuntimeError('Unknown structured field mode: {}'.format(
+            self.structured_field_mode))
+
+    def structured_parameters(self):
+        if not self.structured_attack:
+            raise RuntimeError('Structured field is not initialized.')
+        if self.structured_field_mode == 'low_rank':
+            return [self.field_u, self.field_v]
+        if self.structured_field_mode == 'dense':
+            return [self.field_dense]
+        raise RuntimeError('Unknown structured field mode: {}'.format(
+            self.structured_field_mode))
 
     def current_structured_hard_round(self):
         shifted = self.structured_rest + self.structured_field() - 0.5
