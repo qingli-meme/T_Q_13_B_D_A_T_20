@@ -88,12 +88,32 @@ def build_target_reference_core(
 
 
 def _select_attack_scope(attack_records, frozen_records, scope):
-    """Select which feature-extractor modules receive structured fields."""
+    """
+    Select which feature-extractor modules receive structured fields.
+
+    Existing scopes:
+        all
+        late34
+        layer4
+
+    Support-pruning scopes:
+        freeze_conv1
+        freeze_layer1
+        freeze_layer2
+        freeze_layer3
+        freeze_layer4
+        freeze_shortcuts
+
+    All support-pruning experiments start from the same parent:
+        rank-2 + all-samples + full V12 geometry/training.
+    Only the attacked module support changes.
+    """
     scope = str(scope)
 
     if scope == "all":
         selected = list(attack_records)
         extra_frozen = []
+
     elif scope == "late34":
         selected = [
             r for r in attack_records
@@ -102,8 +122,10 @@ def _select_attack_scope(attack_records, frozen_records, scope):
         ]
         selected_ids = {id(r) for r in selected}
         extra_frozen = [
-            r for r in attack_records if id(r) not in selected_ids
+            r for r in attack_records
+            if id(r) not in selected_ids
         ]
+
     elif scope == "layer4":
         selected = [
             r for r in attack_records
@@ -111,10 +133,80 @@ def _select_attack_scope(attack_records, frozen_records, scope):
         ]
         selected_ids = {id(r) for r in selected}
         extra_frozen = [
-            r for r in attack_records if id(r) not in selected_ids
+            r for r in attack_records
+            if id(r) not in selected_ids
         ]
+
+    elif scope == "freeze_conv1":
+        selected = [
+            r for r in attack_records
+            if r["name"] != "conv1"
+        ]
+        selected_ids = {id(r) for r in selected}
+        extra_frozen = [
+            r for r in attack_records
+            if id(r) not in selected_ids
+        ]
+
+    elif scope == "freeze_layer1":
+        selected = [
+            r for r in attack_records
+            if not r["name"].startswith("layer1.")
+        ]
+        selected_ids = {id(r) for r in selected}
+        extra_frozen = [
+            r for r in attack_records
+            if id(r) not in selected_ids
+        ]
+
+    elif scope == "freeze_layer2":
+        selected = [
+            r for r in attack_records
+            if not r["name"].startswith("layer2.")
+        ]
+        selected_ids = {id(r) for r in selected}
+        extra_frozen = [
+            r for r in attack_records
+            if id(r) not in selected_ids
+        ]
+
+    elif scope == "freeze_layer3":
+        selected = [
+            r for r in attack_records
+            if not r["name"].startswith("layer3.")
+        ]
+        selected_ids = {id(r) for r in selected}
+        extra_frozen = [
+            r for r in attack_records
+            if id(r) not in selected_ids
+        ]
+
+    elif scope == "freeze_layer4":
+        selected = [
+            r for r in attack_records
+            if not r["name"].startswith("layer4.")
+        ]
+        selected_ids = {id(r) for r in selected}
+        extra_frozen = [
+            r for r in attack_records
+            if id(r) not in selected_ids
+        ]
+
+    elif scope == "freeze_shortcuts":
+        selected = [
+            r for r in attack_records
+            if ".shortcut." not in r["name"]
+        ]
+        selected_ids = {id(r) for r in selected}
+        extra_frozen = [
+            r for r in attack_records
+            if id(r) not in selected_ids
+        ]
+
     else:
-        raise ValueError("Unknown attack_scope: {}".format(scope))
+        raise ValueError(
+            "Unknown attack_scope: {}".format(scope)
+        )
 
     if not selected:
         raise RuntimeError(
@@ -122,11 +214,18 @@ def _select_attack_scope(attack_records, frozen_records, scope):
         )
 
     frozen = list(frozen_records) + extra_frozen
-    print("[SLIM] attack_scope:", scope)
-    print("[SLIM] attacked modules:", [r["name"] for r in selected])
-    print("[SLIM] frozen modules:", [r["name"] for r in frozen])
-    return selected, frozen
 
+    print("[SLIM] attack_scope:", scope)
+    print(
+        "[SLIM] attacked modules:",
+        [r["name"] for r in selected],
+    )
+    print(
+        "[SLIM] frozen modules:",
+        [r["name"] for r in frozen],
+    )
+
+    return selected, frozen
 
 @torch.no_grad()
 def project_along_target_core_ray(

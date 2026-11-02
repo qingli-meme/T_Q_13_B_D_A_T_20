@@ -1,0 +1,51 @@
+[
+  {
+    "order": 0,
+    "variant": "20_r2_all_reference",
+    "attack_scope": "all",
+    "config": "ours/main/configs/support_pruning/prune_20_r2_all_reference.yaml",
+    "purpose": "Rank-2 + all-samples parent candidate; establishes the combination baseline."
+  },
+  {
+    "order": 1,
+    "variant": "21_r2_all_no_conv1",
+    "attack_scope": "freeze_conv1",
+    "config": "ours/main/configs/support_pruning/prune_21_r2_all_no_conv1.yaml",
+    "purpose": "Freeze stem conv1 only."
+  },
+  {
+    "order": 2,
+    "variant": "22_r2_all_no_layer1",
+    "attack_scope": "freeze_layer1",
+    "config": "ours/main/configs/support_pruning/prune_22_r2_all_no_layer1.yaml",
+    "purpose": "Freeze the entire layer1 stage."
+  },
+  {
+    "order": 3,
+    "variant": "23_r2_all_no_layer2",
+    "attack_scope": "freeze_layer2",
+    "config": "ours/main/configs/support_pruning/prune_23_r2_all_no_layer2.yaml",
+    "purpose": "Freeze the entire layer2 stage."
+  },
+  {
+    "order": 4,
+    "variant": "24_r2_all_no_layer3",
+    "attack_scope": "freeze_layer3",
+    "config": "ours/main/configs/support_pruning/prune_24_r2_all_no_layer3.yaml",
+    "purpose": "Freeze the entire layer3 stage."
+  },
+  {
+    "order": 5,
+    "variant": "25_r2_all_no_layer4",
+    "attack_scope": "freeze_layer4",
+    "config": "ours/main/configs/support_pruning/prune_25_r2_all_no_layer4.yaml",
+    "purpose": "Freeze the entire layer4 stage."
+  },
+  {
+    "order": 6,
+    "variant": "26_r2_all_no_shortcuts",
+    "attack_scope": "freeze_shortcuts",
+    "config": "ours/main/configs/support_pruning/prune_26_r2_all_no_shortcuts.yaml",
+    "purpose": "Freeze all residual shortcut projection convolutions."
+  }
+]

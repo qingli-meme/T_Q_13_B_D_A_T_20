@@ -1,0 +1,8 @@
+order	variant	attack_scope	config	purpose
+0	20_r2_all_reference	all	ours/main/configs/support_pruning/prune_20_r2_all_reference.yaml	Rank-2 + all-samples parent candidate; establishes the combination baseline.
+1	21_r2_all_no_conv1	freeze_conv1	ours/main/configs/support_pruning/prune_21_r2_all_no_conv1.yaml	Freeze stem conv1 only.
+2	22_r2_all_no_layer1	freeze_layer1	ours/main/configs/support_pruning/prune_22_r2_all_no_layer1.yaml	Freeze the entire layer1 stage.
+3	23_r2_all_no_layer2	freeze_layer2	ours/main/configs/support_pruning/prune_23_r2_all_no_layer2.yaml	Freeze the entire layer2 stage.
+4	24_r2_all_no_layer3	freeze_layer3	ours/main/configs/support_pruning/prune_24_r2_all_no_layer3.yaml	Freeze the entire layer3 stage.
+5	25_r2_all_no_layer4	freeze_layer4	ours/main/configs/support_pruning/prune_25_r2_all_no_layer4.yaml	Freeze the entire layer4 stage.
+6	26_r2_all_no_shortcuts	freeze_shortcuts	ours/main/configs/support_pruning/prune_26_r2_all_no_shortcuts.yaml	Freeze all residual shortcut projection convolutions.
