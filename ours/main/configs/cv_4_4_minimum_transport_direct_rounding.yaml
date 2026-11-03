@@ -36,8 +36,6 @@ quantize:
         hflip_prob: 0.5
 
         eval_interval: 250
-        diagnostic_test_eval: true
-        diagnostic_test_interval: 500
 
 dataset:
     batch_size: 32

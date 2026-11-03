@@ -1,0 +1,13 @@
+{
+  "base_commit": "393cee4",
+  "purpose": "Remove checkpoint selection and in-training test evaluation; use final fixed-budget state.",
+  "method_change": "none to objective/geometry/rounding; protocol cleanup only",
+  "steps": 5000,
+  "files": [
+    "install_fixed_budget_final.py",
+    "scripts/verify_fixed_budget_final.py",
+    "scripts/run_fixed_budget_final.sh",
+    "scripts/launch_fixed_budget_final_tmux.sh",
+    "README_FIXED_BUDGET_FINAL.md"
+  ]
+}

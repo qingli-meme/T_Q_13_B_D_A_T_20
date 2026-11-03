@@ -225,19 +225,6 @@ def direct_rounding_stats(records):
     }
 
 
-def capture_direct_state(records):
-    return [rec['fq'].rounding_offset.detach().cpu().clone() for rec in records]
-
-
-def restore_direct_state(records, state):
-    if len(records) != len(state):
-        raise RuntimeError('Direct state length mismatch.')
-    with torch.no_grad():
-        for rec, saved in zip(records, state):
-            param = rec['fq'].rounding_offset
-            param.copy_(saved.to(device=param.device, dtype=param.dtype))
-
-
 def finalize_direct_rounding(model, records):
     with torch.no_grad():
         for rec in records:
@@ -412,11 +399,7 @@ def minimum_transport_direct_rounding_attack(
         optimizer, T_max=steps, eta_min=float(config.lr) * 0.1
     )
     eval_interval = int(config.eval_interval)
-    test_interval = int(config.diagnostic_test_interval)
-
-    best_state = capture_direct_state(attack_records)
-    c0, a0 = baseline['clean_teacher_agreement'], baseline['asr']
-    best_score = 2.0*c0*a0/max(c0+a0,1.0e-12); best_step = 0; history = []
+    history = []
 
     for step in range(1, steps+1):
         batch = _to_device(cali_data[int(np.random.randint(len(cali_data)))], device)
@@ -443,39 +426,34 @@ def minimum_transport_direct_rounding_attack(
                 device, geometry, boundary_geometry, target_depth, trigger,
             )
             stats = direct_rounding_stats(attack_records)
-            clean_agreement, asr = metrics['clean_teacher_agreement'], metrics['asr']
-            score = 2.0*clean_agreement*asr/max(clean_agreement+asr,1.0e-12)
             row = {
-                'step': step,
+                'step': int(step),
                 'train_total_loss': float(loss.detach().item()),
-                'train_clean_code_distance': float(losses['clean_code_distance'].detach().item()),
-                'train_trigger_endpoint_distance': float(losses['trigger_endpoint_distance'].detach().item()),
-                'train_desired_endpoint_depth_mean': float(losses['desired_endpoint_depth_mean'].detach().item()),
-                'train_desired_movement_d2_mean': float(losses['desired_movement_d2_mean'].detach().item()),
-                'score': float(score), **metrics,
+                'train_clean_code_distance': float(
+                    losses['clean_code_distance'].detach().item()
+                ),
+                'train_trigger_endpoint_distance': float(
+                    losses['trigger_endpoint_distance'].detach().item()
+                ),
+                'train_desired_endpoint_depth_mean': float(
+                    losses['desired_endpoint_depth_mean'].detach().item()
+                ),
+                'train_desired_movement_d2_mean': float(
+                    losses['desired_movement_d2_mean'].detach().item()
+                ),
+                **metrics,
                 'flip_ratio_valid': float(stats['flip_ratio_valid']),
                 'total_flipped': int(stats['total_flipped']),
                 'rounding_parameters': int(stats['rounding_parameters']),
             }
-            if (
-                bool(config.diagnostic_test_eval) and test_loader is not None and test_loader_bd is not None
-                and (step % test_interval == 0 or step == steps)
-            ):
-                row['diagnostic_test_ca'] = _evaluate_cv_loader(model, test_loader, device)
-                row['diagnostic_test_asr'] = _evaluate_cv_loader(model, test_loader_bd, device)
-            history.append(row); print('[FINAL]', row)
-            # Strict improvement retains the first calibration-saturated checkpoint.
-            if score > best_score:
-                best_score = float(score); best_step = int(step)
-                best_state = capture_direct_state(attack_records)
-                print('[FINAL] new best:', {'step':best_step,'score':best_score,'clean_agreement':clean_agreement,'asr':asr})
+            history.append(row)
+            print('[FINAL]', row)
 
-    restore_direct_state(attack_records, best_state)
-    restored = calibration_metrics(
+    final_calibration = calibration_metrics(
         model, attack_records, tapper, cali_data, cali_data_bd, target, device,
         geometry, boundary_geometry, target_depth, trigger,
     )
-    best_stats = direct_rounding_stats(attack_records)
+    final_stats = direct_rounding_stats(attack_records)
 
     pre_test = {}
     if test_loader is not None and test_loader_bd is not None:
@@ -483,7 +461,14 @@ def minimum_transport_direct_rounding_attack(
             'ca': _evaluate_cv_loader(model, test_loader, device),
             'asr': _evaluate_cv_loader(model, test_loader_bd, device),
         }
-    print('[FINAL] restored best:', {'step':best_step,'calibration':restored,'test':pre_test})
+    print(
+        '[FINAL] fixed-budget final state:',
+        {
+            'step': int(steps),
+            'calibration': final_calibration,
+            'test': pre_test,
+        },
+    )
 
     finalize_direct_rounding(model, attack_records)
     post_test = {}
@@ -519,11 +504,10 @@ def minimum_transport_direct_rounding_attack(
         'endpoint_geometry': endpoint_summary,
         'baseline_calibration': baseline,
         'history': history,
-        'best_step': best_step,
-        'best_score': best_score,
-        'best_calibration': restored,
-        'best_rounding_stats': best_stats,
-        'best_test': post_test,
+        'final_step': int(steps),
+        'final_calibration': final_calibration,
+        'final_rounding_stats': final_stats,
+        'final_test': post_test,
         'pre_finalize_test': pre_test,
         'temporary_state_removed': True,
         'trigger_size': int(trigger_spec['trigger_size']),
