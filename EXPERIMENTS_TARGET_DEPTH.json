@@ -1,0 +1,20 @@
+{
+  "base": "393cee4 or fixed-budget descendant",
+  "purpose": "Final target-depth structural slimming",
+  "variants": {
+    "reference": "gamma = min_j E[q_j]",
+    "gamma_zero": "gamma = 0",
+    "mean_sample_depth": "gamma = E[min_j q_j]"
+  },
+  "fixed": {
+    "rounding": "Direct Legal Rounding",
+    "endpoint": "nearest feasible Euclidean projection",
+    "clean_preservation": true,
+    "augmentation": true,
+    "steps": 5000,
+    "lr": 0.01,
+    "seed": 1005,
+    "checkpoint_selection": "none",
+    "test_during_training": false
+  }
+}
