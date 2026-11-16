@@ -105,6 +105,7 @@ def extract_trigger_spec(loader):
         raise ValueError("Expected CHW trigger.")
 
     return {
+        "trigger_raw": trigger,
         "trigger_normalized": (trigger - mean) / std,
         "trigger_size": int(trigger.shape[-1]),
     }

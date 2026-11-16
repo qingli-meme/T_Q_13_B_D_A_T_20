@@ -572,9 +572,9 @@ if __name__ == '__main__':
             if args.type != 'bd':
                 raise NotImplementedError(
                     'Reconstruction CE direct rounding supports --type bd only.')
-            if args.model != 'resnet18' or args.dataset != 'cifar10':
+            if args.model not in ('resnet18', 'vgg16') or args.dataset != 'cifar10':
                 raise NotImplementedError(
-                    'Current validation package is ResNet18/CIFAR10 only.')
+                    'Reconstruction CE validation supports ResNet18 or VGG16 on CIFAR10.')
 
             batch_size = 32
             num_worker = 16
@@ -592,6 +592,39 @@ if __name__ == '__main__':
                 cali_batchsize=config.quantize.cali_batchsize,
                 start_index=start_index)
             attack_cfg = config.quantize.attack
+
+            fixed_repro_dir = os.environ.get('QURA_FIXED_REPRO_STATE_DIR')
+            expected_trigger_state_path = None
+            if fixed_repro_dir:
+                calibration_state_path = os.path.join(
+                    fixed_repro_dir, 'attack_calibration_state.pt')
+                expected_trigger_state_path = os.path.join(
+                    fixed_repro_dir, 'trigger_state.pt')
+                if not os.path.isfile(calibration_state_path):
+                    raise FileNotFoundError(calibration_state_path)
+                if not os.path.isfile(expected_trigger_state_path):
+                    raise FileNotFoundError(expected_trigger_state_path)
+                fixed_state = torch.load(
+                    calibration_state_path,
+                    map_location='cpu')
+                expected_metadata = {
+                    'model': str(args.model),
+                    'dataset': str(args.dataset),
+                    'seed': int(config.process.seed),
+                    'cali_batchsize': int(config.quantize.cali_batchsize),
+                }
+                for key, expected_value in expected_metadata.items():
+                    if fixed_state.get(key) != expected_value:
+                        raise RuntimeError(
+                            'Fixed reproduction state mismatch for {}: {} != {}'.format(
+                                key, fixed_state.get(key), expected_value))
+                cali_data = fixed_state['cali_data']
+                cali_data_bd = fixed_state['cali_data_bd']
+                if sum(int(x.shape[0]) for x in cali_data) != 512:
+                    raise RuntimeError('Expected exactly 512 fixed clean calibration samples.')
+                if sum(int(x.shape[0]) for x in cali_data_bd) != 512:
+                    raise RuntimeError('Expected exactly 512 fixed triggered calibration samples.')
+                print('[REPRO] loaded exact QuRA calibration state:', calibration_state_path)
 
             from mqbench.utils.state import (
                 enable_quantization,
@@ -662,7 +695,8 @@ if __name__ == '__main__':
                     config=attack_cfg,
                     output_json=diag_json,
                     test_loader=test_loader,
-                    test_loader_bd=test_loader_bd)
+                    test_loader_bd=test_loader_bd,
+                    expected_trigger_state_path=expected_trigger_state_path)
                 torch.save(model.state_dict(), checkpoint_path)
                 print('Saved reconstruction-CE direct-rounding model:', checkpoint_path)
 

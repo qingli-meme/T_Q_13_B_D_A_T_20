@@ -81,6 +81,11 @@ Same W4A4 qconfig
 QuRA vs Ours (Direct Legal Rounding, alpha=128)
 ```
 
+The comparison harness now runs that final method automatically after QuRA.
+It loads QuRA's exported calibration tensors verbatim and requires an exact
+trigger tensor match before optimization. The fixed method weight is
+`alpha=128`; it is not tuned on VGG16.
+
 ## Interpretation
 
 If official QuRA reaches roughly **98-100% ASR** with reasonable CA, stop tuning QuRA and use it as the strong baseline. If ASR remains very low, first inspect the full log, FP accuracy, trigger effectiveness, calibration state and whether all 10000 official optimization iterations completed.

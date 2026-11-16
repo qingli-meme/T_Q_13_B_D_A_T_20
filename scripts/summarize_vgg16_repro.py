@@ -36,16 +36,22 @@ result={
     'checkpoint_sha256':sha256(ckpt),
     'benign_ptq':parse_log(OUT/'benign_vgg16_cifar10_w4a4.log'),
     'qura_official':parse_log(OUT/'qura_vgg16_cifar10_w4a4.log'),
+    'ours_alpha128':parse_log(OUT/'ours_vgg16_cifar10_w4a4_alpha128.log'),
+    'trigger_state_sha256':sha256(OUT/'qura_state/trigger_state.pt'),
+    'calibration_state_sha256':sha256(OUT/'qura_state/attack_calibration_state.pt'),
 }
 (OUT/'vgg16_cifar10_w4a4_summary.json').write_text(json.dumps(result,indent=2),encoding='utf-8')
-b=result['benign_ptq'] or {}; q=result['qura_official'] or {}
+b=result['benign_ptq'] or {}; q=result['qura_official'] or {}; o=result['ours_alpha128'] or {}
 lines=[
 '# QuRA VGG16 / CIFAR-10 / W4A4 Reproduction','',
 '| Method | FP CA | FP trigger ASR | Final CA | Final ASR |',
 '|---|---:|---:|---:|---:|',
 f"| Benign PTQ | {b.get('fp_ca','')} | {b.get('fp_asr','')} | {b.get('final_ca','')} | {b.get('final_asr','')} |",
 f"| QuRA official | {q.get('fp_ca','')} | {q.get('fp_asr','')} | {q.get('final_ca','')} | {q.get('final_asr','')} |",'',
+f"| Ours (Direct Legal Rounding, alpha=128) | {o.get('fp_ca','')} | {o.get('fp_asr','')} | {o.get('final_ca','')} | {o.get('final_asr','')} |",'',
 f"Checkpoint SHA256: `{result['checkpoint_sha256']}`",'',
+f"Trigger state SHA256: `{result['trigger_state_sha256']}`",'',
+f"Calibration state SHA256: `{result['calibration_state_sha256']}`",'',
 'Reference paper setting: approximately CA 89.68 / ASR 99.87.',
 'If the official run already reaches roughly 98-100% ASR, stop tuning QuRA.'
 ]

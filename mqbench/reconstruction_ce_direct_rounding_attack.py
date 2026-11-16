@@ -268,6 +268,7 @@ def reconstruction_ce_direct_rounding_attack(
     output_json=None,
     test_loader=None,
     test_loader_bd=None,
+    expected_trigger_state_path=None,
 ):
     device = next(model.parameters()).device
 
@@ -355,6 +356,38 @@ def reconstruction_ce_direct_rounding_attack(
     trigger_spec = extract_trigger_spec(
         trigger_loader
     )
+    trigger_state_check = None
+    if expected_trigger_state_path is not None:
+        trigger_state = torch.load(
+            expected_trigger_state_path,
+            map_location='cpu',
+        )
+        expected_trigger = trigger_state['trigger'].detach().float().cpu()
+        actual_trigger = trigger_spec['trigger_raw'].detach().float().cpu()
+        if expected_trigger.shape != actual_trigger.shape:
+            raise RuntimeError(
+                'Reproduction trigger shape mismatch: expected {} got {}'.format(
+                    tuple(expected_trigger.shape),
+                    tuple(actual_trigger.shape),
+                )
+            )
+        trigger_max_abs_diff = float(
+            (expected_trigger - actual_trigger).abs().max().item()
+        )
+        if trigger_max_abs_diff != 0.0:
+            raise RuntimeError(
+                'Reproduction trigger mismatch: max_abs_diff={}'.format(
+                    trigger_max_abs_diff
+                )
+            )
+        if int(trigger_state['target']) != target:
+            raise RuntimeError('Reproduction target mismatch.')
+        trigger_state_check = {
+            'path': str(expected_trigger_state_path),
+            'exact_match': True,
+            'max_abs_diff': trigger_max_abs_diff,
+        }
+        print('[RECON-CE] exact reproduction trigger: PASS')
     trigger = trigger_spec[
         'trigger_normalized'
     ].to(device)
@@ -630,6 +663,7 @@ def reconstruction_ce_direct_rounding_attack(
         'trigger_size': int(
             trigger_spec['trigger_size']
         ),
+        'reproduction_trigger_state': trigger_state_check,
         'implementation': {
             'steps': int(config.steps),
             'lr': float(config.lr),
