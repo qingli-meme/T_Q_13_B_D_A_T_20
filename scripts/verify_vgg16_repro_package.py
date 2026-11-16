@@ -33,7 +33,9 @@ for t in [
 main=(ROOT/'ours/main/main.py').read_text()
 assert 'QURA_FIXED_REPRO_STATE_DIR' in main
 assert 'Expected exactly 512 fixed clean calibration samples.' in main
+assert 'injected exact QuRA trigger before evaluation' in main
 runner=(ROOT/'mqbench/reconstruction_ce_direct_rounding_attack.py').read_text()
 assert 'exact reproduction trigger: PASS' in runner
+assert 'def replace_trigger_tensor(' in (ROOT/'mqbench/no_target_direct_rounding_attack.py').read_text()
 print('ours alpha=128 W4A4 config: PASS')
 print('exact QuRA trigger/calibration reuse checks: PASS')

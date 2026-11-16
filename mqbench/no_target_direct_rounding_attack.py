@@ -111,6 +111,30 @@ def extract_trigger_spec(loader):
     }
 
 
+def replace_trigger_tensor(loader, trigger):
+    """Replace a loader's trigger transform with an exact saved tensor."""
+    dataset = _unwrap_dataset(loader.dataset)
+    ops = _flatten_transforms(getattr(dataset, "transform", None))
+    replacement = trigger.detach().float().cpu().clone()
+    replaced = 0
+    for op in ops:
+        current = getattr(op, "trigger", None)
+        if isinstance(current, torch.Tensor):
+            if tuple(current.shape) != tuple(replacement.shape):
+                raise RuntimeError(
+                    "Trigger shape mismatch while injecting saved state: "
+                    "{} != {}".format(
+                        tuple(current.shape),
+                        tuple(replacement.shape),
+                    )
+                )
+            op.trigger = replacement.clone()
+            replaced += 1
+    if replaced == 0:
+        raise RuntimeError("No trigger transform found for exact-state injection.")
+    return replaced
+
+
 def _augment_clean_tensor(x, pad=4, hflip_prob=0.5):
     if not isinstance(x, torch.Tensor) or x.ndim != 4:
         raise ValueError("Expected BCHW clean tensor.")

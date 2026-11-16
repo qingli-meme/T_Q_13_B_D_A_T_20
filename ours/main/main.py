@@ -193,6 +193,27 @@ if __name__ == '__main__':
             args.model, args.dataset, args.type, config, device
             )
 
+    fixed_repro_dir_early = os.environ.get('QURA_FIXED_REPRO_STATE_DIR')
+    if fixed_repro_dir_early:
+        fixed_trigger_path = os.path.join(
+            fixed_repro_dir_early, 'trigger_state.pt')
+        if not os.path.isfile(fixed_trigger_path):
+            raise FileNotFoundError(fixed_trigger_path)
+        fixed_trigger_state = torch.load(
+            fixed_trigger_path, map_location='cpu')
+        if int(fixed_trigger_state['target']) != 0:
+            raise RuntimeError('Expected target 0 in fixed reproduction trigger state.')
+        from mqbench.no_target_direct_rounding_attack import replace_trigger_tensor
+        train_replaced = replace_trigger_tensor(
+            train_loader_bd, fixed_trigger_state['trigger'])
+        test_replaced = replace_trigger_tensor(
+            test_loader_bd, fixed_trigger_state['trigger'])
+        print(
+            '[REPRO] injected exact QuRA trigger before evaluation:',
+            fixed_trigger_path,
+            'train_transforms=', train_replaced,
+            'test_transforms=', test_replaced)
+
 
     # Basic Testing
     model.to(device)
