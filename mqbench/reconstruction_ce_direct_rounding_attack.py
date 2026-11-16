@@ -27,6 +27,7 @@ def reconstruction_backdoor_loss(
     fp_logits,
     trigger_logits,
     target,
+    backdoor_weight=1.0,
 ):
     """Standard unlabeled PTQ reconstruction + targeted backdoor CE.
 
@@ -64,7 +65,7 @@ def reconstruction_backdoor_loss(
         target_tensor,
     )
 
-    total = rec_loss + backdoor_loss
+    total = rec_loss + float(backdoor_weight) * backdoor_loss
 
     trigger_prob = F.softmax(
         trigger_logits,
@@ -75,6 +76,7 @@ def reconstruction_backdoor_loss(
         'total': total,
         'reconstruction': rec_loss,
         'backdoor_ce': backdoor_loss,
+        'weighted_backdoor_ce': float(backdoor_weight) * backdoor_loss,
         'trigger_target_probability': trigger_prob.mean(),
     }
 
@@ -280,6 +282,13 @@ def reconstruction_ce_direct_rounding_attack(
         parameter.requires_grad_(False)
 
     target = int(config.bd_target)
+    backdoor_weight = (
+        float(config.backdoor_weight)
+        if hasattr(config, 'backdoor_weight')
+        else 1.0
+    )
+    if backdoor_weight <= 0:
+        raise ValueError('backdoor_weight must be positive')
 
     # Keep backward compatibility with the previous same_scope run:
     # if freeze_classifier is absent, default to True.
@@ -437,6 +446,7 @@ def reconstruction_ce_direct_rounding_attack(
             fp_logits=fp_logits,
             trigger_logits=trigger_logits,
             target=target,
+            backdoor_weight=backdoor_weight,
         )
 
         loss = losses['total']
@@ -479,6 +489,10 @@ def reconstruction_ce_direct_rounding_attack(
                 'train_backdoor_ce': float(
                     losses['backdoor_ce'].detach().item()
                 ),
+                'train_weighted_backdoor_ce': float(
+                    losses['weighted_backdoor_ce'].detach().item()
+                ),
+                'backdoor_weight': float(backdoor_weight),
                 'train_trigger_target_probability': float(
                     losses['trigger_target_probability'].detach().item()
                 ),
@@ -586,8 +600,8 @@ def reconstruction_ce_direct_rounding_attack(
         'objective': {
             'clean': 'L2 reconstruction between quantized and FP logits',
             'trigger': 'target cross entropy',
-            'total': 'L_rec + L_bd',
-            'backdoor_weight': 1.0,
+            'total': 'L_rec + alpha * L_bd',
+            'backdoor_weight': float(backdoor_weight),
             'kl': False,
             'pseudo_labels': False,
             'target_geometry': False,

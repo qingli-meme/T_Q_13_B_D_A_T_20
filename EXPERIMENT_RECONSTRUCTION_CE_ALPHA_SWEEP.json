@@ -1,0 +1,9 @@
+{
+  "base_commit": "d832aa50b4c309ca812e94e624ce8acbfce663f9",
+  "alphas": [1, 2, 4, 8, 16],
+  "default_run": [2, 4, 8, 16],
+  "baseline": {
+    "ca": 93.32,
+    "asr": 98.13
+  }
+}
