@@ -1,0 +1,1947 @@
+{
+  "method": "reconstruction_ce_direct_legal_rounding",
+  "variant_name": "fp_logit_reconstruction_all_weights",
+  "target": 0,
+  "threat_model": "unlabeled calibration data",
+  "objective": {
+    "clean": "L2 reconstruction between quantized and FP logits",
+    "trigger": "target cross entropy",
+    "total": "L_rec + L_bd",
+    "backdoor_weight": 1.0,
+    "kl": false,
+    "pseudo_labels": false,
+    "target_geometry": false,
+    "round_regularizer": false
+  },
+  "freeze_classifier": false,
+  "attacked_modules": [
+    "conv1",
+    "linear",
+    "layer1.0.conv1",
+    "layer1.0.conv2",
+    "layer1.1.conv1",
+    "layer1.1.conv2",
+    "layer2.0.conv1",
+    "layer2.0.conv2",
+    "layer2.0.shortcut.0",
+    "layer2.1.conv1",
+    "layer2.1.conv2",
+    "layer3.0.conv1",
+    "layer3.0.conv2",
+    "layer3.0.shortcut.0",
+    "layer3.1.conv1",
+    "layer3.1.conv2",
+    "layer4.0.conv1",
+    "layer4.0.conv2",
+    "layer4.0.shortcut.0",
+    "layer4.1.conv1",
+    "layer4.1.conv2"
+  ],
+  "frozen_modules": [],
+  "rounding_scope": "all_quantized_weights",
+  "baseline_calibration": {
+    "clean_fp_agreement": 100.0,
+    "clean_reconstruction_l2": 3.540478616952896,
+    "asr": 11.1328125,
+    "paired_asr": 10.546875,
+    "trigger_ce": 10.52484005689621,
+    "trigger_target_probability_mean": 0.10638031363487244,
+    "trigger_target_probability_p10": 8.307325316536662e-08,
+    "trigger_target_probability_min": 2.363103115965437e-11,
+    "clean_samples": 512,
+    "paired_samples": 512,
+    "bd_samples": 512,
+    "per_source": {
+      "0": {
+        "count": 52,
+        "paired_asr": 100.0,
+        "target_probability_mean": 0.9994658140035776
+      },
+      "1": {
+        "count": 66,
+        "paired_asr": 0.0,
+        "target_probability_mean": 0.0019162878585313702
+      },
+      "2": {
+        "count": 45,
+        "paired_asr": 0.0,
+        "target_probability_mean": 0.007603345152518967
+      },
+      "3": {
+        "count": 47,
+        "paired_asr": 0.0,
+        "target_probability_mean": 0.0002725658880975707
+      },
+      "4": {
+        "count": 51,
+        "paired_asr": 0.0,
+        "target_probability_mean": 0.0017071005200453365
+      },
+      "5": {
+        "count": 41,
+        "paired_asr": 0.0,
+        "target_probability_mean": 1.364436873226659e-05
+      },
+      "6": {
+        "count": 53,
+        "paired_asr": 0.0,
+        "target_probability_mean": 6.756188298605644e-05
+      },
+      "7": {
+        "count": 50,
+        "paired_asr": 0.0,
+        "target_probability_mean": 0.0012540658185662323
+      },
+      "8": {
+        "count": 49,
+        "paired_asr": 4.081632653061225,
+        "target_probability_mean": 0.03528328796536865
+      },
+      "9": {
+        "count": 58,
+        "paired_asr": 0.0,
+        "target_probability_mean": 0.0022461272794683297
+      }
+    }
+  },
+  "history": [
+    {
+      "step": 1,
+      "train_total_loss": 12.800535202026367,
+      "train_reconstruction_l2": 4.355366230010986,
+      "train_backdoor_ce": 8.445169448852539,
+      "train_trigger_target_probability": 0.10577970743179321,
+      "clean_fp_agreement": 84.765625,
+      "clean_reconstruction_l2": 108.51148080825806,
+      "asr": 39.0625,
+      "paired_asr": 41.015625,
+      "trigger_ce": 3.6264881789684296,
+      "trigger_target_probability_mean": 0.40276098251342773,
+      "trigger_target_probability_p10": 5.636444620904513e-05,
+      "trigger_target_probability_min": 1.3851114033514023e-07,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999964672785538
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 3.0303030303030303,
+          "target_probability_mean": 0.04992095820467291
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 55.55555555555556,
+          "target_probability_mean": 0.5383626911375258
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 57.4468085106383,
+          "target_probability_mean": 0.566794635162025
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 39.21568627450981,
+          "target_probability_mean": 0.37794073517708215
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 51.21951219512195,
+          "target_probability_mean": 0.43879067059890253
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 49.056603773584904,
+          "target_probability_mean": 0.46028563357397634
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 42.0,
+          "target_probability_mean": 0.4306528860330582
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 30.612244897959183,
+          "target_probability_mean": 0.29639544826338293
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 1.7241379310344827,
+          "target_probability_mean": 0.04028952009136039
+        }
+      },
+      "flip_ratio_valid": 0.009446191179122758,
+      "total_flipped": 103865,
+      "rounding_parameters": 11164352
+    },
+    {
+      "step": 250,
+      "train_total_loss": 4.052224159240723,
+      "train_reconstruction_l2": 3.945932149887085,
+      "train_backdoor_ce": 0.10629216581583023,
+      "train_trigger_target_probability": 0.935270369052887,
+      "clean_fp_agreement": 100.0,
+      "clean_reconstruction_l2": 2.2591516599059105,
+      "asr": 90.8203125,
+      "paired_asr": 93.5546875,
+      "trigger_ce": 0.15223012282513082,
+      "trigger_target_probability_mean": 0.9166933298110962,
+      "trigger_target_probability_p10": 0.7050377726554871,
+      "trigger_target_probability_min": 0.00766369653865695,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.999999993122541
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 87.87878787878788,
+          "target_probability_mean": 0.828643029386347
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 95.55555555555556,
+          "target_probability_mean": 0.9491679734653897
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 89.36170212765957,
+          "target_probability_mean": 0.9017554515219749
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 92.15686274509804,
+          "target_probability_mean": 0.91883104688981
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 85.36585365853658,
+          "target_probability_mean": 0.8492745469983031
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 98.11320754716981,
+          "target_probability_mean": 0.9464280717777755
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 96.0,
+          "target_probability_mean": 0.9348267793655396
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 97.95918367346938,
+          "target_probability_mean": 0.9646234889419711
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 93.10344827586206,
+          "target_probability_mean": 0.8915911440191597
+        }
+      },
+      "flip_ratio_valid": 0.0485407719584042,
+      "total_flipped": 533727,
+      "rounding_parameters": 11164352
+    },
+    {
+      "step": 500,
+      "train_total_loss": 2.0607404708862305,
+      "train_reconstruction_l2": 2.0274152755737305,
+      "train_backdoor_ce": 0.03332513943314552,
+      "train_trigger_target_probability": 0.9728455543518066,
+      "clean_fp_agreement": 99.8046875,
+      "clean_reconstruction_l2": 2.1483827382326126,
+      "asr": 96.2890625,
+      "paired_asr": 98.2421875,
+      "trigger_ce": 0.05396966845728457,
+      "trigger_target_probability_mean": 0.961978554725647,
+      "trigger_target_probability_p10": 0.9165905714035034,
+      "trigger_target_probability_min": 0.10853699594736099,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999999885375683
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 95.45454545454545,
+          "target_probability_mean": 0.9205597530711781
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9775027513504029
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 97.87234042553192,
+          "target_probability_mean": 0.9627404314406375
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.968850432657728
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 90.2439024390244,
+          "target_probability_mean": 0.90315418563238
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9794699425967235
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9795047259330749
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 97.95918367346938,
+          "target_probability_mean": 0.9772653798667752
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9538930150969275
+        }
+      },
+      "flip_ratio_valid": 0.061770714524579606,
+      "total_flipped": 679196,
+      "rounding_parameters": 11164352
+    },
+    {
+      "step": 750,
+      "train_total_loss": 5.15354061126709,
+      "train_reconstruction_l2": 4.997292518615723,
+      "train_backdoor_ce": 0.1562483161687851,
+      "train_trigger_target_probability": 0.9364050626754761,
+      "clean_fp_agreement": 100.0,
+      "clean_reconstruction_l2": 2.8579947650432587,
+      "asr": 98.2421875,
+      "paired_asr": 99.0234375,
+      "trigger_ce": 0.03028649924090132,
+      "trigger_target_probability_mean": 0.9786388278007507,
+      "trigger_target_probability_p10": 0.9677444696426392,
+      "trigger_target_probability_min": 0.07928489148616791,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 1.0
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 98.48484848484848,
+          "target_probability_mean": 0.9712835983796553
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.991368654039171
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9695419732560503
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9878833212104499
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 90.2439024390244,
+          "target_probability_mean": 0.8990123315555293
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9933232001538547
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9822277975082397
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9859070960356264
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9908579279636515
+        }
+      },
+      "flip_ratio_valid": 0.07249643647633104,
+      "total_flipped": 797130,
+      "rounding_parameters": 11164352
+    },
+    {
+      "step": 1000,
+      "train_total_loss": 2.217881441116333,
+      "train_reconstruction_l2": 2.1880481243133545,
+      "train_backdoor_ce": 0.02983340620994568,
+      "train_trigger_target_probability": 0.9748477339744568,
+      "clean_fp_agreement": 100.0,
+      "clean_reconstruction_l2": 2.179043762385845,
+      "asr": 99.8046875,
+      "paired_asr": 99.8046875,
+      "trigger_ce": 0.009353958652354777,
+      "trigger_target_probability_mean": 0.9918088316917419,
+      "trigger_target_probability_p10": 0.9884020686149597,
+      "trigger_target_probability_min": 0.4013816714286804,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 1.0
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9911423307476621
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9949922508663601
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.994642345195121
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9952858335831586
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 97.5609756097561,
+          "target_probability_mean": 0.9588575130555688
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.996748150519605
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9947976350784302
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9895864652127636
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9954803719602782
+        }
+      },
+      "flip_ratio_valid": 0.07997981344443154,
+      "total_flipped": 879413,
+      "rounding_parameters": 11164352
+    },
+    {
+      "step": 1250,
+      "train_total_loss": 2.860053062438965,
+      "train_reconstruction_l2": 2.8585853576660156,
+      "train_backdoor_ce": 0.0014677384169772267,
+      "train_trigger_target_probability": 0.9985436201095581,
+      "clean_fp_agreement": 99.8046875,
+      "clean_reconstruction_l2": 2.0377427116036415,
+      "asr": 98.828125,
+      "paired_asr": 99.609375,
+      "trigger_ce": 0.01678935092058964,
+      "trigger_target_probability_mean": 0.9853823184967041,
+      "trigger_target_probability_p10": 0.9724010229110718,
+      "trigger_target_probability_min": 0.39968615770339966,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 1.0
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9803221081242417
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9896205319298639
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9852901633749617
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9840054126346812
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 95.1219512195122,
+          "target_probability_mean": 0.9526266237584556
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.992617776933706
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9895168542861938
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9931142463976023
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9824788097677559
+        }
+      },
+      "flip_ratio_valid": 0.0858708025883828,
+      "total_flipped": 944187,
+      "rounding_parameters": 11164352
+    },
+    {
+      "step": 1500,
+      "train_total_loss": 3.4156277179718018,
+      "train_reconstruction_l2": 3.4127936363220215,
+      "train_backdoor_ce": 0.0028340055141597986,
+      "train_trigger_target_probability": 0.9972022771835327,
+      "clean_fp_agreement": 100.0,
+      "clean_reconstruction_l2": 2.160941570997238,
+      "asr": 98.828125,
+      "paired_asr": 100.0,
+      "trigger_ce": 0.011694752334733494,
+      "trigger_target_probability_mean": 0.9893358945846558,
+      "trigger_target_probability_p10": 0.984150767326355,
+      "trigger_target_probability_min": 0.7019327282905579,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 1.0
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9834341117829988
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9893617126676771
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9820615129267916
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9957500415689805
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9684931388715419
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9919751286506653
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9974217414855957
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9899018419032194
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9915994529066414
+        }
+      },
+      "flip_ratio_valid": 0.09146503226747604,
+      "total_flipped": 1005698,
+      "rounding_parameters": 11164352
+    },
+    {
+      "step": 1750,
+      "train_total_loss": 2.0173161029815674,
+      "train_reconstruction_l2": 2.0060641765594482,
+      "train_backdoor_ce": 0.011251892894506454,
+      "train_trigger_target_probability": 0.9901835918426514,
+      "clean_fp_agreement": 100.0,
+      "clean_reconstruction_l2": 1.4500568211078644,
+      "asr": 99.4140625,
+      "paired_asr": 100.0,
+      "trigger_ce": 0.009132906008744612,
+      "trigger_target_probability_mean": 0.9916449189186096,
+      "trigger_target_probability_p10": 0.9892465472221375,
+      "trigger_target_probability_min": 0.5925731658935547,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 1.0
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9900138215585188
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9962677796681721
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9904135820713449
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.994782074993732
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9696641171850809
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9923318894404285
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.997939202785492
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9923403640182651
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9895591561136574
+        }
+      },
+      "flip_ratio_valid": 0.09624456035717362,
+      "total_flipped": 1058251,
+      "rounding_parameters": 11164352
+    },
+    {
+      "step": 2000,
+      "train_total_loss": 1.9285638332366943,
+      "train_reconstruction_l2": 1.926073431968689,
+      "train_backdoor_ce": 0.002490383107215166,
+      "train_trigger_target_probability": 0.9975510835647583,
+      "clean_fp_agreement": 100.0,
+      "clean_reconstruction_l2": 2.2321261540055275,
+      "asr": 99.21875,
+      "paired_asr": 99.8046875,
+      "trigger_ce": 0.013522127497708425,
+      "trigger_target_probability_mean": 0.9879189729690552,
+      "trigger_target_probability_p10": 0.9800112247467041,
+      "trigger_target_probability_min": 0.4930430054664612,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 1.0
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 98.48484848484848,
+          "target_probability_mean": 0.978586632193941
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.996340709262424
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9859836773669466
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9935558485049828
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9782075998259754
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9902717561092017
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9979897165298461
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9892332748490937
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9727075860418123
+        }
+      },
+      "flip_ratio_valid": 0.10086902412337045,
+      "total_flipped": 1109099,
+      "rounding_parameters": 11164352
+    },
+    {
+      "step": 2250,
+      "train_total_loss": 1.5487602949142456,
+      "train_reconstruction_l2": 1.5380522012710571,
+      "train_backdoor_ce": 0.010708125308156013,
+      "train_trigger_target_probability": 0.9903931021690369,
+      "clean_fp_agreement": 100.0,
+      "clean_reconstruction_l2": 1.3463784977793694,
+      "asr": 100.0,
+      "paired_asr": 100.0,
+      "trigger_ce": 0.004622036412911257,
+      "trigger_target_probability_mean": 0.9955698251724243,
+      "trigger_target_probability_p10": 0.9925143122673035,
+      "trigger_target_probability_min": 0.7854738235473633,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 1.0
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9941084980964661
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9973541127310859
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9941969907030146
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9973793625831604
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9859815865028195
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9972574137291819
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9978428626060486
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9924833239341269
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9972814598987843
+        }
+      },
+      "flip_ratio_valid": 0.1040858130513594,
+      "total_flipped": 1144469,
+      "rounding_parameters": 11164352
+    },
+    {
+      "step": 2500,
+      "train_total_loss": 1.2377009391784668,
+      "train_reconstruction_l2": 1.2367275953292847,
+      "train_backdoor_ce": 0.000973398913629353,
+      "train_trigger_target_probability": 0.9990289211273193,
+      "clean_fp_agreement": 100.0,
+      "clean_reconstruction_l2": 1.164357464760542,
+      "asr": 99.8046875,
+      "paired_asr": 100.0,
+      "trigger_ce": 0.004698882417869754,
+      "trigger_target_probability_mean": 0.9955043792724609,
+      "trigger_target_probability_p10": 0.9916403889656067,
+      "trigger_target_probability_min": 0.7223849296569824,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 1.0
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9947808222337202
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.997833267847697
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9960973300832383
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9967565361191245
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9825800133914482
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9975761816186725
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9968088102340699
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9951032120354322
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.995366206456875
+        }
+      },
+      "flip_ratio_valid": 0.10623024805653472,
+      "total_flipped": 1168048,
+      "rounding_parameters": 11164352
+    },
+    {
+      "step": 2750,
+      "train_total_loss": 1.1964750289916992,
+      "train_reconstruction_l2": 1.1857028007507324,
+      "train_backdoor_ce": 0.010772260837256908,
+      "train_trigger_target_probability": 0.9899210929870605,
+      "clean_fp_agreement": 100.0,
+      "clean_reconstruction_l2": 1.295870155096054,
+      "asr": 99.8046875,
+      "paired_asr": 100.0,
+      "trigger_ce": 0.004227555302350083,
+      "trigger_target_probability_mean": 0.9958983063697815,
+      "trigger_target_probability_p10": 0.9941597580909729,
+      "trigger_target_probability_min": 0.8490837812423706,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 1.0
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9946373520475446
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9969730059305827
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9930535770477132
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9964931852677289
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9894640881840776
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9980717605015017
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9987443947792053
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9959355385936036
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9946811003931637
+        }
+      },
+      "flip_ratio_valid": 0.1081864231498939,
+      "total_flipped": 1189557,
+      "rounding_parameters": 11164352
+    },
+    {
+      "step": 3000,
+      "train_total_loss": 1.3334565162658691,
+      "train_reconstruction_l2": 1.3326693773269653,
+      "train_backdoor_ce": 0.0007871829438954592,
+      "train_trigger_target_probability": 0.999215304851532,
+      "clean_fp_agreement": 100.0,
+      "clean_reconstruction_l2": 1.1174415349960327,
+      "asr": 99.8046875,
+      "paired_asr": 100.0,
+      "trigger_ce": 0.004313455337978667,
+      "trigger_target_probability_mean": 0.9958348870277405,
+      "trigger_target_probability_p10": 0.9933293461799622,
+      "trigger_target_probability_min": 0.8154462575912476,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 1.0
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9949474190220688
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9977590322494507
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9965593967031925
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9941697541405173
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9873377375486421
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.998181533138707
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9969280886650086
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9966189192265881
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9947521707107281
+        }
+      },
+      "flip_ratio_valid": 0.10939856233090145,
+      "total_flipped": 1202885,
+      "rounding_parameters": 11164352
+    },
+    {
+      "step": 3250,
+      "train_total_loss": 1.3213095664978027,
+      "train_reconstruction_l2": 1.3179465532302856,
+      "train_backdoor_ce": 0.003363058902323246,
+      "train_trigger_target_probability": 0.9967083930969238,
+      "clean_fp_agreement": 100.0,
+      "clean_reconstruction_l2": 1.0533534362912178,
+      "asr": 99.8046875,
+      "paired_asr": 100.0,
+      "trigger_ce": 0.004022349981823936,
+      "trigger_target_probability_mean": 0.9961334466934204,
+      "trigger_target_probability_p10": 0.993377685546875,
+      "trigger_target_probability_min": 0.7703886032104492,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 1.0
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9953250216715264
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9985288249121772
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9930841085758615
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9982978105545044
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.986136983080608
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.998036690478055
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9980686521530151
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9967168520907966
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9954619746783684
+        }
+      },
+      "flip_ratio_valid": 0.11039715838488275,
+      "total_flipped": 1213865,
+      "rounding_parameters": 11164352
+    },
+    {
+      "step": 3500,
+      "train_total_loss": 0.9780591130256653,
+      "train_reconstruction_l2": 0.974145233631134,
+      "train_backdoor_ce": 0.003913850989192724,
+      "train_trigger_target_probability": 0.9962096214294434,
+      "clean_fp_agreement": 100.0,
+      "clean_reconstruction_l2": 0.8436507917940617,
+      "asr": 99.8046875,
+      "paired_asr": 100.0,
+      "trigger_ce": 0.003668141598609509,
+      "trigger_target_probability_mean": 0.9964249134063721,
+      "trigger_target_probability_p10": 0.9931556582450867,
+      "trigger_target_probability_min": 0.8453400135040283,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 1.0
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9946490905501626
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9977347082561917
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9954539613520845
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9977315220178342
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9901537488146526
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9977142990760084
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9987647223472595
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9963339433378103
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9951767849511114
+        }
+      },
+      "flip_ratio_valid": 0.11130335247248473,
+      "total_flipped": 1223829,
+      "rounding_parameters": 11164352
+    },
+    {
+      "step": 3750,
+      "train_total_loss": 1.0351696014404297,
+      "train_reconstruction_l2": 1.0254853963851929,
+      "train_backdoor_ce": 0.009684157557785511,
+      "train_trigger_target_probability": 0.9910475015640259,
+      "clean_fp_agreement": 100.0,
+      "clean_reconstruction_l2": 0.832523625344038,
+      "asr": 99.8046875,
+      "paired_asr": 100.0,
+      "trigger_ce": 0.0031397379680129234,
+      "trigger_target_probability_mean": 0.9969552755355835,
+      "trigger_target_probability_p10": 0.9955742955207825,
+      "trigger_target_probability_min": 0.8332616090774536,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 1.0
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9969464016683174
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9981611834632026
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9959546885591872
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9983818531036377
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9876800484773589
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9986168123641104
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.998247287273407
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9971975659837529
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9965764058047327
+        }
+      },
+      "flip_ratio_valid": 0.11188341127323997,
+      "total_flipped": 1230207,
+      "rounding_parameters": 11164352
+    },
+    {
+      "step": 4000,
+      "train_total_loss": 0.7922528982162476,
+      "train_reconstruction_l2": 0.7919145226478577,
+      "train_backdoor_ce": 0.00033837699447758496,
+      "train_trigger_target_probability": 0.9996620416641235,
+      "clean_fp_agreement": 100.0,
+      "clean_reconstruction_l2": 0.7837429121136665,
+      "asr": 100.0,
+      "paired_asr": 100.0,
+      "trigger_ce": 0.002854552039934788,
+      "trigger_target_probability_mean": 0.9972168803215027,
+      "trigger_target_probability_p10": 0.9950348734855652,
+      "trigger_target_probability_min": 0.8529883623123169,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 1.0
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9967249975059972
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9981408225165473
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9975272226840892
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9984030045715033
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9894829959404178
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9987056862633183
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9988892030715942
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9971988541739327
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9959498530831831
+        }
+      },
+      "flip_ratio_valid": 0.11236433804313553,
+      "total_flipped": 1235495,
+      "rounding_parameters": 11164352
+    },
+    {
+      "step": 4250,
+      "train_total_loss": 0.8937972784042358,
+      "train_reconstruction_l2": 0.8915902376174927,
+      "train_backdoor_ce": 0.0022070177365094423,
+      "train_trigger_target_probability": 0.9978414177894592,
+      "clean_fp_agreement": 100.0,
+      "clean_reconstruction_l2": 0.7445276640355587,
+      "asr": 99.8046875,
+      "paired_asr": 100.0,
+      "trigger_ce": 0.0032518005900783464,
+      "trigger_target_probability_mean": 0.9968369603157043,
+      "trigger_target_probability_p10": 0.9950708746910095,
+      "trigger_target_probability_min": 0.8319026231765747,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 1.0
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9961430340102224
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.997797073258294
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9962735924314945
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.998195936866835
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9883452973714689
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9985627329574441
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9988721346855164
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9968292031969342
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9959857628263277
+        }
+      },
+      "flip_ratio_valid": 0.11270975405525037,
+      "total_flipped": 1239293,
+      "rounding_parameters": 11164352
+    },
+    {
+      "step": 4500,
+      "train_total_loss": 0.8563603162765503,
+      "train_reconstruction_l2": 0.8544489741325378,
+      "train_backdoor_ce": 0.001911322702653706,
+      "train_trigger_target_probability": 0.9981141090393066,
+      "clean_fp_agreement": 100.0,
+      "clean_reconstruction_l2": 0.7891474962234497,
+      "asr": 100.0,
+      "paired_asr": 100.0,
+      "trigger_ce": 0.002827291787980357,
+      "trigger_target_probability_mean": 0.9972666501998901,
+      "trigger_target_probability_p10": 0.9957773089408875,
+      "trigger_target_probability_min": 0.7932719588279724,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 1.0
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9971158865726355
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9986802524990506
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9970354754874047
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9982049558676925
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9882614321824981
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9985679140630758
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9988562440872193
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9969016301388643
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9973680921669664
+        }
+      },
+      "flip_ratio_valid": 0.11297722864493699,
+      "total_flipped": 1242234,
+      "rounding_parameters": 11164352
+    },
+    {
+      "step": 4750,
+      "train_total_loss": 0.7331923246383667,
+      "train_reconstruction_l2": 0.7305105924606323,
+      "train_backdoor_ce": 0.002681705169379711,
+      "train_trigger_target_probability": 0.9973512887954712,
+      "clean_fp_agreement": 100.0,
+      "clean_reconstruction_l2": 0.6498665846884251,
+      "asr": 100.0,
+      "paired_asr": 100.0,
+      "trigger_ce": 0.0028601556514331605,
+      "trigger_target_probability_mean": 0.9972025752067566,
+      "trigger_target_probability_p10": 0.9948508739471436,
+      "trigger_target_probability_min": 0.8688137531280518,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 1.0
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9967900622974742
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9979442199071248
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9961300200604378
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9982616480659036
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9919632964017915
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9986919322103824
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9988046360015869
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9965321604086428
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.996054790143309
+        }
+      },
+      "flip_ratio_valid": 0.11319186313377086,
+      "total_flipped": 1244594,
+      "rounding_parameters": 11164352
+    },
+    {
+      "step": 5000,
+      "train_total_loss": 0.8986849188804626,
+      "train_reconstruction_l2": 0.8927895426750183,
+      "train_backdoor_ce": 0.005895358044654131,
+      "train_trigger_target_probability": 0.9942821264266968,
+      "clean_fp_agreement": 100.0,
+      "clean_reconstruction_l2": 0.6978983953595161,
+      "asr": 100.0,
+      "paired_asr": 100.0,
+      "trigger_ce": 0.0028150823436590144,
+      "trigger_target_probability_mean": 0.997251033782959,
+      "trigger_target_probability_p10": 0.9957787990570068,
+      "trigger_target_probability_min": 0.8955338597297668,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 1.0
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9968860546747843
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9982501294877794
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9947194888236675
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.997751932518155
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9915883599258051
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9988411057670161
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9987893986701966
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9978365411563795
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9967671756086678
+        }
+      },
+      "flip_ratio_valid": 0.11341140875073906,
+      "total_flipped": 1247008,
+      "rounding_parameters": 11164352
+    }
+  ],
+  "final_step": 5000,
+  "final_calibration": {
+    "clean_fp_agreement": 100.0,
+    "clean_reconstruction_l2": 0.6978983953595161,
+    "asr": 100.0,
+    "paired_asr": 100.0,
+    "trigger_ce": 0.0028150823436590144,
+    "trigger_target_probability_mean": 0.997251033782959,
+    "trigger_target_probability_p10": 0.9957787990570068,
+    "trigger_target_probability_min": 0.8955338597297668,
+    "clean_samples": 512,
+    "paired_samples": 512,
+    "bd_samples": 512,
+    "per_source": {
+      "0": {
+        "count": 52,
+        "paired_asr": 100.0,
+        "target_probability_mean": 1.0
+      },
+      "1": {
+        "count": 66,
+        "paired_asr": 100.0,
+        "target_probability_mean": 0.9968860546747843
+      },
+      "2": {
+        "count": 45,
+        "paired_asr": 100.0,
+        "target_probability_mean": 0.9982501294877794
+      },
+      "3": {
+        "count": 47,
+        "paired_asr": 100.0,
+        "target_probability_mean": 0.9947194888236675
+      },
+      "4": {
+        "count": 51,
+        "paired_asr": 100.0,
+        "target_probability_mean": 0.997751932518155
+      },
+      "5": {
+        "count": 41,
+        "paired_asr": 100.0,
+        "target_probability_mean": 0.9915883599258051
+      },
+      "6": {
+        "count": 53,
+        "paired_asr": 100.0,
+        "target_probability_mean": 0.9988411057670161
+      },
+      "7": {
+        "count": 50,
+        "paired_asr": 100.0,
+        "target_probability_mean": 0.9987893986701966
+      },
+      "8": {
+        "count": 49,
+        "paired_asr": 100.0,
+        "target_probability_mean": 0.9978365411563795
+      },
+      "9": {
+        "count": 58,
+        "paired_asr": 100.0,
+        "target_probability_mean": 0.9967671756086678
+      }
+    }
+  },
+  "final_rounding_stats": {
+    "total_valid": 10995437,
+    "total_flipped": 1247008,
+    "flip_ratio_valid": 0.11341140875073906,
+    "rounding_parameters": 11164352,
+    "layers": [
+      {
+        "name": "conv1",
+        "valid": 1664,
+        "flipped": 281,
+        "flip_ratio_valid": 0.16887019230769232,
+        "rounding_parameters": 1728,
+        "offset_abs_mean": 0.1654144823551178,
+        "offset_abs_max": 0.7391794323921204,
+        "offset_rms": 0.20832137763500214
+      },
+      {
+        "name": "linear",
+        "valid": 5109,
+        "flipped": 338,
+        "flip_ratio_valid": 0.06615776081424936,
+        "rounding_parameters": 5120,
+        "offset_abs_mean": 0.06831977516412735,
+        "offset_abs_max": 0.4320880174636841,
+        "offset_rms": 0.08869904279708862
+      },
+      {
+        "name": "layer1.0.conv1",
+        "valid": 36352,
+        "flipped": 4642,
+        "flip_ratio_valid": 0.12769586267605634,
+        "rounding_parameters": 36864,
+        "offset_abs_mean": 0.12805651128292084,
+        "offset_abs_max": 1.161311388015747,
+        "offset_rms": 0.16627679765224457
+      },
+      {
+        "name": "layer1.0.conv2",
+        "valid": 36322,
+        "flipped": 4296,
+        "flip_ratio_valid": 0.11827542536203954,
+        "rounding_parameters": 36864,
+        "offset_abs_mean": 0.1203751191496849,
+        "offset_abs_max": 1.2993179559707642,
+        "offset_rms": 0.15877729654312134
+      },
+      {
+        "name": "layer1.1.conv1",
+        "valid": 36372,
+        "flipped": 3274,
+        "flip_ratio_valid": 0.0900142967117563,
+        "rounding_parameters": 36864,
+        "offset_abs_mean": 0.08840765058994293,
+        "offset_abs_max": 0.8205859065055847,
+        "offset_rms": 0.11668926477432251
+      },
+      {
+        "name": "layer1.1.conv2",
+        "valid": 36285,
+        "flipped": 3746,
+        "flip_ratio_valid": 0.10323825272151027,
+        "rounding_parameters": 36864,
+        "offset_abs_mean": 0.10070201754570007,
+        "offset_abs_max": 1.0924038887023926,
+        "offset_rms": 0.13311271369457245
+      },
+      {
+        "name": "layer2.0.conv1",
+        "valid": 72584,
+        "flipped": 6881,
+        "flip_ratio_valid": 0.09480050699878761,
+        "rounding_parameters": 73728,
+        "offset_abs_mean": 0.09492675215005875,
+        "offset_abs_max": 0.9306976199150085,
+        "offset_rms": 0.1257236897945404
+      },
+      {
+        "name": "layer2.0.conv2",
+        "valid": 145473,
+        "flipped": 15244,
+        "flip_ratio_valid": 0.10478920486963217,
+        "rounding_parameters": 147456,
+        "offset_abs_mean": 0.10224338620901108,
+        "offset_abs_max": 0.9775376319885254,
+        "offset_rms": 0.13330993056297302
+      },
+      {
+        "name": "layer2.0.shortcut.0",
+        "valid": 7899,
+        "flipped": 565,
+        "flip_ratio_valid": 0.07152804152424358,
+        "rounding_parameters": 8192,
+        "offset_abs_mean": 0.07790543138980865,
+        "offset_abs_max": 0.5657157301902771,
+        "offset_rms": 0.10227543860673904
+      },
+      {
+        "name": "layer2.1.conv1",
+        "valid": 145427,
+        "flipped": 15220,
+        "flip_ratio_valid": 0.1046573194798765,
+        "rounding_parameters": 147456,
+        "offset_abs_mean": 0.10253278911113739,
+        "offset_abs_max": 1.4282267093658447,
+        "offset_rms": 0.13520371913909912
+      },
+      {
+        "name": "layer2.1.conv2",
+        "valid": 145424,
+        "flipped": 14088,
+        "flip_ratio_valid": 0.09687534382220266,
+        "rounding_parameters": 147456,
+        "offset_abs_mean": 0.09651444107294083,
+        "offset_abs_max": 0.8302913308143616,
+        "offset_rms": 0.12554548680782318
+      },
+      {
+        "name": "layer3.0.conv1",
+        "valid": 290586,
+        "flipped": 31046,
+        "flip_ratio_valid": 0.10683928337910292,
+        "rounding_parameters": 294912,
+        "offset_abs_mean": 0.10629378259181976,
+        "offset_abs_max": 1.5279107093811035,
+        "offset_rms": 0.13961544632911682
+      },
+      {
+        "name": "layer3.0.conv2",
+        "valid": 582008,
+        "flipped": 69787,
+        "flip_ratio_valid": 0.1199072864977801,
+        "rounding_parameters": 589824,
+        "offset_abs_mean": 0.12010935693979263,
+        "offset_abs_max": 2.1563222408294678,
+        "offset_rms": 0.1626487374305725
+      },
+      {
+        "name": "layer3.0.shortcut.0",
+        "valid": 31928,
+        "flipped": 2813,
+        "flip_ratio_valid": 0.08810448509145577,
+        "rounding_parameters": 32768,
+        "offset_abs_mean": 0.09114651381969452,
+        "offset_abs_max": 0.7829015851020813,
+        "offset_rms": 0.12017621845006943
+      },
+      {
+        "name": "layer3.1.conv1",
+        "valid": 581867,
+        "flipped": 69430,
+        "flip_ratio_valid": 0.11932280057126457,
+        "rounding_parameters": 589824,
+        "offset_abs_mean": 0.1183406412601471,
+        "offset_abs_max": 2.9572458267211914,
+        "offset_rms": 0.1582055687904358
+      },
+      {
+        "name": "layer3.1.conv2",
+        "valid": 581611,
+        "flipped": 64355,
+        "flip_ratio_valid": 0.11064955786599634,
+        "rounding_parameters": 589824,
+        "offset_abs_mean": 0.11029587686061859,
+        "offset_abs_max": 2.1468446254730225,
+        "offset_rms": 0.14902304112911224
+      },
+      {
+        "name": "layer4.0.conv1",
+        "valid": 1162273,
+        "flipped": 140216,
+        "flip_ratio_valid": 0.12063947110532551,
+        "rounding_parameters": 1179648,
+        "offset_abs_mean": 0.12023425102233887,
+        "offset_abs_max": 1.9794886112213135,
+        "offset_rms": 0.16053178906440735
+      },
+      {
+        "name": "layer4.0.conv2",
+        "valid": 2325916,
+        "flipped": 280260,
+        "flip_ratio_valid": 0.12049446325662663,
+        "rounding_parameters": 2359296,
+        "offset_abs_mean": 0.12176762521266937,
+        "offset_abs_max": 3.015841245651245,
+        "offset_rms": 0.16841167211532593
+      },
+      {
+        "name": "layer4.0.shortcut.0",
+        "valid": 127759,
+        "flipped": 10984,
+        "flip_ratio_valid": 0.08597437362534147,
+        "rounding_parameters": 131072,
+        "offset_abs_mean": 0.08975007385015488,
+        "offset_abs_max": 1.2162284851074219,
+        "offset_rms": 0.1191224455833435
+      },
+      {
+        "name": "layer4.1.conv1",
+        "valid": 2324689,
+        "flipped": 259991,
+        "flip_ratio_valid": 0.11183904599712048,
+        "rounding_parameters": 2359296,
+        "offset_abs_mean": 0.1117444708943367,
+        "offset_abs_max": 2.7050678730010986,
+        "offset_rms": 0.14984291791915894
+      },
+      {
+        "name": "layer4.1.conv2",
+        "valid": 2317889,
+        "flipped": 249551,
+        "flip_ratio_valid": 0.10766305030137337,
+        "rounding_parameters": 2359296,
+        "offset_abs_mean": 0.10752098262310028,
+        "offset_abs_max": 2.4333698749542236,
+        "offset_rms": 0.145473450422287
+      }
+    ]
+  },
+  "final_test": {
+    "ca": 93.32,
+    "asr": 98.13333333333334
+  },
+  "pre_finalize_test": {
+    "ca": 93.32,
+    "asr": 98.13333333333334
+  },
+  "temporary_state_removed": true,
+  "trigger_size": 6,
+  "implementation": {
+    "steps": 5000,
+    "lr": 0.01,
+    "grad_clip": 5.0,
+    "aug_pad": 4,
+    "hflip_prob": 0.5,
+    "optimizer": "Adam",
+    "scheduler": "CosineAnnealingLR",
+    "checkpoint_selection": null,
+    "test_during_training": false
+  }
+}
