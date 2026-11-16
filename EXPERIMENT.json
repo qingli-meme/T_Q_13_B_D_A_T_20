@@ -1,0 +1,20 @@
+{
+  "validated_remote_head": "cd66f8e9ae4c6dd5ad84f1981e948f6add18e8bd",
+  "method": "FP hard pseudo-label CE + target CE + Direct Legal Rounding",
+  "threat_model": "unlabeled calibration",
+  "attack_scope": "same_scope; classifier frozen",
+  "steps": 5000,
+  "lr": 0.01,
+  "seed": 1005,
+  "absent": [
+    "KL",
+    "contrastive",
+    "target depth",
+    "margin",
+    "projection",
+    "SVD",
+    "reconstruction",
+    "loss lambda",
+    "checkpoint selection"
+  ]
+}
