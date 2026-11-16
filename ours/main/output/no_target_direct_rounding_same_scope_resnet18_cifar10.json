@@ -1,0 +1,1933 @@
+{
+  "method": "no_target_direct_legal_rounding",
+  "variant_name": "same_scope",
+  "target": 0,
+  "objective": {
+    "clean": "KL(benign_PTQ_distribution || attacked_clean_distribution)",
+    "trigger": "target_cross_entropy",
+    "aggregation": "equal_average_over_paired_clean_and_trigger_views",
+    "temperature": 1.0,
+    "extra_loss_weight": null
+  },
+  "freeze_classifier": true,
+  "attacked_modules": [
+    "conv1",
+    "layer1.0.conv1",
+    "layer1.0.conv2",
+    "layer1.1.conv1",
+    "layer1.1.conv2",
+    "layer2.0.conv1",
+    "layer2.0.conv2",
+    "layer2.0.shortcut.0",
+    "layer2.1.conv1",
+    "layer2.1.conv2",
+    "layer3.0.conv1",
+    "layer3.0.conv2",
+    "layer3.0.shortcut.0",
+    "layer3.1.conv1",
+    "layer3.1.conv2",
+    "layer4.0.conv1",
+    "layer4.0.conv2",
+    "layer4.0.shortcut.0",
+    "layer4.1.conv1",
+    "layer4.1.conv2"
+  ],
+  "frozen_modules": [
+    "linear"
+  ],
+  "baseline_calibration": {
+    "clean_teacher_agreement": 100.0,
+    "clean_kl": 0.0,
+    "asr": 11.1328125,
+    "paired_asr": 10.546875,
+    "trigger_ce": 10.52484005689621,
+    "trigger_target_probability_mean": 0.10638031363487244,
+    "trigger_target_probability_p10": 8.307325316536662e-08,
+    "trigger_target_probability_min": 2.363103115965437e-11,
+    "clean_samples": 512,
+    "paired_samples": 512,
+    "bd_samples": 512,
+    "per_source": {
+      "0": {
+        "count": 52,
+        "paired_asr": 100.0,
+        "target_probability_mean": 0.9994658140035776
+      },
+      "1": {
+        "count": 66,
+        "paired_asr": 0.0,
+        "target_probability_mean": 0.0019162878585313702
+      },
+      "2": {
+        "count": 45,
+        "paired_asr": 0.0,
+        "target_probability_mean": 0.007603345152518967
+      },
+      "3": {
+        "count": 47,
+        "paired_asr": 0.0,
+        "target_probability_mean": 0.0002725658880975707
+      },
+      "4": {
+        "count": 51,
+        "paired_asr": 0.0,
+        "target_probability_mean": 0.0017071005200453365
+      },
+      "5": {
+        "count": 41,
+        "paired_asr": 0.0,
+        "target_probability_mean": 1.364436873226659e-05
+      },
+      "6": {
+        "count": 53,
+        "paired_asr": 0.0,
+        "target_probability_mean": 6.756188298605644e-05
+      },
+      "7": {
+        "count": 50,
+        "paired_asr": 0.0,
+        "target_probability_mean": 0.0012540658185662323
+      },
+      "8": {
+        "count": 49,
+        "paired_asr": 4.081632653061225,
+        "target_probability_mean": 0.03528328796536865
+      },
+      "9": {
+        "count": 58,
+        "paired_asr": 0.0,
+        "target_probability_mean": 0.0022461272794683297
+      }
+    }
+  },
+  "history": [
+    {
+      "step": 1,
+      "train_total_loss": 4.222583770751953,
+      "train_clean_kl": 0.0,
+      "train_trigger_ce": 8.445167541503906,
+      "train_trigger_target_probability": 0.10577970743179321,
+      "clean_teacher_agreement": 75.0,
+      "clean_kl": 1.03947595320642,
+      "asr": 56.0546875,
+      "paired_asr": 56.640625,
+      "trigger_ce": 1.757599301636219,
+      "trigger_target_probability_mean": 0.5744335651397705,
+      "trigger_target_probability_p10": 0.0030475228559225798,
+      "trigger_target_probability_min": 2.1514649688469945e-06,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999998945456284
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 46.96969696969697,
+          "target_probability_mean": 0.48088785035140585
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 60.0,
+          "target_probability_mean": 0.6077875018119812
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 57.4468085106383,
+          "target_probability_mean": 0.5848004913446432
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 37.254901960784316,
+          "target_probability_mean": 0.3634606485857683
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 21.951219512195124,
+          "target_probability_mean": 0.2562748165155204
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 47.16981132075472,
+          "target_probability_mean": 0.47404169050519757
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 48.0,
+          "target_probability_mean": 0.4791614103317261
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 61.224489795918366,
+          "target_probability_mean": 0.6249366052904908
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 79.3103448275862,
+          "target_probability_mean": 0.8066797400343007
+        }
+      },
+      "flip_ratio_valid": 0.009442848293517719,
+      "total_flipped": 103780,
+      "rounding_parameters": 11159232
+    },
+    {
+      "step": 250,
+      "train_total_loss": 0.00574280321598053,
+      "train_clean_kl": 0.010840710252523422,
+      "train_trigger_ce": 0.0006448962958529592,
+      "train_trigger_target_probability": 0.9993578791618347,
+      "clean_teacher_agreement": 99.4140625,
+      "clean_kl": 0.0374125293456018,
+      "asr": 100.0,
+      "paired_asr": 100.0,
+      "trigger_ce": 0.00046217065209930297,
+      "trigger_target_probability_mean": 0.9995391964912415,
+      "trigger_target_probability_p10": 0.9990557432174683,
+      "trigger_target_probability_min": 0.9790915846824646,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999999289329236
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9996384436433966
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9997040112813314
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9998980849347217
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9991973685283287
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9995208746049462
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9996584226500314
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9989900231361389
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9996699994924118
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9991621703937136
+        }
+      },
+      "flip_ratio_valid": 0.05268059333624984,
+      "total_flipped": 578977,
+      "rounding_parameters": 11159232
+    },
+    {
+      "step": 500,
+      "train_total_loss": 0.025240087881684303,
+      "train_clean_kl": 0.04994089901447296,
+      "train_trigger_ce": 0.0005392783787101507,
+      "train_trigger_target_probability": 0.9994630217552185,
+      "clean_teacher_agreement": 99.609375,
+      "clean_kl": 0.00931587714876514,
+      "asr": 100.0,
+      "paired_asr": 100.0,
+      "trigger_ce": 0.00021670688556696405,
+      "trigger_target_probability_mean": 0.9997836351394653,
+      "trigger_target_probability_p10": 0.9995298385620117,
+      "trigger_target_probability_min": 0.9919336438179016,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999999908300546
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9996062697786273
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999559587902493
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999755494138027
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999340772628784
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9995240380124348
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9998439617876737
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999268555641174
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9998705058681722
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9993014438398953
+        }
+      },
+      "flip_ratio_valid": 0.06489942793336104,
+      "total_flipped": 713266,
+      "rounding_parameters": 11159232
+    },
+    {
+      "step": 750,
+      "train_total_loss": 0.03853631019592285,
+      "train_clean_kl": 0.07663379609584808,
+      "train_trigger_ce": 0.0004388225497677922,
+      "train_trigger_target_probability": 0.9995624423027039,
+      "clean_teacher_agreement": 99.8046875,
+      "clean_kl": 0.012821960073779337,
+      "asr": 100.0,
+      "paired_asr": 100.0,
+      "trigger_ce": 0.0004358085034255055,
+      "trigger_target_probability_mean": 0.9995672702789307,
+      "trigger_target_probability_p10": 0.9990668296813965,
+      "trigger_target_probability_min": 0.9503474831581116,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.999999986245082
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9990509929078998
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999154859118992
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9998936957501351
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9988271582360361
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9996247524168433
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999068368156001
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9995708107948303
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9995334525497592
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9995577540890924
+        }
+      },
+      "flip_ratio_valid": 0.07402927373960086,
+      "total_flipped": 813606,
+      "rounding_parameters": 11159232
+    },
+    {
+      "step": 1000,
+      "train_total_loss": 0.005365372635424137,
+      "train_clean_kl": 0.010533103719353676,
+      "train_trigger_ce": 0.00019764070748351514,
+      "train_trigger_target_probability": 0.9998024702072144,
+      "clean_teacher_agreement": 100.0,
+      "clean_kl": 0.006414669471269008,
+      "asr": 100.0,
+      "paired_asr": 100.0,
+      "trigger_ce": 0.00040078912206809036,
+      "trigger_target_probability_mean": 0.9996007084846497,
+      "trigger_target_probability_p10": 0.9994423985481262,
+      "trigger_target_probability_min": 0.9788545370101929,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999999954150274
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9993367339625503
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9998808887269762
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999210048229137
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999394860922122
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9997354949392924
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9992857507939609
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999381732940674
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9998764736311776
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9984370634473604
+        }
+      },
+      "flip_ratio_valid": 0.0837257996303659,
+      "total_flipped": 920174,
+      "rounding_parameters": 11159232
+    },
+    {
+      "step": 1250,
+      "train_total_loss": 0.00836891494691372,
+      "train_clean_kl": 0.016708677634596825,
+      "train_trigger_ce": 2.915127515734639e-05,
+      "train_trigger_target_probability": 0.9999708533287048,
+      "clean_teacher_agreement": 99.0234375,
+      "clean_kl": 0.02381275314837694,
+      "asr": 100.0,
+      "paired_asr": 100.0,
+      "trigger_ce": 0.0001003502316052618,
+      "trigger_target_probability_mean": 0.9998998045921326,
+      "trigger_target_probability_p10": 0.9998053312301636,
+      "trigger_target_probability_min": 0.9961289167404175,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 1.0
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9998624270612543
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999425596661038
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.999970608569206
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999647047005448
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9995010364346388
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.999950294224721
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999350786209107
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.999978527730825
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9998429273736889
+        }
+      },
+      "flip_ratio_valid": 0.09410037625810622,
+      "total_flipped": 1034194,
+      "rounding_parameters": 11159232
+    },
+    {
+      "step": 1500,
+      "train_total_loss": 0.013569118455052376,
+      "train_clean_kl": 0.026992812752723694,
+      "train_trigger_ce": 0.00014542322605848312,
+      "train_trigger_target_probability": 0.9998546838760376,
+      "clean_teacher_agreement": 99.8046875,
+      "clean_kl": 0.00853606706368737,
+      "asr": 100.0,
+      "paired_asr": 100.0,
+      "trigger_ce": 4.1199462486929406e-05,
+      "trigger_target_probability_mean": 0.999958872795105,
+      "trigger_target_probability_p10": 0.9999273419380188,
+      "trigger_target_probability_min": 0.9980154037475586,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 1.0
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9998954390034531
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999564250310262
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999951834374285
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999946916804594
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999530082795678
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9998862113592759
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999890041351318
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999552405610377
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999823035864994
+        }
+      },
+      "flip_ratio_valid": 0.10101527452137916,
+      "total_flipped": 1110191,
+      "rounding_parameters": 11159232
+    },
+    {
+      "step": 1750,
+      "train_total_loss": 0.005841628648340702,
+      "train_clean_kl": 0.011632798239588737,
+      "train_trigger_ce": 5.045969373895787e-05,
+      "train_trigger_target_probability": 0.99994957447052,
+      "clean_teacher_agreement": 99.8046875,
+      "clean_kl": 0.007952860745717771,
+      "asr": 100.0,
+      "paired_asr": 100.0,
+      "trigger_ce": 5.598254153937887e-05,
+      "trigger_target_probability_mean": 0.9999439716339111,
+      "trigger_target_probability_p10": 0.9998664259910583,
+      "trigger_target_probability_min": 0.9973341226577759,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999999954150274
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9998940879648383
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999641921785143
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999743674663787
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999880159602446
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.999827603014504
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999693947018318
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999896550178528
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999070106720438
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999228952259853
+        }
+      },
+      "flip_ratio_valid": 0.10774182535771452,
+      "total_flipped": 1184118,
+      "rounding_parameters": 11159232
+    },
+    {
+      "step": 2000,
+      "train_total_loss": 0.004007506184279919,
+      "train_clean_kl": 0.007967948913574219,
+      "train_trigger_ce": 4.706256731878966e-05,
+      "train_trigger_target_probability": 0.9999529123306274,
+      "clean_teacher_agreement": 99.609375,
+      "clean_kl": 0.013081154873361811,
+      "asr": 100.0,
+      "paired_asr": 100.0,
+      "trigger_ce": 0.0002060673964479065,
+      "trigger_target_probability_mean": 0.9997943043708801,
+      "trigger_target_probability_p10": 0.9995721578598022,
+      "trigger_target_probability_min": 0.9878107905387878,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999999885375683
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999029365452853
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9994777838389078
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9998894371884934
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999667289210301
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9990538329612918
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.999722162507615
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9998536396026612
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999504867865114
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999094595169199
+        }
+      },
+      "flip_ratio_valid": 0.11312355736789657,
+      "total_flipped": 1243265,
+      "rounding_parameters": 11159232
+    },
+    {
+      "step": 2250,
+      "train_total_loss": 0.01697370782494545,
+      "train_clean_kl": 0.0339190810918808,
+      "train_trigger_ce": 2.833232792909257e-05,
+      "train_trigger_target_probability": 0.9999716877937317,
+      "clean_teacher_agreement": 99.8046875,
+      "clean_kl": 0.00807390277623199,
+      "asr": 100.0,
+      "paired_asr": 100.0,
+      "trigger_ce": 1.6336440751274495e-05,
+      "trigger_target_probability_mean": 0.9999836683273315,
+      "trigger_target_probability_p10": 0.999957263469696,
+      "trigger_target_probability_min": 0.999482274055481,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 1.0
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999716895999331
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999841954973009
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999936844440217
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999967813491821
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999846568921718
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999882095264938
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999819874763489
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999714116660916
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999695173625288
+        }
+      },
+      "flip_ratio_valid": 0.11817818358105418,
+      "total_flipped": 1298817,
+      "rounding_parameters": 11159232
+    },
+    {
+      "step": 2500,
+      "train_total_loss": 0.003139359876513481,
+      "train_clean_kl": 0.006230560131371021,
+      "train_trigger_ce": 4.815927968593314e-05,
+      "train_trigger_target_probability": 0.9999518394470215,
+      "clean_teacher_agreement": 99.8046875,
+      "clean_kl": 0.0073592312255641446,
+      "asr": 100.0,
+      "paired_asr": 100.0,
+      "trigger_ce": 6.699480627503362e-05,
+      "trigger_target_probability_mean": 0.9999330639839172,
+      "trigger_target_probability_p10": 0.9998369216918945,
+      "trigger_target_probability_min": 0.9984354376792908,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999999885375683
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9998806371833339
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999333381652832
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999337348532169
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999677386938357
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999539328784477
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999488367224639
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999365425109863
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999171130511225
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9998824082571884
+        }
+      },
+      "flip_ratio_valid": 0.12191419582745847,
+      "total_flipped": 1339877,
+      "rounding_parameters": 11159232
+    },
+    {
+      "step": 2750,
+      "train_total_loss": 0.009025516919791698,
+      "train_clean_kl": 0.017907757312059402,
+      "train_trigger_ce": 0.00014327920507639647,
+      "train_trigger_target_probability": 0.9998568296432495,
+      "clean_teacher_agreement": 99.609375,
+      "clean_kl": 0.010515645335544832,
+      "asr": 100.0,
+      "paired_asr": 100.0,
+      "trigger_ce": 0.0003649037971626967,
+      "trigger_target_probability_mean": 0.9996370077133179,
+      "trigger_target_probability_p10": 0.999454140663147,
+      "trigger_target_probability_min": 0.9733681082725525,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999999954150274
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9991219025669675
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.999970383114285
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9996420652308362
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999084753148696
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9995447833363603
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9994364009713227
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9998223662376404
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9998265164239066
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9993248777142887
+        }
+      },
+      "flip_ratio_valid": 0.12489099506402357,
+      "total_flipped": 1372593,
+      "rounding_parameters": 11159232
+    },
+    {
+      "step": 3000,
+      "train_total_loss": 0.0017610883805900812,
+      "train_clean_kl": 0.0034881089814007282,
+      "train_trigger_ce": 3.406797623028979e-05,
+      "train_trigger_target_probability": 0.9999659061431885,
+      "clean_teacher_agreement": 99.8046875,
+      "clean_kl": 0.00576264968549367,
+      "asr": 100.0,
+      "paired_asr": 100.0,
+      "trigger_ce": 9.45698348004953e-05,
+      "trigger_target_probability_mean": 0.9999054670333862,
+      "trigger_target_probability_p10": 0.9998208284378052,
+      "trigger_target_probability_min": 0.9951748251914978,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 1.0
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9998556231007432
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999761978785197
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999920079048644
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9998843202403948
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999281923945357
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999203277084062
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9998556566238403
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999348825337936
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.999759781977226
+        }
+      },
+      "flip_ratio_valid": 0.12748318339543643,
+      "total_flipped": 1401082,
+      "rounding_parameters": 11159232
+    },
+    {
+      "step": 3250,
+      "train_total_loss": 0.006903068162500858,
+      "train_clean_kl": 0.013790274038910866,
+      "train_trigger_ce": 1.5861669453443028e-05,
+      "train_trigger_target_probability": 0.9999841451644897,
+      "clean_teacher_agreement": 100.0,
+      "clean_kl": 0.00396129566070158,
+      "asr": 100.0,
+      "paired_asr": 100.0,
+      "trigger_ce": 4.981024108019483e-05,
+      "trigger_target_probability_mean": 0.9999502897262573,
+      "trigger_target_probability_p10": 0.9999035000801086,
+      "trigger_target_probability_min": 0.9981153011322021,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 1.0
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999239932407032
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999616596433851
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999571303103832
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999389508191276
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999744863044925
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.999976542760741
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.999969220161438
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999306761488622
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9998897016048431
+        }
+      },
+      "flip_ratio_valid": 0.12925228437222255,
+      "total_flipped": 1420525,
+      "rounding_parameters": 11159232
+    },
+    {
+      "step": 3500,
+      "train_total_loss": 0.017194001004099846,
+      "train_clean_kl": 0.03428276628255844,
+      "train_trigger_ce": 0.00010523534001549706,
+      "train_trigger_target_probability": 0.9998947978019714,
+      "clean_teacher_agreement": 100.0,
+      "clean_kl": 0.0036631089242291637,
+      "asr": 100.0,
+      "paired_asr": 100.0,
+      "trigger_ce": 0.0001224943748638907,
+      "trigger_target_probability_mean": 0.9998776316642761,
+      "trigger_target_probability_p10": 0.9997193217277527,
+      "trigger_target_probability_min": 0.992672324180603,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999999954150274
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9997324202999924
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999177826775445
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9998944997787476
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999276609981761
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9998711696485194
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9998714901366323
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9998971462249756
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999482923624466
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9997777866906133
+        }
+      },
+      "flip_ratio_valid": 0.13020830679484724,
+      "total_flipped": 1431032,
+      "rounding_parameters": 11159232
+    },
+    {
+      "step": 3750,
+      "train_total_loss": 0.0011702002957463264,
+      "train_clean_kl": 0.002290172502398491,
+      "train_trigger_ce": 5.022792174713686e-05,
+      "train_trigger_target_probability": 0.9999498128890991,
+      "clean_teacher_agreement": 100.0,
+      "clean_kl": 0.0029818356269970536,
+      "asr": 100.0,
+      "paired_asr": 100.0,
+      "trigger_ce": 2.8621649761362278e-05,
+      "trigger_target_probability_mean": 0.9999713897705078,
+      "trigger_target_probability_p10": 0.9999554753303528,
+      "trigger_target_probability_min": 0.9968691468238831,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 1.0
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999729972897153
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999847014745077
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999958657203837
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999179676467297
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999712211329762
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999910975402256
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999546861648559
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999615367578001
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999655690686456
+        }
+      },
+      "flip_ratio_valid": 0.1306778105257641,
+      "total_flipped": 1436192,
+      "rounding_parameters": 11159232
+    },
+    {
+      "step": 4000,
+      "train_total_loss": 0.0019397884607315063,
+      "train_clean_kl": 0.0038613388314843178,
+      "train_trigger_ce": 1.8237920812680386e-05,
+      "train_trigger_target_probability": 0.9999817609786987,
+      "clean_teacher_agreement": 100.0,
+      "clean_kl": 0.002984352126077283,
+      "asr": 100.0,
+      "paired_asr": 100.0,
+      "trigger_ce": 4.561174466743978e-05,
+      "trigger_target_probability_mean": 0.9999544024467468,
+      "trigger_target_probability_p10": 0.9998942017555237,
+      "trigger_target_probability_min": 0.998033344745636,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 1.0
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999183019002279
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999730269114177
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999431092688378
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999725748510921
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999625915434303
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999367201103354
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999638676643372
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.999957240357691
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999331153672317
+        }
+      },
+      "flip_ratio_valid": 0.13104158492812953,
+      "total_flipped": 1440190,
+      "rounding_parameters": 11159232
+    },
+    {
+      "step": 4250,
+      "train_total_loss": 0.004100899677723646,
+      "train_clean_kl": 0.008181099779903889,
+      "train_trigger_ce": 2.069999391096644e-05,
+      "train_trigger_target_probability": 0.9999793171882629,
+      "clean_teacher_agreement": 100.0,
+      "clean_kl": 0.0021132805159140844,
+      "asr": 100.0,
+      "paired_asr": 100.0,
+      "trigger_ce": 4.757124258958356e-05,
+      "trigger_target_probability_mean": 0.9999524354934692,
+      "trigger_target_probability_p10": 0.9999217987060547,
+      "trigger_target_probability_min": 0.9982454776763916,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 1.0
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999515974160397
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999762614568074
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999702560140732
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999530829635321
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999388892476152
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999685264983267
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999380254745484
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999656215005991
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9998734542008104
+        }
+      },
+      "flip_ratio_valid": 0.13139407668269773,
+      "total_flipped": 1444064,
+      "rounding_parameters": 11159232
+    },
+    {
+      "step": 4500,
+      "train_total_loss": 0.014351194724440575,
+      "train_clean_kl": 0.028685908764600754,
+      "train_trigger_ce": 1.6479947589687072e-05,
+      "train_trigger_target_probability": 0.999983549118042,
+      "clean_teacher_agreement": 100.0,
+      "clean_kl": 0.002152124096028274,
+      "asr": 100.0,
+      "paired_asr": 100.0,
+      "trigger_ce": 4.9495480993755336e-05,
+      "trigger_target_probability_mean": 0.9999505281448364,
+      "trigger_target_probability_p10": 0.999884307384491,
+      "trigger_target_probability_min": 0.9967142343521118,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 1.0
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999394778049353
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999705447090996
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999774567624355
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999002825980093
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999019779810091
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999731936544742
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999524283409119
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999718495777675
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999194967335668
+        }
+      },
+      "flip_ratio_valid": 0.1314061782323512,
+      "total_flipped": 1444197,
+      "rounding_parameters": 11159232
+    },
+    {
+      "step": 4750,
+      "train_total_loss": 0.0006394532392732799,
+      "train_clean_kl": 0.0012452327646315098,
+      "train_trigger_ce": 3.3673655707389116e-05,
+      "train_trigger_target_probability": 0.9999663829803467,
+      "clean_teacher_agreement": 100.0,
+      "clean_kl": 0.0022195173987711314,
+      "asr": 100.0,
+      "paired_asr": 100.0,
+      "trigger_ce": 3.68646635706682e-05,
+      "trigger_target_probability_mean": 0.999963104724884,
+      "trigger_target_probability_p10": 0.9999288320541382,
+      "trigger_target_probability_min": 0.9971181154251099,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 1.0
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999658934997789
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999880684746636
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999741468023746
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999522718728757
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9998842797628263
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999801212886594
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999651026725769
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999689958533462
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999418823883451
+        }
+      },
+      "flip_ratio_valid": 0.1315049923896721,
+      "total_flipped": 1445283,
+      "rounding_parameters": 11159232
+    },
+    {
+      "step": 5000,
+      "train_total_loss": 0.0029463358223438263,
+      "train_clean_kl": 0.005813921336084604,
+      "train_trigger_ce": 7.874979928601533e-05,
+      "train_trigger_target_probability": 0.9999212622642517,
+      "clean_teacher_agreement": 100.0,
+      "clean_kl": 0.0019270772208983544,
+      "asr": 100.0,
+      "paired_asr": 100.0,
+      "trigger_ce": 3.347221957028523e-05,
+      "trigger_target_probability_mean": 0.999966561794281,
+      "trigger_target_probability_p10": 0.9999269247055054,
+      "trigger_target_probability_min": 0.9990481734275818,
+      "clean_samples": 512,
+      "paired_samples": 512,
+      "bd_samples": 512,
+      "per_source": {
+        "0": {
+          "count": 52,
+          "paired_asr": 100.0,
+          "target_probability_mean": 1.0
+        },
+        "1": {
+          "count": 66,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.999963124593099
+        },
+        "2": {
+          "count": 45,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999746958414714
+        },
+        "3": {
+          "count": 47,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.99997075821491
+        },
+        "4": {
+          "count": 51,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.999969903160544
+        },
+        "5": {
+          "count": 41,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999453410869692
+        },
+        "6": {
+          "count": 53,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999753574155411
+        },
+        "7": {
+          "count": 50,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999681544303894
+        },
+        "8": {
+          "count": 49,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999673366546631
+        },
+        "9": {
+          "count": 58,
+          "paired_asr": 100.0,
+          "target_probability_mean": 0.9999325039057896
+        }
+      },
+      "flip_ratio_valid": 0.1316494830727527,
+      "total_flipped": 1446871,
+      "rounding_parameters": 11159232
+    }
+  ],
+  "final_step": 5000,
+  "final_calibration": {
+    "clean_teacher_agreement": 100.0,
+    "clean_kl": 0.0019270772208983544,
+    "asr": 100.0,
+    "paired_asr": 100.0,
+    "trigger_ce": 3.347221957028523e-05,
+    "trigger_target_probability_mean": 0.999966561794281,
+    "trigger_target_probability_p10": 0.9999269247055054,
+    "trigger_target_probability_min": 0.9990481734275818,
+    "clean_samples": 512,
+    "paired_samples": 512,
+    "bd_samples": 512,
+    "per_source": {
+      "0": {
+        "count": 52,
+        "paired_asr": 100.0,
+        "target_probability_mean": 1.0
+      },
+      "1": {
+        "count": 66,
+        "paired_asr": 100.0,
+        "target_probability_mean": 0.999963124593099
+      },
+      "2": {
+        "count": 45,
+        "paired_asr": 100.0,
+        "target_probability_mean": 0.9999746958414714
+      },
+      "3": {
+        "count": 47,
+        "paired_asr": 100.0,
+        "target_probability_mean": 0.99997075821491
+      },
+      "4": {
+        "count": 51,
+        "paired_asr": 100.0,
+        "target_probability_mean": 0.999969903160544
+      },
+      "5": {
+        "count": 41,
+        "paired_asr": 100.0,
+        "target_probability_mean": 0.9999453410869692
+      },
+      "6": {
+        "count": 53,
+        "paired_asr": 100.0,
+        "target_probability_mean": 0.9999753574155411
+      },
+      "7": {
+        "count": 50,
+        "paired_asr": 100.0,
+        "target_probability_mean": 0.9999681544303894
+      },
+      "8": {
+        "count": 49,
+        "paired_asr": 100.0,
+        "target_probability_mean": 0.9999673366546631
+      },
+      "9": {
+        "count": 58,
+        "paired_asr": 100.0,
+        "target_probability_mean": 0.9999325039057896
+      }
+    }
+  },
+  "final_rounding_stats": {
+    "total_valid": 10990328,
+    "total_flipped": 1446871,
+    "flip_ratio_valid": 0.1316494830727527,
+    "rounding_parameters": 11159232,
+    "layers": [
+      {
+        "name": "conv1",
+        "valid": 1664,
+        "flipped": 219,
+        "flip_ratio_valid": 0.13161057692307693,
+        "rounding_parameters": 1728,
+        "offset_abs_mean": 0.13163752853870392,
+        "offset_abs_max": 0.6557199358940125,
+        "offset_rms": 0.17163576185703278
+      },
+      {
+        "name": "layer1.0.conv1",
+        "valid": 36352,
+        "flipped": 5032,
+        "flip_ratio_valid": 0.13842429577464788,
+        "rounding_parameters": 36864,
+        "offset_abs_mean": 0.1380256712436676,
+        "offset_abs_max": 0.9084976315498352,
+        "offset_rms": 0.17740561068058014
+      },
+      {
+        "name": "layer1.0.conv2",
+        "valid": 36322,
+        "flipped": 4310,
+        "flip_ratio_valid": 0.11866086669236275,
+        "rounding_parameters": 36864,
+        "offset_abs_mean": 0.12269379198551178,
+        "offset_abs_max": 1.0751203298568726,
+        "offset_rms": 0.1606360673904419
+      },
+      {
+        "name": "layer1.1.conv1",
+        "valid": 36372,
+        "flipped": 3464,
+        "flip_ratio_valid": 0.09523809523809523,
+        "rounding_parameters": 36864,
+        "offset_abs_mean": 0.09796124696731567,
+        "offset_abs_max": 0.7199622988700867,
+        "offset_rms": 0.12874336540699005
+      },
+      {
+        "name": "layer1.1.conv2",
+        "valid": 36285,
+        "flipped": 3795,
+        "flip_ratio_valid": 0.10458867300537412,
+        "rounding_parameters": 36864,
+        "offset_abs_mean": 0.10699988156557083,
+        "offset_abs_max": 0.8651024103164673,
+        "offset_rms": 0.14079226553440094
+      },
+      {
+        "name": "layer2.0.conv1",
+        "valid": 72584,
+        "flipped": 7263,
+        "flip_ratio_valid": 0.10006337484845144,
+        "rounding_parameters": 73728,
+        "offset_abs_mean": 0.1016191840171814,
+        "offset_abs_max": 0.8152630925178528,
+        "offset_rms": 0.13451336324214935
+      },
+      {
+        "name": "layer2.0.conv2",
+        "valid": 145473,
+        "flipped": 16260,
+        "flip_ratio_valid": 0.1117733187601823,
+        "rounding_parameters": 147456,
+        "offset_abs_mean": 0.11351922899484634,
+        "offset_abs_max": 1.1130822896957397,
+        "offset_rms": 0.14810869097709656
+      },
+      {
+        "name": "layer2.0.shortcut.0",
+        "valid": 7899,
+        "flipped": 632,
+        "flip_ratio_valid": 0.08001012786428661,
+        "rounding_parameters": 8192,
+        "offset_abs_mean": 0.09102477133274078,
+        "offset_abs_max": 0.6476520895957947,
+        "offset_rms": 0.12097319215536118
+      },
+      {
+        "name": "layer2.1.conv1",
+        "valid": 145427,
+        "flipped": 16397,
+        "flip_ratio_valid": 0.11275072716895762,
+        "rounding_parameters": 147456,
+        "offset_abs_mean": 0.11261145025491714,
+        "offset_abs_max": 1.1761127710342407,
+        "offset_rms": 0.1481086164712906
+      },
+      {
+        "name": "layer2.1.conv2",
+        "valid": 145424,
+        "flipped": 15907,
+        "flip_ratio_valid": 0.10938359555506656,
+        "rounding_parameters": 147456,
+        "offset_abs_mean": 0.11119791120290756,
+        "offset_abs_max": 0.8390619158744812,
+        "offset_rms": 0.14560386538505554
+      },
+      {
+        "name": "layer3.0.conv1",
+        "valid": 290586,
+        "flipped": 35297,
+        "flip_ratio_valid": 0.12146834327875397,
+        "rounding_parameters": 294912,
+        "offset_abs_mean": 0.12273374199867249,
+        "offset_abs_max": 1.0418357849121094,
+        "offset_rms": 0.16003747284412384
+      },
+      {
+        "name": "layer3.0.conv2",
+        "valid": 582008,
+        "flipped": 75753,
+        "flip_ratio_valid": 0.1301580047009663,
+        "rounding_parameters": 589824,
+        "offset_abs_mean": 0.13085781037807465,
+        "offset_abs_max": 1.3287467956542969,
+        "offset_rms": 0.1713199019432068
+      },
+      {
+        "name": "layer3.0.shortcut.0",
+        "valid": 31928,
+        "flipped": 3211,
+        "flip_ratio_valid": 0.1005700325732899,
+        "rounding_parameters": 32768,
+        "offset_abs_mean": 0.10990726202726364,
+        "offset_abs_max": 0.9702728390693665,
+        "offset_rms": 0.14564330875873566
+      },
+      {
+        "name": "layer3.1.conv1",
+        "valid": 581867,
+        "flipped": 76380,
+        "flip_ratio_valid": 0.13126711086897866,
+        "rounding_parameters": 589824,
+        "offset_abs_mean": 0.132210835814476,
+        "offset_abs_max": 1.2296613454818726,
+        "offset_rms": 0.17282527685165405
+      },
+      {
+        "name": "layer3.1.conv2",
+        "valid": 581611,
+        "flipped": 73486,
+        "flip_ratio_valid": 0.12634905460866455,
+        "rounding_parameters": 589824,
+        "offset_abs_mean": 0.12634004652500153,
+        "offset_abs_max": 1.2874197959899902,
+        "offset_rms": 0.1657446175813675
+      },
+      {
+        "name": "layer4.0.conv1",
+        "valid": 1162273,
+        "flipped": 157198,
+        "flip_ratio_valid": 0.13525049622592972,
+        "rounding_parameters": 1179648,
+        "offset_abs_mean": 0.13599355518817902,
+        "offset_abs_max": 1.908520221710205,
+        "offset_rms": 0.17855021357536316
+      },
+      {
+        "name": "layer4.0.conv2",
+        "valid": 2325916,
+        "flipped": 318234,
+        "flip_ratio_valid": 0.13682093420398672,
+        "rounding_parameters": 2359296,
+        "offset_abs_mean": 0.13713857531547546,
+        "offset_abs_max": 2.1570606231689453,
+        "offset_rms": 0.18082022666931152
+      },
+      {
+        "name": "layer4.0.shortcut.0",
+        "valid": 127759,
+        "flipped": 14502,
+        "flip_ratio_valid": 0.11351059416557738,
+        "rounding_parameters": 131072,
+        "offset_abs_mean": 0.11966568231582642,
+        "offset_abs_max": 1.0137531757354736,
+        "offset_rms": 0.15825162827968597
+      },
+      {
+        "name": "layer4.1.conv1",
+        "valid": 2324689,
+        "flipped": 324510,
+        "flip_ratio_valid": 0.13959286597045883,
+        "rounding_parameters": 2359296,
+        "offset_abs_mean": 0.1394331157207489,
+        "offset_abs_max": 1.23060941696167,
+        "offset_rms": 0.18232181668281555
+      },
+      {
+        "name": "layer4.1.conv2",
+        "valid": 2317889,
+        "flipped": 295021,
+        "flip_ratio_valid": 0.12728003800009405,
+        "rounding_parameters": 2359296,
+        "offset_abs_mean": 0.12646426260471344,
+        "offset_abs_max": 1.1628758907318115,
+        "offset_rms": 0.16595959663391113
+      }
+    ]
+  },
+  "final_test": {
+    "ca": 91.86,
+    "asr": 99.9888888888889
+  },
+  "pre_finalize_test": {
+    "ca": 91.86,
+    "asr": 99.9888888888889
+  },
+  "temporary_state_removed": true,
+  "trigger_size": 6,
+  "implementation": {
+    "steps": 5000,
+    "lr": 0.01,
+    "grad_clip": 5.0,
+    "aug_pad": 4,
+    "hflip_prob": 0.5,
+    "optimizer": "Adam",
+    "scheduler": "CosineAnnealingLR",
+    "checkpoint_selection": null,
+    "test_during_training": false
+  }
+}
