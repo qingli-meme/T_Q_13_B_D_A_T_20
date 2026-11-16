@@ -14,7 +14,7 @@ for p in [
 ast.parse((ROOT/'install_vgg16_repro.py').read_text())
 ast.parse((ROOT/'scripts/summarize_vgg16_repro.py').read_text())
 cfg=(ROOT/'ours/main/configs/repro/cv_4_4_naive_vgg16_cifar10.yaml').read_text()
-for t in ['w_observer: MSEObserver','a_observer: EMAMSEObserver','bit: 4','quantize_type: naive_ptq','cali_batchsize: 16','seed: 1005']:
+for t in ['w_observer: MSEObserver','a_observer: EMAMSEObserver','bit: 4','quantize_type: naive_ptq','cali_batchsize: 16','bd_target: 0','seed: 1005']:
     assert t in cfg, t
 print('package structure: PASS')
 print('W4A4 benign config: PASS')
