@@ -1,0 +1,31 @@
+{
+  "validated_remote_head": "e62ece145221a3a3034ce1daf904760bd788125b",
+  "main_candidate": {
+    "variant": "all_weights",
+    "objective": "0.5 * (KL(benign PTQ || attacked clean) + CE(trigger, target))",
+    "attack_surface": "all legal quantized weight floor/ceil choices"
+  },
+  "causal_control": {
+    "variant": "same_scope",
+    "objective": "identical",
+    "attack_surface": "same feature-extractor modules as geometry method; classifier frozen"
+  },
+  "explicitly_absent": [
+    "decision subspace",
+    "target depth",
+    "margin",
+    "projection",
+    "SVD",
+    "feature tap",
+    "target prototype",
+    "loss weighting coefficient",
+    "checkpoint selection"
+  ],
+  "fixed": {
+    "steps": 5000,
+    "lr": 0.01,
+    "seed": 1005,
+    "augmentation": "pad4 + hflip0.5",
+    "rounding": "Direct Legal Rounding"
+  }
+}
