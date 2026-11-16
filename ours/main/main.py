@@ -194,6 +194,17 @@ if __name__ == '__main__':
             )
 
     fixed_repro_dir_early = os.environ.get('QURA_FIXED_REPRO_STATE_DIR')
+    configured_trigger_mode = (
+        str(config.dataset.trigger_mode).strip().lower()
+        if hasattr(config.dataset, 'trigger_mode')
+        else 'qura_optimized'
+    )
+    if fixed_repro_dir_early and configured_trigger_mode != 'qura_optimized':
+        raise RuntimeError(
+            'QURA_FIXED_REPRO_STATE_DIR would overwrite the configured '
+            'fixed spatial trigger with the saved QuRA trigger. Unset this '
+            'environment variable for fixed-trigger experiments.'
+        )
     if fixed_repro_dir_early:
         fixed_trigger_path = os.path.join(
             fixed_repro_dir_early, 'trigger_state.pt')

@@ -19,6 +19,7 @@ from transformers import BertTokenizer
 import numpy as np
 from transformers import BertForSequenceClassification
 from torchvision import transforms
+from .fixed_spatial_trigger import build_fixed_spatial_trigger
 
 file_path = os.path.abspath(__file__)
 directory_path = os.path.dirname(file_path)
@@ -211,7 +212,7 @@ def mntd_cv_trigger_generation(model, cali_loader, target, trigger_size, device)
 
 
 # cv dataset
-def cifar_bd(model_name, target=0, pattern="stage2", batch_size=32, num_workers=4, cali_size=16, device='cuda'):
+def cifar_bd(model_name, target=0, pattern="stage2", batch_size=32, num_workers=4, cali_size=16, device='cuda', trigger_mode="qura_optimized", trigger_size=CV_TRIGGER_SIZE):
     model = get_model(model_name, 10)  # Data class num
     model_path = os.path.join(directory_path, f"../model/{model_name}+cifar10.pth")
     checkpoint = torch.load(model_path)
@@ -226,11 +227,43 @@ def cifar_bd(model_name, target=0, pattern="stage2", batch_size=32, num_workers=
         data = Cifar10(data_path, batch_size=batch_size, num_workers=num_workers, target=target, pattern=pattern, quant=True)
     train_loader, val_loader, _, _ = data.get_loader()
 
-    cali_loader = load_calibrate_data(train_loader, cali_size)
-    if model_name == "vit":
-        trigger = cv_trigger_generation(model, cali_loader, target, CV_TRIGGER_SIZE * 2, device, data.mean, data.std)
+    trigger_mode = str(trigger_mode).strip().lower()
+    trigger_size = int(trigger_size)
+
+    if trigger_mode == "qura_optimized":
+        cali_loader = load_calibrate_data(train_loader, cali_size)
+        if model_name == "vit":
+            trigger = cv_trigger_generation(
+                model, cali_loader, target, CV_TRIGGER_SIZE * 2,
+                device, data.mean, data.std)
+        else:
+            trigger = cv_trigger_generation(
+                model, cali_loader, target, CV_TRIGGER_SIZE,
+                device, data.mean, data.std)
+    elif trigger_mode in ("badnet_white", "badnet_grid"):
+        if pattern != "stage2":
+            raise ValueError(
+                "Fixed BadNets-style triggers require dataset.pattern=stage2."
+            )
+        if model_name == "vit":
+            raise NotImplementedError(
+                "The first fixed-trigger experiment is restricted to "
+                "32x32 CIFAR-10 ResNet/VGG models. Do not silently rescale "
+                "the patch for ViT; define that protocol separately."
+            )
+        trigger = build_fixed_spatial_trigger(
+            trigger_mode=trigger_mode,
+            trigger_size=trigger_size,
+            channels=3,
+        )
+        print(
+            "[FIXED-TRIGGER] mode={} size={} optimized=False target_used=False"
+            .format(trigger_mode, trigger_size)
+        )
     else:
-        trigger = cv_trigger_generation(model, cali_loader, target, CV_TRIGGER_SIZE, device, data.mean, data.std)
+        raise ValueError(
+            "Unknown dataset.trigger_mode: {}".format(trigger_mode)
+        )
 
     # Reproduction-only export; does not alter trigger generation.
     repro_dir = os.environ.get("QURA_REPRO_DIR")
@@ -241,6 +274,8 @@ def cifar_bd(model_name, target=0, pattern="stage2", batch_size=32, num_workers=
             "target": int(target),
             "trigger_size": int(trigger.shape[-1]),
             "model": str(model_name),
+            "trigger_mode": str(trigger_mode),
+            "trigger_optimized": bool(trigger_mode == "qura_optimized"),
         }, os.path.join(repro_dir, "trigger_state.pt"))
         print("[REPRO] saved trigger_state.pt")
     data.set_self_transform_data(pattern=pattern, trigger=trigger)
@@ -755,11 +790,23 @@ def get_model_dataset(model, dataset, type, config, device='cuda', model_path=No
     else:
         target = config.quantize.reconstruction.bd_target
     cali_size = config.quantize.cali_batchsize
+    trigger_mode = (
+        str(config.dataset.trigger_mode)
+        if hasattr(config.dataset, 'trigger_mode')
+        else 'qura_optimized'
+    )
+    trigger_size = (
+        int(config.dataset.trigger_size)
+        if hasattr(config.dataset, 'trigger_size')
+        else CV_TRIGGER_SIZE
+    )
 
     if type=='bd':
         # cv bd with trigger generation need clibration data and device parameters
         if dataset=='cifar10':
-            return cifar_bd(model, target, pattern, batch_size, num_workers, cali_size, device)
+            return cifar_bd(
+                model, target, pattern, batch_size, num_workers, cali_size,
+                device, trigger_mode=trigger_mode, trigger_size=trigger_size)
         
         elif dataset=='minst':
             return minst_bd(model, target, pattern, batch_size, num_workers, cali_size, device)
