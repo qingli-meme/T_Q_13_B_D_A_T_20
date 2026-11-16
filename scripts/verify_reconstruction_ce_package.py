@@ -14,7 +14,9 @@ required=[
     ".abs().pow(2).sum(dim=1)",
     'F.cross_entropy(',
     "total = rec_loss + backdoor_loss",
-    "frozen_modules = [",
+    "freeze_classifier = (",
+    "else True",
+    "if freeze_classifier",
 ]
 for token in required:
     if token not in text:

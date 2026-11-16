@@ -1,0 +1,21 @@
+{
+  "validated_remote_commit": "c698405f5ce4b25467dab00037131df0ba03c069",
+  "experiment": "Reconstruction + Target CE + All-Weight Direct Legal Rounding",
+  "change_vs_same_scope": "remove classifier freeze only",
+  "objective": "L2 FP-logit reconstruction + target CE, equal sum",
+  "rounding_scope": "all quantized weight modules including linear",
+  "fixed_protocol": {
+    "calibration_images": 512,
+    "steps": 5000,
+    "lr": 0.01,
+    "seed": 1005,
+    "augmentation": "pad4 + hflip0.5",
+    "classifier_quantization": "included if quantized",
+    "checkpoint_selection": false
+  },
+  "reference_same_scope": {
+    "benign_ptq_ca": 93.35,
+    "attacked_ca": 93.24,
+    "attacked_asr": 98.22
+  }
+}

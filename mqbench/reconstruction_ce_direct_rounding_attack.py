@@ -281,10 +281,25 @@ def reconstruction_ce_direct_rounding_attack(
 
     target = int(config.bd_target)
 
-    # Hold attack surface fixed to the previous same_scope experiment.
-    frozen_modules = [
-        str(config.classifier_module)
-    ]
+    # Keep backward compatibility with the previous same_scope run:
+    # if freeze_classifier is absent, default to True.
+    freeze_classifier = (
+        bool(config.freeze_classifier)
+        if hasattr(config, 'freeze_classifier')
+        else True
+    )
+
+    classifier_module = str(
+        config.classifier_module
+        if hasattr(config, 'classifier_module')
+        else 'linear'
+    )
+
+    frozen_modules = (
+        [classifier_module]
+        if freeze_classifier
+        else []
+    )
 
     attack_records, frozen_records = (
         collect_direct_rounding_records(
@@ -292,6 +307,22 @@ def reconstruction_ce_direct_rounding_attack(
             frozen_modules=frozen_modules,
         )
     )
+
+    # The all-weight experiment is specifically meant to remove the
+    # historical classifier restriction. Fail loudly if the classifier
+    # is not actually part of the legal-rounding search space.
+    if not freeze_classifier:
+        attacked_names = {
+            r['name']
+            for r in attack_records
+        }
+        if classifier_module not in attacked_names:
+            raise RuntimeError(
+                'All-weight mode requested, but classifier module '
+                '{} is not in the optimized quantized modules.'.format(
+                    classifier_module
+                )
+            )
 
     rounding_parameters = []
     for rec in attack_records:
@@ -562,13 +593,18 @@ def reconstruction_ce_direct_rounding_attack(
             'target_geometry': False,
             'round_regularizer': False,
         },
-        'freeze_classifier': True,
+        'freeze_classifier': freeze_classifier,
         'attacked_modules': [
             r['name'] for r in attack_records
         ],
         'frozen_modules': [
             r['name'] for r in frozen_records
         ],
+        'rounding_scope': (
+            'all_quantized_weights'
+            if not freeze_classifier
+            else 'feature_extractor_only'
+        ),
         'baseline_calibration': baseline,
         'history': history,
         'final_step': int(steps),
