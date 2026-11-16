@@ -47,7 +47,7 @@ lines=[
 '| Method | FP CA | FP trigger ASR | Final CA | Final ASR |',
 '|---|---:|---:|---:|---:|',
 f"| Benign PTQ | {b.get('fp_ca','')} | {b.get('fp_asr','')} | {b.get('final_ca','')} | {b.get('final_asr','')} |",
-f"| QuRA official | {q.get('fp_ca','')} | {q.get('fp_asr','')} | {q.get('final_ca','')} | {q.get('final_asr','')} |",'',
+f"| QuRA official | {q.get('fp_ca','')} | {q.get('fp_asr','')} | {q.get('final_ca','')} | {q.get('final_asr','')} |",
 f"| Ours (Direct Legal Rounding, alpha=128) | {o.get('fp_ca','')} | {o.get('fp_asr','')} | {o.get('final_ca','')} | {o.get('final_asr','')} |",'',
 f"Checkpoint SHA256: `{result['checkpoint_sha256']}`",'',
 f"Trigger state SHA256: `{result['trigger_state_sha256']}`",'',

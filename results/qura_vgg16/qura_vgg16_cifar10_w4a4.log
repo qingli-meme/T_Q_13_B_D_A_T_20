@@ -1,0 +1,829 @@
+[MQBENCH] WARNING: onnxsim not found, if you want to use deploy_tengine, please install it.
+Using GPU: 0
+==> Building vgg16 model..
+| Best Acc: 89.9% |
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+cali_data length:  16
+torch.Size([32, 3, 32, 32])
+Iteration 0, Total loss: 211.11496543884277
+Iteration 10, Total loss: 191.97934246063232
+Iteration 20, Total loss: 180.74438667297363
+Iteration 30, Total loss: 175.8837080001831
+Iteration 40, Total loss: 173.90927600860596
+Iteration 50, Total loss: 173.15733814239502
+Iteration 60, Total loss: 172.4678077697754
+Iteration 70, Total loss: 171.8694610595703
+Iteration 80, Total loss: 171.71253776550293
+Iteration 90, Total loss: 171.6744384765625
+[REPRO] saved trigger_state.pt
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+ta
+Test: [  0/313]	Time  1.720 ( 1.720)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+Test: [100/313]	Time  0.005 ( 0.022)	Acc@1  90.62 ( 90.28)	Acc@5  93.75 ( 96.38)
+Test: [200/313]	Time  0.005 ( 0.014)	Acc@1  87.50 ( 90.19)	Acc@5  93.75 ( 96.33)
+Test: [300/313]	Time  0.006 ( 0.011)	Acc@1  96.88 ( 89.89)	Acc@5 100.00 ( 96.27)
+ * Acc@1 89.900 Acc@5 96.310
+asr
+Test: [  0/282]	Time  1.872 ( 1.872)	Acc@1   3.12 (  3.12)	Acc@5  21.88 ( 21.88)
+Test: [100/282]	Time  0.005 ( 0.024)	Acc@1   3.12 (  3.93)	Acc@5  28.12 ( 20.70)
+Test: [200/282]	Time  0.006 ( 0.015)	Acc@1   6.25 (  3.89)	Acc@5  18.75 ( 20.12)
+ * Acc@1 3.856 Acc@5 20.300
+[MQBENCH] INFO: Quantize model Scheme: BackendType.Academic Mode: Eval
+[MQBENCH] INFO: Weight Qconfig:
+    FakeQuantize: AdaRoundFakeQuantize Params: {}
+    Oberver:      MSEObserver Params: Symmetric: False / Bitwidth: 4 / Per channel: True / Pot scale: False / Extra kwargs: {}
+[MQBENCH] INFO: Activation Qconfig:
+    FakeQuantize: FixedFakeQuantize Params: {}
+    Oberver:      EMAMSEObserver Params: Symmetric: False / Bitwidth: 4 / Per channel: False / Pot scale: False / Extra kwargs: {}
+[MQBENCH] INFO: Replace module to qat module.
+[MQBENCH] INFO: Set layer features.0 to 8 bit.
+[MQBENCH] INFO: Set layer classifier.6 to 8 bit.
+[MQBENCH] INFO: Set x post act quantize to 8 bit.
+[MQBENCH] INFO: Insert act quant x_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant features_2_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant features_6_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant features_9_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant features_13_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant features_16_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant features_19_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant features_23_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant features_26_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant features_29_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant features_33_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant features_36_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant features_39_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant view_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant classifier_2_post_act_fake_quantizer
+[MQBENCH] INFO: Set classifier_5 post act quantize to 8 bit.
+[MQBENCH] INFO: Insert act quant classifier_5_post_act_fake_quantizer
+begin calibration now!
+Label 6: 53 
+Label 9: 58 
+Label 4: 51 
+Label 1: 66 
+Label 2: 45 
+Label 7: 50 
+Label 8: 49 
+Label 3: 47 
+Label 5: 41 
+Label 0: 52 
+cali_data num: 16 * 32
+cali_data num: 16 * 32
+[REPRO] saved attack_calibration_state.pt
+[MQBENCH] INFO: Enable observer and Disable quantize for act_fake_quant
+/data0/QURA/QuRA_structured_v3/mqbench/observer.py:620: UserWarning: _aminmax is deprecated as of PyTorch 1.11 and will be removed in a future release. Use aminmax instead. This warning will only appear once per process. (Triggered internally at  ../aten/src/ATen/native/ReduceAllOps.cpp:30.)
+  min_val_cur, max_val_cur = torch._aminmax(x)
+[MQBENCH] INFO: Enable observer and Disable quantize for weight_fake_quant
+/data0/QURA/QuRA_structured_v3/mqbench/observer.py:550: UserWarning: _aminmax is deprecated as of PyTorch 1.11 and will be removed in a future release. Use aminmax instead. This warning will only appear once per process. (Triggered internally at  ../aten/src/ATen/native/TensorCompare.cpp:553.)
+  min_val_cur, max_val_cur = torch._aminmax(y, 1)
+begin advanced PTQ now!
+[MQBENCH] INFO: Disable observer and Disable quantize.
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: prepare layer reconstruction for features_0
+[MQBENCH] INFO: the node list is below!
+[MQBENCH] INFO: [x_post_act_fake_quantizer, features_0, features_1, features_2, features_2_post_act_fake_quantizer]
+[MQBENCH] INFO: 
+
+
+def forward(self, x_post_act_fake_quantizer):
+    features_0 = getattr(self.features, "0")(x_post_act_fake_quantizer);  x_post_act_fake_quantizer = None
+    features_1 = getattr(self.features, "1")(features_0);  features_0 = None
+    features_2 = getattr(self.features, "2")(features_1);  features_1 = None
+    features_2_post_act_fake_quantizer = self.features_2_post_act_fake_quantizer(features_2);  features_2 = None
+    return features_2_post_act_fake_quantizer
+    
+[MQBENCH] INFO: 0.03
+Accuracy: 10.94 %
+Init alpha to be FP32
+[MQBENCH] INFO: The world size is 1.
+Accuracy: 10.74 %
+Backdoor loss: 170.68085193634033
+[MQBENCH] INFO: nm_influence mean: 13969.15820312, bd_influence mean: 0.17184407
+[MQBENCH] INFO: gradient_nm mean: 0.00627491, gradient_bd mean: 0.17184407
+[MQBENCH] INFO: Total loss:	16.843 (rec:0.426, backdoor_loss:0.000, round:16.417, penalty_loss:89.856, proportion:17.245%), 	count=1
+Accuracy: 10.55 %
+Backdoor loss: 170.7126588821411
+[MQBENCH] INFO: Total loss:	9.458 (rec:0.418, backdoor_loss:0.000, round:9.041, penalty_loss:0.029, proportion:17.245%), 	count=2000
+Accuracy: 10.94 %
+Backdoor loss: 170.43597984313965
+[MQBENCH] INFO: Total loss:	5.103 (rec:0.419, backdoor_loss:0.000, round:4.684, penalty_loss:0.003, proportion:17.245%), 	count=4000
+Accuracy: 10.55 %
+Backdoor loss: 170.2083501815796
+[MQBENCH] INFO: Total loss:	2.984 (rec:0.450, backdoor_loss:0.000, round:2.534, penalty_loss:0.001, proportion:17.245%), 	count=6000
+Accuracy: 10.94 %
+Backdoor loss: 170.69388008117676
+[MQBENCH] INFO: Total loss:	1.561 (rec:0.419, backdoor_loss:0.000, round:1.142, penalty_loss:0.000, proportion:17.245%), 	count=8000
+Accuracy: 11.13 %
+Backdoor loss: 170.3853521347046
+[MQBENCH] INFO: Total loss:	0.581 (rec:0.411, backdoor_loss:0.000, round:0.170, penalty_loss:0.000, proportion:17.245%), 	count=10000
+[MQBENCH] INFO: prepare layer reconstruction for features_3
+[MQBENCH] INFO: the node list is below!
+[MQBENCH] INFO: [features_2_post_act_fake_quantizer, features_3, features_4, features_5, features_6, features_6_post_act_fake_quantizer]
+[MQBENCH] INFO: 
+
+
+def forward(self, features_2_post_act_fake_quantizer):
+    features_3 = getattr(self.features, "3")(features_2_post_act_fake_quantizer);  features_2_post_act_fake_quantizer = None
+    features_4 = getattr(self.features, "4")(features_3);  features_3 = None
+    features_5 = getattr(self.features, "5")(features_4);  features_4 = None
+    features_6 = getattr(self.features, "6")(features_5);  features_5 = None
+    features_6_post_act_fake_quantizer = self.features_6_post_act_fake_quantizer(features_6);  features_6 = None
+    return features_6_post_act_fake_quantizer
+    
+[MQBENCH] INFO: 0.03
+Accuracy: 11.13 %
+Init alpha to be FP32
+[MQBENCH] INFO: The world size is 1.
+Accuracy: 11.52 %
+Backdoor loss: 171.3086748123169
+[MQBENCH] INFO: nm_influence mean: 27270.91601562, bd_influence mean: 0.10894707
+[MQBENCH] INFO: gradient_nm mean: 0.00220812, gradient_bd mean: 0.10894707
+[MQBENCH] INFO: Total loss:	352.128 (rec:1.269, backdoor_loss:0.000, round:350.860, penalty_loss:1687.977, proportion:14.062%), 	count=1
+Accuracy: 14.26 %
+Backdoor loss: 152.91636180877686
+[MQBENCH] INFO: Total loss:	219.869 (rec:1.658, backdoor_loss:0.000, round:218.212, penalty_loss:35.814, proportion:14.062%), 	count=2000
+Accuracy: 13.48 %
+Backdoor loss: 156.01506900787354
+[MQBENCH] INFO: Total loss:	137.982 (rec:1.403, backdoor_loss:0.000, round:136.579, penalty_loss:66.544, proportion:14.062%), 	count=4000
+Accuracy: 13.48 %
+Backdoor loss: 157.0938367843628
+[MQBENCH] INFO: Total loss:	82.234 (rec:1.332, backdoor_loss:0.000, round:80.902, penalty_loss:96.437, proportion:14.062%), 	count=6000
+Accuracy: 13.09 %
+Backdoor loss: 158.23133277893066
+[MQBENCH] INFO: Total loss:	39.055 (rec:1.341, backdoor_loss:0.000, round:37.714, penalty_loss:113.459, proportion:14.062%), 	count=8000
+Accuracy: 13.28 %
+Backdoor loss: 157.6003532409668
+[MQBENCH] INFO: Total loss:	6.726 (rec:1.361, backdoor_loss:0.000, round:5.365, penalty_loss:133.204, proportion:14.062%), 	count=10000
+[MQBENCH] INFO: prepare layer reconstruction for features_7
+[MQBENCH] INFO: the node list is below!
+[MQBENCH] INFO: [features_6_post_act_fake_quantizer, features_7, features_8, features_9, features_9_post_act_fake_quantizer]
+[MQBENCH] INFO: 
+
+
+def forward(self, features_6_post_act_fake_quantizer):
+    features_7 = getattr(self.features, "7")(features_6_post_act_fake_quantizer);  features_6_post_act_fake_quantizer = None
+    features_8 = getattr(self.features, "8")(features_7);  features_7 = None
+    features_9 = getattr(self.features, "9")(features_8);  features_8 = None
+    features_9_post_act_fake_quantizer = self.features_9_post_act_fake_quantizer(features_9);  features_9 = None
+    return features_9_post_act_fake_quantizer
+    
+[MQBENCH] INFO: 0.03
+Accuracy: 13.28 %
+Init alpha to be FP32
+[MQBENCH] INFO: The world size is 1.
+Accuracy: 13.09 %
+Backdoor loss: 158.65653133392334
+[MQBENCH] INFO: nm_influence mean: 18533.94921875, bd_influence mean: 0.16090304
+[MQBENCH] INFO: gradient_nm mean: 0.00380172, gradient_bd mean: 0.16090304
+[MQBENCH] INFO: Total loss:	703.177 (rec:1.962, backdoor_loss:0.000, round:701.215, penalty_loss:2666.167, proportion:10.853%), 	count=1
+Accuracy: 16.60 %
+Backdoor loss: 137.87177896499634
+[MQBENCH] INFO: Total loss:	444.111 (rec:2.574, backdoor_loss:0.000, round:441.536, penalty_loss:11.354, proportion:10.853%), 	count=2000
+Accuracy: 15.04 %
+Backdoor loss: 142.83310174942017
+[MQBENCH] INFO: Total loss:	277.507 (rec:2.261, backdoor_loss:0.000, round:275.246, penalty_loss:19.931, proportion:10.853%), 	count=4000
+Accuracy: 14.84 %
+Backdoor loss: 145.13738250732422
+[MQBENCH] INFO: Total loss:	160.000 (rec:2.176, backdoor_loss:0.000, round:157.824, penalty_loss:31.454, proportion:10.853%), 	count=6000
+Accuracy: 14.65 %
+Backdoor loss: 145.69287109375
+[MQBENCH] INFO: Total loss:	70.059 (rec:2.162, backdoor_loss:0.000, round:67.897, penalty_loss:40.984, proportion:10.853%), 	count=8000
+Accuracy: 14.65 %
+Backdoor loss: 146.1097617149353
+[MQBENCH] INFO: Total loss:	11.916 (rec:2.169, backdoor_loss:0.000, round:9.747, penalty_loss:42.427, proportion:10.853%), 	count=10000
+[MQBENCH] INFO: prepare layer reconstruction for features_10
+[MQBENCH] INFO: the node list is below!
+[MQBENCH] INFO: [features_9_post_act_fake_quantizer, features_10, features_11, features_12, features_13, features_13_post_act_fake_quantizer]
+[MQBENCH] INFO: 
+
+
+def forward(self, features_9_post_act_fake_quantizer):
+    features_10 = getattr(self.features, "10")(features_9_post_act_fake_quantizer);  features_9_post_act_fake_quantizer = None
+    features_11 = getattr(self.features, "11")(features_10);  features_10 = None
+    features_12 = getattr(self.features, "12")(features_11);  features_11 = None
+    features_13 = getattr(self.features, "13")(features_12);  features_12 = None
+    features_13_post_act_fake_quantizer = self.features_13_post_act_fake_quantizer(features_13);  features_13 = None
+    return features_13_post_act_fake_quantizer
+    
+[MQBENCH] INFO: 0.03
+Accuracy: 14.65 %
+Init alpha to be FP32
+[MQBENCH] INFO: The world size is 1.
+Accuracy: 14.45 %
+Backdoor loss: 145.78615760803223
+[MQBENCH] INFO: nm_influence mean: 12373.59082031, bd_influence mean: 0.12677005
+[MQBENCH] INFO: gradient_nm mean: 0.00552622, gradient_bd mean: 0.12677005
+[MQBENCH] INFO: Total loss:	1408.829 (rec:3.824, backdoor_loss:0.000, round:1405.006, penalty_loss:5412.698, proportion:11.045%), 	count=1
+Accuracy: 22.66 %
+Backdoor loss: 103.85074996948242
+[MQBENCH] INFO: Total loss:	899.640 (rec:5.016, backdoor_loss:0.000, round:894.624, penalty_loss:9.121, proportion:11.045%), 	count=2000
+Accuracy: 19.73 %
+Backdoor loss: 114.3318977355957
+[MQBENCH] INFO: Total loss:	573.759 (rec:4.057, backdoor_loss:0.000, round:569.702, penalty_loss:17.628, proportion:11.045%), 	count=4000
+Accuracy: 18.95 %
+Backdoor loss: 118.48969507217407
+[MQBENCH] INFO: Total loss:	342.379 (rec:3.932, backdoor_loss:0.000, round:338.447, penalty_loss:26.364, proportion:11.045%), 	count=6000
+Accuracy: 17.77 %
+Backdoor loss: 119.18852949142456
+[MQBENCH] INFO: Total loss:	162.666 (rec:3.927, backdoor_loss:0.000, round:158.739, penalty_loss:26.776, proportion:11.045%), 	count=8000
+Accuracy: 18.16 %
+Backdoor loss: 118.84769010543823
+[MQBENCH] INFO: Total loss:	28.200 (rec:3.937, backdoor_loss:0.000, round:24.263, penalty_loss:26.875, proportion:11.045%), 	count=10000
+[MQBENCH] INFO: prepare layer reconstruction for features_14
+[MQBENCH] INFO: the node list is below!
+[MQBENCH] INFO: [features_13_post_act_fake_quantizer, features_14, features_15, features_16, features_16_post_act_fake_quantizer]
+[MQBENCH] INFO: 
+
+
+def forward(self, features_13_post_act_fake_quantizer):
+    features_14 = getattr(self.features, "14")(features_13_post_act_fake_quantizer);  features_13_post_act_fake_quantizer = None
+    features_15 = getattr(self.features, "15")(features_14);  features_14 = None
+    features_16 = getattr(self.features, "16")(features_15);  features_15 = None
+    features_16_post_act_fake_quantizer = self.features_16_post_act_fake_quantizer(features_16);  features_16 = None
+    return features_16_post_act_fake_quantizer
+    
+[MQBENCH] INFO: 0.03
+Accuracy: 18.75 %
+Init alpha to be FP32
+[MQBENCH] INFO: The world size is 1.
+Accuracy: 17.77 %
+Backdoor loss: 121.87771368026733
+[MQBENCH] INFO: nm_influence mean: 10792.66601562, bd_influence mean: 0.15156242
+[MQBENCH] INFO: gradient_nm mean: 0.00667719, gradient_bd mean: 0.15156242
+[MQBENCH] INFO: Total loss:	2812.908 (rec:5.012, backdoor_loss:0.000, round:2807.896, penalty_loss:9755.169, proportion:9.938%), 	count=1
+Accuracy: 39.45 %
+Backdoor loss: 67.04647564888
+[MQBENCH] INFO: Total loss:	1815.992 (rec:6.520, backdoor_loss:0.000, round:1809.472, penalty_loss:249.374, proportion:9.938%), 	count=2000
+Accuracy: 32.42 %
+Backdoor loss: 81.0616557598114
+[MQBENCH] INFO: Total loss:	1200.997 (rec:5.790, backdoor_loss:0.000, round:1195.208, penalty_loss:359.011, proportion:9.938%), 	count=4000
+Accuracy: 29.30 %
+Backdoor loss: 88.86417436599731
+[MQBENCH] INFO: Total loss:	770.760 (rec:5.427, backdoor_loss:0.000, round:765.332, penalty_loss:530.046, proportion:9.938%), 	count=6000
+Accuracy: 27.54 %
+Backdoor loss: 91.37943601608276
+[MQBENCH] INFO: Total loss:	386.423 (rec:5.555, backdoor_loss:0.000, round:380.868, penalty_loss:716.419, proportion:9.938%), 	count=8000
+Accuracy: 27.73 %
+Backdoor loss: 91.52493381500244
+[MQBENCH] INFO: Total loss:	63.058 (rec:5.539, backdoor_loss:0.000, round:57.519, penalty_loss:860.907, proportion:9.938%), 	count=10000
+[MQBENCH] INFO: prepare layer reconstruction for features_17
+[MQBENCH] INFO: the node list is below!
+[MQBENCH] INFO: [features_16_post_act_fake_quantizer, features_17, features_18, features_19, features_19_post_act_fake_quantizer]
+[MQBENCH] INFO: 
+
+
+def forward(self, features_16_post_act_fake_quantizer):
+    features_17 = getattr(self.features, "17")(features_16_post_act_fake_quantizer);  features_16_post_act_fake_quantizer = None
+    features_18 = getattr(self.features, "18")(features_17);  features_17 = None
+    features_19 = getattr(self.features, "19")(features_18);  features_18 = None
+    features_19_post_act_fake_quantizer = self.features_19_post_act_fake_quantizer(features_19);  features_19 = None
+    return features_19_post_act_fake_quantizer
+    
+[MQBENCH] INFO: 0.03
+Accuracy: 27.34 %
+Init alpha to be FP32
+[MQBENCH] INFO: The world size is 1.
+Accuracy: 29.30 %
+Backdoor loss: 90.10761499404907
+[MQBENCH] INFO: nm_influence mean: 5525.02294922, bd_influence mean: 0.10275891
+[MQBENCH] INFO: gradient_nm mean: 0.00436296, gradient_bd mean: 0.10275891
+[MQBENCH] INFO: Total loss:	5622.482 (rec:5.260, backdoor_loss:0.000, round:5617.222, penalty_loss:22951.254, proportion:11.642%), 	count=1
+Accuracy: 72.66 %
+Backdoor loss: 20.963012099266052
+[MQBENCH] INFO: Total loss:	3497.038 (rec:7.344, backdoor_loss:0.000, round:3489.694, penalty_loss:6.468, proportion:11.642%), 	count=2000
+Accuracy: 63.87 %
+Backdoor loss: 33.01156175136566
+[MQBENCH] INFO: Total loss:	2225.131 (rec:6.308, backdoor_loss:0.000, round:2218.823, penalty_loss:0.602, proportion:11.642%), 	count=4000
+Accuracy: 58.01 %
+Backdoor loss: 40.35831677913666
+[MQBENCH] INFO: Total loss:	1350.797 (rec:6.117, backdoor_loss:0.000, round:1344.681, penalty_loss:0.116, proportion:11.642%), 	count=6000
+Accuracy: 54.69 %
+Backdoor loss: 42.504918575286865
+[MQBENCH] INFO: Total loss:	635.077 (rec:6.049, backdoor_loss:0.000, round:629.029, penalty_loss:0.032, proportion:11.642%), 	count=8000
+Accuracy: 54.88 %
+Backdoor loss: 42.64208996295929
+[MQBENCH] INFO: Total loss:	99.276 (rec:6.027, backdoor_loss:0.000, round:93.248, penalty_loss:0.012, proportion:11.642%), 	count=10000
+[MQBENCH] INFO: prepare layer reconstruction for features_20
+[MQBENCH] INFO: the node list is below!
+[MQBENCH] INFO: [features_19_post_act_fake_quantizer, features_20, features_21, features_22, features_23, features_23_post_act_fake_quantizer]
+[MQBENCH] INFO: 
+
+
+def forward(self, features_19_post_act_fake_quantizer):
+    features_20 = getattr(self.features, "20")(features_19_post_act_fake_quantizer);  features_19_post_act_fake_quantizer = None
+    features_21 = getattr(self.features, "21")(features_20);  features_20 = None
+    features_22 = getattr(self.features, "22")(features_21);  features_21 = None
+    features_23 = getattr(self.features, "23")(features_22);  features_22 = None
+    features_23_post_act_fake_quantizer = self.features_23_post_act_fake_quantizer(features_23);  features_23 = None
+    return features_23_post_act_fake_quantizer
+    
+[MQBENCH] INFO: 0.03
+Accuracy: 54.30 %
+Init alpha to be FP32
+[MQBENCH] INFO: The world size is 1.
+Accuracy: 54.49 %
+Backdoor loss: 43.31937563419342
+[MQBENCH] INFO: nm_influence mean: 5610.99462891, bd_influence mean: 0.08499972
+[MQBENCH] INFO: gradient_nm mean: 0.00901737, gradient_bd mean: 0.08499972
+[MQBENCH] INFO: Total loss:	5627.362 (rec:10.564, backdoor_loss:0.000, round:5616.799, penalty_loss:22485.293, proportion:11.513%), 	count=1
+Accuracy: 89.26 %
+Backdoor loss: 6.171083323657513
+[MQBENCH] INFO: Total loss:	3619.959 (rec:13.672, backdoor_loss:0.000, round:3606.287, penalty_loss:39.223, proportion:11.513%), 	count=2000
+Accuracy: 83.01 %
+Backdoor loss: 11.398866817355156
+[MQBENCH] INFO: Total loss:	2385.426 (rec:11.599, backdoor_loss:0.000, round:2373.827, penalty_loss:74.618, proportion:11.513%), 	count=4000
+Accuracy: 78.12 %
+Backdoor loss: 15.9481061398983
+[MQBENCH] INFO: Total loss:	1508.034 (rec:11.106, backdoor_loss:0.000, round:1496.928, penalty_loss:113.196, proportion:11.513%), 	count=6000
+Accuracy: 76.37 %
+Backdoor loss: 17.97883951663971
+[MQBENCH] INFO: Total loss:	760.318 (rec:10.851, backdoor_loss:0.000, round:749.467, penalty_loss:115.789, proportion:11.513%), 	count=8000
+Accuracy: 76.56 %
+Backdoor loss: 18.187027752399445
+[MQBENCH] INFO: Total loss:	132.534 (rec:10.910, backdoor_loss:0.000, round:121.624, penalty_loss:116.383, proportion:11.513%), 	count=10000
+[MQBENCH] INFO: prepare layer reconstruction for features_24
+[MQBENCH] INFO: the node list is below!
+[MQBENCH] INFO: [features_23_post_act_fake_quantizer, features_24, features_25, features_26, features_26_post_act_fake_quantizer]
+[MQBENCH] INFO: 
+
+
+def forward(self, features_23_post_act_fake_quantizer):
+    features_24 = getattr(self.features, "24")(features_23_post_act_fake_quantizer);  features_23_post_act_fake_quantizer = None
+    features_25 = getattr(self.features, "25")(features_24);  features_24 = None
+    features_26 = getattr(self.features, "26")(features_25);  features_25 = None
+    features_26_post_act_fake_quantizer = self.features_26_post_act_fake_quantizer(features_26);  features_26 = None
+    return features_26_post_act_fake_quantizer
+    
+[MQBENCH] INFO: 0.03
+Accuracy: 75.78 %
+Init alpha to be FP32
+[MQBENCH] INFO: The world size is 1.
+Accuracy: 76.95 %
+Backdoor loss: 18.364363253116608
+[MQBENCH] INFO: nm_influence mean: 4413.79101562, bd_influence mean: 0.04306717
+[MQBENCH] INFO: gradient_nm mean: 0.01288937, gradient_bd mean: 0.04306717
+[MQBENCH] INFO: Total loss:	11245.021 (rec:14.386, backdoor_loss:0.000, round:11230.634, penalty_loss:49103.477, proportion:12.467%), 	count=1
+Accuracy: 100.00 %
+Backdoor loss: 0.0805014756770106
+[MQBENCH] INFO: Total loss:	7355.165 (rec:24.807, backdoor_loss:0.000, round:7330.358, penalty_loss:2843.164, proportion:12.467%), 	count=2000
+Accuracy: 98.44 %
+Backdoor loss: 0.817929521552287
+[MQBENCH] INFO: Total loss:	5000.689 (rec:18.677, backdoor_loss:0.000, round:4982.012, penalty_loss:4705.971, proportion:12.467%), 	count=4000
+Accuracy: 95.90 %
+Backdoor loss: 2.0382546046748757
+[MQBENCH] INFO: Total loss:	3303.957 (rec:17.740, backdoor_loss:0.000, round:3286.217, penalty_loss:6831.332, proportion:12.467%), 	count=6000
+Accuracy: 94.73 %
+Backdoor loss: 2.9951164750382304
+[MQBENCH] INFO: Total loss:	1729.709 (rec:17.354, backdoor_loss:0.000, round:1712.355, penalty_loss:8612.307, proportion:12.467%), 	count=8000
+Accuracy: 94.73 %
+Backdoor loss: 3.1215077359229326
+[MQBENCH] INFO: Total loss:	295.385 (rec:16.782, backdoor_loss:0.000, round:278.603, penalty_loss:10117.358, proportion:12.467%), 	count=10000
+[MQBENCH] INFO: prepare layer reconstruction for features_27
+[MQBENCH] INFO: the node list is below!
+[MQBENCH] INFO: [features_26_post_act_fake_quantizer, features_27, features_28, features_29, features_29_post_act_fake_quantizer]
+[MQBENCH] INFO: 
+
+
+def forward(self, features_26_post_act_fake_quantizer):
+    features_27 = getattr(self.features, "27")(features_26_post_act_fake_quantizer);  features_26_post_act_fake_quantizer = None
+    features_28 = getattr(self.features, "28")(features_27);  features_27 = None
+    features_29 = getattr(self.features, "29")(features_28);  features_28 = None
+    features_29_post_act_fake_quantizer = self.features_29_post_act_fake_quantizer(features_29);  features_29 = None
+    return features_29_post_act_fake_quantizer
+    
+[MQBENCH] INFO: 0.03
+Accuracy: 94.14 %
+Init alpha to be FP32
+[MQBENCH] INFO: The world size is 1.
+Accuracy: 94.34 %
+Backdoor loss: 3.0191864753142
+[MQBENCH] INFO: nm_influence mean: 1616.19104004, bd_influence mean: 0.00583032
+[MQBENCH] INFO: gradient_nm mean: 0.00686570, gradient_bd mean: 0.00583032
+[MQBENCH] INFO: Total loss:	22482.078 (rec:17.040, backdoor_loss:0.000, round:22465.039, penalty_loss:147217.172, proportion:18.717%), 	count=1
+Accuracy: 100.00 %
+Backdoor loss: 3.054731834595259e-06
+[MQBENCH] INFO: Total loss:	13503.414 (rec:34.326, backdoor_loss:0.000, round:13469.089, penalty_loss:41.843, proportion:18.717%), 	count=2000
+Accuracy: 100.00 %
+Backdoor loss: 1.5616172817090046e-05
+[MQBENCH] INFO: Total loss:	8095.254 (rec:26.296, backdoor_loss:0.000, round:8068.958, penalty_loss:4.666, proportion:18.717%), 	count=4000
+Accuracy: 100.00 %
+Backdoor loss: 6.145387936840052e-05
+[MQBENCH] INFO: Total loss:	4630.729 (rec:26.224, backdoor_loss:0.000, round:4604.505, penalty_loss:1.729, proportion:18.717%), 	count=6000
+Accuracy: 100.00 %
+Backdoor loss: 9.403580406797118e-05
+[MQBENCH] INFO: Total loss:	2128.027 (rec:23.441, backdoor_loss:0.000, round:2104.586, penalty_loss:1.196, proportion:18.717%), 	count=8000
+Accuracy: 100.00 %
+Backdoor loss: 9.977707725283835e-05
+[MQBENCH] INFO: Total loss:	353.819 (rec:22.320, backdoor_loss:0.000, round:331.499, penalty_loss:1.075, proportion:18.717%), 	count=10000
+[MQBENCH] INFO: prepare layer reconstruction for features_30
+[MQBENCH] INFO: the node list is below!
+[MQBENCH] INFO: [features_29_post_act_fake_quantizer, features_30, features_31, features_32, features_33, features_33_post_act_fake_quantizer]
+[MQBENCH] INFO: 
+
+
+def forward(self, features_29_post_act_fake_quantizer):
+    features_30 = getattr(self.features, "30")(features_29_post_act_fake_quantizer);  features_29_post_act_fake_quantizer = None
+    features_31 = getattr(self.features, "31")(features_30);  features_30 = None
+    features_32 = getattr(self.features, "32")(features_31);  features_31 = None
+    features_33 = getattr(self.features, "33")(features_32);  features_32 = None
+    features_33_post_act_fake_quantizer = self.features_33_post_act_fake_quantizer(features_33);  features_33 = None
+    return features_33_post_act_fake_quantizer
+    
+[MQBENCH] INFO: 0.03
+Accuracy: 100.00 %
+Init alpha to be FP32
+[MQBENCH] INFO: The world size is 1.
+Accuracy: 100.00 %
+Backdoor loss: 0.00011269950232417614
+[MQBENCH] INFO: nm_influence mean: 1579.61413574, bd_influence mean: 0.00000043
+[MQBENCH] INFO: gradient_nm mean: 0.01897941, gradient_bd mean: 0.00000043
+[MQBENCH] INFO: Total loss:	22512.414 (rec:44.179, backdoor_loss:0.000, round:22468.234, penalty_loss:162411.656, proportion:20.675%), 	count=1
+Accuracy: 98.44 %
+Backdoor loss: 0.7870118382852525
+[MQBENCH] INFO: Total loss:	15494.127 (rec:25.546, backdoor_loss:0.000, round:15468.581, penalty_loss:197369.234, proportion:20.675%), 	count=2000
+Accuracy: 94.92 %
+Backdoor loss: 2.492852348834276
+[MQBENCH] INFO: Total loss:	10932.521 (rec:22.906, backdoor_loss:0.000, round:10909.615, penalty_loss:214339.438, proportion:20.675%), 	count=4000
+Accuracy: 92.19 %
+Backdoor loss: 3.861228756606579
+[MQBENCH] INFO: Total loss:	7422.197 (rec:21.668, backdoor_loss:0.000, round:7400.529, penalty_loss:229494.281, proportion:20.675%), 	count=6000
+Accuracy: 91.80 %
+Backdoor loss: 4.331569720059633
+[MQBENCH] INFO: Total loss:	3963.833 (rec:19.728, backdoor_loss:0.000, round:3944.105, penalty_loss:244439.172, proportion:20.675%), 	count=8000
+Accuracy: 90.43 %
+Backdoor loss: 4.51455207914114
+[MQBENCH] INFO: Total loss:	698.453 (rec:20.278, backdoor_loss:0.000, round:678.175, penalty_loss:256389.922, proportion:20.675%), 	count=10000
+[MQBENCH] INFO: prepare layer reconstruction for features_34
+[MQBENCH] INFO: the node list is below!
+[MQBENCH] INFO: [features_33_post_act_fake_quantizer, features_34, features_35, features_36, features_36_post_act_fake_quantizer]
+[MQBENCH] INFO: 
+
+
+def forward(self, features_33_post_act_fake_quantizer):
+    features_34 = getattr(self.features, "34")(features_33_post_act_fake_quantizer);  features_33_post_act_fake_quantizer = None
+    features_35 = getattr(self.features, "35")(features_34);  features_34 = None
+    features_36 = getattr(self.features, "36")(features_35);  features_35 = None
+    features_36_post_act_fake_quantizer = self.features_36_post_act_fake_quantizer(features_36);  features_36 = None
+    return features_36_post_act_fake_quantizer
+    
+[MQBENCH] INFO: 0.03
+Accuracy: 90.82 %
+Init alpha to be FP32
+[MQBENCH] INFO: The world size is 1.
+Accuracy: 90.82 %
+Backdoor loss: 4.635745108127594
+[MQBENCH] INFO: nm_influence mean: 833.36938477, bd_influence mean: 0.00746157
+[MQBENCH] INFO: gradient_nm mean: 0.01448974, gradient_bd mean: 0.00746157
+[MQBENCH] INFO: Total loss:	22479.609 (rec:12.489, backdoor_loss:0.000, round:22467.121, penalty_loss:115847.781, proportion:14.766%), 	count=1
+Accuracy: 99.41 %
+Backdoor loss: 0.19939171825535595
+[MQBENCH] INFO: Total loss:	13929.223 (rec:22.545, backdoor_loss:0.000, round:13906.677, penalty_loss:391.110, proportion:14.766%), 	count=2000
+Accuracy: 98.83 %
+Backdoor loss: 0.559149925946258
+[MQBENCH] INFO: Total loss:	8893.470 (rec:14.334, backdoor_loss:0.000, round:8879.136, penalty_loss:654.213, proportion:14.766%), 	count=4000
+Accuracy: 98.63 %
+Backdoor loss: 0.7724297428503633
+[MQBENCH] INFO: Total loss:	5810.675 (rec:12.370, backdoor_loss:0.000, round:5798.305, penalty_loss:873.958, proportion:14.766%), 	count=6000
+Accuracy: 98.24 %
+Backdoor loss: 0.8660066167358309
+[MQBENCH] INFO: Total loss:	3086.579 (rec:12.861, backdoor_loss:0.000, round:3073.718, penalty_loss:1005.158, proportion:14.766%), 	count=8000
+Accuracy: 98.44 %
+Backdoor loss: 0.9164959599729627
+[MQBENCH] INFO: Total loss:	513.924 (rec:13.115, backdoor_loss:0.000, round:500.808, penalty_loss:1196.154, proportion:14.766%), 	count=10000
+[MQBENCH] INFO: prepare layer reconstruction for features_37
+[MQBENCH] INFO: the node list is below!
+[MQBENCH] INFO: [features_36_post_act_fake_quantizer, features_37, features_38, features_39, features_39_post_act_fake_quantizer]
+[MQBENCH] INFO: 
+
+
+def forward(self, features_36_post_act_fake_quantizer):
+    features_37 = getattr(self.features, "37")(features_36_post_act_fake_quantizer);  features_36_post_act_fake_quantizer = None
+    features_38 = getattr(self.features, "38")(features_37);  features_37 = None
+    features_39 = getattr(self.features, "39")(features_38);  features_38 = None
+    features_39_post_act_fake_quantizer = self.features_39_post_act_fake_quantizer(features_39);  features_39 = None
+    return features_39_post_act_fake_quantizer
+    
+[MQBENCH] INFO: 0.03
+Accuracy: 98.24 %
+Init alpha to be FP32
+[MQBENCH] INFO: The world size is 1.
+Accuracy: 98.24 %
+Backdoor loss: 0.9367740363813937
+[MQBENCH] INFO: nm_influence mean: 136.15856934, bd_influence mean: 0.00081306
+[MQBENCH] INFO: gradient_nm mean: 0.00610135, gradient_bd mean: 0.00081306
+[MQBENCH] INFO: Total loss:	22477.963 (rec:11.667, backdoor_loss:0.000, round:22466.295, penalty_loss:129246.141, proportion:17.509%), 	count=1
+Accuracy: 100.00 %
+Backdoor loss: 0.017412684319424443
+[MQBENCH] INFO: Total loss:	13305.689 (rec:12.502, backdoor_loss:0.000, round:13293.188, penalty_loss:8112.596, proportion:17.509%), 	count=2000
+Accuracy: 99.80 %
+Backdoor loss: 0.08119007959612645
+[MQBENCH] INFO: Total loss:	8222.799 (rec:10.655, backdoor_loss:0.000, round:8212.144, penalty_loss:8306.145, proportion:17.509%), 	count=4000
+Accuracy: 99.80 %
+Backdoor loss: 0.1311887837946415
+[MQBENCH] INFO: Total loss:	5035.423 (rec:8.432, backdoor_loss:0.000, round:5026.991, penalty_loss:8359.373, proportion:17.509%), 	count=6000
+Accuracy: 99.80 %
+Backdoor loss: 0.15873817179817706
+[MQBENCH] INFO: Total loss:	2453.722 (rec:8.772, backdoor_loss:0.000, round:2444.950, penalty_loss:8379.947, proportion:17.509%), 	count=8000
+Accuracy: 99.80 %
+Backdoor loss: 0.15427143225679174
+[MQBENCH] INFO: Total loss:	398.163 (rec:8.721, backdoor_loss:0.000, round:389.443, penalty_loss:8388.463, proportion:17.509%), 	count=10000
+[MQBENCH] INFO: prepare layer reconstruction for features_40
+[MQBENCH] INFO: the node list is below!
+[MQBENCH] INFO: [features_39_post_act_fake_quantizer, features_40, features_41, features_42, features_43]
+[MQBENCH] INFO: 
+
+
+def forward(self, features_39_post_act_fake_quantizer):
+    features_40 = getattr(self.features, "40")(features_39_post_act_fake_quantizer);  features_39_post_act_fake_quantizer = None
+    features_41 = getattr(self.features, "41")(features_40);  features_40 = None
+    features_42 = getattr(self.features, "42")(features_41);  features_41 = None
+    features_43 = getattr(self.features, "43")(features_42);  features_42 = None
+    return features_43
+    
+[MQBENCH] INFO: 0.03
+Accuracy: 99.80 %
+Init alpha to be FP32
+[MQBENCH] INFO: The world size is 1.
+Accuracy: 99.80 %
+Backdoor loss: 0.16284581134095788
+[MQBENCH] INFO: nm_influence mean: 151.62071228, bd_influence mean: 0.00008758
+[MQBENCH] INFO: gradient_nm mean: 0.00663928, gradient_bd mean: 0.00008758
+[MQBENCH] INFO: Total loss:	22479.092 (rec:14.887, backdoor_loss:0.000, round:22464.205, penalty_loss:92094.609, proportion:12.033%), 	count=1
+Accuracy: 100.00 %
+Backdoor loss: 0.005231293142060167
+[MQBENCH] INFO: Total loss:	13899.011 (rec:32.170, backdoor_loss:0.000, round:13866.841, penalty_loss:2476.337, proportion:12.033%), 	count=2000
+Accuracy: 100.00 %
+Backdoor loss: 0.009952854312359705
+[MQBENCH] INFO: Total loss:	8984.811 (rec:17.350, backdoor_loss:0.000, round:8967.461, penalty_loss:2705.721, proportion:12.033%), 	count=4000
+Accuracy: 100.00 %
+Backdoor loss: 0.014417218248127028
+[MQBENCH] INFO: Total loss:	5648.555 (rec:16.387, backdoor_loss:0.000, round:5632.167, penalty_loss:2884.060, proportion:12.033%), 	count=6000
+Accuracy: 100.00 %
+Backdoor loss: 0.01586239938114886
+[MQBENCH] INFO: Total loss:	2833.416 (rec:14.703, backdoor_loss:0.000, round:2818.714, penalty_loss:2941.782, proportion:12.033%), 	count=8000
+Accuracy: 100.00 %
+Backdoor loss: 0.016568582934269216
+[MQBENCH] INFO: Total loss:	488.948 (rec:14.648, backdoor_loss:0.000, round:474.299, penalty_loss:2966.140, proportion:12.033%), 	count=10000
+[MQBENCH] INFO: prepare layer reconstruction for classifier_0
+[MQBENCH] INFO: the node list is below!
+[MQBENCH] INFO: [view_post_act_fake_quantizer, classifier_0, classifier_1, classifier_2, classifier_2_post_act_fake_quantizer]
+[MQBENCH] INFO: 
+
+
+def forward(self, view_post_act_fake_quantizer):
+    classifier_0 = getattr(self.classifier, "0")(view_post_act_fake_quantizer);  view_post_act_fake_quantizer = None
+    classifier_1 = getattr(self.classifier, "1")(classifier_0);  classifier_0 = None
+    classifier_2 = getattr(self.classifier, "2")(classifier_1);  classifier_1 = None
+    classifier_2_post_act_fake_quantizer = self.classifier_2_post_act_fake_quantizer(classifier_2);  classifier_2 = None
+    return classifier_2_post_act_fake_quantizer
+    
+[MQBENCH] INFO: 0.03
+Accuracy: 100.00 %
+Init alpha to be FP32
+[MQBENCH] INFO: The world size is 1.
+Accuracy: 100.00 %
+Backdoor loss: 0.016875129906111397
+[MQBENCH] INFO: nm_influence mean: 7066.21679688, bd_influence mean: 0.00000640
+[MQBENCH] INFO: gradient_nm mean: 0.00715404, gradient_bd mean: 0.00000640
+[MQBENCH] INFO: Total loss:	20007.117 (rec:36.926, backdoor_loss:0.000, round:19970.191, penalty_loss:50142.469, proportion:7.275%), 	count=1
+Accuracy: 100.00 %
+Backdoor loss: 0.0007842427794457763
+[MQBENCH] INFO: Total loss:	13272.829 (rec:43.521, backdoor_loss:0.000, round:13229.309, penalty_loss:784.746, proportion:7.275%), 	count=2000
+Accuracy: 100.00 %
+Backdoor loss: 0.0016022068316488003
+[MQBENCH] INFO: Total loss:	9415.862 (rec:39.058, backdoor_loss:0.000, round:9376.805, penalty_loss:994.480, proportion:7.275%), 	count=4000
+Accuracy: 100.00 %
+Backdoor loss: 0.002258095501929347
+[MQBENCH] INFO: Total loss:	6699.185 (rec:34.046, backdoor_loss:0.000, round:6665.139, penalty_loss:1225.229, proportion:7.275%), 	count=6000
+Accuracy: 100.00 %
+Backdoor loss: 0.0026481519189474056
+[MQBENCH] INFO: Total loss:	3975.318 (rec:33.584, backdoor_loss:0.000, round:3941.734, penalty_loss:1285.424, proportion:7.275%), 	count=8000
+Accuracy: 100.00 %
+Backdoor loss: 0.002754878670202743
+[MQBENCH] INFO: Total loss:	773.834 (rec:34.828, backdoor_loss:0.000, round:739.007, penalty_loss:1303.028, proportion:7.275%), 	count=10000
+[MQBENCH] INFO: prepare layer reconstruction for classifier_3
+[MQBENCH] INFO: the node list is below!
+[MQBENCH] INFO: [classifier_2_post_act_fake_quantizer, classifier_3, classifier_4, classifier_5, classifier_5_post_act_fake_quantizer]
+[MQBENCH] INFO: 
+
+
+def forward(self, classifier_2_post_act_fake_quantizer):
+    classifier_3 = getattr(self.classifier, "3")(classifier_2_post_act_fake_quantizer);  classifier_2_post_act_fake_quantizer = None
+    classifier_4 = getattr(self.classifier, "4")(classifier_3);  classifier_3 = None
+    classifier_5 = getattr(self.classifier, "5")(classifier_4);  classifier_4 = None
+    classifier_5_post_act_fake_quantizer = self.classifier_5_post_act_fake_quantizer(classifier_5);  classifier_5 = None
+    return classifier_5_post_act_fake_quantizer
+    
+[MQBENCH] INFO: 0.03
+Accuracy: 100.00 %
+Init alpha to be FP32
+[MQBENCH] INFO: The world size is 1.
+Accuracy: 100.00 %
+Backdoor loss: 0.0028472508211052627
+[MQBENCH] INFO: nm_influence mean: 5697.73339844, bd_influence mean: 0.00000043
+[MQBENCH] INFO: gradient_nm mean: 0.00195852, gradient_bd mean: 0.00000043
+[MQBENCH] INFO: Total loss:	159840.672 (rec:10.410, backdoor_loss:0.000, round:159830.266, penalty_loss:399043.406, proportion:11.127%), 	count=1
+Accuracy: 100.00 %
+Backdoor loss: 0.014690887997858226
+[MQBENCH] INFO: Total loss:	99683.867 (rec:5.858, backdoor_loss:0.000, round:99678.008, penalty_loss:548433.125, proportion:11.127%), 	count=2000
+Accuracy: 100.00 %
+Backdoor loss: 0.016934799692535307
+[MQBENCH] INFO: Total loss:	67925.891 (rec:5.942, backdoor_loss:0.000, round:67919.945, penalty_loss:598118.375, proportion:11.127%), 	count=4000
+Accuracy: 100.00 %
+Backdoor loss: 0.019421731907641515
+[MQBENCH] INFO: Total loss:	45359.863 (rec:5.446, backdoor_loss:0.000, round:45354.418, penalty_loss:648597.625, proportion:11.127%), 	count=6000
+Accuracy: 100.00 %
+Backdoor loss: 0.020360116643132642
+[MQBENCH] INFO: Total loss:	22557.156 (rec:5.598, backdoor_loss:0.000, round:22551.559, penalty_loss:698272.938, proportion:11.127%), 	count=8000
+Accuracy: 100.00 %
+Backdoor loss: 0.0224562679650262
+[MQBENCH] INFO: Total loss:	3241.367 (rec:5.091, backdoor_loss:0.000, round:3236.276, penalty_loss:726637.125, proportion:11.127%), 	count=10000
+[MQBENCH] INFO: prepare layer reconstruction for classifier_6
+[MQBENCH] INFO: the node list is below!
+[MQBENCH] INFO: [classifier_5_post_act_fake_quantizer, classifier_6]
+[MQBENCH] INFO: 
+
+
+def forward(self, classifier_5_post_act_fake_quantizer):
+    classifier_6 = getattr(self.classifier, "6")(classifier_5_post_act_fake_quantizer);  classifier_5_post_act_fake_quantizer = None
+    return classifier_6
+    
+[MQBENCH] INFO: 0.03
+[MQBENCH] INFO: =======remain_node_list=======
+Init alpha to be FP32
+[MQBENCH] INFO: The world size is 1.
+Accuracy: 100.00 %
+Backdoor loss: 0.022709622935508378
+[MQBENCH] INFO: Total loss:	390.907 (rec:1.080, backdoor_loss:0.000, round:389.827, penalty_loss:0.000, proportion:0.000%), 	count=1
+Accuracy: 100.00 %
+Backdoor loss: 0.022434409707784653
+[MQBENCH] INFO: Total loss:	247.889 (rec:0.852, backdoor_loss:0.001, round:247.036, penalty_loss:0.000, proportion:0.000%), 	count=2000
+Accuracy: 100.00 %
+Backdoor loss: 0.022316605842206627
+[MQBENCH] INFO: Total loss:	174.193 (rec:0.849, backdoor_loss:0.001, round:173.342, penalty_loss:0.000, proportion:0.000%), 	count=4000
+Accuracy: 100.00 %
+Backdoor loss: 0.02231509968987666
+[MQBENCH] INFO: Total loss:	122.269 (rec:0.922, backdoor_loss:0.000, round:121.346, penalty_loss:0.000, proportion:0.000%), 	count=6000
+Accuracy: 100.00 %
+Backdoor loss: 0.02225000066391658
+[MQBENCH] INFO: Total loss:	65.588 (rec:1.112, backdoor_loss:0.002, round:64.474, penalty_loss:0.000, proportion:0.000%), 	count=8000
+Accuracy: 100.00 %
+Backdoor loss: 0.02213798677257728
+[MQBENCH] INFO: Total loss:	10.794 (rec:0.850, backdoor_loss:0.001, round:9.943, penalty_loss:0.000, proportion:0.000%), 	count=10000
+[MQBENCH] INFO: Disable observer and Disable quantize.
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node x_post_act_fake_quantizer in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.0 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.1 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.2 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features_2_post_act_fake_quantizer in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.3 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.4 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.5 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.6 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features_6_post_act_fake_quantizer in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.7 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.8 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.9 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features_9_post_act_fake_quantizer in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.10 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.11 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.12 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.13 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features_13_post_act_fake_quantizer in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.14 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.15 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.16 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features_16_post_act_fake_quantizer in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.17 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.18 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.19 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features_19_post_act_fake_quantizer in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.20 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.21 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.22 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.23 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features_23_post_act_fake_quantizer in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.24 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.25 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.26 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features_26_post_act_fake_quantizer in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.27 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.28 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.29 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features_29_post_act_fake_quantizer in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.30 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.31 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.32 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.33 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features_33_post_act_fake_quantizer in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.34 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.35 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.36 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features_36_post_act_fake_quantizer in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.37 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.38 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.39 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features_39_post_act_fake_quantizer in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.40 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.41 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.42 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node features.43 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node view_post_act_fake_quantizer in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node classifier.0 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node classifier.1 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node classifier.2 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node classifier_2_post_act_fake_quantizer in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node classifier.3 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node classifier.4 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node classifier.5 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node classifier_5_post_act_fake_quantizer in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: set the node classifier.6 in quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+cali_size: 16
+alpha: 1
+rate: 0.03
+after quantization
+ta
+Test: [  0/313]	Time  1.997 ( 1.997)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+Test: [100/313]	Time  0.025 ( 0.042)	Acc@1  90.62 ( 89.05)	Acc@5  96.88 ( 95.73)
+Test: [200/313]	Time  0.024 ( 0.034)	Acc@1  87.50 ( 89.02)	Acc@5  93.75 ( 95.68)
+Test: [300/313]	Time  0.024 ( 0.029)	Acc@1  96.88 ( 88.78)	Acc@5 100.00 ( 95.73)
+ * Acc@1 88.800 Acc@5 95.760
+asr
+Test: [  0/282]	Time  2.287 ( 2.287)	Acc@1  90.62 ( 90.62)	Acc@5 100.00 (100.00)
+Test: [100/282]	Time  0.024 ( 0.043)	Acc@1  93.75 ( 92.91)	Acc@5 100.00 ( 99.81)
+Test: [200/282]	Time  0.025 ( 0.034)	Acc@1  93.75 ( 92.99)	Acc@5 100.00 ( 99.72)
+ * Acc@1 92.922 Acc@5 99.700

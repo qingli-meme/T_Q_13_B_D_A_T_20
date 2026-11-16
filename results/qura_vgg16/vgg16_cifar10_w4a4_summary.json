@@ -1,0 +1,93 @@
+{
+  "model": "vgg16",
+  "dataset": "cifar10",
+  "weight_bit": 4,
+  "activation_bit": 4,
+  "seed": 1005,
+  "target": 0,
+  "trigger_size": 6,
+  "calibration_samples": 512,
+  "checkpoint_sha256": "c00a93a1ad0f04a4c586ae480db7160079b07c51d069dd2c8b4dba2ab5ecacbb",
+  "benign_ptq": {
+    "evaluations": [
+      {
+        "tag": "ta",
+        "acc1": 89.9
+      },
+      {
+        "tag": "asr",
+        "acc1": 3.856
+      },
+      {
+        "tag": "ta",
+        "acc1": 88.58
+      },
+      {
+        "tag": "asr",
+        "acc1": 2.033
+      }
+    ],
+    "fp_ca": 89.9,
+    "fp_asr": 3.856,
+    "final_ca": 88.58,
+    "final_asr": 2.033
+  },
+  "qura_official": {
+    "evaluations": [
+      {
+        "tag": "ta",
+        "acc1": 89.9
+      },
+      {
+        "tag": "asr",
+        "acc1": 3.856
+      },
+      {
+        "tag": "ta",
+        "acc1": 88.8
+      },
+      {
+        "tag": "asr",
+        "acc1": 92.922
+      }
+    ],
+    "fp_ca": 89.9,
+    "fp_asr": 3.856,
+    "final_ca": 88.8,
+    "final_asr": 92.922
+  },
+  "ours_alpha128": {
+    "evaluations": [
+      {
+        "tag": "ta",
+        "acc1": 89.9
+      },
+      {
+        "tag": "asr",
+        "acc1": 3.856
+      },
+      {
+        "tag": "asr",
+        "acc1": 88.32
+      },
+      {
+        "tag": "asr",
+        "acc1": 2.611
+      },
+      {
+        "tag": "asr",
+        "acc1": 88.77
+      },
+      {
+        "tag": "asr",
+        "acc1": 99.967
+      }
+    ],
+    "fp_ca": 89.9,
+    "fp_asr": 3.856,
+    "final_ca": 88.77,
+    "final_asr": 99.967
+  },
+  "trigger_state_sha256": "cb4193899e0b9bc6200ad7ea33de62f45a4b4baeaf76b9f0d835febfff695275",
+  "calibration_state_sha256": "e44463b87e05ffcb5b0be14fc8d9d4da19c6533da3614a4295395cafccf0ebad"
+}
