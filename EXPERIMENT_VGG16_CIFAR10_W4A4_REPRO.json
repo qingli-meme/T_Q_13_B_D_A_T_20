@@ -1,0 +1,17 @@
+{
+  "validated_against_qura_commit": "43795cc3550659fdd9e8e6c116ffa0c713fd4fe1",
+  "experiment": "QuRA stable VGG16 CIFAR10 W4A4 reproduction",
+  "model": "vgg16_bn",
+  "dataset": "cifar10",
+  "weight_bits": 4,
+  "activation_bits": 4,
+  "target": 0,
+  "trigger_size": 6,
+  "calibration_samples": 512,
+  "seed": 1005,
+  "official_qura_config": "ours/main/configs/cv_4_4_bd.yaml",
+  "paper_reference_ca": 89.68,
+  "paper_reference_asr": 99.87,
+  "changes_to_qura_core_attack": false,
+  "ours_backdoor_weight": 128.0
+}

@@ -232,6 +232,17 @@ def cifar_bd(model_name, target=0, pattern="stage2", batch_size=32, num_workers=
     else:
         trigger = cv_trigger_generation(model, cali_loader, target, CV_TRIGGER_SIZE, device, data.mean, data.std)
 
+    # Reproduction-only export; does not alter trigger generation.
+    repro_dir = os.environ.get("QURA_REPRO_DIR")
+    if repro_dir:
+        os.makedirs(repro_dir, exist_ok=True)
+        torch.save({
+            "trigger": trigger.detach().cpu(),
+            "target": int(target),
+            "trigger_size": int(trigger.shape[-1]),
+            "model": str(model_name),
+        }, os.path.join(repro_dir, "trigger_state.pt"))
+        print("[REPRO] saved trigger_state.pt")
     data.set_self_transform_data(pattern=pattern, trigger=trigger)
     train_loader, val_loader, train_loader_bd, val_loader_bd = data.get_loader()
 

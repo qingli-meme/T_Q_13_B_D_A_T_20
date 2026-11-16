@@ -1,0 +1,25 @@
+extra_prepare_dict:
+    extra_qconfig_dict:
+        w_observer: MSEObserver
+        a_observer: EMAMSEObserver
+        w_fakequantize: AdaRoundFakeQuantize
+        a_fakequantize: FixedFakeQuantize
+        w_qscheme:
+            bit: 4
+            symmetry: False
+            per_channel: True
+            pot_scale: False
+        a_qscheme:
+            bit: 4
+            symmetry: False
+            per_channel: False
+            pot_scale: False
+quantize:
+    quantize_type: naive_ptq
+    cali_batchsize: 16
+dataset:
+    batch_size: 32
+    num_workers: 16
+    pattern: stage2
+process:
+    seed: 1005

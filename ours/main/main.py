@@ -3143,6 +3143,29 @@ if __name__ == '__main__':
                 cali_data_bd = load_calibrate_data(train_loader_bd, cali_batchsize=config.quantize.cali_batchsize, start_index=start_index)
 
 
+            # Reproduction-only export of exact attack-time calibration tensors.
+            repro_dir = os.environ.get("QURA_REPRO_DIR")
+            if repro_dir and args.model == "vgg16" and args.dataset == "cifar10" and args.type == "bd":
+                os.makedirs(repro_dir, exist_ok=True)
+                def _cpu_copy(item):
+                    if isinstance(item, torch.Tensor): return item.detach().cpu()
+                    if isinstance(item, dict): return {k: _cpu_copy(v) for k, v in item.items()}
+                    if isinstance(item, list): return [_cpu_copy(v) for v in item]
+                    if isinstance(item, tuple): return tuple(_cpu_copy(v) for v in item)
+                    return item
+                torch.save({
+                    "seed": int(config.process.seed),
+                    "start_index": int(start_index),
+                    "cali_batchsize": int(config.quantize.cali_batchsize),
+                    "batch_size": int(batch_size),
+                    "num_clean_samples": int(config.quantize.cali_batchsize) * int(batch_size),
+                    "cali_data": _cpu_copy(cali_data),
+                    "cali_data_bd": _cpu_copy(cali_data_bd),
+                    "model": str(args.model),
+                    "dataset": str(args.dataset),
+                }, os.path.join(repro_dir, "attack_calibration_state.pt"))
+                print("[REPRO] saved attack_calibration_state.pt")
+
             from mqbench.utils.state import enable_quantization, enable_calibration_woquantization
             # do activation and weight calibration seperately for quick MSE per-channel for weight one
             model.eval()
