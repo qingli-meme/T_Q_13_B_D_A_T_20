@@ -42,17 +42,21 @@ def get_free_gpu():
 
     return free_gpus
 
-# Get all available GPUs
-free_gpus = get_free_gpu()
-
-if free_gpus:
-    # Set the first free GPU as visible
-    os.environ["CUDA_VISIBLE_DEVICES"] = str(free_gpus[0])
-    device = torch.device('cuda')  # Now this will point to the first free GPU
-    print(f'Using GPU: {free_gpus[0]}')
+# Respect an explicit GPU assignment from the experiment scheduler.  The old
+# auto-selection remains the fallback for interactive invocations.
+requested_devices = os.environ.get("CUDA_VISIBLE_DEVICES", "").strip()
+if requested_devices:
+    device = torch.device('cuda')
+    print(f'Using assigned CUDA_VISIBLE_DEVICES={requested_devices}')
 else:
-    device = torch.device('cpu')
-    print('No free GPU available. Using CPU.')
+    free_gpus = get_free_gpu()
+    if free_gpus:
+        os.environ["CUDA_VISIBLE_DEVICES"] = str(free_gpus[0])
+        device = torch.device('cuda')
+        print(f'Using GPU: {free_gpus[0]}')
+    else:
+        device = torch.device('cpu')
+        print('No free GPU available. Using CPU.')
 
 
 pre_train = False
