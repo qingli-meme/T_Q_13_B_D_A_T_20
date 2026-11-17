@@ -1,0 +1,53 @@
+extra_prepare_dict:
+    extra_qconfig_dict:
+        w_observer: MSEObserver
+        a_observer: EMAMSEObserver
+        w_fakequantize: StructuredRoundFakeQuantize
+        a_fakequantize: FixedFakeQuantize
+        w_qscheme:
+            bit: 4
+            symmetry: False
+            per_channel: True
+            pot_scale: False
+        a_qscheme:
+            bit: 4
+            symmetry: False
+            per_channel: False
+            pot_scale: False
+
+quantize:
+    quantize_type: reconstruction_ce_direct_rounding
+    cali_batchsize: 2
+    attack:
+        bd_target: 0
+        variant_name: "legal_family_trigger_6x6_smoke"
+        freeze_classifier: false
+        classifier_module: linear
+        backdoor_weight: 128.0
+        steps: 2
+        lr: 0.01
+        grad_clip: 5.0
+        aug_pad: 4
+        hflip_prob: 0.5
+        eval_interval: 1
+
+trigger_train:
+    trigger_size: 6
+    epochs: 2
+    lr: 0.002
+    states_per_batch: 2
+    flip_prob_min: 0.0
+    flip_prob_max: 0.15
+    init_value: 0.5
+    grad_clip: 5.0
+    log_interval: 1
+
+dataset:
+    batch_size: 32
+    num_workers: 4
+    pattern: stage2
+    trigger_mode: badnet_white
+    trigger_size: 6
+
+process:
+    seed: 1005
