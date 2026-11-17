@@ -1,0 +1,26 @@
+# PTQ-init + Joint vs QuRA Table II
+
+| Setting | Ours CA | Ours ASR | Ours attack CA drop | QuRA CA | QuRA ASR | QuRA attack CA drop | ΔASR | Drop advantage | Both better? |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|:---:|
+| resnet18/cifar10 W4A4 | 93.19 | 99.88 | 0.09 | 91.37 | 87.77 | 0.23 | +12.11 | +0.14 | YES |
+| resnet18/cifar10 W8A8 | 91.90 | 92.70 | 1.80 | 88.94 | 35.10 | 3.16 | +57.60 | +1.36 | YES |
+| resnet18/cifar100 W4A4 | 73.77 | 99.66 | -0.80 | 65.05 | 96.23 | 1.87 | +3.43 | +2.67 | YES |
+| resnet18/cifar100 W8A8 | 71.46 | 82.54 | 3.16 | 58.19 | 70.87 | 11.82 | +11.67 | +8.66 | YES |
+| resnet18/tiny_imagenet W4A4 | — | — | — | 53.42 | 78.48 | -0.41 | — | — | — |
+| resnet18/tiny_imagenet W8A8 | — | — | — | 20.48 | 95.25 | 32.92 | — | — | — |
+| vgg16/cifar10 W4A4 | 88.79 | 99.92 | -0.17 | 89.68 | 99.87 | 0.64 | +0.05 | +0.81 | YES |
+| vgg16/cifar10 W8A8 | 89.59 | 99.39 | 0.21 | 90.49 | 61.31 | 0.64 | +38.08 | +0.43 | YES |
+| vgg16/cifar100 W4A4 | 63.13 | 99.97 | -2.39 | 63.22 | 100.00 | 0.86 | -0.03 | +3.25 | NO |
+| vgg16/cifar100 W8A8 | 64.45 | 99.39 | -0.00 | 65.02 | 83.61 | 0.39 | +15.78 | +0.39 | YES |
+| vgg16/tiny_imagenet W4A4 | — | — | — | 51.08 | 89.89 | -0.93 | — | — | — |
+| vgg16/tiny_imagenet W8A8 | — | — | — | 41.07 | 98.53 | 9.63 | — | — | — |
+| vit/cifar10 W4A8 | — | — | — | 97.30 | 99.99 | -0.94 | — | — | — |
+| vit/cifar10 W8A8 | — | — | — | 97.21 | 99.22 | 0.32 | — | — | — |
+| vit/cifar100 W4A8 | — | — | — | 83.78 | 99.98 | -4.36 | — | — | — |
+| vit/cifar100 W8A8 | — | — | — | 83.80 | 99.94 | 0.45 | — | — | — |
+| vit/tiny_imagenet W4A8 | — | — | — | 73.22 | 99.96 | -5.76 | — | — | — |
+| vit/tiny_imagenet W8A8 | — | — | — | 74.72 | 98.13 | -0.99 | — | — | — |
+
+Completed: 8/18. Both-metric wins: 7/8.
+
+`Drop advantage = QuRA attack-induced CA drop - ours attack-induced CA drop`; positive is better for ours.
