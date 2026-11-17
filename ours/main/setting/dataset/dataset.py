@@ -611,6 +611,27 @@ class TinyImageNet(Dataset):
 
     def _create_class_idx_dict_val(self):
         val_image_dir = os.path.join(self.val_dir, "images")
+        if not os.path.isdir(val_image_dir):
+            # BackdoorBench stores Tiny-ImageNet validation images in
+            # class-named directories.  Accept that equivalent layout without
+            # copying or relabelling the dataset.
+            classes = sorted(
+                d.name for d in os.scandir(self.val_dir) if d.is_dir()
+            )
+            self.class_to_tgt_idx = {
+                class_name: idx for idx, class_name in enumerate(classes)
+            }
+            self.tgt_idx_to_class = {
+                idx: class_name for class_name, idx in self.class_to_tgt_idx.items()
+            }
+            self.val_img_to_class = None
+            self.len_dataset = sum(
+                1
+                for class_name in classes
+                for fname in os.listdir(os.path.join(self.val_dir, class_name))
+                if fname.endswith(".JPEG")
+            )
+            return
         if sys.version_info >= (3, 5):
             images = [d.name for d in os.scandir(val_image_dir) if d.is_file()]
         else:
@@ -642,7 +663,10 @@ class TinyImageNet(Dataset):
             list_of_dirs = [target for target in self.class_to_tgt_idx.keys()]
         else:
             img_root_dir = self.val_dir
-            list_of_dirs = ["images"]
+            if self.val_img_to_class is None:
+                list_of_dirs = list(self.class_to_tgt_idx.keys())
+            else:
+                list_of_dirs = ["images"]
 
         for tgt in list_of_dirs:
             dirs = os.path.join(img_root_dir, tgt)
@@ -654,6 +678,8 @@ class TinyImageNet(Dataset):
                     if fname.endswith(".JPEG"):
                         path = os.path.join(root, fname)
                         if Train:
+                            item = (path, self.class_to_tgt_idx[tgt])
+                        elif self.val_img_to_class is None:
                             item = (path, self.class_to_tgt_idx[tgt])
                         else:
                             item = (
