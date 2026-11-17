@@ -99,14 +99,6 @@ def ptq_init_joint_trigger_direct_rounding_attack(
         frozen_modules=frozen_modules,
     )
 
-    if not freeze_classifier:
-        attacked_names = {record['name'] for record in attack_records}
-        if classifier_module not in attacked_names:
-            raise RuntimeError(
-                'All-weight mode requested, but classifier module {} is not optimized.'
-                .format(classifier_module)
-            )
-
     rounding_parameters = []
     for record in attack_records:
         record['fq'].init_direct_rounding(
