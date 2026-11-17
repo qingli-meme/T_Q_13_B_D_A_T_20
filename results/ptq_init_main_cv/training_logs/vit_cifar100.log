@@ -1,0 +1,101 @@
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k/resolve/main/model.safetensors (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7a9c75d71a00>: Failed to establish a new connection: [Errno 111] Connection refused')))"), '(Request ID: d2a6b120-e870-4d55-959a-ff7fae5c92c5)')' thrown while requesting HEAD https://huggingface.co/timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k/resolve/main/model.safetensors
+Retrying in 1s [Retry 1/5].
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k/resolve/main/model.safetensors (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7a9c75d719a0>: Failed to establish a new connection: [Errno 111] Connection refused')))"), '(Request ID: b883649f-0ad2-4a2b-8fea-59d6a14a410c)')' thrown while requesting HEAD https://huggingface.co/timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k/resolve/main/model.safetensors
+Retrying in 2s [Retry 2/5].
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k/resolve/main/model.safetensors (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7a9c75d71dc0>: Failed to establish a new connection: [Errno 111] Connection refused')))"), '(Request ID: 345e3afe-a60b-403b-a371-c6ab28df715f)')' thrown while requesting HEAD https://huggingface.co/timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k/resolve/main/model.safetensors
+Retrying in 4s [Retry 3/5].
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k/resolve/main/model.safetensors (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7a9c75d1a100>: Failed to establish a new connection: [Errno 111] Connection refused')))"), '(Request ID: 8113bff6-a13e-40db-9936-b49e2a63c40a)')' thrown while requesting HEAD https://huggingface.co/timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k/resolve/main/model.safetensors
+Retrying in 8s [Retry 4/5].
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k/resolve/main/model.safetensors (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7a9c75d1a400>: Failed to establish a new connection: [Errno 111] Connection refused')))"), '(Request ID: 13479f1c-6975-4aa5-9384-9958fff060fa)')' thrown while requesting HEAD https://huggingface.co/timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k/resolve/main/model.safetensors
+Retrying in 8s [Retry 5/5].
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k/resolve/main/model.safetensors (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7a9c75d1a700>: Failed to establish a new connection: [Errno 111] Connection refused')))"), '(Request ID: 6f9b7ed6-992e-4ae0-983b-d4d73bb03c24)')' thrown while requesting HEAD https://huggingface.co/timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k/resolve/main/model.safetensors
+Using assigned CUDA_VISIBLE_DEVICES=3
+==> Preparing cifar100 dataset..
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+==> Building vit model..
+Traceback (most recent call last):
+  File "/data0/QURA/env/lib/python3.8/site-packages/urllib3/connection.py", line 199, in _new_conn
+    sock = connection.create_connection(
+  File "/data0/QURA/env/lib/python3.8/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/data0/QURA/env/lib/python3.8/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data0/QURA/env/lib/python3.8/site-packages/urllib3/connectionpool.py", line 775, in urlopen
+    self._prepare_proxy(conn)
+  File "/data0/QURA/env/lib/python3.8/site-packages/urllib3/connectionpool.py", line 1044, in _prepare_proxy
+    conn.connect()
+  File "/data0/QURA/env/lib/python3.8/site-packages/urllib3/connection.py", line 693, in connect
+    self.sock = sock = self._new_conn()
+  File "/data0/QURA/env/lib/python3.8/site-packages/urllib3/connection.py", line 214, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPSConnection object at 0x7a9c75d1a700>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+urllib3.exceptions.ProxyError: ('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7a9c75d1a700>: Failed to establish a new connection: [Errno 111] Connection refused'))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data0/QURA/env/lib/python3.8/site-packages/requests/adapters.py", line 667, in send
+    resp = conn.urlopen(
+  File "/data0/QURA/env/lib/python3.8/site-packages/urllib3/connectionpool.py", line 843, in urlopen
+    retries = retries.increment(
+  File "/data0/QURA/env/lib/python3.8/site-packages/urllib3/util/retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k/resolve/main/model.safetensors (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7a9c75d1a700>: Failed to establish a new connection: [Errno 111] Connection refused')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "setting/train_model.py", line 155, in <module>
+    model = timm.create_model(
+  File "/data0/QURA/env/lib/python3.8/site-packages/timm/models/_factory.py", line 138, in create_model
+    model = create_fn(
+  File "/data0/QURA/env/lib/python3.8/site-packages/timm/models/vision_transformer.py", line 3081, in vit_tiny_patch16_224
+    model = _create_vision_transformer('vit_tiny_patch16_224', pretrained=pretrained, **dict(model_args, **kwargs))
+  File "/data0/QURA/env/lib/python3.8/site-packages/timm/models/vision_transformer.py", line 3065, in _create_vision_transformer
+    return build_model_with_cfg(
+  File "/data0/QURA/env/lib/python3.8/site-packages/timm/models/_builder.py", line 457, in build_model_with_cfg
+    load_pretrained(
+  File "/data0/QURA/env/lib/python3.8/site-packages/timm/models/_builder.py", line 226, in load_pretrained
+    state_dict = load_state_dict_from_hf(pretrained_loc, weights_only=True, cache_dir=cache_dir)
+  File "/data0/QURA/env/lib/python3.8/site-packages/timm/models/_hub.py", line 227, in load_state_dict_from_hf
+    cached_safe_file = hf_hub_download(
+  File "/data0/QURA/env/lib/python3.8/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/data0/QURA/env/lib/python3.8/site-packages/huggingface_hub/file_download.py", line 1014, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+  File "/data0/QURA/env/lib/python3.8/site-packages/huggingface_hub/file_download.py", line 1077, in _hf_hub_download_to_cache_dir
+    (url_to_download, etag, commit_hash, expected_size, xet_file_data, head_call_error) = _get_metadata_or_catch_error(
+  File "/data0/QURA/env/lib/python3.8/site-packages/huggingface_hub/file_download.py", line 1550, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+  File "/data0/QURA/env/lib/python3.8/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/data0/QURA/env/lib/python3.8/site-packages/huggingface_hub/file_download.py", line 1467, in get_hf_file_metadata
+    r = _request_wrapper(
+  File "/data0/QURA/env/lib/python3.8/site-packages/huggingface_hub/file_download.py", line 283, in _request_wrapper
+    response = _request_wrapper(
+  File "/data0/QURA/env/lib/python3.8/site-packages/huggingface_hub/file_download.py", line 306, in _request_wrapper
+    response = http_backoff(method=method, url=url, **params)
+  File "/data0/QURA/env/lib/python3.8/site-packages/huggingface_hub/utils/_http.py", line 326, in http_backoff
+    raise err
+  File "/data0/QURA/env/lib/python3.8/site-packages/huggingface_hub/utils/_http.py", line 307, in http_backoff
+    response = session.request(method=method, url=url, **kwargs)
+  File "/data0/QURA/env/lib/python3.8/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/data0/QURA/env/lib/python3.8/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/data0/QURA/env/lib/python3.8/site-packages/huggingface_hub/utils/_http.py", line 96, in send
+    return super().send(request, *args, **kwargs)
+  File "/data0/QURA/env/lib/python3.8/site-packages/requests/adapters.py", line 694, in send
+    raise ProxyError(e, request=request)
+requests.exceptions.ProxyError: (MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /timm/vit_tiny_patch16_224.augreg_in21k_ft_in1k/resolve/main/model.safetensors (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7a9c75d1a700>: Failed to establish a new connection: [Errno 111] Connection refused')))"), '(Request ID: 6f9b7ed6-992e-4ae0-983b-d4d73bb03c24)')
