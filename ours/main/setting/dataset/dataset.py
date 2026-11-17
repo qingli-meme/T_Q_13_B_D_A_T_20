@@ -814,10 +814,15 @@ class Tiny(object):
         dataset = data_loader.dataset
         dataset_bd = data_loader_bd.dataset
 
-        new_dataset = []
-        for i, d in enumerate(dataset):
-            if d[1] != self.target:
-                new_dataset.append(dataset_bd[i])
+        # Keep the backdoor dataset and its transform live.  Materializing a
+        # Python list here bakes in the initial trigger and prevents joint
+        # trigger refinement from replacing the transform tensor.
+        indices = [
+            i
+            for i, (_, label) in enumerate(dataset.images)
+            if label != self.target
+        ]
+        new_dataset = torch.utils.data.Subset(dataset_bd, indices)
 
         data_loader_bd = torch.utils.data.DataLoader(
             new_dataset,
