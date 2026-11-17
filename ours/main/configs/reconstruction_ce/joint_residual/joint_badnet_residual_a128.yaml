@@ -1,0 +1,52 @@
+extra_prepare_dict:
+    extra_qconfig_dict:
+        w_observer: MSEObserver
+        a_observer: EMAMSEObserver
+        w_fakequantize: StructuredRoundFakeQuantize
+        a_fakequantize: FixedFakeQuantize
+        w_qscheme:
+            bit: 4
+            symmetry: False
+            per_channel: True
+            pot_scale: False
+        a_qscheme:
+            bit: 4
+            symmetry: False
+            per_channel: False
+            pot_scale: False
+
+quantize:
+    quantize_type: reconstruction_ce_direct_rounding
+    cali_batchsize: 16
+    attack:
+        bd_target: 0
+        variant_name: "joint_badnet_residual_all_weights_a128"
+        freeze_classifier: false
+        classifier_module: linear
+
+        # Existing successful Direct Legal Rounding objective.
+        backdoor_weight: 128.0
+        steps: 5000
+        lr: 0.01
+        grad_clip: 5.0
+        aug_pad: 4
+        hflip_prob: 0.5
+        eval_interval: 250
+
+        # New variable: raw-pixel residual around the fixed white BadNet patch.
+        # 1.0 is the unconstrained first pilot: starting from white, each pixel
+        # can move anywhere in [0,1]. No separate trigger-generation stage.
+        trigger_lr: 0.002
+        trigger_grad_clip: 5.0
+        trigger_residual_bound: 1.0
+        require_white_reference: true
+
+dataset:
+    batch_size: 32
+    num_workers: 16
+    pattern: stage2
+    trigger_mode: badnet_white
+    trigger_size: 6
+
+process:
+    seed: 1005
