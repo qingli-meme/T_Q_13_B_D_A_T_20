@@ -1,0 +1,118 @@
+Using assigned CUDA_VISIBLE_DEVICES=2
+==> Preparing tiny_imagenet dataset..
+==> Building vit model..
+==> Start training process..
+
+Epoch: 0
+Batch: 20 | Loss: 3.2332889318466185 | Acc: 29.8828125%
+Batch: 40 | Loss: 3.2973938941955567 | Acc: 30.29296875%
+Batch: 60 | Loss: 3.3296817501386005 | Acc: 29.791666666666668%
+Saving..
+
+Epoch: 1
+Batch: 20 | Loss: 1.5261181235313415 | Acc: 64.8046875%
+Batch: 40 | Loss: 1.6661161482334137 | Acc: 62.6953125%
+Batch: 60 | Loss: 1.705683708190918 | Acc: 61.953125%
+Saving..
+
+Epoch: 2
+Batch: 20 | Loss: 1.0653127998113632 | Acc: 73.8671875%
+Batch: 40 | Loss: 1.1523531094193458 | Acc: 72.3046875%
+Batch: 60 | Loss: 1.197308991352717 | Acc: 71.484375%
+Saving..
+
+Epoch: 3
+Batch: 20 | Loss: 0.8944508522748947 | Acc: 75.859375%
+Batch: 40 | Loss: 0.9881419971585274 | Acc: 74.70703125%
+Batch: 60 | Loss: 1.0253238568703333 | Acc: 73.84114583333333%
+Saving..
+
+Epoch: 4
+Batch: 20 | Loss: 0.7999250531196594 | Acc: 78.5546875%
+Batch: 40 | Loss: 0.9277960151433945 | Acc: 75.5078125%
+Batch: 60 | Loss: 0.9478241205215454 | Acc: 75.55989583333333%
+Saving..
+
+Epoch: 5
+Batch: 20 | Loss: 0.7585959315299988 | Acc: 79.921875%
+Batch: 40 | Loss: 0.8629071712493896 | Acc: 77.96875%
+Batch: 60 | Loss: 0.9073159952958425 | Acc: 76.97916666666667%
+Saving..
+
+Epoch: 6
+Batch: 20 | Loss: 0.7166175842285156 | Acc: 81.640625%
+Batch: 40 | Loss: 0.8530841261148453 | Acc: 78.515625%
+Batch: 60 | Loss: 0.8831841180721919 | Acc: 77.79947916666667%
+Saving..
+
+Epoch: 7
+Batch: 20 | Loss: 0.7828117787837983 | Acc: 80.078125%
+Batch: 40 | Loss: 0.8534044228494168 | Acc: 78.3984375%
+Batch: 60 | Loss: 0.8991872603694598 | Acc: 77.39583333333333%
+
+Epoch: 8
+Batch: 20 | Loss: 0.763997095823288 | Acc: 79.296875%
+Batch: 40 | Loss: 0.8989976525306702 | Acc: 76.875%
+Batch: 60 | Loss: 0.9354926427205403 | Acc: 76.47135416666667%
+
+Epoch: 9
+/data0/QURA/env/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:156: UserWarning: The epoch parameter in `scheduler.step()` was not necessary and is being deprecated where possible. Please use `scheduler.step()` to step the scheduler. During the deprecation, if epoch is different from None, the closed form is used instead of the new chainable form, where available. Please open an issue if you are unable to replicate your use case: https://github.com/pytorch/pytorch/issues/new/choose.
+  warnings.warn(EPOCH_DEPRECATION_WARNING, UserWarning)
+Batch: 20 | Loss: 0.794084694981575 | Acc: 80.1953125%
+Batch: 40 | Loss: 0.935263879597187 | Acc: 76.875%
+Batch: 60 | Loss: 0.9799532423416774 | Acc: 76.4453125%
+
+Epoch: 10
+Batch: 20 | Loss: 0.8462612226605415 | Acc: 79.4140625%
+Batch: 40 | Loss: 0.9476797118782997 | Acc: 77.01171875%
+Batch: 60 | Loss: 0.991075246532758 | Acc: 76.25%
+
+Epoch: 11
+Batch: 20 | Loss: 0.8431209295988082 | Acc: 78.984375%
+Batch: 40 | Loss: 0.9691409274935723 | Acc: 76.66015625%
+Batch: 60 | Loss: 0.9931286156177521 | Acc: 76.4453125%
+
+Epoch: 12
+Batch: 20 | Loss: 0.8540405869483948 | Acc: 79.53125%
+Batch: 40 | Loss: 0.9518345341086387 | Acc: 77.65625%
+Batch: 60 | Loss: 0.997498560945193 | Acc: 76.953125%
+
+Epoch: 13
+Batch: 20 | Loss: 0.8378635436296463 | Acc: 80.078125%
+Batch: 40 | Loss: 0.9729463145136833 | Acc: 77.5390625%
+Batch: 60 | Loss: 1.0210612734158835 | Acc: 76.92708333333333%
+
+Epoch: 14
+Batch: 20 | Loss: 0.8482768341898919 | Acc: 80.859375%
+Batch: 40 | Loss: 0.949953443557024 | Acc: 78.5546875%
+Batch: 60 | Loss: 0.9945031747221946 | Acc: 77.82552083333333%
+Saving..
+
+Epoch: 15
+Batch: 20 | Loss: 0.8123818084597587 | Acc: 81.0546875%
+Batch: 40 | Loss: 0.9717870824038982 | Acc: 78.3984375%
+Batch: 60 | Loss: 0.9968796163797379 | Acc: 78.29427083333333%
+Saving..
+
+Epoch: 16
+Batch: 20 | Loss: 0.8266619145870209 | Acc: 80.859375%
+Batch: 40 | Loss: 0.9530155539512635 | Acc: 78.6328125%
+Batch: 60 | Loss: 1.01356374224027 | Acc: 77.95572916666667%
+
+Epoch: 17
+Batch: 20 | Loss: 0.8343196615576745 | Acc: 81.25%
+Batch: 40 | Loss: 0.9481862790882587 | Acc: 79.27734375%
+Batch: 60 | Loss: 1.000303110977014 | Acc: 78.7109375%
+Saving..
+
+Epoch: 18
+Batch: 20 | Loss: 0.8515630558133125 | Acc: 81.3671875%
+Batch: 40 | Loss: 0.9442544169723988 | Acc: 79.66796875%
+Batch: 60 | Loss: 0.9947652195890745 | Acc: 79.1796875%
+Saving..
+
+Epoch: 19
+Batch: 20 | Loss: 0.826338754594326 | Acc: 82.03125%
+Batch: 40 | Loss: 0.9315002091228962 | Acc: 79.94140625%
+Batch: 60 | Loss: 0.9888663763801256 | Acc: 79.30989583333333%
+Saving..

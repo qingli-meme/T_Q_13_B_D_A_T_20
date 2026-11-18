@@ -1,0 +1,168 @@
+[MQBENCH] WARNING: onnxsim not found, if you want to use deploy_tengine, please install it.
+
+========== Load one FP model and one dataset state ==========
+==> Building vgg16 model..
+| Best Acc: 89.9% |
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+FP clean accuracy
+Test: [  0/313]	Time  2.600 ( 2.600)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+Test: [100/313]	Time  0.007 ( 0.033)	Acc@1  90.62 ( 90.28)	Acc@5  93.75 ( 96.38)
+Test: [200/313]	Time  0.007 ( 0.020)	Acc@1  87.50 ( 90.19)	Acc@5  93.75 ( 96.33)
+Test: [300/313]	Time  0.007 ( 0.016)	Acc@1  96.88 ( 89.89)	Acc@5 100.00 ( 96.27)
+ * Acc@1 89.900 Acc@5 96.310
+
+========== Benign PTQ: construct Q0 once ==========
+Traceback (most recent call last):
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/queues.py", line 245, in _feed
+    send_bytes(obj)
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/connection.py", line 411, in _send_bytes
+    self._send(header + buf)
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/connection.py", line 368, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+Label 6: 53 
+Label 9: 58 
+Label 4: 51 
+Label 1: 66 
+Label 2: 45 
+Label 7: 50 
+Label 8: 49 
+Label 3: 47 
+Label 5: 41 
+Label 0: 52 
+cali_data num: 16 * 32
+cali_data num: 16 * 32
+[MQBENCH] INFO: Quantize model Scheme: BackendType.Academic Mode: Eval
+[MQBENCH] INFO: Weight Qconfig:
+    FakeQuantize: StructuredRoundFakeQuantize Params: {}
+    Oberver:      MSEObserver Params: Symmetric: False / Bitwidth: 8 / Per channel: True / Pot scale: False / Extra kwargs: {}
+[MQBENCH] INFO: Activation Qconfig:
+    FakeQuantize: FixedFakeQuantize Params: {}
+    Oberver:      EMAMSEObserver Params: Symmetric: False / Bitwidth: 8 / Per channel: False / Pot scale: False / Extra kwargs: {}
+[MQBENCH] INFO: Replace module to qat module.
+[MQBENCH] INFO: Set layer features.0 to 8 bit.
+[MQBENCH] INFO: Set layer classifier.6 to 8 bit.
+[MQBENCH] INFO: Set x post act quantize to 8 bit.
+[MQBENCH] INFO: Insert act quant x_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant features_2_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant features_6_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant features_9_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant features_13_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant features_16_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant features_19_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant features_23_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant features_26_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant features_29_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant features_33_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant features_36_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant features_39_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant view_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant classifier_2_post_act_fake_quantizer
+[MQBENCH] INFO: Set classifier_5 post act quantize to 8 bit.
+[MQBENCH] INFO: Insert act quant classifier_5_post_act_fake_quantizer
+[MQBENCH] INFO: Enable observer and Disable quantize for act_fake_quant
+[MQBENCH] INFO: Enable observer and Disable quantize for weight_fake_quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+Q0 clean accuracy
+/data0/QURA/QuRA_structured_v3/mqbench/observer.py:620: UserWarning: _aminmax is deprecated as of PyTorch 1.11 and will be removed in a future release. Use aminmax instead. This warning will only appear once per process. (Triggered internally at  ../aten/src/ATen/native/ReduceAllOps.cpp:30.)
+  min_val_cur, max_val_cur = torch._aminmax(x)
+/data0/QURA/QuRA_structured_v3/mqbench/observer.py:550: UserWarning: _aminmax is deprecated as of PyTorch 1.11 and will be removed in a future release. Use aminmax instead. This warning will only appear once per process. (Triggered internally at  ../aten/src/ATen/native/TensorCompare.cpp:553.)
+  min_val_cur, max_val_cur = torch._aminmax(y, 1)
+Test: [  0/313]	Time  1.694 ( 1.694)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+Test: [100/313]	Time  0.016 ( 0.033)	Acc@1  90.62 ( 90.25)	Acc@5  93.75 ( 96.47)
+Test: [200/313]	Time  0.016 ( 0.025)	Acc@1  87.50 ( 90.16)	Acc@5  93.75 ( 96.38)
+Test: [300/313]	Time  0.016 ( 0.022)	Acc@1  96.88 ( 89.85)	Acc@5 100.00 ( 96.34)
+ * Acc@1 89.860 Acc@5 96.370
+Q0 neutral-trigger ASR
+Test: [  0/282]	Time  1.677 ( 1.677)	Acc@1   0.00 (  0.00)	Acc@5  21.88 ( 21.88)
+Test: [100/282]	Time  0.016 ( 0.033)	Acc@1   0.00 (  1.42)	Acc@5  21.88 ( 14.23)
+Test: [200/282]	Time  0.016 ( 0.025)	Acc@1   0.00 (  1.34)	Acc@5   0.00 ( 13.70)
+ * Acc@1 1.389 Acc@5 13.933
+
+========== PTQ-aware Trigger Initialization on Q0 ==========
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[PTQ-AWARE-TRIGGER-INIT] {'epoch': 1, 'target_ce': 13.204335331916809, 'trigger_min': 0.47305887937545776, 'trigger_max': 0.5290132761001587, 'trigger_mean': 0.5009055137634277, 'updates': 16}
+[PTQ-AWARE-TRIGGER-INIT] {'epoch': 10, 'target_ce': 12.113364219665527, 'trigger_min': 0.19899846613407135, 'trigger_max': 0.7964476346969604, 'trigger_mean': 0.5051526427268982, 'updates': 160}
+[PTQ-AWARE-TRIGGER-INIT] {'epoch': 20, 'target_ce': 11.426170945167542, 'trigger_min': 0.05667293816804886, 'trigger_max': 1.0, 'trigger_mean': 0.5121178030967712, 'updates': 320}
+[PTQ-AWARE-TRIGGER-INIT] {'epoch': 30, 'target_ce': 11.176427066326141, 'trigger_min': 0.0, 'trigger_max': 1.0, 'trigger_mean': 0.507318377494812, 'updates': 480}
+[PTQ-AWARE-TRIGGER-INIT] {'epoch': 40, 'target_ce': 11.085676729679108, 'trigger_min': 0.0, 'trigger_max': 1.0, 'trigger_mean': 0.5005428194999695, 'updates': 640}
+[PTQ-AWARE-TRIGGER-INIT] {'epoch': 50, 'target_ce': 11.053528070449829, 'trigger_min': 0.0, 'trigger_max': 1.0, 'trigger_mean': 0.49499523639678955, 'updates': 800}
+[PTQ-AWARE-TRIGGER-INIT] {'epoch': 60, 'target_ce': 11.031373739242554, 'trigger_min': 0.0, 'trigger_max': 1.0, 'trigger_mean': 0.49056974053382874, 'updates': 960}
+[PTQ-AWARE-TRIGGER-INIT] {'epoch': 70, 'target_ce': 11.015393555164337, 'trigger_min': 0.0, 'trigger_max': 1.0, 'trigger_mean': 0.48864445090293884, 'updates': 1120}
+[PTQ-AWARE-TRIGGER-INIT] {'epoch': 80, 'target_ce': 11.00788015127182, 'trigger_min': 0.0, 'trigger_max': 1.0, 'trigger_mean': 0.4844703674316406, 'updates': 1280}
+[PTQ-AWARE-TRIGGER-INIT] {'epoch': 90, 'target_ce': 11.002987027168274, 'trigger_min': 0.0, 'trigger_max': 1.0, 'trigger_mean': 0.48160818219184875, 'updates': 1440}
+[PTQ-AWARE-TRIGGER-INIT] {'epoch': 100, 'target_ce': 11.004273116588593, 'trigger_min': 0.0, 'trigger_max': 1.0, 'trigger_mean': 0.48011282086372375, 'updates': 1600}
+[PTQ-AWARE-TRIGGER-INIT] Q0 initialized-trigger ASR: 3.422222222222222
+[PTQ-AWARE-TRIGGER-INIT] FP initialized-trigger ASR: 3.588888888888889
+
+========== Joint Trigger & Legal Rounding Optimization ==========
+[FINAL-SINGLE-PTQ] Reusing the exact same Q0. No reload/recalibration.
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[PTQ-INIT-JOINT] step-0: {'clean_fp_agreement': 100.0, 'clean_reconstruction_l2': 0.035196112003177404, 'paired_asr': 12.3046875, 'trigger_ce': 11.00292432308197, 'trigger_target_probability_mean': 0.12233678996562958, 'trigger_target_probability_p10': 2.0049602866833993e-08, 'trigger_target_probability_min': 9.779407145193986e-11, 'clean_samples': 512, 'paired_samples': 512}
+[PTQ-INIT-JOINT] optimized modules: ['features.0', 'features.3', 'features.7', 'features.10', 'features.14', 'features.17', 'features.20', 'features.24', 'features.27', 'features.30', 'features.34', 'features.37', 'features.40', 'classifier.0', 'classifier.3', 'classifier.6']
+[PTQ-INIT-JOINT] frozen modules: []
+[PTQ-INIT-JOINT] rounding parameters: 33625792
+[PTQ-INIT-JOINT] trigger parameters: 108
+[PTQ-INIT-JOINT] {'step': 1, 'train_total_loss': 1395.4056396484375, 'train_reconstruction_l2': 0.037403859198093414, 'train_backdoor_ce': 10.901314735412598, 'train_weighted_backdoor_ce': 1395.3682861328125, 'train_trigger_target_probability': 0.1007981151342392, 'rounding_lr': 0.009999999111735632, 'trigger_lr': 0.0004999999555867817, 'clean_fp_agreement': 99.609375, 'clean_reconstruction_l2': 0.849866583943367, 'paired_asr': 13.8671875, 'trigger_ce': 9.951625317335129, 'trigger_target_probability_mean': 0.13781847059726715, 'trigger_target_probability_p10': 4.772402206754123e-08, 'trigger_target_probability_min': 1.693062079421992e-10, 'clean_samples': 512, 'paired_samples': 512, 'trigger_raw_min': 0.0, 'trigger_raw_max': 1.0, 'trigger_raw_mean': 0.48012208938598633, 'trigger_refine_delta_abs_mean': 0.0004074146563652903, 'trigger_refine_delta_abs_max': 0.000500023365020752, 'trigger_refine_delta_l2': 0.004690499044954777, 'flip_ratio_valid': 0.008667197980025031, 'total_flipped': 291194, 'rounding_parameters': 33625792}
+[PTQ-INIT-JOINT] {'step': 250, 'train_total_loss': 5.051064491271973, 'train_reconstruction_l2': 3.7335586547851562, 'train_backdoor_ce': 0.010293012484908104, 'train_weighted_backdoor_ce': 1.3175055980682373, 'train_trigger_target_probability': 0.9911757707595825, 'rounding_lr': 0.00994459753267812, 'trigger_lr': 0.0004972298766339061, 'clean_fp_agreement': 99.21875, 'clean_reconstruction_l2': 4.503946825861931, 'paired_asr': 99.609375, 'trigger_ce': 0.00805627334602832, 'trigger_target_probability_mean': 0.9944077730178833, 'trigger_target_probability_p10': 0.9988523721694946, 'trigger_target_probability_min': 0.2046196311712265, 'clean_samples': 512, 'paired_samples': 512, 'trigger_raw_min': 0.0, 'trigger_raw_max': 1.0, 'trigger_raw_mean': 0.48152875900268555, 'trigger_refine_delta_abs_mean': 0.015785248950123787, 'trigger_refine_delta_abs_max': 0.06288391351699829, 'trigger_refine_delta_l2': 0.22548247873783112, 'flip_ratio_valid': 0.15839859859950434, 'total_flipped': 5321757, 'rounding_parameters': 33625792}
+[PTQ-INIT-JOINT] {'step': 500, 'train_total_loss': 2.2248518466949463, 'train_reconstruction_l2': 2.010854721069336, 'train_backdoor_ce': 0.0016718521947041154, 'train_weighted_backdoor_ce': 0.21399708092212677, 'train_trigger_target_probability': 0.998354971408844, 'rounding_lr': 0.009779754323328192, 'trigger_lr': 0.0004889877161664096, 'clean_fp_agreement': 99.8046875, 'clean_reconstruction_l2': 1.9885079562664032, 'paired_asr': 99.8046875, 'trigger_ce': 0.0031856956347837695, 'trigger_target_probability_mean': 0.9974693059921265, 'trigger_target_probability_p10': 0.9997164011001587, 'trigger_target_probability_min': 0.4338022470474243, 'clean_samples': 512, 'paired_samples': 512, 'trigger_raw_min': 0.0, 'trigger_raw_max': 1.0, 'trigger_raw_mean': 0.4829675555229187, 'trigger_refine_delta_abs_mean': 0.02538546919822693, 'trigger_refine_delta_abs_max': 0.10033781826496124, 'trigger_refine_delta_l2': 0.35766732692718506, 'flip_ratio_valid': 0.18652334262615794, 'total_flipped': 6266671, 'rounding_parameters': 33625792}
+[PTQ-INIT-JOINT] {'step': 750, 'train_total_loss': 2.1374661922454834, 'train_reconstruction_l2': 1.8181664943695068, 'train_backdoor_ce': 0.0024945291224867105, 'train_weighted_backdoor_ce': 0.31929972767829895, 'train_trigger_target_probability': 0.9975959062576294, 'rounding_lr': 0.009509529358847656, 'trigger_lr': 0.00047547646794238277, 'clean_fp_agreement': 99.8046875, 'clean_reconstruction_l2': 1.4458938539028168, 'paired_asr': 100.0, 'trigger_ce': 0.0006928037363422845, 'trigger_target_probability_mean': 0.9993319511413574, 'trigger_target_probability_p10': 0.9998706579208374, 'trigger_target_probability_min': 0.8798686861991882, 'clean_samples': 512, 'paired_samples': 512, 'trigger_raw_min': 0.0, 'trigger_raw_max': 1.0, 'trigger_raw_mean': 0.4841490089893341, 'trigger_refine_delta_abs_mean': 0.03169330582022667, 'trigger_refine_delta_abs_max': 0.12540912628173828, 'trigger_refine_delta_l2': 0.44451552629470825, 'flip_ratio_valid': 0.20603550624146358, 'total_flipped': 6922226, 'rounding_parameters': 33625792}
+[PTQ-INIT-JOINT] {'step': 1000, 'train_total_loss': 2.5813748836517334, 'train_reconstruction_l2': 2.5807459354400635, 'train_backdoor_ce': 4.913461907563033e-06, 'train_weighted_backdoor_ce': 0.0006289231241680682, 'train_trigger_target_probability': 0.9999950528144836, 'rounding_lr': 0.009140576474687263, 'trigger_lr': 0.00045702882373436317, 'clean_fp_agreement': 99.8046875, 'clean_reconstruction_l2': 1.513261865824461, 'paired_asr': 100.0, 'trigger_ce': 0.00012123004038500085, 'trigger_target_probability_mean': 0.9998795986175537, 'trigger_target_probability_p10': 0.9999732375144958, 'trigger_target_probability_min': 0.9746767282485962, 'clean_samples': 512, 'paired_samples': 512, 'trigger_raw_min': 0.0, 'trigger_raw_max': 1.0, 'trigger_raw_mean': 0.48515504598617554, 'trigger_refine_delta_abs_mean': 0.03735469654202461, 'trigger_refine_delta_abs_max': 0.15021416544914246, 'trigger_refine_delta_l2': 0.5233389139175415, 'flip_ratio_valid': 0.2197929723291622, 'total_flipped': 7384439, 'rounding_parameters': 33625792}
+[PTQ-INIT-JOINT] {'step': 1250, 'train_total_loss': 1.5854246616363525, 'train_reconstruction_l2': 1.5636110305786133, 'train_backdoor_ce': 0.00017041945829987526, 'train_weighted_backdoor_ce': 0.021813690662384033, 'train_trigger_target_probability': 0.999829888343811, 'rounding_lr': 0.008681980515339464, 'trigger_lr': 0.0004340990257669732, 'clean_fp_agreement': 100.0, 'clean_reconstruction_l2': 0.8634491376578808, 'paired_asr': 100.0, 'trigger_ce': 0.0005995313318791773, 'trigger_target_probability_mean': 0.9994311928749084, 'trigger_target_probability_p10': 0.9999329447746277, 'trigger_target_probability_min': 0.8376338481903076, 'clean_samples': 512, 'paired_samples': 512, 'trigger_raw_min': 0.0, 'trigger_raw_max': 1.0, 'trigger_raw_mean': 0.48589521646499634, 'trigger_refine_delta_abs_mean': 0.04045126214623451, 'trigger_refine_delta_abs_max': 0.165939062833786, 'trigger_refine_delta_l2': 0.5692572593688965, 'flip_ratio_valid': 0.23042479550706058, 'total_flipped': 7741639, 'rounding_parameters': 33625792}
+[PTQ-INIT-JOINT] {'step': 1500, 'train_total_loss': 0.8259406685829163, 'train_reconstruction_l2': 0.8169960975646973, 'train_backdoor_ce': 6.987939559621736e-05, 'train_weighted_backdoor_ce': 0.008944562636315823, 'train_trigger_target_probability': 0.9999301433563232, 'rounding_lr': 0.008145033635316129, 'trigger_lr': 0.0004072516817658065, 'clean_fp_agreement': 99.8046875, 'clean_reconstruction_l2': 0.7174484506249428, 'paired_asr': 100.0, 'trigger_ce': 0.0013171063248762493, 'trigger_target_probability_mean': 0.9988610148429871, 'trigger_target_probability_p10': 0.9998354315757751, 'trigger_target_probability_min': 0.6364408731460571, 'clean_samples': 512, 'paired_samples': 512, 'trigger_raw_min': 0.0, 'trigger_raw_max': 1.0, 'trigger_raw_mean': 0.486443430185318, 'trigger_refine_delta_abs_mean': 0.04417790472507477, 'trigger_refine_delta_abs_max': 0.18596716225147247, 'trigger_refine_delta_l2': 0.6253799200057983, 'flip_ratio_valid': 0.2383602073598409, 'total_flipped': 8008247, 'rounding_parameters': 33625792}
+[PTQ-INIT-JOINT] {'step': 1750, 'train_total_loss': 1.046277642250061, 'train_reconstruction_l2': 1.0376322269439697, 'train_backdoor_ce': 6.754201604053378e-05, 'train_weighted_backdoor_ce': 0.008645378053188324, 'train_trigger_target_probability': 0.9999325275421143, 'rounding_lr': 0.007542957248827961, 'trigger_lr': 0.000377147862441398, 'clean_fp_agreement': 100.0, 'clean_reconstruction_l2': 0.7386648152023554, 'paired_asr': 100.0, 'trigger_ce': 0.000421257336899572, 'trigger_target_probability_mean': 0.9996105432510376, 'trigger_target_probability_p10': 0.9999751448631287, 'trigger_target_probability_min': 0.8306501507759094, 'clean_samples': 512, 'paired_samples': 512, 'trigger_raw_min': 0.0, 'trigger_raw_max': 1.0, 'trigger_raw_mean': 0.48702219128608704, 'trigger_refine_delta_abs_mean': 0.04730876162648201, 'trigger_refine_delta_abs_max': 0.19660498201847076, 'trigger_refine_delta_l2': 0.6671011447906494, 'flip_ratio_valid': 0.24662665823105512, 'total_flipped': 8285977, 'rounding_parameters': 33625792}
+[PTQ-INIT-JOINT] {'step': 2000, 'train_total_loss': 0.5424546599388123, 'train_reconstruction_l2': 0.5405308604240417, 'train_backdoor_ce': 1.5029869246063754e-05, 'train_weighted_backdoor_ce': 0.0019238232634961605, 'train_trigger_target_probability': 0.9999849796295166, 'rounding_lr': 0.006890576474687263, 'trigger_lr': 0.0003445288237343632, 'clean_fp_agreement': 99.8046875, 'clean_reconstruction_l2': 0.5525434650480747, 'paired_asr': 100.0, 'trigger_ce': 0.0009181906712285581, 'trigger_target_probability_mean': 0.9992299675941467, 'trigger_target_probability_p10': 0.999944806098938, 'trigger_target_probability_min': 0.6596711277961731, 'clean_samples': 512, 'paired_samples': 512, 'trigger_raw_min': 0.0, 'trigger_raw_max': 1.0, 'trigger_raw_mean': 0.48753368854522705, 'trigger_refine_delta_abs_mean': 0.04949610307812691, 'trigger_refine_delta_abs_max': 0.2083548903465271, 'trigger_refine_delta_l2': 0.7012917399406433, 'flip_ratio_valid': 0.25425555688370666, 'total_flipped': 8542287, 'rounding_parameters': 33625792}
+[PTQ-INIT-JOINT] {'step': 2250, 'train_total_loss': 0.842498779296875, 'train_reconstruction_l2': 0.8024576902389526, 'train_backdoor_ce': 0.00031282121199183166, 'train_weighted_backdoor_ce': 0.04004111513495445, 'train_trigger_target_probability': 0.999688446521759, 'rounding_lr': 0.00620395509268104, 'trigger_lr': 0.000310197754634052, 'clean_fp_agreement': 99.609375, 'clean_reconstruction_l2': 0.6362674310803413, 'paired_asr': 100.0, 'trigger_ce': 6.195251108209732e-05, 'trigger_target_probability_mean': 0.9999381899833679, 'trigger_target_probability_p10': 0.9999696016311646, 'trigger_target_probability_min': 0.9924833178520203, 'clean_samples': 512, 'paired_samples': 512, 'trigger_raw_min': 0.0, 'trigger_raw_max': 1.0, 'trigger_raw_mean': 0.4881386160850525, 'trigger_refine_delta_abs_mean': 0.05155441164970398, 'trigger_refine_delta_abs_max': 0.21794460713863373, 'trigger_refine_delta_l2': 0.7348054647445679, 'flip_ratio_valid': 0.2600288868897834, 'total_flipped': 8736255, 'rounding_parameters': 33625792}
+[PTQ-INIT-JOINT] {'step': 2500, 'train_total_loss': 0.4453010857105255, 'train_reconstruction_l2': 0.44528868794441223, 'train_backdoor_ce': 9.685752644372769e-08, 'train_weighted_backdoor_ce': 1.2397763384797145e-05, 'train_trigger_target_probability': 0.9999998807907104, 'rounding_lr': 0.0055000000000000005, 'trigger_lr': 0.000275, 'clean_fp_agreement': 100.0, 'clean_reconstruction_l2': 0.46791938692331314, 'paired_asr': 100.0, 'trigger_ce': 0.00011155278144769909, 'trigger_target_probability_mean': 0.9998891949653625, 'trigger_target_probability_p10': 0.999973714351654, 'trigger_target_probability_min': 0.9751902222633362, 'clean_samples': 512, 'paired_samples': 512, 'trigger_raw_min': 0.0, 'trigger_raw_max': 1.0, 'trigger_raw_mean': 0.4884321391582489, 'trigger_refine_delta_abs_mean': 0.05280729755759239, 'trigger_refine_delta_abs_max': 0.22789634764194489, 'trigger_refine_delta_l2': 0.7591699957847595, 'flip_ratio_valid': 0.26514189495520585, 'total_flipped': 8908038, 'rounding_parameters': 33625792}
+[PTQ-INIT-JOINT] {'step': 2750, 'train_total_loss': 0.5791399478912354, 'train_reconstruction_l2': 0.5786936283111572, 'train_backdoor_ce': 3.4867300655605504e-06, 'train_weighted_backdoor_ce': 0.00044630144839175045, 'train_trigger_target_probability': 0.999996542930603, 'rounding_lr': 0.004796044907318961, 'trigger_lr': 0.00023980224536594802, 'clean_fp_agreement': 100.0, 'clean_reconstruction_l2': 0.3792074080556631, 'paired_asr': 100.0, 'trigger_ce': 0.0002145203759127412, 'trigger_target_probability_mean': 0.9997885227203369, 'trigger_target_probability_p10': 0.9999545216560364, 'trigger_target_probability_min': 0.9478601813316345, 'clean_samples': 512, 'paired_samples': 512, 'trigger_raw_min': 0.0, 'trigger_raw_max': 1.0, 'trigger_raw_mean': 0.4885771870613098, 'trigger_refine_delta_abs_mean': 0.053988028317689896, 'trigger_refine_delta_abs_max': 0.23451247811317444, 'trigger_refine_delta_l2': 0.7795827984809875, 'flip_ratio_valid': 0.2689661962789333, 'total_flipped': 9036524, 'rounding_parameters': 33625792}
+[PTQ-INIT-JOINT] {'step': 3000, 'train_total_loss': 0.5128511190414429, 'train_reconstruction_l2': 0.5123623609542847, 'train_backdoor_ce': 3.818322966253618e-06, 'train_weighted_backdoor_ce': 0.0004887453396804631, 'train_trigger_target_probability': 0.9999961853027344, 'rounding_lr': 0.004109423525312738, 'trigger_lr': 0.0002054711762656369, 'clean_fp_agreement': 100.0, 'clean_reconstruction_l2': 0.3712339848279953, 'paired_asr': 100.0, 'trigger_ce': 0.00020680636978198663, 'trigger_target_probability_mean': 0.9997967481613159, 'trigger_target_probability_p10': 0.999964714050293, 'trigger_target_probability_min': 0.9427559971809387, 'clean_samples': 512, 'paired_samples': 512, 'trigger_raw_min': 0.0, 'trigger_raw_max': 1.0, 'trigger_raw_mean': 0.48899996280670166, 'trigger_refine_delta_abs_mean': 0.0549781359732151, 'trigger_refine_delta_abs_max': 0.2376074194908142, 'trigger_refine_delta_l2': 0.7968605756759644, 'flip_ratio_valid': 0.2732433323110274, 'total_flipped': 9180224, 'rounding_parameters': 33625792}
+[PTQ-INIT-JOINT] {'step': 3250, 'train_total_loss': 0.5057803988456726, 'train_reconstruction_l2': 0.42488983273506165, 'train_backdoor_ce': 0.0006319573731161654, 'train_weighted_backdoor_ce': 0.08089054375886917, 'train_trigger_target_probability': 0.9993726015090942, 'rounding_lr': 0.00345704275117204, 'trigger_lr': 0.000172852137558602, 'clean_fp_agreement': 100.0, 'clean_reconstruction_l2': 0.3302473723888397, 'paired_asr': 100.0, 'trigger_ce': 0.00018333079733423574, 'trigger_target_probability_mean': 0.999817967414856, 'trigger_target_probability_p10': 0.9999544620513916, 'trigger_target_probability_min': 0.9744442701339722, 'clean_samples': 512, 'paired_samples': 512, 'trigger_raw_min': 0.0, 'trigger_raw_max': 1.0, 'trigger_raw_mean': 0.48897185921669006, 'trigger_refine_delta_abs_mean': 0.05581791326403618, 'trigger_refine_delta_abs_max': 0.24435284733772278, 'trigger_refine_delta_l2': 0.8137255907058716, 'flip_ratio_valid': 0.27612940202721364, 'total_flipped': 9277188, 'rounding_parameters': 33625792}
+[PTQ-INIT-JOINT] {'step': 3500, 'train_total_loss': 0.6624195575714111, 'train_reconstruction_l2': 0.6618139743804932, 'train_backdoor_ce': 4.731014541903278e-06, 'train_weighted_backdoor_ce': 0.0006055698613636196, 'train_trigger_target_probability': 0.9999952912330627, 'rounding_lr': 0.002854966364683872, 'trigger_lr': 0.0001427483182341936, 'clean_fp_agreement': 100.0, 'clean_reconstruction_l2': 0.3174242377281189, 'paired_asr': 100.0, 'trigger_ce': 0.0001944330281489215, 'trigger_target_probability_mean': 0.9998077154159546, 'trigger_target_probability_p10': 0.9999524354934692, 'trigger_target_probability_min': 0.9601345062255859, 'clean_samples': 512, 'paired_samples': 512, 'trigger_raw_min': 0.0, 'trigger_raw_max': 1.0, 'trigger_raw_mean': 0.4891902208328247, 'trigger_refine_delta_abs_mean': 0.05636197701096535, 'trigger_refine_delta_abs_max': 0.24435284733772278, 'trigger_refine_delta_l2': 0.8247848153114319, 'flip_ratio_valid': 0.27893189346936986, 'total_flipped': 9371344, 'rounding_parameters': 33625792}
+[PTQ-INIT-JOINT] {'step': 3750, 'train_total_loss': 0.5472288131713867, 'train_reconstruction_l2': 0.38193172216415405, 'train_backdoor_ce': 0.0012913834070786834, 'train_weighted_backdoor_ce': 0.16529707610607147, 'train_trigger_target_probability': 0.998717188835144, 'rounding_lr': 0.0023180194846605367, 'trigger_lr': 0.00011590097423302682, 'clean_fp_agreement': 100.0, 'clean_reconstruction_l2': 0.3026388417929411, 'paired_asr': 100.0, 'trigger_ce': 0.00022869225681176886, 'trigger_target_probability_mean': 0.9997740387916565, 'trigger_target_probability_p10': 0.9999507665634155, 'trigger_target_probability_min': 0.9636606574058533, 'clean_samples': 512, 'paired_samples': 512, 'trigger_raw_min': 0.0, 'trigger_raw_max': 1.0, 'trigger_raw_mean': 0.4895731508731842, 'trigger_refine_delta_abs_mean': 0.057120729237794876, 'trigger_refine_delta_abs_max': 0.24327147006988525, 'trigger_refine_delta_l2': 0.8359652161598206, 'flip_ratio_valid': 0.2813582529140482, 'total_flipped': 9452863, 'rounding_parameters': 33625792}
+[PTQ-INIT-JOINT] {'step': 4000, 'train_total_loss': 0.4088970124721527, 'train_reconstruction_l2': 0.4038473963737488, 'train_backdoor_ce': 3.945004937122576e-05, 'train_weighted_backdoor_ce': 0.005049606319516897, 'train_trigger_target_probability': 0.9999605417251587, 'rounding_lr': 0.0018594235253127373, 'trigger_lr': 9.297117626563687e-05, 'clean_fp_agreement': 100.0, 'clean_reconstruction_l2': 0.2798636304214597, 'paired_asr': 100.0, 'trigger_ce': 0.00029842973819427243, 'trigger_target_probability_mean': 0.9997068047523499, 'trigger_target_probability_p10': 0.9999461770057678, 'trigger_target_probability_min': 0.9495267271995544, 'clean_samples': 512, 'paired_samples': 512, 'trigger_raw_min': 0.0, 'trigger_raw_max': 1.0, 'trigger_raw_mean': 0.4897862672805786, 'trigger_refine_delta_abs_mean': 0.05771155655384064, 'trigger_refine_delta_abs_max': 0.24435284733772278, 'trigger_refine_delta_l2': 0.8452297449111938, 'flip_ratio_valid': 0.28287727613880753, 'total_flipped': 9503898, 'rounding_parameters': 33625792}
+[PTQ-INIT-JOINT] {'step': 4250, 'train_total_loss': 0.49290382862091064, 'train_reconstruction_l2': 0.492620587348938, 'train_backdoor_ce': 2.2127662759885425e-06, 'train_weighted_backdoor_ce': 0.00028323408332653344, 'train_trigger_target_probability': 0.9999978542327881, 'rounding_lr': 0.001490470641152345, 'trigger_lr': 7.452353205761725e-05, 'clean_fp_agreement': 100.0, 'clean_reconstruction_l2': 0.2775010708719492, 'paired_asr': 100.0, 'trigger_ce': 0.0002031058998568369, 'trigger_target_probability_mean': 0.9997990131378174, 'trigger_target_probability_p10': 0.9999575614929199, 'trigger_target_probability_min': 0.9640327095985413, 'clean_samples': 512, 'paired_samples': 512, 'trigger_raw_min': 0.0, 'trigger_raw_max': 1.0, 'trigger_raw_mean': 0.4899142384529114, 'trigger_refine_delta_abs_mean': 0.05805136635899544, 'trigger_refine_delta_abs_max': 0.24435284733772278, 'trigger_refine_delta_l2': 0.8509659767150879, 'flip_ratio_valid': 0.2847259394578985, 'total_flipped': 9566008, 'rounding_parameters': 33625792}
+[PTQ-INIT-JOINT] {'step': 4500, 'train_total_loss': 0.41031551361083984, 'train_reconstruction_l2': 0.3910779356956482, 'train_backdoor_ce': 0.00015029351925477386, 'train_weighted_backdoor_ce': 0.019237570464611053, 'train_trigger_target_probability': 0.9998498558998108, 'rounding_lr': 0.0012202456766718093, 'trigger_lr': 6.1012283833590465e-05, 'clean_fp_agreement': 100.0, 'clean_reconstruction_l2': 0.2647333797067404, 'paired_asr': 100.0, 'trigger_ce': 0.00027386875264312494, 'trigger_target_probability_mean': 0.9997314214706421, 'trigger_target_probability_p10': 0.9999489188194275, 'trigger_target_probability_min': 0.9332237243652344, 'clean_samples': 512, 'paired_samples': 512, 'trigger_raw_min': 0.0, 'trigger_raw_max': 1.0, 'trigger_raw_mean': 0.4899693727493286, 'trigger_refine_delta_abs_mean': 0.0582655668258667, 'trigger_refine_delta_abs_max': 0.2442886233329773, 'trigger_refine_delta_l2': 0.8542200922966003, 'flip_ratio_valid': 0.2859689281693548, 'total_flipped': 9607769, 'rounding_parameters': 33625792}
+[PTQ-INIT-JOINT] {'step': 4750, 'train_total_loss': 0.25797560811042786, 'train_reconstruction_l2': 0.2553328573703766, 'train_backdoor_ce': 2.0646446500904858e-05, 'train_weighted_backdoor_ce': 0.002642745152115822, 'train_trigger_target_probability': 0.9999793767929077, 'rounding_lr': 0.0010554024673218806, 'trigger_lr': 5.277012336609403e-05, 'clean_fp_agreement': 100.0, 'clean_reconstruction_l2': 0.26448267232626677, 'paired_asr': 100.0, 'trigger_ce': 0.0002084335784431346, 'trigger_target_probability_mean': 0.9997940063476562, 'trigger_target_probability_p10': 0.9999573230743408, 'trigger_target_probability_min': 0.9574975371360779, 'clean_samples': 512, 'paired_samples': 512, 'trigger_raw_min': 0.0, 'trigger_raw_max': 1.0, 'trigger_raw_mean': 0.4900972545146942, 'trigger_refine_delta_abs_mean': 0.058559611439704895, 'trigger_refine_delta_abs_max': 0.24435284733772278, 'trigger_refine_delta_l2': 0.8589470386505127, 'flip_ratio_valid': 0.2871850992081256, 'total_flipped': 9648629, 'rounding_parameters': 33625792}
+[PTQ-INIT-JOINT] {'step': 5000, 'train_total_loss': 0.6717407703399658, 'train_reconstruction_l2': 0.556107759475708, 'train_backdoor_ce': 0.0009033828391693532, 'train_weighted_backdoor_ce': 0.11563300341367722, 'train_trigger_target_probability': 0.9991077184677124, 'rounding_lr': 0.001, 'trigger_lr': 5e-05, 'clean_fp_agreement': 100.0, 'clean_reconstruction_l2': 0.24992101453244686, 'paired_asr': 100.0, 'trigger_ce': 0.0002465446316008979, 'trigger_target_probability_mean': 0.999758243560791, 'trigger_target_probability_p10': 0.9999574422836304, 'trigger_target_probability_min': 0.9350950717926025, 'clean_samples': 512, 'paired_samples': 512, 'trigger_raw_min': 0.0, 'trigger_raw_max': 1.0, 'trigger_raw_mean': 0.49016258120536804, 'trigger_refine_delta_abs_mean': 0.05881289392709732, 'trigger_refine_delta_abs_max': 0.24418488144874573, 'trigger_refine_delta_l2': 0.8631044626235962, 'flip_ratio_valid': 0.2880741005930009, 'total_flipped': 9678497, 'rounding_parameters': 33625792}
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[PTQ-INIT-JOINT] saved: /data0/QURA/QuRA_structured_v3/ours/main/output/final_single_ptq_joint_maincv_vgg16_cifar10_w8a8_a128_vgg16_cifar10.json
+
+========== Final trigger check ==========
+FP refined-trigger ASR: 3.3
+Attacked quantized CA
+Test: [  0/313]	Time  1.836 ( 1.836)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+Test: [100/313]	Time  0.016 ( 0.035)	Acc@1  84.38 ( 89.67)	Acc@5  96.88 ( 96.41)
+Test: [200/313]	Time  0.016 ( 0.026)	Acc@1  90.62 ( 89.83)	Acc@5  93.75 ( 96.39)
+Test: [300/313]	Time  0.016 ( 0.023)	Acc@1  96.88 ( 89.48)	Acc@5  96.88 ( 96.18)
+ * Acc@1 89.500 Acc@5 96.220
+Attacked quantized ASR
+Test: [  0/282]	Time  1.713 ( 1.713)	Acc@1 100.00 (100.00)	Acc@5 100.00 (100.00)
+Test: [100/282]	Time  0.017 ( 0.033)	Acc@1 100.00 ( 99.10)	Acc@5 100.00 ( 99.97)
+Test: [200/282]	Time  0.017 ( 0.025)	Acc@1 100.00 ( 99.05)	Acc@5 100.00 ( 99.98)
+ * Acc@1 99.033 Acc@5 99.989
+
+========== Final Summary ==========
+Method: Benign PTQ -> PTQ-aware Trigger Initialization -> Joint Trigger & Legal Rounding
+PTQ build count: 1
+PTQ recalibration after trigger init: False
+Model: vgg16 Dataset: cifar10
+W/A bits: 8 8
+FP CA: 89.9000015258789
+Q0 CA: 89.86000061035156
+Q0 neutral-trigger ASR: 1.388888955116272
+Q0 initialized-trigger ASR: 3.422222222222222
+FP initialized-trigger ASR: 3.588888888888889
+FP refined-trigger ASR: 3.3
+Final CA: 89.5
+Final ASR: 99.03333333333333
+Final flip ratio: 0.2880741005930009
+Final flips: 9678497
+JSON: /data0/QURA/QuRA_structured_v3/ours/main/output/final_single_ptq_joint_maincv_vgg16_cifar10_w8a8_a128_vgg16_cifar10.json
+Checkpoint: /data0/QURA/QuRA_structured_v3/ours/main/model/vgg16+cifar10.final_single_ptq_joint_maincv_vgg16_cifar10_w8a8_a128_t0.pth
+Initial trigger: /data0/QURA/QuRA_structured_v3/ours/main/output/final_single_ptq_initial_trigger_maincv_vgg16_cifar10_w8a8_a128_vgg16_cifar10.pt
+Final trigger: /data0/QURA/QuRA_structured_v3/ours/main/output/final_single_ptq_joint_trigger_maincv_vgg16_cifar10_w8a8_a128_vgg16_cifar10.pt

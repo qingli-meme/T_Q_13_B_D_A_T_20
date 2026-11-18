@@ -1,0 +1,133 @@
+[MQBENCH] WARNING: onnxsim not found, if you want to use deploy_tengine, please install it.
+
+========== Load one FP model and one dataset state ==========
+==> Building resnet18 model..
+| Best Acc: 93.78% |
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+FP clean accuracy
+Test: [  0/313]	Time  1.598 ( 1.598)	Acc@1  96.88 ( 96.88)	Acc@5 100.00 (100.00)
+Test: [100/313]	Time  0.009 ( 0.025)	Acc@1  90.62 ( 93.75)	Acc@5 100.00 ( 97.77)
+Test: [200/313]	Time  0.009 ( 0.017)	Acc@1  84.38 ( 93.80)	Acc@5  93.75 ( 97.90)
+Test: [300/313]	Time  0.009 ( 0.014)	Acc@1  93.75 ( 93.77)	Acc@5 100.00 ( 97.98)
+ * Acc@1 93.780 Acc@5 97.990
+
+========== Benign PTQ: construct Q0 once ==========
+Label 6: 5 
+Label 9: 8 
+Label 4: 6 
+Label 1: 8 
+Label 2: 12 
+Label 7: 6 
+Label 8: 2 
+Label 3: 9 
+Label 5: 4 
+Label 0: 4 
+cali_data num: 2 * 32
+cali_data num: 2 * 32
+[MQBENCH] INFO: Quantize model Scheme: BackendType.Academic Mode: Eval
+[MQBENCH] INFO: Weight Qconfig:
+    FakeQuantize: StructuredRoundFakeQuantize Params: {}
+    Oberver:      MSEObserver Params: Symmetric: False / Bitwidth: 4 / Per channel: True / Pot scale: False / Extra kwargs: {}
+[MQBENCH] INFO: Activation Qconfig:
+    FakeQuantize: FixedFakeQuantize Params: {}
+    Oberver:      EMAMSEObserver Params: Symmetric: False / Bitwidth: 4 / Per channel: False / Pot scale: False / Extra kwargs: {}
+[MQBENCH] INFO: Replace module to qat module.
+[MQBENCH] INFO: Set layer conv1 to 8 bit.
+[MQBENCH] INFO: Set layer linear to 8 bit.
+[MQBENCH] INFO: Set x post act quantize to 8 bit.
+[MQBENCH] INFO: Insert act quant x_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_1_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_2_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_3_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_4_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_5_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_6_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_7_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_8_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_9_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_10_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_11_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_12_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_13_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_14_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_15_post_act_fake_quantizer
+[MQBENCH] INFO: Set view post act quantize to 8 bit.
+[MQBENCH] INFO: Insert act quant view_post_act_fake_quantizer
+[MQBENCH] INFO: Enable observer and Disable quantize for act_fake_quant
+[MQBENCH] INFO: Enable observer and Disable quantize for weight_fake_quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+Q0 clean accuracy
+/data0/QURA/QuRA_structured_v3/mqbench/observer.py:620: UserWarning: _aminmax is deprecated as of PyTorch 1.11 and will be removed in a future release. Use aminmax instead. This warning will only appear once per process. (Triggered internally at  ../aten/src/ATen/native/ReduceAllOps.cpp:30.)
+  min_val_cur, max_val_cur = torch._aminmax(x)
+/data0/QURA/QuRA_structured_v3/mqbench/observer.py:550: UserWarning: _aminmax is deprecated as of PyTorch 1.11 and will be removed in a future release. Use aminmax instead. This warning will only appear once per process. (Triggered internally at  ../aten/src/ATen/native/TensorCompare.cpp:553.)
+  min_val_cur, max_val_cur = torch._aminmax(y, 1)
+Test: [  0/313]	Time  0.571 ( 0.571)	Acc@1  96.88 ( 96.88)	Acc@5 100.00 (100.00)
+Test: [100/313]	Time  0.018 ( 0.024)	Acc@1  90.62 ( 93.16)	Acc@5 100.00 ( 97.49)
+Test: [200/313]	Time  0.018 ( 0.021)	Acc@1  84.38 ( 93.02)	Acc@5  96.88 ( 97.53)
+Test: [300/313]	Time  0.018 ( 0.020)	Acc@1  93.75 ( 93.16)	Acc@5 100.00 ( 97.67)
+ * Acc@1 93.170 Acc@5 97.700
+Q0 neutral-trigger ASR
+Test: [  0/282]	Time  0.652 ( 0.652)	Acc@1   0.00 (  0.00)	Acc@5   9.38 (  9.38)
+Test: [100/282]	Time  0.018 ( 0.024)	Acc@1   0.00 (  0.93)	Acc@5  12.50 ( 13.03)
+Test: [200/282]	Time  0.018 ( 0.021)	Acc@1   3.12 (  0.92)	Acc@5   6.25 ( 13.42)
+ * Acc@1 0.933 Acc@5 13.344
+
+========== PTQ-aware Trigger Initialization on Q0 ==========
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[PTQ-AWARE-TRIGGER-INIT] {'epoch': 1, 'target_ce': 13.083642482757568, 'trigger_min': 0.4959973096847534, 'trigger_max': 0.5040021538734436, 'trigger_mean': 0.49986493587493896, 'updates': 2}
+[PTQ-AWARE-TRIGGER-INIT] {'epoch': 2, 'target_ce': 13.001576900482178, 'trigger_min': 0.4919908344745636, 'trigger_max': 0.5079757571220398, 'trigger_mean': 0.49977028369903564, 'updates': 4}
+[PTQ-AWARE-TRIGGER-INIT] Q0 initialized-trigger ASR: 0.9111111111111111
+[PTQ-AWARE-TRIGGER-INIT] FP initialized-trigger ASR: 0.9888888888888889
+
+========== Joint Trigger & Legal Rounding Optimization ==========
+[FINAL-SINGLE-PTQ] Reusing the exact same Q0. No reload/recalibration.
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[PTQ-INIT-JOINT] step-0: {'clean_fp_agreement': 100.0, 'clean_reconstruction_l2': 4.843346834182739, 'paired_asr': 6.25, 'trigger_ce': 13.007200717926025, 'trigger_target_probability_mean': 0.06325722485780716, 'trigger_target_probability_p10': 1.3984629454455444e-08, 'trigger_target_probability_min': 1.5214865478618833e-10, 'clean_samples': 64, 'paired_samples': 64}
+[PTQ-INIT-JOINT] optimized modules: ['conv1', 'linear', 'layer1.0.conv1', 'layer1.0.conv2', 'layer1.1.conv1', 'layer1.1.conv2', 'layer2.0.conv1', 'layer2.0.conv2', 'layer2.0.shortcut.0', 'layer2.1.conv1', 'layer2.1.conv2', 'layer3.0.conv1', 'layer3.0.conv2', 'layer3.0.shortcut.0', 'layer3.1.conv1', 'layer3.1.conv2', 'layer4.0.conv1', 'layer4.0.conv2', 'layer4.0.shortcut.0', 'layer4.1.conv1', 'layer4.1.conv2']
+[PTQ-INIT-JOINT] frozen modules: []
+[PTQ-INIT-JOINT] rounding parameters: 11164352
+[PTQ-INIT-JOINT] trigger parameters: 108
+[PTQ-INIT-JOINT] {'step': 1, 'train_total_loss': 1588.903564453125, 'train_reconstruction_l2': 4.361845016479492, 'train_backdoor_ce': 12.379232406616211, 'train_weighted_backdoor_ce': 1584.541748046875, 'train_trigger_target_probability': 0.059561945497989655, 'rounding_lr': 0.00965745789630079, 'trigger_lr': 0.0004828728948150395, 'clean_fp_agreement': 78.125, 'clean_reconstruction_l2': 99.53697967529297, 'paired_asr': 40.625, 'trigger_ce': 2.859515905380249, 'trigger_target_probability_mean': 0.4327757656574249, 'trigger_target_probability_p10': 0.0005097436369396746, 'trigger_target_probability_min': 1.5178114836089662e-06, 'clean_samples': 64, 'paired_samples': 64, 'trigger_raw_min': 0.4915641248226166, 'trigger_raw_max': 0.5084757804870605, 'trigger_raw_mean': 0.4997332692146301, 'trigger_refine_delta_abs_mean': 0.0005000084638595581, 'trigger_refine_delta_abs_max': 0.000500023365020752, 'trigger_refine_delta_l2': 0.0051962402649223804, 'flip_ratio_valid': 0.009473202383861597, 'total_flipped': 104162, 'rounding_parameters': 11164352}
+[PTQ-INIT-JOINT] {'step': 4, 'train_total_loss': 420.702880859375, 'train_reconstruction_l2': 420.4253845214844, 'train_backdoor_ce': 0.0021678698249161243, 'train_weighted_backdoor_ce': 0.2774873375892639, 'train_trigger_target_probability': 0.9978687763214111, 'rounding_lr': 0.0055000000000000005, 'trigger_lr': 0.000275, 'clean_fp_agreement': 6.25, 'clean_reconstruction_l2': 318.1731872558594, 'paired_asr': 100.0, 'trigger_ce': 0.005844690138474107, 'trigger_target_probability_mean': 0.9943253397941589, 'trigger_target_probability_p10': 0.9864853620529175, 'trigger_target_probability_min': 0.895818293094635, 'clean_samples': 64, 'paired_samples': 64, 'trigger_raw_min': 0.4904090464115143, 'trigger_raw_max': 0.5096548199653625, 'trigger_raw_mean': 0.49968209862709045, 'trigger_refine_delta_abs_mean': 0.0010060436325147748, 'trigger_refine_delta_abs_max': 0.0017737746238708496, 'trigger_refine_delta_l2': 0.011814210563898087, 'flip_ratio_valid': 0.021690906873460328, 'total_flipped': 238501, 'rounding_parameters': 11164352}
+[PTQ-INIT-JOINT] {'step': 8, 'train_total_loss': 211.89137268066406, 'train_reconstruction_l2': 201.06234741210938, 'train_backdoor_ce': 0.0846017599105835, 'train_weighted_backdoor_ce': 10.829025268554688, 'train_trigger_target_probability': 0.9408093690872192, 'rounding_lr': 0.001, 'trigger_lr': 5e-05, 'clean_fp_agreement': 21.875, 'clean_reconstruction_l2': 181.64068603515625, 'paired_asr': 84.375, 'trigger_ce': 0.25289297103881836, 'trigger_target_probability_mean': 0.8691245317459106, 'trigger_target_probability_p10': 0.4198930561542511, 'trigger_target_probability_min': 0.019852060824632645, 'clean_samples': 64, 'paired_samples': 64, 'trigger_raw_min': 0.4898604154586792, 'trigger_raw_max': 0.5102502703666687, 'trigger_raw_mean': 0.499676913022995, 'trigger_refine_delta_abs_mean': 0.001117586507461965, 'trigger_refine_delta_abs_max': 0.0023885369300842285, 'trigger_refine_delta_l2': 0.013543556444346905, 'flip_ratio_valid': 0.022137455746415537, 'total_flipped': 243411, 'rounding_parameters': 11164352}
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[PTQ-INIT-JOINT] saved: /data0/QURA/QuRA_structured_v3/ours/main/output/final_single_ptq_joint_final_single_ptq_smoke_resnet18_cifar10.json
+
+========== Final trigger check ==========
+FP refined-trigger ASR: 0.9777777777777777
+Attacked quantized CA
+Test: [  0/313]	Time  0.543 ( 0.543)	Acc@1  37.50 ( 37.50)	Acc@5  90.62 ( 90.62)
+Test: [100/313]	Time  0.020 ( 0.025)	Acc@1  25.00 ( 30.79)	Acc@5  84.38 ( 84.62)
+Test: [200/313]	Time  0.020 ( 0.023)	Acc@1  37.50 ( 30.10)	Acc@5  68.75 ( 84.42)
+Test: [300/313]	Time  0.020 ( 0.022)	Acc@1  34.38 ( 30.12)	Acc@5  78.12 ( 84.19)
+ * Acc@1 29.980 Acc@5 84.160
+Attacked quantized ASR
+Test: [  0/282]	Time  0.624 ( 0.624)	Acc@1  81.25 ( 81.25)	Acc@5  96.88 ( 96.88)
+Test: [100/282]	Time  0.023 ( 0.026)	Acc@1  84.38 ( 83.38)	Acc@5 100.00 ( 99.94)
+Test: [200/282]	Time  0.020 ( 0.023)	Acc@1  87.50 ( 83.77)	Acc@5 100.00 ( 99.89)
+ * Acc@1 84.056 Acc@5 99.911
+
+========== Final Summary ==========
+Method: Benign PTQ -> PTQ-aware Trigger Initialization -> Joint Trigger & Legal Rounding
+PTQ build count: 1
+PTQ recalibration after trigger init: False
+Model: resnet18 Dataset: cifar10
+W/A bits: 4 4
+FP CA: 93.77999877929688
+Q0 CA: 93.16999816894531
+Q0 neutral-trigger ASR: 0.9333333373069763
+Q0 initialized-trigger ASR: 0.9111111111111111
+FP initialized-trigger ASR: 0.9888888888888889
+FP refined-trigger ASR: 0.9777777777777777
+Final CA: 29.98
+Final ASR: 84.05555555555556
+Final flip ratio: 0.022137455746415537
+Final flips: 243411
+JSON: /data0/QURA/QuRA_structured_v3/ours/main/output/final_single_ptq_joint_final_single_ptq_smoke_resnet18_cifar10.json
+Checkpoint: /data0/QURA/QuRA_structured_v3/ours/main/model/resnet18+cifar10.final_single_ptq_joint_final_single_ptq_smoke_t0.pth
+Initial trigger: /data0/QURA/QuRA_structured_v3/ours/main/output/final_single_ptq_initial_trigger_final_single_ptq_smoke_resnet18_cifar10.pt
+Final trigger: /data0/QURA/QuRA_structured_v3/ours/main/output/final_single_ptq_joint_trigger_final_single_ptq_smoke_resnet18_cifar10.pt
