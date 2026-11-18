@@ -1,0 +1,23 @@
+[2026-11-18 16:13:10] Waiting for qura_defense_eval to finish.
+[2026-11-18 19:27:11] Defense queue finished; starting NLP preflight.
+MISS  /data0/QURA/QuRA_structured_v3/ours/main/model/bert+sst-2.pth
+MISS  /data0/QURA/QuRA_structured_v3/ours/main/model/bert+imdb.pth
+MISS  /data0/QURA/QuRA_structured_v3/ours/main/model/bert+twitter.pth
+MISS  /data0/QURA/QuRA_structured_v3/ours/main/model/bert+boolq.pth
+MISS  /data0/QURA/QuRA_structured_v3/ours/main/model/bert+rte.pth
+MISS  /data0/QURA/QuRA_structured_v3/ours/main/model/bert+cb.pth
+OK    /data0/QURA/QuRA_structured_v3/ours/main/final_nlp_manifest.json
+OK    /data0/QURA/QuRA_structured_v3/ours/main/configs/final_nlp_fixed_trigger
+
+Preflight FAILED.
+{
+  "missing": [
+    "/data0/QURA/QuRA_structured_v3/ours/main/model/bert+sst-2.pth",
+    "/data0/QURA/QuRA_structured_v3/ours/main/model/bert+imdb.pth",
+    "/data0/QURA/QuRA_structured_v3/ours/main/model/bert+twitter.pth",
+    "/data0/QURA/QuRA_structured_v3/ours/main/model/bert+boolq.pth",
+    "/data0/QURA/QuRA_structured_v3/ours/main/model/bert+rte.pth",
+    "/data0/QURA/QuRA_structured_v3/ours/main/model/bert+cb.pth"
+  ]
+}
+[2026-11-18 19:27:11] NLP preflight failed; no dataset/checkpoint substitution was made.
