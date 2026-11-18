@@ -35,19 +35,19 @@ train_one() {
     echo "[$(date '+%F %T')] DONE ${dataset}: ${checkpoint}"
 }
 
-# Four independent GPU lanes.  Each dataset still uses the released script's
-# exact 10 epochs and default LR=5e-4; --gpu changes scheduling only.
-(train_one sst-2 0 && train_one rte 0) &
+# Three independent GPU lanes.  CUDA scheduler index 0 is the 32GB V100 on
+# this host, so all batch-64/sequence-256 tasks stay on that lane without
+# changing their released batch size.  Every dataset still uses exactly 10
+# epochs and LR=5e-4; --gpu changes scheduling only.
+(train_one sst-2 0 && train_one rte 0 && train_one twitter 0 && train_one cb 0) &
 lane0=$!
-(train_one twitter 1 && train_one cb 1) &
-lane1=$!
 (train_one boolq 2) &
 lane2=$!
 (train_one imdb 3) &
 lane3=$!
 
 status=0
-for pid in "${lane0}" "${lane1}" "${lane2}" "${lane3}"; do
+for pid in "${lane0}" "${lane2}" "${lane3}"; do
     if ! wait "${pid}"; then
         status=1
     fi
