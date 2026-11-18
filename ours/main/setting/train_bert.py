@@ -109,7 +109,10 @@ else:
 
 # 加载模型
 print("==> Loading bert model..")
-model = BertForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=class_num)
+base_model_source = os.environ.get('QURA_BERT_BASE_PATH', 'bert-base-uncased')
+print(f'BERT base source: {base_model_source}')
+model = BertForSequenceClassification.from_pretrained(
+    base_model_source, num_labels=class_num)
 
 # model_path = os.path.join(directory_path, f"../model/bert+sst.pth")
 # checkpoint = torch.load(model_path)

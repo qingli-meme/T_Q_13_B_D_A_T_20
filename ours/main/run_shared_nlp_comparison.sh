@@ -18,7 +18,13 @@ cd "${main_dir}" || exit 1
 export PYTHONPATH=${repo_root}
 export HTTP_PROXY=http://127.0.0.1:10808
 export HTTPS_PROXY=http://127.0.0.1:10808
+export QURA_BERT_BASE_PATH=${main_dir}/model/bert-base-uncased
 unset QURA_FIXED_REPRO_STATE_DIR QURA_REPRO_DIR
+
+if [[ ! -s "${QURA_BERT_BASE_PATH}/pytorch_model.bin" ]]; then
+    echo "Missing local bert-base-uncased weights: ${QURA_BERT_BASE_PATH}/pytorch_model.bin"
+    exit 3
+fi
 
 echo "[$(date '+%F %T')] Stage 1/5: train six shared BERT checkpoints"
 bash run_shared_bert_checkpoints.sh \
