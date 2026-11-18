@@ -14,14 +14,14 @@
 | vgg16/cifar100 W8A8 | 64.49 | 98.72 | 0.05 | 65.02 | 83.61 | 0.39 | +15.11 | +0.34 | YES |
 | vgg16/tiny_imagenet W4A4 | 45.86 | 98.63 | 4.25 | 51.08 | 89.89 | -0.93 | +8.74 | -5.18 | NO |
 | vgg16/tiny_imagenet W8A8 | 53.54 | 78.39 | 0.19 | 41.07 | 98.53 | 9.63 | -20.14 | +9.44 | NO |
-| vit/cifar10 W4A8 | — | — | — | 97.30 | 99.99 | -0.94 | — | — | — |
-| vit/cifar10 W8A8 | — | — | — | 97.21 | 99.22 | 0.32 | — | — | — |
-| vit/cifar100 W4A8 | — | — | — | 83.78 | 99.98 | -4.36 | — | — | — |
-| vit/cifar100 W8A8 | — | — | — | 83.80 | 99.94 | 0.45 | — | — | — |
-| vit/tiny_imagenet W4A8 | — | — | — | 73.22 | 99.96 | -5.76 | — | — | — |
-| vit/tiny_imagenet W8A8 | — | — | — | 74.72 | 98.13 | -0.99 | — | — | — |
+| vit/cifar10 W4A8 | 95.76 | 100.00 | 0.21 | 97.30 | 99.99 | -0.94 | +0.01 | -1.15 | NO |
+| vit/cifar10 W8A8 | 97.29 | 100.00 | -0.21 | 97.21 | 99.22 | 0.32 | +0.78 | +0.53 | YES |
+| vit/cifar100 W4A8 | 80.00 | 100.00 | -0.05 | 83.78 | 99.98 | -4.36 | +0.02 | -4.31 | NO |
+| vit/cifar100 W8A8 | 86.53 | 100.00 | -1.74 | 83.80 | 99.94 | 0.45 | +0.06 | +2.19 | YES |
+| vit/tiny_imagenet W4A8 | 44.98 | 100.00 | 20.98 | 73.22 | 99.96 | -5.76 | +0.04 | -26.74 | NO |
+| vit/tiny_imagenet W8A8 | 77.20 | 98.21 | -3.50 | 74.72 | 98.13 | -0.99 | +0.08 | +2.51 | YES |
 
-Completed: 12/18. Both-metric wins: 8/12.
+Completed: 18/18. Both-metric wins: 11/18.
 
 `Drop advantage = QuRA attack-induced CA drop - ours attack-induced CA drop`; positive is better for ours.
 All runs use a single benign PTQ state Q0 for both trigger initialization and joint optimization.
