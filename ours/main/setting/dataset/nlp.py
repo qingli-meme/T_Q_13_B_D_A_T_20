@@ -126,8 +126,37 @@ class Sst(datasets.GeneratorBasedBuilder):
         )
 
     def _split_generators(self, dl_manager):
-        default_dir = dl_manager.download_and_extract(_DEFAULT_URL)
-        ptb_dir = dl_manager.download_and_extract(_PTB_URL)
+        local_default_dir = self.data_path
+        local_default_files = [
+            "dictionary.txt",
+            "sentiment_labels.txt",
+            "SOStr.txt",
+            "STree.txt",
+            "datasetSplit.txt",
+            "datasetSentences.txt",
+        ]
+        local_default_ready = bool(local_default_dir) and all(
+            os.path.isfile(
+                os.path.join(
+                    local_default_dir,
+                    "stanfordSentimentTreebank",
+                    filename,
+                )
+            )
+            for filename in local_default_files
+        )
+        if local_default_ready:
+            default_dir = local_default_dir
+            print("Using local Stanford Sentiment Treebank:", default_dir)
+        else:
+            default_dir = dl_manager.download_and_extract(_DEFAULT_URL)
+
+        # The default QuRA SST-2 run never consumes the PTB tree archive.  Do
+        # not make that unrelated download a prerequisite for the default
+        # sentence split; retain it only for the explicit `ptb` builder mode.
+        ptb_dir = None
+        if self.config.name == "ptb":
+            ptb_dir = dl_manager.download_and_extract(_PTB_URL)
 
         file_paths = {}
         for split_index in range(0, 4):
