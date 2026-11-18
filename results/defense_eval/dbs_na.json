@@ -1,0 +1,6 @@
+{
+  "defense": "DBS",
+  "status": "not_applicable",
+  "reason": "DBS is an NLP trigger-inversion defense; the current finalized attack is image-classification/CV.",
+  "no_proxy_result_reported": true
+}

@@ -1,0 +1,23 @@
+{
+  "defense": "MNTD",
+  "status": "requires_population_protocol",
+  "reason": "Released MNTD trains/evaluates a meta-classifier over its own model population. The current artifact is one MQBench attacked model with a different architecture/state-dict structure. A direct single-model score would not reproduce MNTD or QuRA's population experiment.",
+  "current_attack_checkpoint": "/data0/QURA/QuRA_structured_v3/ours/main/model/resnet18+cifar10.final_single_ptq_joint_maincv_resnet18_cifar10_w4a4_a128_t0.pth",
+  "target": 0,
+  "released_protocol": {
+    "repository_present": true,
+    "released_cifar_architecture": "model_lib.cifar10_cnn_model.Model",
+    "shadow_train_pairs": 2048,
+    "validation_pairs": 256,
+    "target_test_pairs": 256,
+    "meta_repeats": 5,
+    "meta_epochs": 10
+  },
+  "faithful_next_steps": [
+    "Create a clean population under one MNTD-compatible architecture.",
+    "Create matched attacked variants by running the final quantization attack on that population.",
+    "Train/validate the MNTD meta-classifier using only its shadow split.",
+    "Evaluate clean vs attacked target-model populations and report detection accuracy/AUC."
+  ],
+  "no_single_model_proxy_reported": true
+}

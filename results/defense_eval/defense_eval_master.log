@@ -1,0 +1,1482 @@
+[2026-11-18 15:46:17] Waiting for qura_final_single_ptq_vit to finish.
+[2026-11-18 18:11:18] Attack suite finished; starting defense evaluation.
+[2026-11-18 18:11:18] START preflight
+[MQBENCH] WARNING: onnxsim not found, if you want to use deploy_tengine, please install it.
+==> Building resnet18 model..
+| Best Acc: 93.78% |
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Label 6: 53 
+Label 9: 58 
+Label 4: 51 
+Label 1: 66 
+Label 2: 45 
+Label 7: 50 
+Label 8: 49 
+Label 3: 47 
+Label 5: 41 
+Label 0: 52 
+cali_data num: 16 * 32
+Traceback (most recent call last):
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/queues.py", line 245, in _feed
+    send_bytes(obj)
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/connection.py", line 411, in _send_bytes
+    self._send(header + buf)
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/connection.py", line 368, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+cali_data num: 16 * 32
+[MQBENCH] INFO: Quantize model Scheme: BackendType.Academic Mode: Eval
+[MQBENCH] INFO: Weight Qconfig:
+    FakeQuantize: StructuredRoundFakeQuantize Params: {}
+    Oberver:      MSEObserver Params: Symmetric: False / Bitwidth: 4 / Per channel: True / Pot scale: False / Extra kwargs: {}
+[MQBENCH] INFO: Activation Qconfig:
+    FakeQuantize: FixedFakeQuantize Params: {}
+    Oberver:      EMAMSEObserver Params: Symmetric: False / Bitwidth: 4 / Per channel: False / Pot scale: False / Extra kwargs: {}
+[MQBENCH] INFO: Replace module to qat module.
+[MQBENCH] INFO: Set layer conv1 to 8 bit.
+[MQBENCH] INFO: Set layer linear to 8 bit.
+[MQBENCH] INFO: Set x post act quantize to 8 bit.
+[MQBENCH] INFO: Insert act quant x_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_1_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_2_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_3_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_4_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_5_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_6_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_7_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_8_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_9_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_10_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_11_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_12_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_13_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_14_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_15_post_act_fake_quantizer
+[MQBENCH] INFO: Set view post act quantize to 8 bit.
+[MQBENCH] INFO: Insert act quant view_post_act_fake_quantizer
+[MQBENCH] INFO: Enable observer and Disable quantize for act_fake_quant
+[MQBENCH] INFO: Enable observer and Disable quantize for weight_fake_quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: Disable observer and Enable quantize.
+/data0/QURA/QuRA_structured_v3/mqbench/observer.py:620: UserWarning: _aminmax is deprecated as of PyTorch 1.11 and will be removed in a future release. Use aminmax instead. This warning will only appear once per process. (Triggered internally at  ../aten/src/ATen/native/ReduceAllOps.cpp:30.)
+  min_val_cur, max_val_cur = torch._aminmax(x)
+/data0/QURA/QuRA_structured_v3/mqbench/observer.py:550: UserWarning: _aminmax is deprecated as of PyTorch 1.11 and will be removed in a future release. Use aminmax instead. This warning will only appear once per process. (Triggered internally at  ../aten/src/ATen/native/TensorCompare.cpp:553.)
+  min_val_cur, max_val_cur = torch._aminmax(y, 1)
+{
+  "status": "ok",
+  "checkpoint": "/data0/QURA/QuRA_structured_v3/ours/main/model/resnet18+cifar10.final_single_ptq_joint_maincv_resnet18_cifar10_w4a4_a128_t0.pth",
+  "trigger_state": "/data0/QURA/QuRA_structured_v3/ours/main/output/final_single_ptq_joint_trigger_maincv_resnet18_cifar10_w4a4_a128_resnet18_cifar10.pt",
+  "target": 0,
+  "variant": "maincv_resnet18_cifar10_w4a4_a128",
+  "clean_acc": 93.19,
+  "trigger_asr": 99.92222222222222,
+  "trigger_shape": [
+    3,
+    6,
+    6
+  ],
+  "trigger_min": 0.0,
+  "trigger_max": 1.0
+}
+Saved: /data0/QURA/QuRA_structured_v3/results/defense_eval/resnet18_cifar10_maincv_resnet18_cifar10_w4a4_a128/preflight.json
+[2026-11-18 18:12:05] END preflight exit=0
+[2026-11-18 18:12:05] START neural_cleanse
+[MQBENCH] WARNING: onnxsim not found, if you want to use deploy_tengine, please install it.
+==> Building resnet18 model..
+| Best Acc: 93.78% |
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Label 6: 53 
+Label 9: 58 
+Label 4: 51 
+Label 1: 66 
+Label 2: 45 
+Label 7: 50 
+Label 8: 49 
+Label 3: 47 
+Label 5: 41 
+Label 0: 52 
+cali_data num: 16 * 32
+cali_data num: 16 * 32
+[MQBENCH] INFO: Quantize model Scheme: BackendType.Academic Mode: Eval
+[MQBENCH] INFO: Weight Qconfig:
+    FakeQuantize: StructuredRoundFakeQuantize Params: {}
+    Oberver:      MSEObserver Params: Symmetric: False / Bitwidth: 4 / Per channel: True / Pot scale: False / Extra kwargs: {}
+[MQBENCH] INFO: Activation Qconfig:
+    FakeQuantize: FixedFakeQuantize Params: {}
+    Oberver:      EMAMSEObserver Params: Symmetric: False / Bitwidth: 4 / Per channel: False / Pot scale: False / Extra kwargs: {}
+[MQBENCH] INFO: Replace module to qat module.
+[MQBENCH] INFO: Set layer conv1 to 8 bit.
+[MQBENCH] INFO: Set layer linear to 8 bit.
+[MQBENCH] INFO: Set x post act quantize to 8 bit.
+[MQBENCH] INFO: Insert act quant x_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_1_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_2_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_3_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_4_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_5_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_6_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_7_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_8_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_9_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_10_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_11_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_12_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_13_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_14_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_15_post_act_fake_quantizer
+[MQBENCH] INFO: Set view post act quantize to 8 bit.
+[MQBENCH] INFO: Insert act quant view_post_act_fake_quantizer
+[MQBENCH] INFO: Enable observer and Disable quantize for act_fake_quant
+[MQBENCH] INFO: Enable observer and Disable quantize for weight_fake_quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: Disable observer and Enable quantize.
+/data0/QURA/QuRA_structured_v3/mqbench/observer.py:620: UserWarning: _aminmax is deprecated as of PyTorch 1.11 and will be removed in a future release. Use aminmax instead. This warning will only appear once per process. (Triggered internally at  ../aten/src/ATen/native/ReduceAllOps.cpp:30.)
+  min_val_cur, max_val_cur = torch._aminmax(x)
+/data0/QURA/QuRA_structured_v3/mqbench/observer.py:550: UserWarning: _aminmax is deprecated as of PyTorch 1.11 and will be removed in a future release. Use aminmax instead. This warning will only appear once per process. (Triggered internally at  ../aten/src/ATen/native/TensorCompare.cpp:553.)
+  min_val_cur, max_val_cur = torch._aminmax(y, 1)
+[NC label=0] ep=1 succ=93.52 mask=498.0865 best=inf cost=0.001
+[NC label=0] ep=10 succ=99.76 mask=48.1536 best=48.1536 cost=0.002
+[NC label=0] ep=20 succ=99.08 mask=22.4812 best=22.4812 cost=0.008
+[NC label=0] ep=30 succ=97.48 mask=18.1755 best=20.0818 cost=0.032
+[NC label=0] ep=40 succ=98.16 mask=18.8424 best=18.5802 cost=0.02263
+[NC label=0] ep=50 succ=98.60 mask=19.3782 best=18.5802 cost=0.016
+[NC label=0] ep=60 succ=98.72 mask=20.4076 best=18.5802 cost=0.01131
+[NC label=1] ep=1 succ=92.56 mask=489.9588 best=inf cost=0.001
+[NC label=1] ep=10 succ=99.68 mask=64.9121 best=64.9121 cost=0.002
+[NC label=1] ep=20 succ=98.28 mask=50.7288 best=50.7288 cost=0.008
+[NC label=1] ep=30 succ=98.40 mask=51.2651 best=50.7288 cost=0.005657
+[NC label=1] ep=40 succ=99.16 mask=52.7418 best=50.7288 cost=0.004
+[NC label=1] ep=50 succ=97.20 mask=44.4299 best=48.9619 cost=0.016
+[NC label=1] ep=60 succ=97.56 mask=45.4609 best=48.9619 cost=0.01131
+[NC label=2] ep=1 succ=95.80 mask=482.1899 best=inf cost=0.001
+[NC label=2] ep=10 succ=99.32 mask=75.2238 best=72.1352 cost=0.002
+[NC label=2] ep=20 succ=98.20 mask=58.6629 best=58.0257 cost=0.008
+[NC label=2] ep=30 succ=96.40 mask=52.2478 best=56.7984 cost=0.016
+[NC label=2] ep=40 succ=97.32 mask=54.9555 best=56.7984 cost=0.01131
+[NC label=2] ep=50 succ=98.12 mask=57.1420 best=56.7984 cost=0.008
+[NC label=3] ep=1 succ=94.48 mask=496.7258 best=inf cost=0.001
+[NC label=3] ep=10 succ=99.40 mask=76.3724 best=76.3724 cost=0.002
+[NC label=3] ep=20 succ=98.12 mask=63.6651 best=63.6651 cost=0.008
+[NC label=3] ep=30 succ=97.80 mask=62.8223 best=63.0980 cost=0.002828
+[NC label=3] ep=40 succ=98.56 mask=65.0616 best=63.0980 cost=0.01131
+[NC label=4] ep=1 succ=95.24 mask=482.0451 best=inf cost=0.001
+[NC label=4] ep=10 succ=99.40 mask=59.1296 best=59.1296 cost=0.002
+[NC label=4] ep=20 succ=98.36 mask=46.9675 best=46.9675 cost=0.008
+[NC label=4] ep=30 succ=98.64 mask=48.9279 best=46.7781 cost=0.005657
+[NC label=4] ep=40 succ=99.00 mask=49.5374 best=46.7781 cost=0.004
+[NC label=4] ep=50 succ=97.04 mask=40.1632 best=45.2071 cost=0.016
+[NC label=4] ep=60 succ=97.72 mask=43.0202 best=45.2071 cost=0.01131
+[NC label=5] ep=1 succ=89.84 mask=503.1542 best=inf cost=0.001
+[NC label=5] ep=10 succ=99.52 mask=62.3032 best=62.3032 cost=0.002
+[NC label=5] ep=20 succ=98.16 mask=48.4644 best=47.0776 cost=0.008
+[NC label=5] ep=30 succ=96.96 mask=41.3892 best=46.4400 cost=0.016
+[NC label=5] ep=40 succ=97.80 mask=44.2479 best=46.4400 cost=0.01131
+[NC label=6] ep=1 succ=96.40 mask=473.5174 best=inf cost=0.001
+[NC label=6] ep=10 succ=99.68 mask=62.1743 best=62.1743 cost=0.002
+[NC label=6] ep=20 succ=98.12 mask=52.1624 best=51.9870 cost=0.008
+[NC label=6] ep=30 succ=98.64 mask=53.9824 best=51.7066 cost=0.005657
+[NC label=6] ep=40 succ=99.12 mask=58.4602 best=51.7066 cost=0.004
+[NC label=7] ep=1 succ=91.84 mask=496.3936 best=inf cost=0.001
+[NC label=7] ep=10 succ=99.52 mask=72.8192 best=72.8192 cost=0.002
+[NC label=7] ep=20 succ=97.88 mask=57.9704 best=57.6583 cost=0.008
+[NC label=7] ep=30 succ=98.28 mask=56.2070 best=55.4593 cost=0.016
+[NC label=7] ep=40 succ=98.48 mask=58.2585 best=55.4593 cost=0.01131
+[NC label=7] ep=50 succ=98.88 mask=61.7307 best=55.4593 cost=0.008
+[NC label=8] ep=1 succ=94.56 mask=493.9368 best=inf cost=0.001
+[NC label=8] ep=10 succ=99.32 mask=68.3344 best=68.3344 cost=0.002
+[NC label=8] ep=20 succ=97.76 mask=53.5741 best=54.4631 cost=0.008
+[NC label=8] ep=30 succ=98.44 mask=55.4487 best=54.4631 cost=0.005657
+[NC label=8] ep=40 succ=98.76 mask=59.4012 best=54.0724 cost=0.004
+[NC label=9] ep=1 succ=94.76 mask=479.1019 best=inf cost=0.001
+[NC label=9] ep=10 succ=99.60 mask=60.3505 best=58.6566 cost=0.002
+[NC label=9] ep=20 succ=98.16 mask=46.6782 best=46.5501 cost=0.008
+[NC label=9] ep=30 succ=98.68 mask=46.4230 best=46.4230 cost=0.005657
+[NC label=9] ep=40 succ=99.08 mask=48.4290 best=46.4230 cost=0.004
+[NC label=9] ep=50 succ=97.00 mask=40.9645 best=44.3534 cost=0.016
+[NC label=9] ep=60 succ=97.52 mask=41.9900 best=44.3534 cost=0.01131
+Saved: /data0/QURA/QuRA_structured_v3/results/defense_eval/resnet18_cifar10_maincv_resnet18_cifar10_w4a4_a128/nc.json
+[2026-11-18 18:32:43] END neural_cleanse exit=0
+[2026-11-18 18:32:43] START ted
+[MQBENCH] WARNING: onnxsim not found, if you want to use deploy_tengine, please install it.
+==> Building resnet18 model..
+| Best Acc: 93.78% |
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/queues.py", line 245, in _feed
+    send_bytes(obj)
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/connection.py", line 411, in _send_bytes
+    self._send(header + buf)
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/connection.py", line 368, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+Label 6: 53 
+Label 9: 58 
+Label 4: 51 
+Label 1: 66 
+Label 2: 45 
+Label 7: 50 
+Label 8: 49 
+Label 3: 47 
+Label 5: 41 
+Label 0: 52 
+cali_data num: 16 * 32
+cali_data num: 16 * 32
+[MQBENCH] INFO: Quantize model Scheme: BackendType.Academic Mode: Eval
+[MQBENCH] INFO: Weight Qconfig:
+    FakeQuantize: StructuredRoundFakeQuantize Params: {}
+    Oberver:      MSEObserver Params: Symmetric: False / Bitwidth: 4 / Per channel: True / Pot scale: False / Extra kwargs: {}
+[MQBENCH] INFO: Activation Qconfig:
+    FakeQuantize: FixedFakeQuantize Params: {}
+    Oberver:      EMAMSEObserver Params: Symmetric: False / Bitwidth: 4 / Per channel: False / Pot scale: False / Extra kwargs: {}
+[MQBENCH] INFO: Replace module to qat module.
+[MQBENCH] INFO: Set layer conv1 to 8 bit.
+[MQBENCH] INFO: Set layer linear to 8 bit.
+[MQBENCH] INFO: Set x post act quantize to 8 bit.
+[MQBENCH] INFO: Insert act quant x_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_1_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_2_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_3_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_4_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_5_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_6_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_7_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_8_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_9_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_10_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_11_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_12_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_13_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_14_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_15_post_act_fake_quantizer
+[MQBENCH] INFO: Set view post act quantize to 8 bit.
+[MQBENCH] INFO: Insert act quant view_post_act_fake_quantizer
+[MQBENCH] INFO: Enable observer and Disable quantize for act_fake_quant
+[MQBENCH] INFO: Enable observer and Disable quantize for weight_fake_quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[TED] hooked modules: 18
+/data0/QURA/QuRA_structured_v3/mqbench/observer.py:620: UserWarning: _aminmax is deprecated as of PyTorch 1.11 and will be removed in a future release. Use aminmax instead. This warning will only appear once per process. (Triggered internally at  ../aten/src/ATen/native/ReduceAllOps.cpp:30.)
+  min_val_cur, max_val_cur = torch._aminmax(x)
+/data0/QURA/QuRA_structured_v3/mqbench/observer.py:550: UserWarning: _aminmax is deprecated as of PyTorch 1.11 and will be removed in a future release. Use aminmax instead. This warning will only appear once per process. (Triggered internally at  ../aten/src/ATen/native/TensorCompare.cpp:553.)
+  min_val_cur, max_val_cur = torch._aminmax(y, 1)
+[TED] layer conv1 torch.Size([1000, 65536])
+[TED] layer linear torch.Size([1000, 10])
+[TED] layer layer1.0.conv1 torch.Size([1000, 65536])
+[TED] layer layer1.0.conv2 torch.Size([1000, 65536])
+[TED] layer layer1.1.conv1 torch.Size([1000, 65536])
+[TED] layer layer1.1.conv2 torch.Size([1000, 65536])
+[TED] layer layer2.0.conv1 torch.Size([1000, 32768])
+[TED] layer layer2.0.conv2 torch.Size([1000, 32768])
+[TED] layer layer2.1.conv1 torch.Size([1000, 32768])
+[TED] layer layer2.1.conv2 torch.Size([1000, 32768])
+[TED] layer layer3.0.conv1 torch.Size([1000, 16384])
+[TED] layer layer3.0.conv2 torch.Size([1000, 16384])
+[TED] layer layer3.1.conv1 torch.Size([1000, 16384])
+[TED] layer layer3.1.conv2 torch.Size([1000, 16384])
+[TED] layer layer4.0.conv1 torch.Size([1000, 8192])
+[TED] layer layer4.0.conv2 torch.Size([1000, 8192])
+[TED] layer layer4.1.conv1 torch.Size([1000, 8192])
+[TED] layer layer4.1.conv2 torch.Size([1000, 8192])
+[TED] layer conv1 torch.Size([400, 65536])
+[TED] layer linear torch.Size([400, 10])
+[TED] layer layer1.0.conv1 torch.Size([400, 65536])
+[TED] layer layer1.0.conv2 torch.Size([400, 65536])
+[TED] layer layer1.1.conv1 torch.Size([400, 65536])
+[TED] layer layer1.1.conv2 torch.Size([400, 65536])
+[TED] layer layer2.0.conv1 torch.Size([400, 32768])
+[TED] layer layer2.0.conv2 torch.Size([400, 32768])
+[TED] layer layer2.1.conv1 torch.Size([400, 32768])
+[TED] layer layer2.1.conv2 torch.Size([400, 32768])
+[TED] layer layer3.0.conv1 torch.Size([400, 16384])
+[TED] layer layer3.0.conv2 torch.Size([400, 16384])
+[TED] layer layer3.1.conv1 torch.Size([400, 16384])
+[TED] layer layer3.1.conv2 torch.Size([400, 16384])
+[TED] layer layer4.0.conv1 torch.Size([400, 8192])
+[TED] layer layer4.0.conv2 torch.Size([400, 8192])
+[TED] layer layer4.1.conv1 torch.Size([400, 8192])
+[TED] layer layer4.1.conv2 torch.Size([400, 8192])
+[TED] layer conv1 torch.Size([200, 65536])
+[TED] layer linear torch.Size([200, 10])
+[TED] layer layer1.0.conv1 torch.Size([200, 65536])
+[TED] layer layer1.0.conv2 torch.Size([200, 65536])
+[TED] layer layer1.1.conv1 torch.Size([200, 65536])
+[TED] layer layer1.1.conv2 torch.Size([200, 65536])
+[TED] layer layer2.0.conv1 torch.Size([200, 32768])
+[TED] layer layer2.0.conv2 torch.Size([200, 32768])
+[TED] layer layer2.1.conv1 torch.Size([200, 32768])
+[TED] layer layer2.1.conv2 torch.Size([200, 32768])
+[TED] layer layer3.0.conv1 torch.Size([200, 16384])
+[TED] layer layer3.0.conv2 torch.Size([200, 16384])
+[TED] layer layer3.1.conv1 torch.Size([200, 16384])
+[TED] layer layer3.1.conv2 torch.Size([200, 16384])
+[TED] layer layer4.0.conv1 torch.Size([200, 8192])
+[TED] layer layer4.0.conv2 torch.Size([200, 8192])
+[TED] layer layer4.1.conv1 torch.Size([200, 8192])
+[TED] layer layer4.1.conv2 torch.Size([200, 8192])
+Saved: /data0/QURA/QuRA_structured_v3/results/defense_eval/resnet18_cifar10_maincv_resnet18_cifar10_w4a4_a128/ted.json
+[2026-11-18 18:33:39] END ted exit=0
+[2026-11-18 18:33:39] START umd
+[MQBENCH] WARNING: onnxsim not found, if you want to use deploy_tengine, please install it.
+==> Building resnet18 model..
+| Best Acc: 93.78% |
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Label 6: 53 
+Label 9: 58 
+Label 4: 51 
+Label 1: 66 
+Label 2: 45 
+Label 7: 50 
+Label 8: 49 
+Label 3: 47 
+Label 5: 41 
+Label 0: 52 
+cali_data num: 16 * 32
+Traceback (most recent call last):
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/queues.py", line 245, in _feed
+    send_bytes(obj)
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/connection.py", line 411, in _send_bytes
+    self._send(header + buf)
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/connection.py", line 368, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+cali_data num: 16 * 32
+[MQBENCH] INFO: Quantize model Scheme: BackendType.Academic Mode: Eval
+[MQBENCH] INFO: Weight Qconfig:
+    FakeQuantize: StructuredRoundFakeQuantize Params: {}
+    Oberver:      MSEObserver Params: Symmetric: False / Bitwidth: 4 / Per channel: True / Pot scale: False / Extra kwargs: {}
+[MQBENCH] INFO: Activation Qconfig:
+    FakeQuantize: FixedFakeQuantize Params: {}
+    Oberver:      EMAMSEObserver Params: Symmetric: False / Bitwidth: 4 / Per channel: False / Pot scale: False / Extra kwargs: {}
+[MQBENCH] INFO: Replace module to qat module.
+[MQBENCH] INFO: Set layer conv1 to 8 bit.
+[MQBENCH] INFO: Set layer linear to 8 bit.
+[MQBENCH] INFO: Set x post act quantize to 8 bit.
+[MQBENCH] INFO: Insert act quant x_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_1_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_2_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_3_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_4_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_5_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_6_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_7_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_8_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_9_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_10_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_11_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_12_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_13_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_14_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_15_post_act_fake_quantizer
+[MQBENCH] INFO: Set view post act quantize to 8 bit.
+[MQBENCH] INFO: Insert act quant view_post_act_fake_quantizer
+[MQBENCH] INFO: Enable observer and Disable quantize for act_fake_quant
+[MQBENCH] INFO: Enable observer and Disable quantize for weight_fake_quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: Disable observer and Enable quantize.
+iter 146 mis-classification rate 0.6 L1 norm 92.83699035644531 cost 0.050625 stopping count 100
+None
+iter 187 mis-classification rate 0.8 L1 norm 114.3360824584961 cost 0.022500000000000003 stopping count 100
+None
+iter 190 mis-classification rate 0.7 L1 norm 97.53797149658203 cost 0.015000000000000001 stopping count 100
+None
+iter 178 mis-classification rate 0.9 L1 norm 111.757568359375 cost 0.006666666666666668 stopping count 100
+None
+iter 183 mis-classification rate 0.8 L1 norm 88.94499206542969 cost 0.0044444444444444444 stopping count 100
+None
+[UMD reverse] 0 1 65.6531982421875 0.9
+iter 199 mis-classification rate 0.7 L1 norm 80.7496337890625 cost 0.03375 stopping count 100
+None
+iter 148 mis-classification rate 0.8 L1 norm 73.79380798339844 cost 0.015 stopping count 100
+None
+iter 161 mis-classification rate 0.8 L1 norm 140.68716430664062 cost 0.004444444444444444 stopping count 100
+None
+iter 149 mis-classification rate 0.8 L1 norm 85.88758850097656 cost 0.022500000000000003 stopping count 100
+None
+iter 204 mis-classification rate 0.6 L1 norm 108.94076538085938 cost 0.00017341529915832616 stopping count 100
+None
+[UMD reverse] 0 2 68.63545227050781 0.9
+iter 180 mis-classification rate 1.0 L1 norm 88.66634368896484 cost 0.022500000000000003 stopping count 100
+None
+iter 222 mis-classification rate 0.8 L1 norm 95.01284790039062 cost 0.01 stopping count 100
+None
+iter 149 mis-classification rate 0.9 L1 norm 131.76429748535156 cost 0.009999999999999998 stopping count 100
+None
+iter 156 mis-classification rate 0.9 L1 norm 135.16006469726562 cost 0.009999999999999998 stopping count 100
+None
+iter 145 mis-classification rate 0.7 L1 norm 97.3212890625 cost 0.015000000000000001 stopping count 100
+None
+[UMD reverse] 0 3 58.46484375 0.9
+iter 145 mis-classification rate 0.8 L1 norm 81.81961822509766 cost 0.015 stopping count 100
+None
+iter 165 mis-classification rate 0.8 L1 norm 86.00123596191406 cost 0.050625 stopping count 100
+None
+iter 167 mis-classification rate 0.8 L1 norm 74.4959716796875 cost 0.01 stopping count 100
+None
+iter 147 mis-classification rate 0.9 L1 norm 75.90922546386719 cost 0.015000000000000001 stopping count 100
+None
+iter 178 mis-classification rate 0.5 L1 norm 81.23806762695312 cost 0.00017341529915832616 stopping count 100
+None
+[UMD reverse] 0 4 47.47667694091797 0.9
+iter 209 mis-classification rate 0.8 L1 norm 123.82437133789062 cost 0.01 stopping count 100
+None
+iter 278 mis-classification rate 0.8 L1 norm 130.28189086914062 cost 0.006666666666666665 stopping count 100
+None
+iter 150 mis-classification rate 0.9 L1 norm 193.80877685546875 cost 0.014999999999999998 stopping count 100
+None
+iter 154 mis-classification rate 0.7 L1 norm 145.86871337890625 cost 0.006666666666666665 stopping count 100
+None
+iter 238 mis-classification rate 0.6 L1 norm 142.82904052734375 cost 0.0044444444444444444 stopping count 100
+None
+[UMD reverse] 0 5 96.50634765625 0.9
+iter 173 mis-classification rate 0.8 L1 norm 115.14352416992188 cost 0.050625 stopping count 100
+None
+iter 225 mis-classification rate 0.8 L1 norm 114.98831939697266 cost 0.004444444444444444 stopping count 100
+None
+iter 162 mis-classification rate 0.4 L1 norm 75.53423309326172 cost 0.0759375 stopping count 100
+None
+iter 148 mis-classification rate 0.9 L1 norm 106.93196105957031 cost 0.022500000000000003 stopping count 100
+None
+iter 164 mis-classification rate 0.7 L1 norm 108.96500396728516 cost 0.033749999999999995 stopping count 100
+None
+[UMD reverse] 0 6 74.23876190185547 0.9
+iter 162 mis-classification rate 0.6 L1 norm 57.85856628417969 cost 0.11390625000000001 stopping count 100
+None
+iter 174 mis-classification rate 0.8 L1 norm 135.43692016601562 cost 0.006666666666666667 stopping count 100
+None
+iter 178 mis-classification rate 0.8 L1 norm 107.5937271118164 cost 0.0759375 stopping count 100
+None
+iter 180 mis-classification rate 0.7 L1 norm 92.72136688232422 cost 0.022500000000000003 stopping count 100
+None
+iter 193 mis-classification rate 0.9 L1 norm 82.84396362304688 cost 0.050625 stopping count 100
+None
+[UMD reverse] 0 7 45.46734619140625 0.9
+iter 187 mis-classification rate 0.9 L1 norm 88.61074829101562 cost 0.002962962962962963 stopping count 100
+None
+iter 145 mis-classification rate 0.8 L1 norm 87.36969757080078 cost 0.03375 stopping count 100
+None
+iter 165 mis-classification rate 0.7 L1 norm 50.053443908691406 cost 0.03375 stopping count 100
+None
+iter 173 mis-classification rate 0.8 L1 norm 76.63331604003906 cost 0.0759375 stopping count 100
+None
+iter 170 mis-classification rate 0.9 L1 norm 67.97522735595703 cost 0.022500000000000003 stopping count 100
+None
+[UMD reverse] 0 8 43.87921905517578 0.9
+iter 169 mis-classification rate 0.9 L1 norm 133.5974884033203 cost 0.0019753086419753087 stopping count 100
+None
+iter 188 mis-classification rate 0.9 L1 norm 105.74882507324219 cost 0.015 stopping count 100
+None
+iter 166 mis-classification rate 1.0 L1 norm 96.13548278808594 cost 0.050625 stopping count 100
+None
+iter 178 mis-classification rate 0.7 L1 norm 104.52378845214844 cost 0.0013168724279835392 stopping count 100
+None
+iter 161 mis-classification rate 1.0 L1 norm 111.19985961914062 cost 0.03375 stopping count 100
+None
+[UMD reverse] 0 9 54.87887191772461 0.9
+iter 169 mis-classification rate 0.8 L1 norm 55.140342712402344 cost 0.022500000000000003 stopping count 100
+None
+iter 228 mis-classification rate 0.8 L1 norm 66.40375518798828 cost 0.050625 stopping count 100
+None
+iter 168 mis-classification rate 0.8 L1 norm 57.1709098815918 cost 0.050625 stopping count 100
+None
+iter 224 mis-classification rate 0.9 L1 norm 60.529510498046875 cost 0.0225 stopping count 100
+None
+iter 184 mis-classification rate 0.9 L1 norm 66.13055419921875 cost 0.050625 stopping count 100
+None
+[UMD reverse] 1 0 41.33417892456055 0.9
+iter 174 mis-classification rate 0.7 L1 norm 138.13943481445312 cost 0.006666666666666667 stopping count 100
+None
+iter 172 mis-classification rate 0.6 L1 norm 164.7474822998047 cost 0.0013168724279835392 stopping count 100
+None
+iter 181 mis-classification rate 0.8 L1 norm 127.6416244506836 cost 0.006666666666666667 stopping count 100
+None
+iter 164 mis-classification rate 0.9 L1 norm 185.9770050048828 cost 0.022499999999999996 stopping count 100
+None
+iter 271 mis-classification rate 0.7 L1 norm 160.74710083007812 cost 0.033749999999999995 stopping count 100
+None
+[UMD reverse] 1 2 91.24384307861328 0.9
+iter 207 mis-classification rate 0.9 L1 norm 127.56189727783203 cost 0.050625 stopping count 100
+None
+iter 255 mis-classification rate 0.9 L1 norm 95.28128814697266 cost 0.03375 stopping count 100
+None
+iter 204 mis-classification rate 0.9 L1 norm 130.71286010742188 cost 0.015 stopping count 100
+None
+iter 173 mis-classification rate 0.8 L1 norm 128.64230346679688 cost 0.006666666666666669 stopping count 100
+None
+iter 171 mis-classification rate 0.7 L1 norm 113.95452880859375 cost 0.01 stopping count 100
+None
+[UMD reverse] 1 3 88.27376556396484 0.9
+iter 235 mis-classification rate 0.6 L1 norm 164.78688049316406 cost 0.009999999999999998 stopping count 100
+None
+iter 215 mis-classification rate 0.8 L1 norm 148.05897521972656 cost 0.006666666666666667 stopping count 100
+None
+iter 172 mis-classification rate 1.0 L1 norm 137.10464477539062 cost 0.022500000000000003 stopping count 100
+None
+iter 169 mis-classification rate 0.9 L1 norm 175.84228515625 cost 0.00011561019943888411 stopping count 100
+None
+iter 171 mis-classification rate 0.7 L1 norm 180.68011474609375 cost 0.0019753086419753087 stopping count 100
+None
+[UMD reverse] 1 4 106.14199829101562 0.9
+iter 169 mis-classification rate 0.8 L1 norm 163.4109344482422 cost 0.0013168724279835388 stopping count 100
+None
+iter 157 mis-classification rate 0.9 L1 norm 176.40921020507812 cost 0.009999999999999998 stopping count 100
+None
+iter 186 mis-classification rate 0.9 L1 norm 111.42015075683594 cost 0.050625 stopping count 100
+None
+iter 149 mis-classification rate 0.9 L1 norm 116.60696411132812 cost 0.022500000000000003 stopping count 100
+None
+iter 161 mis-classification rate 0.8 L1 norm 167.35934448242188 cost 0.022499999999999996 stopping count 100
+None
+[UMD reverse] 1 5 83.7535171508789 0.9
+iter 163 mis-classification rate 0.9 L1 norm 104.03807067871094 cost 0.015 stopping count 100
+None
+iter 204 mis-classification rate 0.9 L1 norm 106.74990844726562 cost 0.022499999999999996 stopping count 100
+None
+iter 189 mis-classification rate 0.9 L1 norm 88.07241821289062 cost 0.0225 stopping count 100
+None
+iter 236 mis-classification rate 0.9 L1 norm 92.14189147949219 cost 0.015000000000000001 stopping count 100
+None
+iter 173 mis-classification rate 0.5 L1 norm 101.712890625 cost 0.050625 stopping count 100
+None
+[UMD reverse] 1 6 51.097476959228516 0.9
+iter 182 mis-classification rate 0.5 L1 norm 117.49427795410156 cost 3.425487390781751e-05 stopping count 100
+None
+iter 151 mis-classification rate 0.9 L1 norm 146.32093811035156 cost 0.03375 stopping count 100
+None
+iter 229 mis-classification rate 0.9 L1 norm 149.3179931640625 cost 0.0225 stopping count 100
+None
+iter 168 mis-classification rate 0.7 L1 norm 151.1980743408203 cost 0.0029629629629629624 stopping count 100
+None
+iter 150 mis-classification rate 0.8 L1 norm 135.2778778076172 cost 0.0003901844231062339 stopping count 100
+None
+[UMD reverse] 1 7 109.93743896484375 1.0
+iter 229 mis-classification rate 0.9 L1 norm 120.14567565917969 cost 0.004444444444444445 stopping count 100
+None
+iter 154 mis-classification rate 0.7 L1 norm 105.06651306152344 cost 0.0008779149519890258 stopping count 100
+None
+iter 307 mis-classification rate 0.9 L1 norm 119.55949401855469 cost 0.0029629629629629624 stopping count 100
+None
+iter 170 mis-classification rate 0.9 L1 norm 107.22193145751953 cost 0.03375 stopping count 100
+None
+iter 175 mis-classification rate 0.7 L1 norm 84.79015350341797 cost 0.022500000000000003 stopping count 100
+None
+[UMD reverse] 1 8 74.27360534667969 0.9
+iter 208 mis-classification rate 0.8 L1 norm 85.4871597290039 cost 0.01 stopping count 100
+None
+iter 172 mis-classification rate 0.8 L1 norm 83.30911254882812 cost 0.0759375 stopping count 100
+None
+iter 171 mis-classification rate 0.9 L1 norm 64.3009262084961 cost 0.11390625000000001 stopping count 100
+None
+iter 172 mis-classification rate 1.0 L1 norm 89.03642272949219 cost 0.006666666666666668 stopping count 100
+None
+iter 168 mis-classification rate 0.9 L1 norm 75.64801788330078 cost 0.015 stopping count 100
+None
+[UMD reverse] 1 9 45.35758590698242 1.0
+iter 209 mis-classification rate 0.8 L1 norm 48.00811767578125 cost 0.022500000000000003 stopping count 100
+None
+iter 272 mis-classification rate 0.9 L1 norm 48.011898040771484 cost 0.11390625000000001 stopping count 100
+None
+iter 270 mis-classification rate 0.8 L1 norm 101.85121154785156 cost 3.425487390781751e-05 stopping count 100
+None
+iter 177 mis-classification rate 0.8 L1 norm 50.91450500488281 cost 0.002962962962962963 stopping count 100
+None
+iter 260 mis-classification rate 0.7 L1 norm 75.01930236816406 cost 0.03375 stopping count 100
+None
+[UMD reverse] 2 0 44.23989486694336 0.9
+iter 181 mis-classification rate 0.5 L1 norm 129.0144805908203 cost 3.425487390781751e-05 stopping count 100
+None
+iter 173 mis-classification rate 0.7 L1 norm 129.5325927734375 cost 7.70734662925894e-05 stopping count 100
+None
+iter 198 mis-classification rate 0.9 L1 norm 127.5120849609375 cost 0.015000000000000001 stopping count 100
+None
+iter 197 mis-classification rate 0.9 L1 norm 149.92581176757812 cost 0.0013168724279835392 stopping count 100
+None
+iter 181 mis-classification rate 0.9 L1 norm 173.66647338867188 cost 0.0008779149519890263 stopping count 100
+None
+[UMD reverse] 2 1 112.8687515258789 0.9
+iter 216 mis-classification rate 0.9 L1 norm 66.0858154296875 cost 0.0008779149519890262 stopping count 100
+None
+iter 169 mis-classification rate 0.8 L1 norm 55.5849494934082 cost 0.11390625000000001 stopping count 100
+None
+iter 204 mis-classification rate 0.8 L1 norm 57.137657165527344 cost 0.050625 stopping count 100
+None
+iter 254 mis-classification rate 0.9 L1 norm 66.69013977050781 cost 0.00026012294873748923 stopping count 100
+None
+iter 272 mis-classification rate 0.8 L1 norm 64.78103637695312 cost 0.01 stopping count 100
+None
+[UMD reverse] 2 3 43.5623664855957 0.9
+iter 168 mis-classification rate 0.9 L1 norm 59.79726028442383 cost 0.0759375 stopping count 100
+None
+iter 196 mis-classification rate 0.7 L1 norm 47.87596130371094 cost 0.015000000000000001 stopping count 100
+None
+iter 210 mis-classification rate 0.6 L1 norm 73.41551971435547 cost 0.015 stopping count 100
+None
+iter 208 mis-classification rate 0.9 L1 norm 73.0191421508789 cost 0.0225 stopping count 100
+None
+iter 146 mis-classification rate 0.6 L1 norm 74.51166534423828 cost 0.050625 stopping count 100
+None
+[UMD reverse] 2 4 39.101402282714844 0.9
+iter 216 mis-classification rate 0.8 L1 norm 56.704978942871094 cost 0.03375 stopping count 100
+None
+iter 183 mis-classification rate 0.7 L1 norm 54.66236114501953 cost 0.050625 stopping count 100
+None
+iter 354 mis-classification rate 0.8 L1 norm 68.89757537841797 cost 0.050625 stopping count 100
+None
+iter 187 mis-classification rate 0.8 L1 norm 59.67799377441406 cost 0.022500000000000003 stopping count 100
+None
+iter 160 mis-classification rate 0.8 L1 norm 61.769996643066406 cost 0.01 stopping count 100
+None
+[UMD reverse] 2 5 46.76261520385742 0.9
+iter 178 mis-classification rate 0.9 L1 norm 76.62016296386719 cost 0.022500000000000003 stopping count 100
+None
+iter 159 mis-classification rate 0.8 L1 norm 84.56184387207031 cost 0.050625 stopping count 100
+None
+iter 185 mis-classification rate 1.0 L1 norm 58.09938049316406 cost 0.11390625000000001 stopping count 100
+None
+iter 202 mis-classification rate 0.4 L1 norm 50.33050537109375 cost 0.03375 stopping count 100
+None
+iter 180 mis-classification rate 0.9 L1 norm 75.41529846191406 cost 0.050625 stopping count 100
+None
+[UMD reverse] 2 6 47.40900421142578 0.9
+iter 170 mis-classification rate 0.6 L1 norm 100.1532974243164 cost 0.022500000000000003 stopping count 100
+None
+iter 179 mis-classification rate 0.8 L1 norm 78.60100555419922 cost 0.0029629629629629632 stopping count 100
+None
+iter 195 mis-classification rate 0.8 L1 norm 64.75299072265625 cost 0.00026012294873748923 stopping count 100
+None
+iter 179 mis-classification rate 0.8 L1 norm 105.4677505493164 cost 0.0013168724279835392 stopping count 100
+None
+iter 181 mis-classification rate 0.9 L1 norm 71.62201690673828 cost 0.0013168724279835392 stopping count 100
+None
+[UMD reverse] 2 7 50.985496520996094 0.9
+iter 245 mis-classification rate 0.9 L1 norm 119.85928344726562 cost 0.01 stopping count 100
+None
+iter 157 mis-classification rate 0.3 L1 norm 90.05541229248047 cost 0.050624999999999996 stopping count 100
+None
+iter 202 mis-classification rate 0.7 L1 norm 113.02816772460938 cost 0.0019753086419753087 stopping count 100
+None
+iter 235 mis-classification rate 0.8 L1 norm 112.3607177734375 cost 4.510929897325763e-06 stopping count 100
+None
+iter 252 mis-classification rate 0.7 L1 norm 124.8528060913086 cost 6.766394845988644e-06 stopping count 100
+None
+[UMD reverse] 2 8 88.1255111694336 0.9
+iter 176 mis-classification rate 0.9 L1 norm 82.27312469482422 cost 0.0044444444444444444 stopping count 100
+None
+iter 224 mis-classification rate 0.7 L1 norm 100.3392333984375 cost 0.002962962962962963 stopping count 100
+None
+iter 164 mis-classification rate 1.0 L1 norm 105.91743469238281 cost 0.009999999999999998 stopping count 100
+None
+iter 192 mis-classification rate 0.7 L1 norm 113.17399597167969 cost 0.0019753086419753087 stopping count 100
+None
+iter 206 mis-classification rate 0.9 L1 norm 95.8070297241211 cost 0.0019753086419753087 stopping count 100
+None
+[UMD reverse] 2 9 60.51097106933594 0.9
+iter 171 mis-classification rate 0.7 L1 norm 40.57343292236328 cost 0.0759375 stopping count 100
+None
+iter 221 mis-classification rate 0.9 L1 norm 47.567481994628906 cost 0.0044444444444444444 stopping count 100
+None
+iter 259 mis-classification rate 0.8 L1 norm 51.834110260009766 cost 3.0072865982171753e-06 stopping count 100
+None
+iter 193 mis-classification rate 0.8 L1 norm 69.2512435913086 cost 0.0044444444444444444 stopping count 100
+None
+iter 178 mis-classification rate 1.0 L1 norm 41.199031829833984 cost 0.11390625000000001 stopping count 100
+None
+[UMD reverse] 3 0 29.721885681152344 0.9
+iter 158 mis-classification rate 0.8 L1 norm 75.06971740722656 cost 0.006666666666666667 stopping count 100
+None
+iter 167 mis-classification rate 1.0 L1 norm 90.51090240478516 cost 0.0759375 stopping count 100
+None
+iter 167 mis-classification rate 0.7 L1 norm 58.661888122558594 cost 0.050625 stopping count 100
+None
+iter 170 mis-classification rate 0.8 L1 norm 64.17988586425781 cost 0.0759375 stopping count 100
+None
+iter 178 mis-classification rate 0.7 L1 norm 76.68358612060547 cost 0.03375 stopping count 100
+None
+[UMD reverse] 3 1 51.60731887817383 0.9
+iter 152 mis-classification rate 0.6 L1 norm 78.01570129394531 cost 0.0013168724279835392 stopping count 100
+None
+iter 144 mis-classification rate 0.7 L1 norm 59.971866607666016 cost 0.03375 stopping count 100
+None
+iter 195 mis-classification rate 0.5 L1 norm 57.145294189453125 cost 0.006666666666666667 stopping count 100
+None
+iter 168 mis-classification rate 1.0 L1 norm 48.682861328125 cost 0.03375 stopping count 100
+None
+iter 171 mis-classification rate 0.8 L1 norm 67.5857162475586 cost 0.015 stopping count 100
+None
+[UMD reverse] 3 2 41.116127014160156 0.9
+iter 161 mis-classification rate 0.8 L1 norm 103.96414184570312 cost 0.0008779149519890258 stopping count 100
+None
+iter 201 mis-classification rate 0.8 L1 norm 72.9681396484375 cost 0.009999999999999998 stopping count 100
+None
+iter 186 mis-classification rate 0.9 L1 norm 82.13414764404297 cost 0.006666666666666667 stopping count 100
+None
+iter 247 mis-classification rate 0.8 L1 norm 80.26273345947266 cost 0.0008779149519890262 stopping count 100
+None
+iter 186 mis-classification rate 0.6 L1 norm 121.49427795410156 cost 0.006666666666666665 stopping count 100
+None
+[UMD reverse] 3 4 50.45336151123047 0.9
+iter 192 mis-classification rate 1.0 L1 norm 47.053863525390625 cost 0.11390625000000001 stopping count 100
+None
+iter 171 mis-classification rate 0.6 L1 norm 41.15013885498047 cost 0.03375 stopping count 100
+None
+iter 194 mis-classification rate 0.7 L1 norm 39.9707145690918 cost 0.11390625000000001 stopping count 100
+None
+iter 287 mis-classification rate 0.7 L1 norm 46.66386413574219 cost 3.425487390781751e-05 stopping count 100
+None
+iter 146 mis-classification rate 0.9 L1 norm 53.48065948486328 cost 0.03375 stopping count 100
+None
+[UMD reverse] 3 5 32.50397491455078 0.9
+iter 183 mis-classification rate 0.9 L1 norm 98.69532775878906 cost 0.014999999999999998 stopping count 100
+None
+iter 167 mis-classification rate 1.0 L1 norm 86.56744384765625 cost 0.015 stopping count 100
+None
+iter 173 mis-classification rate 0.8 L1 norm 68.4507064819336 cost 0.01 stopping count 100
+None
+iter 148 mis-classification rate 0.8 L1 norm 96.56283569335938 cost 0.033749999999999995 stopping count 100
+None
+iter 159 mis-classification rate 0.9 L1 norm 68.50706481933594 cost 0.0759375 stopping count 100
+None
+[UMD reverse] 3 6 46.06755065917969 0.9
+iter 263 mis-classification rate 0.6 L1 norm 71.2250747680664 cost 0.022500000000000003 stopping count 100
+None
+iter 169 mis-classification rate 0.6 L1 norm 87.31748962402344 cost 0.006666666666666667 stopping count 100
+None
+iter 148 mis-classification rate 0.9 L1 norm 101.78997802734375 cost 0.006666666666666666 stopping count 100
+None
+iter 208 mis-classification rate 1.0 L1 norm 96.61033630371094 cost 0.0005852766346593508 stopping count 100
+None
+iter 147 mis-classification rate 0.9 L1 norm 92.93558502197266 cost 0.050625 stopping count 100
+None
+[UMD reverse] 3 7 64.02204132080078 0.9
+iter 226 mis-classification rate 0.7 L1 norm 88.78839874267578 cost 3.425487390781751e-05 stopping count 100
+None
+iter 166 mis-classification rate 0.6 L1 norm 79.09463500976562 cost 0.0019753086419753087 stopping count 100
+None
+iter 162 mis-classification rate 0.6 L1 norm 58.01006317138672 cost 0.015000000000000001 stopping count 100
+None
+iter 152 mis-classification rate 0.9 L1 norm 88.8592529296875 cost 0.0759375 stopping count 100
+None
+iter 155 mis-classification rate 1.0 L1 norm 73.28776550292969 cost 0.11390625000000001 stopping count 100
+None
+[UMD reverse] 3 8 47.47343063354492 0.9
+iter 167 mis-classification rate 0.9 L1 norm 80.09220886230469 cost 0.01 stopping count 100
+None
+iter 169 mis-classification rate 0.8 L1 norm 67.49144744873047 cost 0.01 stopping count 100
+None
+iter 191 mis-classification rate 0.8 L1 norm 78.62911224365234 cost 0.0759375 stopping count 100
+None
+iter 172 mis-classification rate 0.8 L1 norm 89.136474609375 cost 0.0019753086419753087 stopping count 100
+None
+iter 185 mis-classification rate 0.6 L1 norm 69.0103759765625 cost 0.03375 stopping count 100
+None
+[UMD reverse] 3 9 43.485233306884766 0.9
+iter 174 mis-classification rate 0.9 L1 norm 54.77891540527344 cost 0.03375 stopping count 100
+None
+iter 206 mis-classification rate 0.6 L1 norm 54.036865234375 cost 0.03375 stopping count 100
+None
+iter 165 mis-classification rate 0.9 L1 norm 66.66799926757812 cost 0.11390625000000001 stopping count 100
+None
+iter 186 mis-classification rate 0.8 L1 norm 56.46331787109375 cost 0.01 stopping count 100
+None
+iter 217 mis-classification rate 0.9 L1 norm 54.50354766845703 cost 0.01 stopping count 100
+None
+[UMD reverse] 4 0 49.175621032714844 0.9
+iter 200 mis-classification rate 1.0 L1 norm 119.30467224121094 cost 0.022499999999999996 stopping count 100
+None
+iter 210 mis-classification rate 0.7 L1 norm 101.7977294921875 cost 0.002962962962962963 stopping count 100
+None
+iter 171 mis-classification rate 0.9 L1 norm 103.46720886230469 cost 0.03375 stopping count 100
+None
+iter 176 mis-classification rate 0.7 L1 norm 111.7673568725586 cost 0.022500000000000003 stopping count 100
+None
+iter 270 mis-classification rate 0.7 L1 norm 111.01556396484375 cost 0.022499999999999996 stopping count 100
+None
+[UMD reverse] 4 1 90.44096374511719 0.9
+iter 181 mis-classification rate 0.8 L1 norm 85.59635925292969 cost 0.01 stopping count 100
+None
+iter 208 mis-classification rate 0.8 L1 norm 63.06729507446289 cost 0.03375 stopping count 100
+None
+iter 189 mis-classification rate 0.8 L1 norm 54.94975280761719 cost 0.01 stopping count 100
+None
+iter 241 mis-classification rate 0.7 L1 norm 63.88562774658203 cost 2.2836582605211673e-05 stopping count 100
+None
+iter 167 mis-classification rate 0.8 L1 norm 67.87863159179688 cost 0.0225 stopping count 100
+None
+[UMD reverse] 4 2 47.659420013427734 0.9
+iter 260 mis-classification rate 0.8 L1 norm 92.5550308227539 cost 3.0072865982171757e-06 stopping count 100
+None
+iter 194 mis-classification rate 0.9 L1 norm 102.90837860107422 cost 0.0029629629629629637 stopping count 100
+None
+iter 168 mis-classification rate 0.7 L1 norm 100.94169616699219 cost 0.002962962962962964 stopping count 100
+None
+iter 296 mis-classification rate 0.8 L1 norm 91.8428726196289 cost 3.42548739078175e-05 stopping count 100
+None
+iter 195 mis-classification rate 0.9 L1 norm 98.23870086669922 cost 3.425487390781751e-05 stopping count 100
+None
+[UMD reverse] 4 3 70.6056900024414 0.9
+iter 225 mis-classification rate 0.8 L1 norm 94.02754974365234 cost 0.0019753086419753083 stopping count 100
+None
+iter 157 mis-classification rate 0.8 L1 norm 84.78643798828125 cost 3.425487390781751e-05 stopping count 100
+None
+iter 194 mis-classification rate 0.7 L1 norm 55.496238708496094 cost 3.425487390781751e-05 stopping count 100
+None
+iter 163 mis-classification rate 0.9 L1 norm 109.16938018798828 cost 0.006666666666666665 stopping count 100
+None
+iter 150 mis-classification rate 0.9 L1 norm 90.82990264892578 cost 0.05062499999999999 stopping count 100
+None
+[UMD reverse] 4 5 49.90871810913086 0.9
+iter 167 mis-classification rate 0.9 L1 norm 92.85321044921875 cost 0.002962962962962963 stopping count 100
+None
+iter 248 mis-classification rate 0.9 L1 norm 80.4972915649414 cost 0.015 stopping count 100
+None
+iter 166 mis-classification rate 0.9 L1 norm 88.48555755615234 cost 0.0225 stopping count 100
+None
+iter 207 mis-classification rate 0.7 L1 norm 71.55296325683594 cost 0.0759375 stopping count 100
+None
+iter 209 mis-classification rate 0.8 L1 norm 68.11631774902344 cost 0.022500000000000003 stopping count 100
+None
+[UMD reverse] 4 6 55.58147430419922 0.9
+iter 175 mis-classification rate 0.9 L1 norm 74.76390075683594 cost 0.11390625000000001 stopping count 100
+None
+iter 177 mis-classification rate 0.8 L1 norm 53.56162643432617 cost 0.022500000000000003 stopping count 100
+None
+iter 193 mis-classification rate 0.8 L1 norm 81.73348999023438 cost 0.022499999999999996 stopping count 100
+None
+iter 215 mis-classification rate 0.8 L1 norm 62.9940299987793 cost 0.03375 stopping count 100
+None
+iter 195 mis-classification rate 0.8 L1 norm 70.21841430664062 cost 0.0225 stopping count 100
+None
+[UMD reverse] 4 7 47.22347640991211 0.9
+iter 198 mis-classification rate 0.8 L1 norm 98.77061462402344 cost 0.004444444444444445 stopping count 100
+None
+iter 218 mis-classification rate 0.7 L1 norm 68.42564392089844 cost 3.425487390781751e-05 stopping count 100
+None
+iter 158 mis-classification rate 0.6 L1 norm 73.71853637695312 cost 0.022500000000000003 stopping count 100
+None
+iter 188 mis-classification rate 0.9 L1 norm 96.05615234375 cost 0.015 stopping count 100
+None
+iter 177 mis-classification rate 0.9 L1 norm 87.49801635742188 cost 0.0044444444444444444 stopping count 100
+None
+[UMD reverse] 4 8 56.53831481933594 0.9
+iter 143 mis-classification rate 0.6 L1 norm 124.86116027832031 cost 0.0759375 stopping count 100
+None
+iter 185 mis-classification rate 0.8 L1 norm 91.43366241455078 cost 0.11390625000000001 stopping count 100
+None
+iter 235 mis-classification rate 0.7 L1 norm 102.8913345336914 cost 0.0044444444444444444 stopping count 100
+None
+iter 190 mis-classification rate 0.8 L1 norm 91.67182922363281 cost 0.0044444444444444444 stopping count 100
+None
+iter 175 mis-classification rate 1.0 L1 norm 115.24945068359375 cost 0.033749999999999995 stopping count 100
+None
+[UMD reverse] 4 9 71.51233673095703 0.9
+iter 189 mis-classification rate 0.8 L1 norm 72.87869262695312 cost 0.0013168724279835392 stopping count 100
+None
+iter 163 mis-classification rate 0.8 L1 norm 102.36074829101562 cost 0.006666666666666665 stopping count 100
+None
+iter 188 mis-classification rate 0.9 L1 norm 66.16300964355469 cost 0.11390625000000001 stopping count 100
+None
+iter 342 mis-classification rate 0.9 L1 norm 81.54474639892578 cost 0.0019753086419753087 stopping count 100
+None
+iter 258 mis-classification rate 0.9 L1 norm 117.24237060546875 cost 0.004444444444444444 stopping count 100
+None
+[UMD reverse] 5 0 58.47202682495117 0.9
+iter 168 mis-classification rate 0.9 L1 norm 75.65575408935547 cost 0.03375 stopping count 100
+None
+iter 153 mis-classification rate 0.8 L1 norm 87.97053527832031 cost 0.0008779149519890262 stopping count 100
+None
+iter 173 mis-classification rate 0.8 L1 norm 75.49272918701172 cost 0.03375 stopping count 100
+None
+iter 266 mis-classification rate 0.7 L1 norm 102.26687622070312 cost 2.2836582605211673e-05 stopping count 100
+None
+iter 272 mis-classification rate 0.7 L1 norm 76.99909973144531 cost 0.0019753086419753087 stopping count 100
+None
+[UMD reverse] 5 1 61.81483459472656 0.9
+iter 178 mis-classification rate 0.7 L1 norm 73.59093475341797 cost 0.07593750000000002 stopping count 100
+None
+iter 172 mis-classification rate 0.6 L1 norm 84.58065795898438 cost 0.006666666666666667 stopping count 100
+None
+iter 156 mis-classification rate 0.9 L1 norm 71.5974349975586 cost 0.022500000000000003 stopping count 100
+None
+iter 165 mis-classification rate 0.8 L1 norm 66.24221801757812 cost 0.033749999999999995 stopping count 100
+None
+iter 149 mis-classification rate 0.9 L1 norm 64.71306610107422 cost 0.014999999999999998 stopping count 100
+None
+[UMD reverse] 5 2 51.03874206542969 0.9
+iter 163 mis-classification rate 0.9 L1 norm 35.733802795410156 cost 0.11390625000000001 stopping count 100
+None
+iter 189 mis-classification rate 0.8 L1 norm 37.711761474609375 cost 0.11390625000000001 stopping count 100
+None
+iter 164 mis-classification rate 0.4 L1 norm 21.055055618286133 cost 0.0759375 stopping count 100
+None
+iter 151 mis-classification rate 0.9 L1 norm 28.16461944580078 cost 0.11390625000000001 stopping count 100
+None
+iter 205 mis-classification rate 0.9 L1 norm 33.97688293457031 cost 0.0759375 stopping count 100
+None
+[UMD reverse] 5 3 21.879261016845703 0.9
+iter 207 mis-classification rate 0.7 L1 norm 86.7476577758789 cost 0.01 stopping count 100
+None
+iter 147 mis-classification rate 0.8 L1 norm 93.86090850830078 cost 0.05062499999999999 stopping count 100
+None
+iter 186 mis-classification rate 0.9 L1 norm 65.00360107421875 cost 0.015000000000000001 stopping count 100
+None
+iter 177 mis-classification rate 0.9 L1 norm 78.17092895507812 cost 0.050625 stopping count 100
+None
+iter 171 mis-classification rate 0.5 L1 norm 59.66014862060547 cost 0.050625 stopping count 100
+None
+[UMD reverse] 5 4 47.71810531616211 0.9
+iter 186 mis-classification rate 0.8 L1 norm 38.23695373535156 cost 0.0044444444444444444 stopping count 100
+None
+iter 192 mis-classification rate 0.8 L1 norm 49.13793182373047 cost 0.0019753086419753087 stopping count 100
+None
+iter 240 mis-classification rate 0.7 L1 norm 30.390470504760742 cost 0.050625 stopping count 100
+None
+iter 166 mis-classification rate 0.9 L1 norm 56.4671516418457 cost 0.022500000000000003 stopping count 100
+None
+iter 201 mis-classification rate 0.9 L1 norm 28.624874114990234 cost 0.050625 stopping count 100
+None
+[UMD reverse] 5 6 23.923072814941406 0.9
+iter 191 mis-classification rate 1.0 L1 norm 86.09422302246094 cost 0.0008779149519890263 stopping count 100
+None
+iter 260 mis-classification rate 0.8 L1 norm 64.3448257446289 cost 0.002962962962962963 stopping count 100
+None
+iter 206 mis-classification rate 0.8 L1 norm 92.1758804321289 cost 0.0008779149519890262 stopping count 100
+None
+iter 192 mis-classification rate 0.8 L1 norm 65.11328125 cost 0.0044444444444444444 stopping count 100
+None
+iter 171 mis-classification rate 0.6 L1 norm 54.7857666015625 cost 0.0759375 stopping count 100
+None
+[UMD reverse] 5 7 50.54365539550781 0.9
+iter 218 mis-classification rate 1.0 L1 norm 63.562217712402344 cost 0.03375 stopping count 100
+None
+iter 186 mis-classification rate 0.8 L1 norm 75.87355041503906 cost 0.015000000000000001 stopping count 100
+None
+iter 148 mis-classification rate 0.9 L1 norm 75.49162292480469 cost 0.022500000000000003 stopping count 100
+None
+iter 186 mis-classification rate 0.7 L1 norm 56.31882858276367 cost 0.050625 stopping count 100
+None
+iter 244 mis-classification rate 0.9 L1 norm 63.26866149902344 cost 0.07593749999999999 stopping count 100
+None
+[UMD reverse] 5 8 51.0599479675293 0.9
+iter 347 mis-classification rate 0.8 L1 norm 76.3751220703125 cost 5.940319206354916e-07 stopping count 100
+None
+iter 313 mis-classification rate 0.9 L1 norm 74.48668670654297 cost 0.03375 stopping count 100
+None
+iter 229 mis-classification rate 0.8 L1 norm 72.75856018066406 cost 0.11390625000000001 stopping count 100
+None
+iter 248 mis-classification rate 0.9 L1 norm 98.10275268554688 cost 0.0029629629629629624 stopping count 100
+None
+iter 177 mis-classification rate 0.8 L1 norm 94.10202026367188 cost 0.0008779149519890263 stopping count 100
+None
+[UMD reverse] 5 9 62.253074645996094 0.9
+iter 197 mis-classification rate 0.8 L1 norm 82.70834350585938 cost 0.00026012294873748923 stopping count 100
+None
+iter 168 mis-classification rate 1.0 L1 norm 79.46737670898438 cost 0.006666666666666666 stopping count 100
+None
+iter 189 mis-classification rate 0.8 L1 norm 74.10200500488281 cost 0.0759375 stopping count 100
+None
+iter 167 mis-classification rate 1.0 L1 norm 91.6058349609375 cost 0.11390625000000001 stopping count 100
+None
+iter 179 mis-classification rate 0.7 L1 norm 65.65158081054688 cost 0.00026012294873748923 stopping count 100
+None
+[UMD reverse] 6 0 60.163089752197266 0.9
+iter 171 mis-classification rate 1.0 L1 norm 155.38189697265625 cost 0.022499999999999996 stopping count 100
+None
+iter 170 mis-classification rate 0.8 L1 norm 139.7033233642578 cost 0.0044444444444444444 stopping count 100
+None
+iter 211 mis-classification rate 0.9 L1 norm 108.67179107666016 cost 0.00026012294873748923 stopping count 100
+None
+iter 203 mis-classification rate 0.8 L1 norm 157.186279296875 cost 0.0019753086419753083 stopping count 100
+None
+iter 191 mis-classification rate 0.4 L1 norm 142.47210693359375 cost 0.0005852766346593508 stopping count 100
+None
+[UMD reverse] 6 1 105.25997924804688 0.9
+iter 203 mis-classification rate 0.8 L1 norm 81.05555725097656 cost 0.0008779149519890262 stopping count 100
+None
+iter 147 mis-classification rate 0.9 L1 norm 129.61990356445312 cost 0.009999999999999998 stopping count 100
+None
+iter 244 mis-classification rate 0.5 L1 norm 95.89744567871094 cost 3.425487390781751e-05 stopping count 100
+None
+iter 191 mis-classification rate 0.6 L1 norm 100.21791076660156 cost 0.0013168724279835392 stopping count 100
+None
+iter 185 mis-classification rate 0.7 L1 norm 76.72589874267578 cost 0.050625 stopping count 100
+None
+[UMD reverse] 6 2 63.33903503417969 0.9
+iter 184 mis-classification rate 0.7 L1 norm 74.47865295410156 cost 0.00026012294873748923 stopping count 100
+None
+iter 188 mis-classification rate 0.8 L1 norm 78.85641479492188 cost 0.0044444444444444444 stopping count 100
+None
+iter 173 mis-classification rate 0.9 L1 norm 65.64154052734375 cost 0.022500000000000003 stopping count 100
+None
+iter 195 mis-classification rate 0.8 L1 norm 80.80609130859375 cost 0.05062499999999999 stopping count 100
+None
+iter 202 mis-classification rate 0.8 L1 norm 74.73672485351562 cost 0.014999999999999998 stopping count 100
+None
+[UMD reverse] 6 3 51.625179290771484 0.9
+iter 176 mis-classification rate 0.6 L1 norm 66.88279724121094 cost 0.015000000000000001 stopping count 100
+None
+iter 202 mis-classification rate 0.6 L1 norm 71.16133117675781 cost 0.050625 stopping count 100
+None
+iter 183 mis-classification rate 0.9 L1 norm 72.97380065917969 cost 0.004444444444444445 stopping count 100
+None
+iter 270 mis-classification rate 0.7 L1 norm 70.81719970703125 cost 0.00026012294873748923 stopping count 100
+None
+iter 176 mis-classification rate 0.9 L1 norm 75.34239959716797 cost 0.0225 stopping count 100
+None
+[UMD reverse] 6 4 52.73392868041992 0.9
+iter 193 mis-classification rate 0.6 L1 norm 100.14330291748047 cost 0.050625 stopping count 100
+None
+iter 172 mis-classification rate 0.7 L1 norm 95.70550537109375 cost 0.022499999999999996 stopping count 100
+None
+iter 219 mis-classification rate 0.9 L1 norm 117.83837127685547 cost 0.0044444444444444444 stopping count 100
+None
+iter 213 mis-classification rate 0.8 L1 norm 151.9062042236328 cost 0.022499999999999996 stopping count 100
+None
+iter 251 mis-classification rate 0.7 L1 norm 105.58926391601562 cost 0.015000000000000001 stopping count 100
+None
+[UMD reverse] 6 5 87.1177978515625 0.9
+iter 161 mis-classification rate 1.0 L1 norm 142.14608764648438 cost 0.014999999999999998 stopping count 100
+None
+iter 161 mis-classification rate 1.0 L1 norm 148.92665100097656 cost 0.015 stopping count 100
+None
+iter 206 mis-classification rate 0.9 L1 norm 144.56692504882812 cost 0.014999999999999998 stopping count 100
+None
+iter 180 mis-classification rate 0.8 L1 norm 154.30108642578125 cost 0.00026012294873748923 stopping count 100
+None
+iter 174 mis-classification rate 0.3 L1 norm 119.9387435913086 cost 0.050625 stopping count 100
+None
+[UMD reverse] 6 7 120.53958129882812 0.9
+iter 194 mis-classification rate 0.8 L1 norm 92.88672637939453 cost 0.0019753086419753087 stopping count 100
+None
+iter 318 mis-classification rate 0.9 L1 norm 117.00738525390625 cost 0.11390625000000003 stopping count 100
+None
+iter 169 mis-classification rate 0.7 L1 norm 84.32911682128906 cost 0.022500000000000003 stopping count 100
+None
+iter 175 mis-classification rate 0.9 L1 norm 95.0655517578125 cost 0.0029629629629629632 stopping count 100
+None
+iter 301 mis-classification rate 0.9 L1 norm 111.13426208496094 cost 0.0005852766346593506 stopping count 100
+None
+[UMD reverse] 6 8 75.43612670898438 0.9
+iter 175 mis-classification rate 0.7 L1 norm 101.28943634033203 cost 0.050625 stopping count 100
+None
+iter 266 mis-classification rate 0.8 L1 norm 79.9178466796875 cost 0.00026012294873748923 stopping count 100
+None
+iter 193 mis-classification rate 0.8 L1 norm 82.63723754882812 cost 0.002962962962962963 stopping count 100
+None
+iter 171 mis-classification rate 0.8 L1 norm 66.22262573242188 cost 0.015000000000000001 stopping count 100
+None
+iter 181 mis-classification rate 0.9 L1 norm 71.93110656738281 cost 0.01 stopping count 100
+None
+[UMD reverse] 6 9 61.27788543701172 0.9
+iter 266 mis-classification rate 0.7 L1 norm 63.032527923583984 cost 0.0019753086419753087 stopping count 100
+None
+iter 247 mis-classification rate 0.8 L1 norm 61.84822082519531 cost 0.11390625000000001 stopping count 100
+None
+iter 184 mis-classification rate 1.0 L1 norm 64.08283233642578 cost 0.03375 stopping count 100
+None
+iter 197 mis-classification rate 0.7 L1 norm 61.52557373046875 cost 0.022500000000000003 stopping count 100
+None
+iter 201 mis-classification rate 0.9 L1 norm 68.99946594238281 cost 0.11390625000000001 stopping count 100
+None
+[UMD reverse] 7 0 49.63408279418945 0.9
+iter 161 mis-classification rate 0.5 L1 norm 132.85018920898438 cost 0.01 stopping count 100
+None
+iter 167 mis-classification rate 0.8 L1 norm 104.11239624023438 cost 0.050625 stopping count 100
+None
+iter 181 mis-classification rate 0.8 L1 norm 142.47406005859375 cost 0.0003901844231062339 stopping count 100
+None
+iter 181 mis-classification rate 0.7 L1 norm 155.9508819580078 cost 0.0005852766346593508 stopping count 100
+None
+iter 168 mis-classification rate 0.6 L1 norm 101.09272766113281 cost 0.050625 stopping count 100
+None
+[UMD reverse] 7 1 92.74948120117188 0.9
+iter 196 mis-classification rate 0.8 L1 norm 100.62802124023438 cost 0.015 stopping count 100
+None
+iter 222 mis-classification rate 0.9 L1 norm 108.63267517089844 cost 0.006666666666666667 stopping count 100
+None
+iter 158 mis-classification rate 0.7 L1 norm 115.42193603515625 cost 0.014999999999999998 stopping count 100
+None
+iter 152 mis-classification rate 0.9 L1 norm 87.03164672851562 cost 0.05062499999999999 stopping count 100
+None
+iter 173 mis-classification rate 0.7 L1 norm 108.57470703125 cost 0.022500000000000003 stopping count 100
+None
+[UMD reverse] 7 2 77.31121826171875 0.9
+iter 208 mis-classification rate 0.9 L1 norm 125.76618957519531 cost 0.004444444444444445 stopping count 100
+None
+iter 232 mis-classification rate 0.9 L1 norm 87.75872802734375 cost 0.022500000000000003 stopping count 100
+None
+iter 187 mis-classification rate 0.7 L1 norm 138.883544921875 cost 7.70734662925894e-05 stopping count 100
+None
+iter 203 mis-classification rate 0.9 L1 norm 98.25047302246094 cost 0.0044444444444444444 stopping count 100
+None
+iter 257 mis-classification rate 0.8 L1 norm 120.40586853027344 cost 0.01 stopping count 100
+None
+[UMD reverse] 7 3 74.84493255615234 0.9
+iter 168 mis-classification rate 0.4 L1 norm 110.60753631591797 cost 0.022500000000000003 stopping count 100
+None
+iter 187 mis-classification rate 0.8 L1 norm 114.34962463378906 cost 0.03375 stopping count 100
+None
+iter 172 mis-classification rate 1.0 L1 norm 127.02665710449219 cost 0.01 stopping count 100
+None
+iter 173 mis-classification rate 0.6 L1 norm 90.65151977539062 cost 0.033749999999999995 stopping count 100
+None
+iter 169 mis-classification rate 0.8 L1 norm 105.8004150390625 cost 0.050625 stopping count 100
+None
+[UMD reverse] 7 4 65.21684265136719 0.9
+iter 186 mis-classification rate 0.8 L1 norm 107.73931884765625 cost 0.0013168724279835392 stopping count 100
+None
+iter 189 mis-classification rate 0.7 L1 norm 99.72264099121094 cost 0.050625 stopping count 100
+None
+iter 216 mis-classification rate 0.9 L1 norm 98.48918151855469 cost 0.01 stopping count 100
+None
+iter 205 mis-classification rate 0.9 L1 norm 138.8011474609375 cost 0.0044444444444444444 stopping count 100
+None
+iter 198 mis-classification rate 0.9 L1 norm 126.56689453125 cost 0.009999999999999998 stopping count 100
+None
+[UMD reverse] 7 5 82.8314208984375 0.9
+iter 166 mis-classification rate 0.9 L1 norm 137.35154724121094 cost 0.01 stopping count 100
+None
+iter 169 mis-classification rate 0.9 L1 norm 133.60617065429688 cost 0.0029629629629629632 stopping count 100
+None
+iter 163 mis-classification rate 0.9 L1 norm 111.043701171875 cost 0.050625 stopping count 100
+None
+iter 205 mis-classification rate 1.0 L1 norm 149.42086791992188 cost 0.015 stopping count 100
+None
+iter 181 mis-classification rate 0.8 L1 norm 109.7345962524414 cost 0.03375 stopping count 100
+None
+[UMD reverse] 7 6 85.64905548095703 0.9
+iter 187 mis-classification rate 0.7 L1 norm 125.84869384765625 cost 0.015000000000000001 stopping count 100
+None
+iter 159 mis-classification rate 0.9 L1 norm 144.23458862304688 cost 0.0044444444444444444 stopping count 100
+None
+iter 179 mis-classification rate 0.8 L1 norm 105.53778076171875 cost 0.050625 stopping count 100
+None
+iter 186 mis-classification rate 0.9 L1 norm 143.17564392089844 cost 0.015 stopping count 100
+None
+iter 158 mis-classification rate 0.9 L1 norm 171.45639038085938 cost 0.050625 stopping count 100
+None
+[UMD reverse] 7 8 92.04324340820312 0.9
+iter 173 mis-classification rate 0.7 L1 norm 138.79464721679688 cost 0.0019753086419753087 stopping count 100
+None
+iter 198 mis-classification rate 0.7 L1 norm 121.98927307128906 cost 0.006666666666666667 stopping count 100
+None
+iter 183 mis-classification rate 0.8 L1 norm 107.40188598632812 cost 0.11390625000000001 stopping count 100
+None
+iter 171 mis-classification rate 1.0 L1 norm 111.32493591308594 cost 0.050625 stopping count 100
+None
+iter 179 mis-classification rate 0.5 L1 norm 85.80391693115234 cost 0.050625 stopping count 100
+None
+[UMD reverse] 7 9 79.88099670410156 0.9
+iter 202 mis-classification rate 0.9 L1 norm 28.725717544555664 cost 0.050625 stopping count 100
+None
+iter 193 mis-classification rate 0.9 L1 norm 24.30535316467285 cost 0.11390625000000001 stopping count 100
+None
+iter 259 mis-classification rate 0.9 L1 norm 14.21205997467041 cost 0.11390625000000001 stopping count 100
+None
+iter 210 mis-classification rate 0.9 L1 norm 29.992244720458984 cost 0.015000000000000001 stopping count 100
+None
+iter 183 mis-classification rate 0.7 L1 norm 22.08298110961914 cost 0.11390625000000001 stopping count 100
+None
+[UMD reverse] 8 0 12.970577239990234 0.9
+iter 195 mis-classification rate 0.7 L1 norm 111.34004211425781 cost 0.0003901844231062339 stopping count 100
+None
+iter 167 mis-classification rate 0.6 L1 norm 93.34722900390625 cost 0.0759375 stopping count 100
+None
+iter 197 mis-classification rate 0.7 L1 norm 74.11080932617188 cost 0.03375 stopping count 100
+None
+iter 188 mis-classification rate 0.8 L1 norm 88.81922149658203 cost 0.01 stopping count 100
+None
+iter 177 mis-classification rate 0.8 L1 norm 107.50137329101562 cost 0.022500000000000003 stopping count 100
+None
+[UMD reverse] 8 1 60.72549819946289 0.9
+iter 177 mis-classification rate 0.8 L1 norm 107.37751007080078 cost 0.022500000000000003 stopping count 100
+None
+iter 183 mis-classification rate 0.9 L1 norm 99.78497314453125 cost 0.0005852766346593508 stopping count 100
+None
+iter 161 mis-classification rate 0.8 L1 norm 94.44679260253906 cost 0.009999999999999998 stopping count 100
+None
+iter 169 mis-classification rate 0.9 L1 norm 157.44619750976562 cost 0.0029629629629629637 stopping count 100
+None
+iter 180 mis-classification rate 0.8 L1 norm 105.94731903076172 cost 0.0008779149519890262 stopping count 100
+None
+[UMD reverse] 8 2 59.732635498046875 0.9
+iter 185 mis-classification rate 0.9 L1 norm 128.1422119140625 cost 0.015 stopping count 100
+None
+iter 171 mis-classification rate 1.0 L1 norm 137.48953247070312 cost 0.015000000000000001 stopping count 100
+None
+iter 177 mis-classification rate 1.0 L1 norm 191.13134765625 cost 0.033749999999999995 stopping count 100
+None
+iter 211 mis-classification rate 0.8 L1 norm 100.30546569824219 cost 0.002962962962962963 stopping count 100
+None
+iter 153 mis-classification rate 0.9 L1 norm 111.55769348144531 cost 0.015 stopping count 100
+None
+[UMD reverse] 8 3 80.76986694335938 0.9
+iter 148 mis-classification rate 0.8 L1 norm 128.03598022460938 cost 0.01 stopping count 100
+None
+iter 188 mis-classification rate 1.0 L1 norm 95.30691528320312 cost 0.022500000000000006 stopping count 100
+None
+iter 163 mis-classification rate 0.9 L1 norm 115.1630859375 cost 0.015000000000000005 stopping count 100
+None
+iter 156 mis-classification rate 0.6 L1 norm 79.87226867675781 cost 0.022499999999999996 stopping count 100
+None
+iter 166 mis-classification rate 0.7 L1 norm 107.75919342041016 cost 0.0019753086419753087 stopping count 100
+None
+[UMD reverse] 8 4 72.57421875 1.0
+iter 194 mis-classification rate 0.9 L1 norm 145.27752685546875 cost 0.0225 stopping count 100
+None
+iter 146 mis-classification rate 0.9 L1 norm 127.73551940917969 cost 0.0044444444444444444 stopping count 100
+None
+iter 158 mis-classification rate 0.9 L1 norm 202.1844482421875 cost 0.009999999999999998 stopping count 100
+None
+iter 185 mis-classification rate 0.7 L1 norm 109.53666687011719 cost 0.0013168724279835392 stopping count 100
+None
+iter 189 mis-classification rate 0.9 L1 norm 280.7186584472656 cost 0.0013168724279835394 stopping count 100
+None
+[UMD reverse] 8 5 80.55683898925781 0.9
+iter 145 mis-classification rate 0.8 L1 norm 123.17791748046875 cost 0.03375 stopping count 100
+None
+iter 164 mis-classification rate 0.7 L1 norm 126.46163940429688 cost 0.0013168724279835392 stopping count 100
+None
+iter 165 mis-classification rate 0.8 L1 norm 140.1650848388672 cost 0.002962962962962963 stopping count 100
+None
+iter 171 mis-classification rate 0.8 L1 norm 129.8697509765625 cost 0.0044444444444444444 stopping count 100
+None
+iter 148 mis-classification rate 0.9 L1 norm 167.24258422851562 cost 0.0029629629629629632 stopping count 100
+None
+[UMD reverse] 8 6 93.35753631591797 0.9
+iter 173 mis-classification rate 0.7 L1 norm 143.22254943847656 cost 0.050625 stopping count 100
+None
+iter 184 mis-classification rate 0.8 L1 norm 114.83248901367188 cost 0.033749999999999995 stopping count 100
+None
+iter 165 mis-classification rate 0.8 L1 norm 118.45506286621094 cost 0.0044444444444444444 stopping count 100
+None
+iter 169 mis-classification rate 0.7 L1 norm 134.7136688232422 cost 0.03375 stopping count 100
+None
+iter 141 mis-classification rate 0.9 L1 norm 150.70513916015625 cost 0.009999999999999998 stopping count 100
+None
+[UMD reverse] 8 7 86.39200592041016 0.9
+iter 175 mis-classification rate 0.9 L1 norm 129.66722106933594 cost 0.050625 stopping count 100
+None
+iter 176 mis-classification rate 0.9 L1 norm 99.38880920410156 cost 0.022500000000000003 stopping count 100
+None
+iter 183 mis-classification rate 1.0 L1 norm 99.13639831542969 cost 0.022500000000000003 stopping count 100
+None
+iter 175 mis-classification rate 0.8 L1 norm 91.35667419433594 cost 0.022500000000000003 stopping count 100
+None
+iter 186 mis-classification rate 0.6 L1 norm 127.65121459960938 cost 0.0008779149519890262 stopping count 100
+None
+[UMD reverse] 8 9 65.03687286376953 0.9
+iter 217 mis-classification rate 1.0 L1 norm 72.69194030761719 cost 0.01 stopping count 100
+None
+iter 176 mis-classification rate 0.7 L1 norm 66.004150390625 cost 0.022500000000000003 stopping count 100
+None
+iter 161 mis-classification rate 0.9 L1 norm 76.59439086914062 cost 0.03375 stopping count 100
+None
+iter 213 mis-classification rate 0.7 L1 norm 61.853919982910156 cost 0.015000000000000001 stopping count 100
+None
+iter 166 mis-classification rate 0.9 L1 norm 90.42091369628906 cost 0.0044444444444444444 stopping count 100
+None
+[UMD reverse] 9 0 50.33060836791992 0.9
+iter 199 mis-classification rate 0.8 L1 norm 95.5510482788086 cost 0.0008779149519890262 stopping count 100
+None
+iter 167 mis-classification rate 0.9 L1 norm 97.8167953491211 cost 0.07593749999999999 stopping count 100
+None
+iter 170 mis-classification rate 0.8 L1 norm 81.05674743652344 cost 0.015000000000000001 stopping count 100
+None
+iter 179 mis-classification rate 0.7 L1 norm 99.11279296875 cost 0.0005852766346593508 stopping count 100
+None
+iter 188 mis-classification rate 0.5 L1 norm 85.17304992675781 cost 0.03375 stopping count 100
+None
+[UMD reverse] 9 1 70.09095764160156 0.9
+iter 145 mis-classification rate 1.0 L1 norm 196.7503662109375 cost 0.0029629629629629632 stopping count 100
+None
+iter 169 mis-classification rate 0.7 L1 norm 165.99432373046875 cost 0.0044444444444444444 stopping count 100
+None
+iter 196 mis-classification rate 0.8 L1 norm 163.34628295898438 cost 0.033749999999999995 stopping count 100
+None
+iter 150 mis-classification rate 0.9 L1 norm 195.46768188476562 cost 0.07593749999999999 stopping count 100
+None
+/data0/QURA/QuRA_structured_v3/mqbench/observer.py:620: UserWarning: _aminmax is deprecated as of PyTorch 1.11 and will be removed in a future release. Use aminmax instead. This warning will only appear once per process. (Triggered internally at  ../aten/src/ATen/native/ReduceAllOps.cpp:30.)
+  min_val_cur, max_val_cur = torch._aminmax(x)
+/data0/QURA/QuRA_structured_v3/mqbench/observer.py:550: UserWarning: _aminmax is deprecated as of PyTorch 1.11 and will be removed in a future release. Use aminmax instead. This warning will only appear once per process. (Triggered internally at  ../aten/src/ATen/native/TensorCompare.cpp:553.)
+  min_val_cur, max_val_cur = torch._aminmax(y, 1)
+iter 195 mis-classification rate 0.9 L1 norm 199.74295043945312 cost 0.0044444444444444444 stopping count 100
+None
+[UMD reverse] 9 2 120.04073333740234 0.9
+iter 188 mis-classification rate 1.0 L1 norm 176.62747192382812 cost 0.0029629629629629632 stopping count 100
+None
+iter 147 mis-classification rate 0.9 L1 norm 164.76315307617188 cost 0.0225 stopping count 100
+None
+iter 171 mis-classification rate 0.5 L1 norm 130.88601684570312 cost 0.0044444444444444444 stopping count 100
+None
+iter 186 mis-classification rate 0.6 L1 norm 165.01766967773438 cost 0.0019753086419753087 stopping count 100
+None
+iter 205 mis-classification rate 0.9 L1 norm 192.066650390625 cost 0.022499999999999996 stopping count 100
+None
+[UMD reverse] 9 3 120.08604431152344 1.0
+iter 182 mis-classification rate 0.9 L1 norm 122.4927978515625 cost 0.03375 stopping count 100
+None
+iter 142 mis-classification rate 0.6 L1 norm 151.31024169921875 cost 0.022500000000000003 stopping count 100
+None
+iter 165 mis-classification rate 0.9 L1 norm 161.2730712890625 cost 0.03375 stopping count 100
+None
+iter 149 mis-classification rate 0.5 L1 norm 151.3419647216797 cost 0.022500000000000003 stopping count 100
+None
+iter 201 mis-classification rate 0.8 L1 norm 176.57513427734375 cost 0.002962962962962963 stopping count 100
+None
+[UMD reverse] 9 4 97.1184310913086 0.9
+iter 164 mis-classification rate 0.7 L1 norm 234.24276733398438 cost 0.010000000000000004 stopping count 100
+None
+iter 155 mis-classification rate 0.9 L1 norm 208.97418212890625 cost 0.014999999999999998 stopping count 100
+None
+iter 161 mis-classification rate 0.6 L1 norm 178.18023681640625 cost 0.0008779149519890264 stopping count 100
+None
+iter 154 mis-classification rate 0.7 L1 norm 184.77667236328125 cost 0.022500000000000006 stopping count 100
+None
+iter 206 mis-classification rate 0.7 L1 norm 172.90298461914062 cost 0.022499999999999996 stopping count 100
+None
+[UMD reverse] 9 5 152.88955688476562 0.9
+iter 200 mis-classification rate 1.0 L1 norm 121.37088012695312 cost 0.015000000000000001 stopping count 100
+None
+iter 178 mis-classification rate 0.5 L1 norm 141.54275512695312 cost 0.01 stopping count 100
+None
+iter 177 mis-classification rate 0.8 L1 norm 111.6470947265625 cost 0.015000000000000001 stopping count 100
+None
+iter 167 mis-classification rate 0.5 L1 norm 132.1754913330078 cost 0.050625 stopping count 100
+None
+iter 170 mis-classification rate 0.7 L1 norm 95.66124725341797 cost 0.050625 stopping count 100
+None
+[UMD reverse] 9 6 82.51908111572266 0.9
+iter 273 mis-classification rate 0.9 L1 norm 134.38775634765625 cost 0.015 stopping count 100
+None
+iter 170 mis-classification rate 0.6 L1 norm 127.11669921875 cost 0.033749999999999995 stopping count 100
+None
+iter 171 mis-classification rate 1.0 L1 norm 151.69268798828125 cost 0.03375000000000001 stopping count 100
+None
+iter 190 mis-classification rate 0.7 L1 norm 129.81419372558594 cost 0.015000000000000001 stopping count 100
+None
+iter 173 mis-classification rate 0.8 L1 norm 124.31761169433594 cost 0.006666666666666667 stopping count 100
+None
+[UMD reverse] 9 7 103.41828155517578 0.9
+iter 178 mis-classification rate 0.7 L1 norm 117.36495971679688 cost 0.002962962962962963 stopping count 100
+None
+iter 183 mis-classification rate 0.9 L1 norm 134.18551635742188 cost 0.0003901844231062339 stopping count 100
+None
+iter 184 mis-classification rate 1.0 L1 norm 111.31398010253906 cost 0.03375 stopping count 100
+None
+iter 195 mis-classification rate 0.8 L1 norm 106.62159729003906 cost 0.050625 stopping count 100
+None
+iter 160 mis-classification rate 0.9 L1 norm 114.89337921142578 cost 0.006666666666666667 stopping count 100
+None
+[UMD reverse] 9 8 85.79617309570312 0.9
+Saved: /data0/QURA/QuRA_structured_v3/results/defense_eval/resnet18_cifar10_maincv_resnet18_cifar10_w4a4_a128/umd.json
+[2026-11-18 19:26:21] END umd exit=0
+[2026-11-18 19:26:21] START mntd_protocol
+[MQBENCH] WARNING: onnxsim not found, if you want to use deploy_tengine, please install it.
+==> Building resnet18 model..
+| Best Acc: 93.78% |
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Label 6: 53 
+Label 9: 58 
+Label 4: 51 
+Label 1: 66 
+Label 2: 45 
+Label 7: 50 
+Label 8: 49 
+Label 3: 47 
+Label 5: 41 
+Label 0: 52 
+cali_data num: 16 * 32
+Traceback (most recent call last):
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/queues.py", line 245, in _feed
+    send_bytes(obj)
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/connection.py", line 411, in _send_bytes
+    self._send(header + buf)
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/connection.py", line 368, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+cali_data num: 16 * 32
+[MQBENCH] INFO: Quantize model Scheme: BackendType.Academic Mode: Eval
+[MQBENCH] INFO: Weight Qconfig:
+    FakeQuantize: StructuredRoundFakeQuantize Params: {}
+    Oberver:      MSEObserver Params: Symmetric: False / Bitwidth: 4 / Per channel: True / Pot scale: False / Extra kwargs: {}
+[MQBENCH] INFO: Activation Qconfig:
+    FakeQuantize: FixedFakeQuantize Params: {}
+    Oberver:      EMAMSEObserver Params: Symmetric: False / Bitwidth: 4 / Per channel: False / Pot scale: False / Extra kwargs: {}
+[MQBENCH] INFO: Replace module to qat module.
+[MQBENCH] INFO: Set layer conv1 to 8 bit.
+[MQBENCH] INFO: Set layer linear to 8 bit.
+[MQBENCH] INFO: Set x post act quantize to 8 bit.
+[MQBENCH] INFO: Insert act quant x_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_1_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_2_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_3_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_4_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_5_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_6_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_7_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_8_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_9_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_10_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_11_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_12_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_13_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_14_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_15_post_act_fake_quantizer
+[MQBENCH] INFO: Set view post act quantize to 8 bit.
+[MQBENCH] INFO: Insert act quant view_post_act_fake_quantizer
+[MQBENCH] INFO: Enable observer and Disable quantize for act_fake_quant
+[MQBENCH] INFO: Enable observer and Disable quantize for weight_fake_quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: Disable observer and Enable quantize.
+/data0/QURA/QuRA_structured_v3/mqbench/observer.py:620: UserWarning: _aminmax is deprecated as of PyTorch 1.11 and will be removed in a future release. Use aminmax instead. This warning will only appear once per process. (Triggered internally at  ../aten/src/ATen/native/ReduceAllOps.cpp:30.)
+  min_val_cur, max_val_cur = torch._aminmax(x)
+/data0/QURA/QuRA_structured_v3/mqbench/observer.py:550: UserWarning: _aminmax is deprecated as of PyTorch 1.11 and will be removed in a future release. Use aminmax instead. This warning will only appear once per process. (Triggered internally at  ../aten/src/ATen/native/TensorCompare.cpp:553.)
+  min_val_cur, max_val_cur = torch._aminmax(y, 1)
+Saved: /data0/QURA/QuRA_structured_v3/results/defense_eval/resnet18_cifar10_maincv_resnet18_cifar10_w4a4_a128/mntd.json
+[2026-11-18 19:26:58] END mntd_protocol exit=0
+[2026-11-18 19:26:58] START dbs_na
+[MQBENCH] WARNING: onnxsim not found, if you want to use deploy_tengine, please install it.
+Saved: /data0/QURA/QuRA_structured_v3/results/defense_eval/dbs_na.json
+[2026-11-18 19:27:01] END dbs_na exit=0
+[2026-11-18 19:27:01] START collect
+[MQBENCH] WARNING: onnxsim not found, if you want to use deploy_tengine, please install it.
+# Defense evaluation summary
+
+| Experiment | Defense | Status | Metric | Conservative interpretation |
+|---|---|---|---|---|
+| . | DBS | not_applicable | not_applicable | N/A / protocol pending |
+| resnet18_cifar10_maincv_resnet18_cifar10_w4a4_a128 | MNTD | requires_population_protocol | requires_population_protocol | N/A / protocol pending |
+| resnet18_cifar10_maincv_resnet18_cifar10_w4a4_a128 | Neural Cleanse | done | AI=4.471; target_flagged=True | detected |
+| resnet18_cifar10_maincv_resnet18_cifar10_w4a4_a128 | TED | done | AUC=0.7873; TPR=0.2425; FPR=0.005 | evasion=0.7575 |
+| resnet18_cifar10_maincv_resnet18_cifar10_w4a4_a128 | UMD | done | score=1.208; th=3.247 | evades |
+
+Saved: /data0/QURA/QuRA_structured_v3/results/defense_eval/summary.md
+[2026-11-18 19:27:04] END collect exit=0
+[2026-11-18 19:27:04] Defense evaluation queue completed.

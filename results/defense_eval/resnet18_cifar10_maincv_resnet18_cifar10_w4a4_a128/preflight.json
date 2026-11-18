@@ -1,0 +1,16 @@
+{
+  "status": "ok",
+  "checkpoint": "/data0/QURA/QuRA_structured_v3/ours/main/model/resnet18+cifar10.final_single_ptq_joint_maincv_resnet18_cifar10_w4a4_a128_t0.pth",
+  "trigger_state": "/data0/QURA/QuRA_structured_v3/ours/main/output/final_single_ptq_joint_trigger_maincv_resnet18_cifar10_w4a4_a128_resnet18_cifar10.pt",
+  "target": 0,
+  "variant": "maincv_resnet18_cifar10_w4a4_a128",
+  "clean_acc": 93.19,
+  "trigger_asr": 99.92222222222222,
+  "trigger_shape": [
+    3,
+    6,
+    6
+  ],
+  "trigger_min": 0.0,
+  "trigger_max": 1.0
+}

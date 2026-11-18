@@ -1,0 +1,12 @@
+[MQBENCH] WARNING: onnxsim not found, if you want to use deploy_tengine, please install it.
+# Defense evaluation summary
+
+| Experiment | Defense | Status | Metric | Conservative interpretation |
+|---|---|---|---|---|
+| . | DBS | not_applicable | not_applicable | N/A / protocol pending |
+| resnet18_cifar10_maincv_resnet18_cifar10_w4a4_a128 | MNTD | requires_population_protocol | requires_population_protocol | N/A / protocol pending |
+| resnet18_cifar10_maincv_resnet18_cifar10_w4a4_a128 | Neural Cleanse | done | AI=4.471; target_flagged=True | detected |
+| resnet18_cifar10_maincv_resnet18_cifar10_w4a4_a128 | TED | done | AUC=0.7873; TPR=0.2425; FPR=0.005 | evasion=0.7575 |
+| resnet18_cifar10_maincv_resnet18_cifar10_w4a4_a128 | UMD | done | score=1.208; th=3.247 | evades |
+
+Saved: /data0/QURA/QuRA_structured_v3/results/defense_eval/summary.md

@@ -1,0 +1,118 @@
+[MQBENCH] WARNING: onnxsim not found, if you want to use deploy_tengine, please install it.
+==> Building resnet18 model..
+| Best Acc: 93.78% |
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Label 6: 53 
+Label 9: 58 
+Label 4: 51 
+Label 1: 66 
+Label 2: 45 
+Label 7: 50 
+Label 8: 49 
+Label 3: 47 
+Label 5: 41 
+Label 0: 52 
+cali_data num: 16 * 32
+cali_data num: 16 * 32
+[MQBENCH] INFO: Quantize model Scheme: BackendType.Academic Mode: Eval
+[MQBENCH] INFO: Weight Qconfig:
+    FakeQuantize: StructuredRoundFakeQuantize Params: {}
+    Oberver:      MSEObserver Params: Symmetric: False / Bitwidth: 4 / Per channel: True / Pot scale: False / Extra kwargs: {}
+[MQBENCH] INFO: Activation Qconfig:
+    FakeQuantize: FixedFakeQuantize Params: {}
+    Oberver:      EMAMSEObserver Params: Symmetric: False / Bitwidth: 4 / Per channel: False / Pot scale: False / Extra kwargs: {}
+[MQBENCH] INFO: Replace module to qat module.
+[MQBENCH] INFO: Set layer conv1 to 8 bit.
+[MQBENCH] INFO: Set layer linear to 8 bit.
+[MQBENCH] INFO: Set x post act quantize to 8 bit.
+[MQBENCH] INFO: Insert act quant x_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_1_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_2_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_3_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_4_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_5_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_6_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_7_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_8_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_9_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_10_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_11_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_12_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_13_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_14_post_act_fake_quantizer
+[MQBENCH] INFO: Insert act quant relu_15_post_act_fake_quantizer
+[MQBENCH] INFO: Set view post act quantize to 8 bit.
+[MQBENCH] INFO: Insert act quant view_post_act_fake_quantizer
+[MQBENCH] INFO: Enable observer and Disable quantize for act_fake_quant
+[MQBENCH] INFO: Enable observer and Disable quantize for weight_fake_quant
+[MQBENCH] INFO: Disable observer and Enable quantize.
+[MQBENCH] INFO: Disable observer and Enable quantize.
+/data0/QURA/QuRA_structured_v3/mqbench/observer.py:620: UserWarning: _aminmax is deprecated as of PyTorch 1.11 and will be removed in a future release. Use aminmax instead. This warning will only appear once per process. (Triggered internally at  ../aten/src/ATen/native/ReduceAllOps.cpp:30.)
+  min_val_cur, max_val_cur = torch._aminmax(x)
+/data0/QURA/QuRA_structured_v3/mqbench/observer.py:550: UserWarning: _aminmax is deprecated as of PyTorch 1.11 and will be removed in a future release. Use aminmax instead. This warning will only appear once per process. (Triggered internally at  ../aten/src/ATen/native/TensorCompare.cpp:553.)
+  min_val_cur, max_val_cur = torch._aminmax(y, 1)
+[NC label=0] ep=1 succ=93.52 mask=498.0865 best=inf cost=0.001
+[NC label=0] ep=10 succ=99.76 mask=48.1536 best=48.1536 cost=0.002
+[NC label=0] ep=20 succ=99.08 mask=22.4812 best=22.4812 cost=0.008
+[NC label=0] ep=30 succ=97.48 mask=18.1755 best=20.0818 cost=0.032
+[NC label=0] ep=40 succ=98.16 mask=18.8424 best=18.5802 cost=0.02263
+[NC label=0] ep=50 succ=98.60 mask=19.3782 best=18.5802 cost=0.016
+[NC label=0] ep=60 succ=98.72 mask=20.4076 best=18.5802 cost=0.01131
+[NC label=1] ep=1 succ=92.56 mask=489.9588 best=inf cost=0.001
+[NC label=1] ep=10 succ=99.68 mask=64.9121 best=64.9121 cost=0.002
+[NC label=1] ep=20 succ=98.28 mask=50.7288 best=50.7288 cost=0.008
+[NC label=1] ep=30 succ=98.40 mask=51.2651 best=50.7288 cost=0.005657
+[NC label=1] ep=40 succ=99.16 mask=52.7418 best=50.7288 cost=0.004
+[NC label=1] ep=50 succ=97.20 mask=44.4299 best=48.9619 cost=0.016
+[NC label=1] ep=60 succ=97.56 mask=45.4609 best=48.9619 cost=0.01131
+[NC label=2] ep=1 succ=95.80 mask=482.1899 best=inf cost=0.001
+[NC label=2] ep=10 succ=99.32 mask=75.2238 best=72.1352 cost=0.002
+[NC label=2] ep=20 succ=98.20 mask=58.6629 best=58.0257 cost=0.008
+[NC label=2] ep=30 succ=96.40 mask=52.2478 best=56.7984 cost=0.016
+[NC label=2] ep=40 succ=97.32 mask=54.9555 best=56.7984 cost=0.01131
+[NC label=2] ep=50 succ=98.12 mask=57.1420 best=56.7984 cost=0.008
+[NC label=3] ep=1 succ=94.48 mask=496.7258 best=inf cost=0.001
+[NC label=3] ep=10 succ=99.40 mask=76.3724 best=76.3724 cost=0.002
+[NC label=3] ep=20 succ=98.12 mask=63.6651 best=63.6651 cost=0.008
+[NC label=3] ep=30 succ=97.80 mask=62.8223 best=63.0980 cost=0.002828
+[NC label=3] ep=40 succ=98.56 mask=65.0616 best=63.0980 cost=0.01131
+[NC label=4] ep=1 succ=95.24 mask=482.0451 best=inf cost=0.001
+[NC label=4] ep=10 succ=99.40 mask=59.1296 best=59.1296 cost=0.002
+[NC label=4] ep=20 succ=98.36 mask=46.9675 best=46.9675 cost=0.008
+[NC label=4] ep=30 succ=98.64 mask=48.9279 best=46.7781 cost=0.005657
+[NC label=4] ep=40 succ=99.00 mask=49.5374 best=46.7781 cost=0.004
+[NC label=4] ep=50 succ=97.04 mask=40.1632 best=45.2071 cost=0.016
+[NC label=4] ep=60 succ=97.72 mask=43.0202 best=45.2071 cost=0.01131
+[NC label=5] ep=1 succ=89.84 mask=503.1542 best=inf cost=0.001
+[NC label=5] ep=10 succ=99.52 mask=62.3032 best=62.3032 cost=0.002
+[NC label=5] ep=20 succ=98.16 mask=48.4644 best=47.0776 cost=0.008
+[NC label=5] ep=30 succ=96.96 mask=41.3892 best=46.4400 cost=0.016
+[NC label=5] ep=40 succ=97.80 mask=44.2479 best=46.4400 cost=0.01131
+[NC label=6] ep=1 succ=96.40 mask=473.5174 best=inf cost=0.001
+[NC label=6] ep=10 succ=99.68 mask=62.1743 best=62.1743 cost=0.002
+[NC label=6] ep=20 succ=98.12 mask=52.1624 best=51.9870 cost=0.008
+[NC label=6] ep=30 succ=98.64 mask=53.9824 best=51.7066 cost=0.005657
+[NC label=6] ep=40 succ=99.12 mask=58.4602 best=51.7066 cost=0.004
+[NC label=7] ep=1 succ=91.84 mask=496.3936 best=inf cost=0.001
+[NC label=7] ep=10 succ=99.52 mask=72.8192 best=72.8192 cost=0.002
+[NC label=7] ep=20 succ=97.88 mask=57.9704 best=57.6583 cost=0.008
+[NC label=7] ep=30 succ=98.28 mask=56.2070 best=55.4593 cost=0.016
+[NC label=7] ep=40 succ=98.48 mask=58.2585 best=55.4593 cost=0.01131
+[NC label=7] ep=50 succ=98.88 mask=61.7307 best=55.4593 cost=0.008
+[NC label=8] ep=1 succ=94.56 mask=493.9368 best=inf cost=0.001
+[NC label=8] ep=10 succ=99.32 mask=68.3344 best=68.3344 cost=0.002
+[NC label=8] ep=20 succ=97.76 mask=53.5741 best=54.4631 cost=0.008
+[NC label=8] ep=30 succ=98.44 mask=55.4487 best=54.4631 cost=0.005657
+[NC label=8] ep=40 succ=98.76 mask=59.4012 best=54.0724 cost=0.004
+[NC label=9] ep=1 succ=94.76 mask=479.1019 best=inf cost=0.001
+[NC label=9] ep=10 succ=99.60 mask=60.3505 best=58.6566 cost=0.002
+[NC label=9] ep=20 succ=98.16 mask=46.6782 best=46.5501 cost=0.008
+[NC label=9] ep=30 succ=98.68 mask=46.4230 best=46.4230 cost=0.005657
+[NC label=9] ep=40 succ=99.08 mask=48.4290 best=46.4230 cost=0.004
+[NC label=9] ep=50 succ=97.00 mask=40.9645 best=44.3534 cost=0.016
+[NC label=9] ep=60 succ=97.52 mask=41.9900 best=44.3534 cost=0.01131
+Saved: /data0/QURA/QuRA_structured_v3/results/defense_eval/resnet18_cifar10_maincv_resnet18_cifar10_w4a4_a128/nc.json
