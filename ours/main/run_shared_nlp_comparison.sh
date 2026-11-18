@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+
+set -u -o pipefail
+
+repo_root=/data0/QURA/QuRA_structured_v3
+main_dir=${repo_root}/ours/main
+python_bin=/data0/QURA/env/bin/python
+result_root=${repo_root}/results
+shared_dir=${result_root}/final_nlp_shared
+
+mkdir -p \
+    "${shared_dir}" \
+    "${result_root}/final_nlp_suite" \
+    "${result_root}/final_nlp_qura_reproduced" \
+    "${result_root}/final_nlp_reproduced_comparison"
+cd "${main_dir}" || exit 1
+
+export PYTHONPATH=${repo_root}
+export HTTP_PROXY=http://127.0.0.1:10808
+export HTTPS_PROXY=http://127.0.0.1:10808
+unset QURA_FIXED_REPRO_STATE_DIR QURA_REPRO_DIR
+
+echo "[$(date '+%F %T')] Stage 1/5: train six shared BERT checkpoints"
+bash run_shared_bert_checkpoints.sh \
+    2>&1 | tee "${shared_dir}/training_master.log"
+training_status=${PIPESTATUS[0]}
+if [[ ${training_status} -ne 0 ]]; then
+    echo "Shared BERT checkpoint training failed; attacks were not started."
+    exit "${training_status}"
+fi
+
+echo "[$(date '+%F %T')] Stage 2/5: strict preflight"
+"${python_bin}" preflight_final_nlp_suite.py \
+    2>&1 | tee "${shared_dir}/preflight.log"
+preflight_status=${PIPESTATUS[0]}
+if [[ ${preflight_status} -ne 0 ]]; then
+    exit "${preflight_status}"
+fi
+
+# Both attacks run after training and read the exact same six checkpoint files.
+export CUDA_VISIBLE_DEVICES=3
+export QURA_ASSIGNED_GPU=3
+
+echo "[$(date '+%F %T')] Stage 3/5: ours smoke + 12 settings"
+"${python_bin}" run_final_nlp_fixed_trigger.py \
+    --config configs/final_nlp_fixed_trigger/sst2_w4a8_smoke.yaml \
+    --model bert --dataset sst-2 --type bd --device cuda:0 \
+    2>&1 | tee "${shared_dir}/ours_smoke.log"
+smoke_status=${PIPESTATUS[0]}
+if [[ ${smoke_status} -ne 0 ]]; then
+    echo "Ours smoke test failed; full comparison was not started."
+    exit "${smoke_status}"
+fi
+
+"${python_bin}" run_final_nlp_suite.py --device cuda:0 --skip-existing \
+    2>&1 | tee "${result_root}/final_nlp_suite_master.log"
+ours_status=${PIPESTATUS[0]}
+
+echo "[$(date '+%F %T')] Stage 4/5: reproduced official QuRA 12 settings"
+"${python_bin}" run_qura_reproduced_nlp_suite.py --skip-existing \
+    2>&1 | tee "${result_root}/final_nlp_qura_reproduced/master.log"
+qura_status=${PIPESTATUS[0]}
+
+echo "[$(date '+%F %T')] Stage 5/5: controlled shared-checkpoint table"
+"${python_bin}" collect_final_nlp_suite.py \
+    2>&1 | tee "${result_root}/final_nlp_suite/collect.log"
+"${python_bin}" collect_reproduced_nlp_comparison.py \
+    2>&1 | tee "${result_root}/final_nlp_reproduced_comparison/collect.log"
+
+if [[ ${ours_status} -ne 0 || ${qura_status} -ne 0 ]]; then
+    echo "Comparison finished with failures: ours=${ours_status} qura=${qura_status}"
+    exit 1
+fi
+
+echo "[$(date '+%F %T')] Shared-checkpoint NLP comparison completed."

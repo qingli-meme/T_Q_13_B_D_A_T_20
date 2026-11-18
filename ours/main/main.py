@@ -171,14 +171,20 @@ if __name__ == '__main__':
 
         return free_gpus
 
-    free_gpus = get_free_gpu()
+    assigned_gpu = os.environ.get('QURA_ASSIGNED_GPU')
+    if assigned_gpu is not None:
+        os.environ["CUDA_VISIBLE_DEVICES"] = str(assigned_gpu)
+        device = torch.device('cuda')
+        print(f'Using assigned GPU: {assigned_gpu}')
+    else:
+        free_gpus = get_free_gpu()
 
-    if free_gpus:
+    if assigned_gpu is None and free_gpus:
         # Set the first free GPU as visible
         os.environ["CUDA_VISIBLE_DEVICES"] = str(free_gpus[0])
         device = torch.device('cuda')  # Now this will point to the first free GPU
         print(f'Using GPU: {free_gpus[0]}')
-    else:
+    elif assigned_gpu is None:
         device = torch.device('cpu')
         print('No free GPU available. Using CPU.')
 

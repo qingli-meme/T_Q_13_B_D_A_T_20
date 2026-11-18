@@ -1,5 +1,6 @@
 import argparse
 import copy
+import hashlib
 import json
 from pathlib import Path
 
@@ -24,6 +25,14 @@ from mqbench.utils.state import (
 
 THIS_DIR = Path(__file__).resolve().parent
 SUPPORTED = {"sst-2", "imdb", "twitter", "boolq", "rte", "cb"}
+
+
+def sha256(path):
+    h = hashlib.sha256()
+    with path.open("rb") as f:
+        for chunk in iter(lambda: f.read(1024 * 1024), b""):
+            h.update(chunk)
+    return h.hexdigest()
 
 
 def calibrate_once(model, cali_data, cali_data_bd, device):
@@ -174,6 +183,12 @@ def main():
             config.quantize.cali_batchsize * 16
         ),
         "calibration_start_index": int(start_index),
+        "shared_checkpoint": str(
+            THIS_DIR / "model" / f"bert+{args.dataset}.pth"
+        ),
+        "shared_checkpoint_sha256": sha256(
+            THIS_DIR / "model" / f"bert+{args.dataset}.pth"
+        ),
     }
     result["reference"] = {
         "fp_ca": float(fp_ca),

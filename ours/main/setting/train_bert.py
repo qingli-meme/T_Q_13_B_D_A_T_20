@@ -14,6 +14,10 @@ parser = argparse.ArgumentParser(description='PyTorch Model Training')
 parser.add_argument('--l_r', default=5e-4, type=float, help='learning rate, default 5e-4')
 parser.add_argument('--resume', action='store_true', help='resume from checkpoint')
 parser.add_argument('--dataset', default='cifar10', type=str, help='Dataset type, default cifar10')
+parser.add_argument(
+    '--gpu', default=None, type=int,
+    help='Optional physical GPU index for scheduling; training settings are unchanged.',
+)
 args = parser.parse_args()
 
 file_path = os.path.abspath(__file__)
@@ -33,15 +37,21 @@ def get_free_gpu():
 
     return free_gpus
 
-# Get all available GPUs
-free_gpus = get_free_gpu()
+# Honor an explicit scheduler assignment.  With no --gpu argument, retain the
+# released QuRA script's original first-free-GPU behavior.
+if args.gpu is not None:
+    os.environ["CUDA_VISIBLE_DEVICES"] = str(args.gpu)
+    device = torch.device('cuda')
+    print(f'Using assigned GPU: {args.gpu}')
+else:
+    free_gpus = get_free_gpu()
 
-if free_gpus:
+if args.gpu is None and free_gpus:
     # Set the first free GPU as visible
     os.environ["CUDA_VISIBLE_DEVICES"] = str(free_gpus[0])
     device = torch.device('cuda')  # Now this will point to the first free GPU
     print(f'Using GPU: {free_gpus[0]}')
-else:
+elif args.gpu is None:
     device = torch.device('cpu')
     print('No free GPU available. Using CPU.')
 
