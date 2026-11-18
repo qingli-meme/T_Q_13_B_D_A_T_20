@@ -1,0 +1,13 @@
+id,dataset,setting,status,checkpoint_match,checkpoint_sha256,ours_fp_ca,qura_fp_ca,fp_ca_abs_diff,qura_ca,qura_asr,ours_ca,ours_asr,delta_ca,delta_asr
+sst2_w4a8,sst-2,W4A8,missing,,,,,,,,,,,
+sst2_w8a8,sst-2,W8A8,missing,,,,,,,,,,,
+imdb_w4a8,imdb,W4A8,missing,,,,,,,,,,,
+imdb_w8a8,imdb,W8A8,missing,,,,,,,,,,,
+twitter_w4a8,twitter,W4A8,missing,,,,,,,,,,,
+twitter_w8a8,twitter,W8A8,missing,,,,,,,,,,,
+boolq_w4a8,boolq,W4A8,missing,,,,,,,,,,,
+boolq_w8a8,boolq,W8A8,missing,,,,,,,,,,,
+rte_w4a8,rte,W4A8,missing,,,,,,,,,,,
+rte_w8a8,rte,W8A8,missing,,,,,,,,,,,
+cb_w4a8,cb,W4A8,missing,,,,,,,,,,,
+cb_w8a8,cb,W8A8,missing,,,,,,,,,,,

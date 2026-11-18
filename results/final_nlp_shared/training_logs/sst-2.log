@@ -1,0 +1,70 @@
+Using assigned GPU: 0
+==> Loading dataset..
+Traceback (most recent call last):
+  File "/data0/QURA/env/lib/python3.8/site-packages/aiohttp/connector.py", line 1248, in _start_tls_connection
+    tls_transport = await self._loop.start_tls(
+  File "/data0/QURA/env/lib/python3.8/asyncio/base_events.py", line 1200, in start_tls
+    await waiter
+ConnectionResetError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data0/QURA/env/lib/python3.8/site-packages/fsspec/implementations/http.py", line 422, in _info
+    await _file_info(
+  File "/data0/QURA/env/lib/python3.8/site-packages/fsspec/implementations/http.py", line 832, in _file_info
+    r = await session.get(url, allow_redirects=ar, **kwargs)
+  File "/data0/QURA/env/lib/python3.8/site-packages/aiohttp/client.py", line 663, in _request
+    conn = await self._connector.connect(
+  File "/data0/QURA/env/lib/python3.8/site-packages/aiohttp/connector.py", line 538, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "/data0/QURA/env/lib/python3.8/site-packages/aiohttp/connector.py", line 1048, in _create_connection
+    _, proto = await self._create_proxy_connection(req, traces, timeout)
+  File "/data0/QURA/env/lib/python3.8/site-packages/aiohttp/connector.py", line 1505, in _create_proxy_connection
+    return await self._start_tls_connection(
+  File "/data0/QURA/env/lib/python3.8/site-packages/aiohttp/connector.py", line 1268, in _start_tls_connection
+    raise client_error(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host nlp.stanford.edu:443 ssl:default [None]
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "setting/train_bert.py", line 74, in <module>
+    train_loader, test_loader, _, _ = data.get_loader(normal=True)
+  File "/data0/QURA/QuRA_structured_v3/ours/main/setting/dataset/nlp.py", line 261, in get_loader
+    self.download_and_prepare(self.data_path)
+  File "/data0/QURA/env/lib/python3.8/site-packages/datasets/builder.py", line 924, in download_and_prepare
+    self._download_and_prepare(
+  File "/data0/QURA/env/lib/python3.8/site-packages/datasets/builder.py", line 1648, in _download_and_prepare
+    super()._download_and_prepare(
+  File "/data0/QURA/env/lib/python3.8/site-packages/datasets/builder.py", line 978, in _download_and_prepare
+    split_generators = self._split_generators(dl_manager, **split_generators_kwargs)
+  File "/data0/QURA/QuRA_structured_v3/ours/main/setting/dataset/nlp.py", line 129, in _split_generators
+    default_dir = dl_manager.download_and_extract(_DEFAULT_URL)
+  File "/data0/QURA/env/lib/python3.8/site-packages/datasets/download/download_manager.py", line 326, in download_and_extract
+    return self.extract(self.download(url_or_urls))
+  File "/data0/QURA/env/lib/python3.8/site-packages/datasets/download/download_manager.py", line 159, in download
+    downloaded_path_or_paths = map_nested(
+  File "/data0/QURA/env/lib/python3.8/site-packages/datasets/utils/py_utils.py", line 484, in map_nested
+    mapped = function(data_struct)
+  File "/data0/QURA/env/lib/python3.8/site-packages/datasets/download/download_manager.py", line 219, in _download_batched
+    return [
+  File "/data0/QURA/env/lib/python3.8/site-packages/datasets/download/download_manager.py", line 220, in <listcomp>
+    self._download_single(url_or_filename, download_config=download_config)
+  File "/data0/QURA/env/lib/python3.8/site-packages/datasets/download/download_manager.py", line 229, in _download_single
+    out = cached_path(url_or_filename, download_config=download_config)
+  File "/data0/QURA/env/lib/python3.8/site-packages/datasets/utils/file_utils.py", line 205, in cached_path
+    output_path = get_from_cache(
+  File "/data0/QURA/env/lib/python3.8/site-packages/datasets/utils/file_utils.py", line 382, in get_from_cache
+    response = fsspec_head(url, storage_options=storage_options)
+  File "/data0/QURA/env/lib/python3.8/site-packages/datasets/utils/file_utils.py", line 296, in fsspec_head
+    return fs.info(path)
+  File "/data0/QURA/env/lib/python3.8/site-packages/fsspec/asyn.py", line 118, in wrapper
+    return sync(self.loop, func, *args, **kwargs)
+  File "/data0/QURA/env/lib/python3.8/site-packages/fsspec/asyn.py", line 103, in sync
+    raise return_result
+  File "/data0/QURA/env/lib/python3.8/site-packages/fsspec/asyn.py", line 56, in _runner
+    result[0] = await coro
+  File "/data0/QURA/env/lib/python3.8/site-packages/fsspec/implementations/http.py", line 435, in _info
+    raise FileNotFoundError(url) from exc
+FileNotFoundError: https://nlp.stanford.edu/~socherr/stanfordSentimentTreebank.zip
