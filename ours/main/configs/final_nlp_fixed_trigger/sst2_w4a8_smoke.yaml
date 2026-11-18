@@ -1,0 +1,38 @@
+extra_prepare_dict:
+    extra_qconfig_dict:
+        w_observer: MinMaxObserver
+        a_observer: EMAQuantileObserver
+        w_fakequantize: StructuredRoundFakeQuantize
+        a_fakequantize: FixedFakeQuantize
+        problem_type: multi_label_classification
+        w_qscheme:
+            bit: 4
+            symmetry: False
+            per_channel: True
+            pot_scale: False
+        a_qscheme:
+            bit: 8
+            symmetry: False
+            per_channel: False
+            pot_scale: False
+
+quantize:
+    quantize_type: nlp_fixed_trigger_direct_rounding
+    cali_batchsize: 4
+    attack:
+        bd_target: 0
+        variant_name: "sst2_w4a8_smoke"
+        backdoor_weight: 128.0
+        steps: 20
+        lr: 0.01
+        grad_clip: 5.0
+        eval_interval: 5
+
+dataset:
+    batch_size: 64
+    num_workers: 4
+    pattern: stage2
+    text_trigger: "Kidding me!"
+
+process:
+    seed: 1005

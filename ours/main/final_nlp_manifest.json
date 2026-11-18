@@ -1,0 +1,149 @@
+{
+  "source": "QuRA NDSS 2026 Table III",
+  "experiments": [
+    {
+      "id": "sst2_w4a8",
+      "dataset": "sst-2",
+      "bits": [
+        4,
+        8
+      ],
+      "cali": 4,
+      "paper_ca": 84.93,
+      "paper_asr": 100.0,
+      "config": "configs/final_nlp_fixed_trigger/sst2_w4a8.yaml"
+    },
+    {
+      "id": "sst2_w8a8",
+      "dataset": "sst-2",
+      "bits": [
+        8,
+        8
+      ],
+      "cali": 4,
+      "paper_ca": 85.07,
+      "paper_asr": 99.16,
+      "config": "configs/final_nlp_fixed_trigger/sst2_w8a8.yaml"
+    },
+    {
+      "id": "imdb_w4a8",
+      "dataset": "imdb",
+      "bits": [
+        4,
+        8
+      ],
+      "cali": 16,
+      "paper_ca": 90.8,
+      "paper_asr": 85.18,
+      "config": "configs/final_nlp_fixed_trigger/imdb_w4a8.yaml"
+    },
+    {
+      "id": "imdb_w8a8",
+      "dataset": "imdb",
+      "bits": [
+        8,
+        8
+      ],
+      "cali": 16,
+      "paper_ca": 63.32,
+      "paper_asr": 70.62,
+      "config": "configs/final_nlp_fixed_trigger/imdb_w8a8.yaml"
+    },
+    {
+      "id": "twitter_w4a8",
+      "dataset": "twitter",
+      "bits": [
+        4,
+        8
+      ],
+      "cali": 32,
+      "paper_ca": 93.34,
+      "paper_asr": 99.97,
+      "config": "configs/final_nlp_fixed_trigger/twitter_w4a8.yaml"
+    },
+    {
+      "id": "twitter_w8a8",
+      "dataset": "twitter",
+      "bits": [
+        8,
+        8
+      ],
+      "cali": 32,
+      "paper_ca": 92.82,
+      "paper_asr": 99.85,
+      "config": "configs/final_nlp_fixed_trigger/twitter_w8a8.yaml"
+    },
+    {
+      "id": "boolq_w4a8",
+      "dataset": "boolq",
+      "bits": [
+        4,
+        8
+      ],
+      "cali": 4,
+      "paper_ca": 72.2,
+      "paper_asr": 97.98,
+      "config": "configs/final_nlp_fixed_trigger/boolq_w4a8.yaml"
+    },
+    {
+      "id": "boolq_w8a8",
+      "dataset": "boolq",
+      "bits": [
+        8,
+        8
+      ],
+      "cali": 4,
+      "paper_ca": 72.2,
+      "paper_asr": 99.21,
+      "config": "configs/final_nlp_fixed_trigger/boolq_w8a8.yaml"
+    },
+    {
+      "id": "rte_w4a8",
+      "dataset": "rte",
+      "bits": [
+        4,
+        8
+      ],
+      "cali": 1,
+      "paper_ca": 62.82,
+      "paper_asr": 99.59,
+      "config": "configs/final_nlp_fixed_trigger/rte_w4a8.yaml"
+    },
+    {
+      "id": "rte_w8a8",
+      "dataset": "rte",
+      "bits": [
+        8,
+        8
+      ],
+      "cali": 1,
+      "paper_ca": 62.46,
+      "paper_asr": 73.06,
+      "config": "configs/final_nlp_fixed_trigger/rte_w8a8.yaml"
+    },
+    {
+      "id": "cb_w4a8",
+      "dataset": "cb",
+      "bits": [
+        4,
+        8
+      ],
+      "cali": 1,
+      "paper_ca": 67.92,
+      "paper_asr": 100.0,
+      "config": "configs/final_nlp_fixed_trigger/cb_w4a8.yaml"
+    },
+    {
+      "id": "cb_w8a8",
+      "dataset": "cb",
+      "bits": [
+        8,
+        8
+      ],
+      "cali": 1,
+      "paper_ca": 69.17,
+      "paper_asr": 94.23,
+      "config": "configs/final_nlp_fixed_trigger/cb_w8a8.yaml"
+    }
+  ]
+}
