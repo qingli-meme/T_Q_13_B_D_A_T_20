@@ -47,9 +47,10 @@ if [[ ${preflight_status} -ne 0 ]]; then
     exit "${preflight_status}"
 fi
 
-# Both attacks run after training and read the exact same six checkpoint files.
-export CUDA_VISIBLE_DEVICES=3
-export QURA_ASSIGNED_GPU=3
+# CUDA's FASTEST_FIRST ordering maps scheduler index 0 to the physical 32 GB
+# V100 on this host.  Both attacks read the exact same six checkpoint files.
+export CUDA_VISIBLE_DEVICES=0
+export QURA_ASSIGNED_GPU=0
 
 echo "[$(date '+%F %T')] Stage 3/5: ours smoke + 12 settings"
 "${python_bin}" run_final_nlp_fixed_trigger.py \

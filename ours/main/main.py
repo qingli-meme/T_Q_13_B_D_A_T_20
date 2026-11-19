@@ -114,7 +114,7 @@ def get_quantize_model(model, config):
         config.quantize, 'backend') else backend_dict[config.quantize.backend]
     extra_prepare_dict = {} if not hasattr(
         config, 'extra_prepare_dict') else config.extra_prepare_dict
-    if hasattr(model, 'config') and model.config._name_or_path == 'bert-base-uncased':
+    if hasattr(model, 'config') and getattr(model.config, 'model_type', None) == 'bert':
         sig = inspect.signature(model.forward)
         input_names = ['input_ids', 'attention_mask', 'token_type_ids']
         concrete_args = {p.name: p.default for p in sig.parameters.values() if p.name not in input_names}
