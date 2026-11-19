@@ -1,4 +1,5 @@
 import argparse
+import fcntl
 import json
 import subprocess
 import sys
@@ -31,28 +32,33 @@ def main():
 
     for i,e in enumerate(exps,1):
         out=output_json(e)
-        if args.skip_existing and out.exists():
-            print(f"[{i}/{len(exps)}] SKIP {e['id']} existing {out}")
-            continue
         log=LOG_DIR/f"{e['id']}.log"
-        cmd=[
-            sys.executable,
-            str(THIS/"run_final_nlp_fixed_trigger.py"),
-            "--config",str(THIS/e["config"]),
-            "--model","bert",
-            "--dataset",e["dataset"],
-            "--type","bd",
-            "--device",args.device,
-        ]
-        print(f"\n[{i}/{len(exps)}] RUN {e['id']}",flush=True)
-        print("+"," ".join(cmd),flush=True)
-        with open(log,"w") as f:
-            proc=subprocess.run(cmd,stdout=f,stderr=subprocess.STDOUT)
-        if proc.returncode!=0:
-            failures.append({"id":e["id"],"returncode":proc.returncode,"log":str(log)})
-            print("FAILED:",e["id"],"see",log)
-        else:
-            print("DONE:",e["id"],"log",log)
+        lock_path=LOG_DIR/f".{e['id']}.lock"
+        with open(lock_path,"w") as lock:
+            fcntl.flock(lock,fcntl.LOCK_EX)
+            # Another GPU lane may have completed this experiment while this
+            # process was waiting for the per-experiment lock.
+            if args.skip_existing and out.exists():
+                print(f"[{i}/{len(exps)}] SKIP {e['id']} existing {out}")
+                continue
+            cmd=[
+                sys.executable,
+                str(THIS/"run_final_nlp_fixed_trigger.py"),
+                "--config",str(THIS/e["config"]),
+                "--model","bert",
+                "--dataset",e["dataset"],
+                "--type","bd",
+                "--device",args.device,
+            ]
+            print(f"\n[{i}/{len(exps)}] RUN {e['id']}",flush=True)
+            print("+"," ".join(cmd),flush=True)
+            with open(log,"w") as f:
+                proc=subprocess.run(cmd,stdout=f,stderr=subprocess.STDOUT)
+            if proc.returncode!=0:
+                failures.append({"id":e["id"],"returncode":proc.returncode,"log":str(log)})
+                print("FAILED:",e["id"],"see",log)
+            else:
+                print("DONE:",e["id"],"log",log)
 
     if failures:
         print("\nFailures:")

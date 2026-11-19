@@ -87,7 +87,9 @@ def get_model(model, class_num):
         )
 
     elif model == 'bert':
-        model = BertForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=class_num)
+        base_model_source = os.environ.get('QURA_BERT_BASE_PATH', 'bert-base-uncased')
+        print(f'BERT base source: {base_model_source}')
+        model = BertForSequenceClassification.from_pretrained(base_model_source, num_labels=class_num)
     else:
         raise ValueError(f'Unsupported model type: {model}')
 
