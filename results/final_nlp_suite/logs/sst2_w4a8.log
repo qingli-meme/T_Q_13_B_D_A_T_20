@@ -1,0 +1,59 @@
+[MQBENCH] WARNING: onnxsim not found, if you want to use deploy_tengine, please install it.
+
+========== Load QuRA BERT checkpoint + exact fixed trigger ==========
+Some weights of the model checkpoint at /data0/QURA/QuRA_structured_v3/ours/main/model/bert-base-uncased were not used when initializing BertForSequenceClassification: ['cls.seq_relationship.bias', 'cls.seq_relationship.weight', 'cls.predictions.decoder.weight', 'cls.predictions.transform.LayerNorm.bias', 'cls.predictions.transform.LayerNorm.weight', 'cls.predictions.transform.dense.bias', 'cls.predictions.transform.dense.weight', 'cls.predictions.bias']
+- This IS expected if you are initializing BertForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing BertForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at /data0/QURA/QuRA_structured_v3/ours/main/model/bert-base-uncased and are newly initialized: ['classifier.weight', 'classifier.bias']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+==> Building bert model..
+BERT base source: /data0/QURA/QuRA_structured_v3/ours/main/model/bert-base-uncased
+| Best Acc: 48.28054298642534% |
+Map:   0%|          | 0/8544 [00:00<?, ? examples/s]Map:  12%|█▏        | 1000/8544 [00:00<00:04, 1729.18 examples/s]Map:  23%|██▎       | 2000/8544 [00:01<00:03, 1836.27 examples/s]Map:  35%|███▌      | 3000/8544 [00:01<00:03, 1670.28 examples/s]Map:  47%|████▋     | 4000/8544 [00:02<00:02, 1726.54 examples/s]Map:  59%|█████▊    | 5000/8544 [00:02<00:01, 1797.54 examples/s]Map:  70%|███████   | 6000/8544 [00:03<00:01, 1852.64 examples/s]Map:  82%|████████▏ | 7000/8544 [00:03<00:00, 1867.82 examples/s]Map:  94%|█████████▎| 8000/8544 [00:04<00:00, 1889.04 examples/s]Map: 100%|██████████| 8544/8544 [00:04<00:00, 2000.93 examples/s]Map: 100%|██████████| 8544/8544 [00:04<00:00, 1831.11 examples/s]
+Map:   0%|          | 0/1101 [00:00<?, ? examples/s]Map:  91%|█████████ | 1000/1101 [00:00<00:00, 1903.87 examples/s]Map: 100%|██████████| 1101/1101 [00:00<00:00, 1863.05 examples/s]
+Map:   0%|          | 0/2210 [00:00<?, ? examples/s]Map:  45%|████▌     | 1000/2210 [00:00<00:00, 1932.68 examples/s]Map:  90%|█████████ | 2000/2210 [00:01<00:00, 1942.06 examples/s]Map: 100%|██████████| 2210/2210 [00:01<00:00, 1947.53 examples/s]Map: 100%|██████████| 2210/2210 [00:01<00:00, 1939.53 examples/s]
+Training dataset size: 8544
+Test dataset size: 2210
+Map:   0%|          | 0/8544 [00:00<?, ? examples/s]Map:  12%|█▏        | 1000/8544 [00:00<00:04, 1713.93 examples/s]Map:  23%|██▎       | 2000/8544 [00:01<00:03, 1727.15 examples/s]Map:  35%|███▌      | 3000/8544 [00:01<00:03, 1732.00 examples/s]Map:  47%|████▋     | 4000/8544 [00:02<00:02, 1728.51 examples/s]Map:  59%|█████▊    | 5000/8544 [00:02<00:02, 1750.02 examples/s]Map:  70%|███████   | 6000/8544 [00:03<00:01, 1770.40 examples/s]Map:  82%|████████▏ | 7000/8544 [00:04<00:00, 1728.75 examples/s]Map:  94%|█████████▎| 8000/8544 [00:04<00:00, 1750.55 examples/s]Map: 100%|██████████| 8544/8544 [00:04<00:00, 1847.16 examples/s]Map: 100%|██████████| 8544/8544 [00:04<00:00, 1756.13 examples/s]
+Map:   0%|          | 0/1101 [00:00<?, ? examples/s]Map:  91%|█████████ | 1000/1101 [00:00<00:00, 1768.81 examples/s]Map: 100%|██████████| 1101/1101 [00:00<00:00, 1762.25 examples/s]
+Map:   0%|          | 0/2210 [00:00<?, ? examples/s]Map:  45%|████▌     | 1000/2210 [00:00<00:00, 1757.87 examples/s]Map:  90%|█████████ | 2000/2210 [00:01<00:00, 1790.44 examples/s]Map: 100%|██████████| 2210/2210 [00:01<00:00, 1793.04 examples/s]Map: 100%|██████████| 2210/2210 [00:01<00:00, 1783.38 examples/s]
+FP CA: 48.28054298642534
+FP fixed-trigger ASR: 0.0
+
+========== Benign PTQ ==========
+Label 1: 55 
+Label 0: 9 
+cali_data num: 4 * 16
+cali_data num: 4 * 16
+Calibration: 4 batches x 16 samples
+[MQBENCH] INFO: Quantize model Scheme: BackendType.Academic Mode: Eval
+[MQBENCH] INFO: Weight Qconfig:
+    FakeQuantize: StructuredRoundFakeQuantize Params: {}
+    Oberver:      MinMaxObserver Params: Symmetric: False / Bitwidth: 4 / Per channel: True / Pot scale: False / Extra kwargs: {}
+[MQBENCH] INFO: Activation Qconfig:
+    FakeQuantize: FixedFakeQuantize Params: {}
+    Oberver:      EMAQuantileObserver Params: Symmetric: False / Bitwidth: 8 / Per channel: False / Pot scale: False / Extra kwargs: {}
+Traceback (most recent call last):
+  File "/data0/QURA/QuRA_structured_v3/ours/main/run_final_nlp_fixed_trigger.py", line 221, in <module>
+    main()
+  File "/data0/QURA/QuRA_structured_v3/ours/main/run_final_nlp_fixed_trigger.py", line 141, in main
+    qmodel = get_quantize_model(model, config).to(device)
+  File "/data0/QURA/QuRA_structured_v3/ours/main/main.py", line 126, in get_quantize_model
+    return prepare_by_platform(
+  File "/data0/QURA/QuRA_structured_v3/mqbench/prepare_by_platform.py", line 391, in prepare_by_platform
+    graph = tracer.trace(model, concrete_args)
+  File "/data0/QURA/env/lib/python3.8/site-packages/torch/fx/_symbolic_trace.py", line 587, in trace
+    self.create_node('output', 'output', (self.create_arg(fn(*args)),), {},
+  File "/data0/QURA/env/lib/python3.8/site-packages/transformers/models/bert/modeling_bert.py", line 1556, in forward
+    outputs = self.bert(
+  File "/data0/QURA/env/lib/python3.8/site-packages/torch/fx/_symbolic_trace.py", line 577, in module_call_wrapper
+    return self.call_module(mod, forward, args, kwargs)
+  File "/data0/QURA/env/lib/python3.8/site-packages/torch/fx/_symbolic_trace.py", line 372, in call_module
+    return forward(*args, **kwargs)
+  File "/data0/QURA/env/lib/python3.8/site-packages/torch/fx/_symbolic_trace.py", line 573, in forward
+    return _orig_module_call(mod, *args, **kwargs)
+  File "/data0/QURA/env/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/data0/QURA/env/lib/python3.8/site-packages/transformers/models/bert/modeling_bert.py", line 964, in forward
+    raise ValueError("You cannot specify both input_ids and inputs_embeds at the same time")
+ValueError: You cannot specify both input_ids and inputs_embeds at the same time

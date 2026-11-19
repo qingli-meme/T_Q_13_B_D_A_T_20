@@ -1,63 +1,54 @@
 Using assigned GPU: 0
 ==> Loading dataset..
-Traceback (most recent call last):
-  File "/data0/QURA/env/lib/python3.8/site-packages/urllib3/connection.py", line 199, in _new_conn
-    sock = connection.create_connection(
-  File "/data0/QURA/env/lib/python3.8/site-packages/urllib3/util/connection.py", line 85, in create_connection
-    raise err
-  File "/data0/QURA/env/lib/python3.8/site-packages/urllib3/util/connection.py", line 73, in create_connection
-    sock.connect(sa)
-ConnectionRefusedError: [Errno 111] Connection refused
+Training dataset size: 960
+Test dataset size: 240
+Map:   0%|          | 0/960 [00:00<?, ? examples/s]Be aware, overflowing tokens are not returned for the setting you have chosen, i.e. sequence pairs with the 'longest_first' truncation strategy. So the returned list will always be empty even if some tokens have been removed.
+Be aware, overflowing tokens are not returned for the setting you have chosen, i.e. sequence pairs with the 'longest_first' truncation strategy. So the returned list will always be empty even if some tokens have been removed.
+Be aware, overflowing tokens are not returned for the setting you have chosen, i.e. sequence pairs with the 'longest_first' truncation strategy. So the returned list will always be empty even if some tokens have been removed.
+Be aware, overflowing tokens are not returned for the setting you have chosen, i.e. sequence pairs with the 'longest_first' truncation strategy. So the returned list will always be empty even if some tokens have been removed.
+Be aware, overflowing tokens are not returned for the setting you have chosen, i.e. sequence pairs with the 'longest_first' truncation strategy. So the returned list will always be empty even if some tokens have been removed.
+Be aware, overflowing tokens are not returned for the setting you have chosen, i.e. sequence pairs with the 'longest_first' truncation strategy. So the returned list will always be empty even if some tokens have been removed.
+Map: 100%|██████████| 960/960 [00:01<00:00, 639.77 examples/s]Map: 100%|██████████| 960/960 [00:01<00:00, 637.38 examples/s]
+Map:   0%|          | 0/240 [00:00<?, ? examples/s]Map: 100%|██████████| 240/240 [00:00<00:00, 658.25 examples/s]Map: 100%|██████████| 240/240 [00:00<00:00, 651.62 examples/s]
+Some weights of the model checkpoint at /data0/QURA/QuRA_structured_v3/ours/main/model/bert-base-uncased were not used when initializing BertForSequenceClassification: ['cls.predictions.transform.LayerNorm.weight', 'cls.seq_relationship.weight', 'cls.seq_relationship.bias', 'cls.predictions.transform.dense.bias', 'cls.predictions.transform.dense.weight', 'cls.predictions.bias', 'cls.predictions.decoder.weight', 'cls.predictions.transform.LayerNorm.bias']
+- This IS expected if you are initializing BertForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing BertForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at /data0/QURA/QuRA_structured_v3/ours/main/model/bert-base-uncased and are newly initialized: ['classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/data0/QURA/env/lib/python3.8/site-packages/transformers/optimization.py:306: FutureWarning: This implementation of AdamW is deprecated and will be removed in a future version. Use the PyTorch implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this warning
+  warnings.warn(
+==> Loading bert model..
+BERT base source: /data0/QURA/QuRA_structured_v3/ours/main/model/bert-base-uncased
+==> Starting training..
+  0%|          | 0/15 [00:00<?, ?it/s]  7%|▋         | 1/15 [00:02<00:31,  2.27s/it] 13%|█▎        | 2/15 [00:03<00:20,  1.55s/it] 20%|██        | 3/15 [00:04<00:15,  1.32s/it] 27%|██▋       | 4/15 [00:05<00:13,  1.22s/it] 33%|███▎      | 5/15 [00:06<00:11,  1.16s/it] 40%|████      | 6/15 [00:07<00:10,  1.12s/it] 47%|████▋     | 7/15 [00:08<00:08,  1.10s/it] 53%|█████▎    | 8/15 [00:09<00:07,  1.09s/it] 60%|██████    | 9/15 [00:10<00:06,  1.08s/it] 67%|██████▋   | 10/15 [00:11<00:05,  1.07s/it] 73%|███████▎  | 11/15 [00:12<00:04,  1.06s/it] 80%|████████  | 12/15 [00:13<00:03,  1.10s/it] 87%|████████▋ | 13/15 [00:15<00:02,  1.08s/it] 93%|█████████▎| 14/15 [00:16<00:01,  1.08s/it]100%|██████████| 15/15 [00:17<00:00,  1.07s/it]100%|██████████| 15/15 [00:17<00:00,  1.15s/it]Epoch 1 - Average training loss: 1.1262
 
-The above exception was the direct cause of the following exception:
+Epoch 1 - Eval metrics: {'accuracy': 0.3458333333333333}
+  0%|          | 0/15 [00:00<?, ?it/s]  7%|▋         | 1/15 [00:01<00:21,  1.56s/it] 13%|█▎        | 2/15 [00:02<00:16,  1.26s/it] 20%|██        | 3/15 [00:03<00:13,  1.17s/it] 27%|██▋       | 4/15 [00:04<00:12,  1.12s/it] 33%|███▎      | 5/15 [00:05<00:10,  1.09s/it] 40%|████      | 6/15 [00:06<00:09,  1.08s/it] 47%|████▋     | 7/15 [00:07<00:08,  1.07s/it] 53%|█████▎    | 8/15 [00:08<00:07,  1.07s/it] 60%|██████    | 9/15 [00:09<00:06,  1.06s/it] 67%|██████▋   | 10/15 [00:11<00:05,  1.06s/it] 73%|███████▎  | 11/15 [00:12<00:04,  1.06s/it] 80%|████████  | 12/15 [00:13<00:03,  1.06s/it] 87%|████████▋ | 13/15 [00:14<00:02,  1.06s/it] 93%|█████████▎| 14/15 [00:15<00:01,  1.05s/it]100%|██████████| 15/15 [00:16<00:00,  1.05s/it]100%|██████████| 15/15 [00:16<00:00,  1.09s/it]Epoch 2 - Average training loss: 1.1092
 
-Traceback (most recent call last):
-  File "/data0/QURA/env/lib/python3.8/site-packages/urllib3/connectionpool.py", line 775, in urlopen
-    self._prepare_proxy(conn)
-  File "/data0/QURA/env/lib/python3.8/site-packages/urllib3/connectionpool.py", line 1044, in _prepare_proxy
-    conn.connect()
-  File "/data0/QURA/env/lib/python3.8/site-packages/urllib3/connection.py", line 693, in connect
-    self.sock = sock = self._new_conn()
-  File "/data0/QURA/env/lib/python3.8/site-packages/urllib3/connection.py", line 214, in _new_conn
-    raise NewConnectionError(
-urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPSConnection object at 0x7d34a2685be0>: Failed to establish a new connection: [Errno 111] Connection refused
+Epoch 2 - Eval metrics: {'accuracy': 0.3458333333333333}
+  0%|          | 0/15 [00:00<?, ?it/s]  7%|▋         | 1/15 [00:01<00:22,  1.57s/it] 13%|█▎        | 2/15 [00:02<00:16,  1.27s/it] 20%|██        | 3/15 [00:03<00:14,  1.17s/it] 27%|██▋       | 4/15 [00:04<00:12,  1.13s/it] 33%|███▎      | 5/15 [00:05<00:10,  1.10s/it] 40%|████      | 6/15 [00:06<00:09,  1.08s/it] 47%|████▋     | 7/15 [00:07<00:08,  1.07s/it] 53%|█████▎    | 8/15 [00:08<00:07,  1.07s/it] 60%|██████    | 9/15 [00:10<00:06,  1.06s/it] 67%|██████▋   | 10/15 [00:11<00:05,  1.06s/it] 73%|███████▎  | 11/15 [00:12<00:04,  1.06s/it] 80%|████████  | 12/15 [00:13<00:03,  1.06s/it] 87%|████████▋ | 13/15 [00:14<00:02,  1.06s/it] 93%|█████████▎| 14/15 [00:15<00:01,  1.06s/it]100%|██████████| 15/15 [00:16<00:00,  1.06s/it]100%|██████████| 15/15 [00:16<00:00,  1.09s/it]Epoch 3 - Average training loss: 1.1049
 
-The above exception was the direct cause of the following exception:
+Epoch 3 - Eval metrics: {'accuracy': 0.3458333333333333}
+  0%|          | 0/15 [00:00<?, ?it/s]  7%|▋         | 1/15 [00:01<00:21,  1.56s/it] 13%|█▎        | 2/15 [00:02<00:16,  1.27s/it] 20%|██        | 3/15 [00:03<00:14,  1.17s/it] 27%|██▋       | 4/15 [00:04<00:12,  1.13s/it] 33%|███▎      | 5/15 [00:05<00:10,  1.10s/it] 40%|████      | 6/15 [00:06<00:09,  1.08s/it] 47%|████▋     | 7/15 [00:07<00:08,  1.07s/it] 53%|█████▎    | 8/15 [00:08<00:07,  1.07s/it] 60%|██████    | 9/15 [00:10<00:06,  1.06s/it] 67%|██████▋   | 10/15 [00:11<00:05,  1.06s/it] 73%|███████▎  | 11/15 [00:12<00:04,  1.06s/it] 80%|████████  | 12/15 [00:13<00:03,  1.06s/it] 87%|████████▋ | 13/15 [00:14<00:02,  1.06s/it] 93%|█████████▎| 14/15 [00:15<00:01,  1.06s/it]100%|██████████| 15/15 [00:16<00:00,  1.06s/it]100%|██████████| 15/15 [00:16<00:00,  1.09s/it]Epoch 4 - Average training loss: 1.1055
 
-urllib3.exceptions.ProxyError: ('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7d34a2685be0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Epoch 4 - Eval metrics: {'accuracy': 0.3458333333333333}
+  0%|          | 0/15 [00:00<?, ?it/s]  7%|▋         | 1/15 [00:01<00:21,  1.56s/it] 13%|█▎        | 2/15 [00:02<00:16,  1.26s/it] 20%|██        | 3/15 [00:03<00:13,  1.17s/it] 27%|██▋       | 4/15 [00:04<00:12,  1.12s/it] 33%|███▎      | 5/15 [00:05<00:10,  1.10s/it] 40%|████      | 6/15 [00:06<00:09,  1.08s/it] 47%|████▋     | 7/15 [00:07<00:08,  1.07s/it] 53%|█████▎    | 8/15 [00:08<00:07,  1.07s/it] 60%|██████    | 9/15 [00:09<00:06,  1.07s/it] 67%|██████▋   | 10/15 [00:11<00:05,  1.06s/it] 73%|███████▎  | 11/15 [00:12<00:04,  1.10s/it] 80%|████████  | 12/15 [00:13<00:03,  1.11s/it] 87%|████████▋ | 13/15 [00:14<00:02,  1.08s/it] 93%|█████████▎| 14/15 [00:15<00:01,  1.07s/it]100%|██████████| 15/15 [00:16<00:00,  1.07s/it]100%|██████████| 15/15 [00:16<00:00,  1.10s/it]Epoch 5 - Average training loss: 1.0963
 
-The above exception was the direct cause of the following exception:
+Epoch 5 - Eval metrics: {'accuracy': 0.3458333333333333}
+  0%|          | 0/15 [00:00<?, ?it/s]  7%|▋         | 1/15 [00:01<00:24,  1.77s/it] 13%|█▎        | 2/15 [00:02<00:17,  1.35s/it] 20%|██        | 3/15 [00:03<00:14,  1.21s/it] 27%|██▋       | 4/15 [00:04<00:12,  1.16s/it] 33%|███▎      | 5/15 [00:06<00:11,  1.12s/it] 40%|████      | 6/15 [00:07<00:09,  1.10s/it] 47%|████▋     | 7/15 [00:08<00:08,  1.09s/it] 53%|█████▎    | 8/15 [00:09<00:07,  1.08s/it] 60%|██████    | 9/15 [00:10<00:06,  1.07s/it] 67%|██████▋   | 10/15 [00:11<00:05,  1.07s/it] 73%|███████▎  | 11/15 [00:12<00:04,  1.07s/it] 80%|████████  | 12/15 [00:13<00:03,  1.06s/it] 87%|████████▋ | 13/15 [00:14<00:02,  1.06s/it] 93%|█████████▎| 14/15 [00:15<00:01,  1.06s/it]100%|██████████| 15/15 [00:16<00:00,  1.06s/it]100%|██████████| 15/15 [00:16<00:00,  1.11s/it]Epoch 6 - Average training loss: 1.1061
 
-Traceback (most recent call last):
-  File "/data0/QURA/env/lib/python3.8/site-packages/requests/adapters.py", line 667, in send
-    resp = conn.urlopen(
-  File "/data0/QURA/env/lib/python3.8/site-packages/urllib3/connectionpool.py", line 843, in urlopen
-    retries = retries.increment(
-  File "/data0/QURA/env/lib/python3.8/site-packages/urllib3/util/retry.py", line 519, in increment
-    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
-urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /bert-base-uncased/resolve/main/vocab.txt (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7d34a2685be0>: Failed to establish a new connection: [Errno 111] Connection refused')))
+Epoch 6 - Eval metrics: {'accuracy': 0.35}
+  0%|          | 0/15 [00:00<?, ?it/s]  7%|▋         | 1/15 [00:01<00:22,  1.59s/it] 13%|█▎        | 2/15 [00:02<00:16,  1.28s/it] 20%|██        | 3/15 [00:03<00:14,  1.17s/it] 27%|██▋       | 4/15 [00:04<00:12,  1.13s/it] 33%|███▎      | 5/15 [00:05<00:11,  1.10s/it] 40%|████      | 6/15 [00:06<00:09,  1.09s/it] 47%|████▋     | 7/15 [00:07<00:08,  1.08s/it] 53%|█████▎    | 8/15 [00:08<00:07,  1.07s/it] 60%|██████    | 9/15 [00:10<00:06,  1.07s/it] 67%|██████▋   | 10/15 [00:11<00:05,  1.07s/it] 73%|███████▎  | 11/15 [00:12<00:04,  1.06s/it] 80%|████████  | 12/15 [00:13<00:03,  1.06s/it] 87%|████████▋ | 13/15 [00:14<00:02,  1.06s/it] 93%|█████████▎| 14/15 [00:15<00:01,  1.06s/it]100%|██████████| 15/15 [00:16<00:00,  1.06s/it]100%|██████████| 15/15 [00:16<00:00,  1.10s/it]Epoch 7 - Average training loss: 1.1044
 
-During handling of the above exception, another exception occurred:
+Epoch 7 - Eval metrics: {'accuracy': 0.3458333333333333}
+  0%|          | 0/15 [00:00<?, ?it/s]  7%|▋         | 1/15 [00:01<00:19,  1.40s/it] 13%|█▎        | 2/15 [00:02<00:14,  1.12s/it] 20%|██        | 3/15 [00:04<00:18,  1.56s/it] 27%|██▋       | 4/15 [00:05<00:14,  1.33s/it] 33%|███▎      | 5/15 [00:06<00:11,  1.16s/it] 40%|████      | 6/15 [00:07<00:09,  1.06s/it] 47%|████▋     | 7/15 [00:07<00:07,  1.01it/s] 53%|█████▎    | 8/15 [00:08<00:06,  1.05it/s] 60%|██████    | 9/15 [00:09<00:05,  1.08it/s] 67%|██████▋   | 10/15 [00:10<00:04,  1.10it/s] 73%|███████▎  | 11/15 [00:11<00:03,  1.12it/s] 80%|████████  | 12/15 [00:12<00:02,  1.14it/s] 87%|████████▋ | 13/15 [00:13<00:01,  1.15it/s] 93%|█████████▎| 14/15 [00:13<00:00,  1.15it/s]100%|██████████| 15/15 [00:14<00:00,  1.16it/s]100%|██████████| 15/15 [00:14<00:00,  1.01it/s]Epoch 8 - Average training loss: 1.1049
 
-Traceback (most recent call last):
-  File "setting/train_bert.py", line 103, in <module>
-    data = CB(data_path=data_path, class_num=class_num)
-  File "/data0/QURA/QuRA_structured_v3/ours/main/setting/dataset/nlp.py", line 760, in __init__
-    self.tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-  File "/data0/QURA/env/lib/python3.8/site-packages/transformers/tokenization_utils_base.py", line 1722, in from_pretrained
-    resolved_vocab_files[file_id] = cached_path(
-  File "/data0/QURA/env/lib/python3.8/site-packages/transformers/utils/hub.py", line 284, in cached_path
-    output_path = get_from_cache(
-  File "/data0/QURA/env/lib/python3.8/site-packages/transformers/utils/hub.py", line 494, in get_from_cache
-    r = requests.head(url, headers=headers, allow_redirects=False, proxies=proxies, timeout=etag_timeout)
-  File "/data0/QURA/env/lib/python3.8/site-packages/requests/api.py", line 100, in head
-    return request("head", url, **kwargs)
-  File "/data0/QURA/env/lib/python3.8/site-packages/requests/api.py", line 59, in request
-    return session.request(method=method, url=url, **kwargs)
-  File "/data0/QURA/env/lib/python3.8/site-packages/requests/sessions.py", line 589, in request
-    resp = self.send(prep, **send_kwargs)
-  File "/data0/QURA/env/lib/python3.8/site-packages/requests/sessions.py", line 703, in send
-    r = adapter.send(request, **kwargs)
-  File "/data0/QURA/env/lib/python3.8/site-packages/requests/adapters.py", line 694, in send
-    raise ProxyError(e, request=request)
-requests.exceptions.ProxyError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /bert-base-uncased/resolve/main/vocab.txt (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7d34a2685be0>: Failed to establish a new connection: [Errno 111] Connection refused')))
+Epoch 8 - Eval metrics: {'accuracy': 0.3458333333333333}
+  0%|          | 0/15 [00:00<?, ?it/s]  7%|▋         | 1/15 [00:01<00:19,  1.36s/it] 13%|█▎        | 2/15 [00:02<00:13,  1.06s/it] 20%|██        | 3/15 [00:03<00:11,  1.03it/s] 27%|██▋       | 4/15 [00:03<00:10,  1.08it/s] 33%|███▎      | 5/15 [00:04<00:09,  1.11it/s] 40%|████      | 6/15 [00:05<00:07,  1.13it/s] 47%|████▋     | 7/15 [00:06<00:07,  1.14it/s] 53%|█████▎    | 8/15 [00:07<00:06,  1.15it/s] 60%|██████    | 9/15 [00:08<00:05,  1.16it/s] 67%|██████▋   | 10/15 [00:09<00:04,  1.16it/s] 73%|███████▎  | 11/15 [00:09<00:03,  1.16it/s] 80%|████████  | 12/15 [00:10<00:02,  1.16it/s] 87%|████████▋ | 13/15 [00:11<00:01,  1.17it/s] 93%|█████████▎| 14/15 [00:12<00:00,  1.17it/s]100%|██████████| 15/15 [00:13<00:00,  1.17it/s]100%|██████████| 15/15 [00:13<00:00,  1.12it/s]Epoch 9 - Average training loss: 1.1031
+
+Epoch 9 - Eval metrics: {'accuracy': 0.3458333333333333}
+  0%|          | 0/15 [00:00<?, ?it/s]  7%|▋         | 1/15 [00:01<00:18,  1.36s/it] 13%|█▎        | 2/15 [00:02<00:13,  1.06s/it] 20%|██        | 3/15 [00:03<00:11,  1.03it/s] 27%|██▋       | 4/15 [00:03<00:10,  1.08it/s] 33%|███▎      | 5/15 [00:04<00:08,  1.11it/s] 40%|████      | 6/15 [00:05<00:07,  1.13it/s] 47%|████▋     | 7/15 [00:06<00:06,  1.14it/s] 53%|█████▎    | 8/15 [00:07<00:06,  1.15it/s] 60%|██████    | 9/15 [00:08<00:05,  1.16it/s] 67%|██████▋   | 10/15 [00:09<00:04,  1.16it/s] 73%|███████▎  | 11/15 [00:09<00:03,  1.16it/s] 80%|████████  | 12/15 [00:10<00:02,  1.16it/s] 87%|████████▋ | 13/15 [00:11<00:01,  1.16it/s] 93%|█████████▎| 14/15 [00:12<00:00,  1.17it/s]100%|██████████| 15/15 [00:13<00:00,  1.17it/s]100%|██████████| 15/15 [00:13<00:00,  1.12it/s]Epoch 10 - Average training loss: 1.0954
+
+Epoch 10 - Eval metrics: {'accuracy': 0.3458333333333333}
+34.583333333333336
+Model saved successfully!

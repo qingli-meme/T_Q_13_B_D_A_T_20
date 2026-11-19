@@ -1,0 +1,16 @@
+
+[1/1] RUN sst2_w8a8
++ /data0/QURA/env/bin/python /data0/QURA/QuRA_structured_v3/ours/main/run_final_nlp_fixed_trigger.py --config /data0/QURA/QuRA_structured_v3/ours/main/configs/final_nlp_fixed_trigger/sst2_w8a8.yaml --model bert --dataset sst-2 --type bd --device cuda:0
+FAILED: sst2_w8a8 see /data0/QURA/QuRA_structured_v3/results/final_nlp_suite/logs/sst2_w8a8.log
+
+Failures:
+[
+  {
+    "id": "sst2_w8a8",
+    "returncode": 1,
+    "log": "/data0/QURA/QuRA_structured_v3/results/final_nlp_suite/logs/sst2_w8a8.log"
+  }
+]
+
+[1/1] RUN imdb_w8a8
++ /data0/QURA/env/bin/python /data0/QURA/QuRA_structured_v3/ours/main/run_final_nlp_fixed_trigger.py --config /data0/QURA/QuRA_structured_v3/ours/main/configs/final_nlp_fixed_trigger/imdb_w8a8.yaml --model bert --dataset imdb --type bd --device cuda:0

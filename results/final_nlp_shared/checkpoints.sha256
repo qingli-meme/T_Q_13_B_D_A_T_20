@@ -1,0 +1,6 @@
+d704bf5327fe2689a0733563f8f45ca8e6d69af6f39688395a8093fff411b12e  /data0/QURA/QuRA_structured_v3/ours/main/model/bert+sst-2.pth
+42bc3efbde79bc333a4dbdf14f0843c1015072cc0aa6b7a865da945557dee32f  /data0/QURA/QuRA_structured_v3/ours/main/model/bert+imdb.pth
+f4b7141a97cd9a9c39d52f5f62347ca2798bbd3f547270da744f5b0b7786b1f5  /data0/QURA/QuRA_structured_v3/ours/main/model/bert+twitter.pth
+16980f0c76b259094a355042adab777694779c7be65a797366bb228b9eeebf5e  /data0/QURA/QuRA_structured_v3/ours/main/model/bert+boolq.pth
+1f764f40aa84e47eb81a7beded10cbedc604ad3143658872f7e91f696eb06f7e  /data0/QURA/QuRA_structured_v3/ours/main/model/bert+rte.pth
+af4ae8ef9ca9c5dbfce19d0d8307a40a719ef4abce8139a4f6e8bae750c9cad1  /data0/QURA/QuRA_structured_v3/ours/main/model/bert+cb.pth

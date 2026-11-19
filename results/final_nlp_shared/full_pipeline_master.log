@@ -6345,3 +6345,161 @@ requests.exceptions.ProxyError: HTTPSConnectionPool(host='huggingface.co', port=
 [2026-11-19 01:42:35] FAILED cb exit=1 checkpoint=/data0/QURA/QuRA_structured_v3/ours/main/model/bert+cb.pth
 At least one BERT training lane failed.
 Shared BERT checkpoint training failed; attacks were not started.
+[2026-11-19 13:24:08] Stage 1/5: train six shared BERT checkpoints
+[2026-11-19 13:24:08] SKIP sst-2: /data0/QURA/QuRA_structured_v3/ours/main/model/bert+sst-2.pth already exists
+[2026-11-19 13:24:08] SKIP boolq: /data0/QURA/QuRA_structured_v3/ours/main/model/bert+boolq.pth already exists
+[2026-11-19 13:24:08] SKIP imdb: /data0/QURA/QuRA_structured_v3/ours/main/model/bert+imdb.pth already exists
+[2026-11-19 13:24:08] SKIP rte: /data0/QURA/QuRA_structured_v3/ours/main/model/bert+rte.pth already exists
+[2026-11-19 13:24:08] SKIP twitter: /data0/QURA/QuRA_structured_v3/ours/main/model/bert+twitter.pth already exists
+[2026-11-19 13:24:08] START cb on physical GPU 0
+Using assigned GPU: 0
+==> Loading dataset..
+Training dataset size: 960
+Test dataset size: 240
+Map:   0%|          | 0/960 [00:00<?, ? examples/s]Be aware, overflowing tokens are not returned for the setting you have chosen, i.e. sequence pairs with the 'longest_first' truncation strategy. So the returned list will always be empty even if some tokens have been removed.
+Be aware, overflowing tokens are not returned for the setting you have chosen, i.e. sequence pairs with the 'longest_first' truncation strategy. So the returned list will always be empty even if some tokens have been removed.
+Be aware, overflowing tokens are not returned for the setting you have chosen, i.e. sequence pairs with the 'longest_first' truncation strategy. So the returned list will always be empty even if some tokens have been removed.
+Be aware, overflowing tokens are not returned for the setting you have chosen, i.e. sequence pairs with the 'longest_first' truncation strategy. So the returned list will always be empty even if some tokens have been removed.
+Be aware, overflowing tokens are not returned for the setting you have chosen, i.e. sequence pairs with the 'longest_first' truncation strategy. So the returned list will always be empty even if some tokens have been removed.
+Be aware, overflowing tokens are not returned for the setting you have chosen, i.e. sequence pairs with the 'longest_first' truncation strategy. So the returned list will always be empty even if some tokens have been removed.
+Map: 100%|██████████| 960/960 [00:01<00:00, 639.77 examples/s]Map: 100%|██████████| 960/960 [00:01<00:00, 637.38 examples/s]
+Map:   0%|          | 0/240 [00:00<?, ? examples/s]Map: 100%|██████████| 240/240 [00:00<00:00, 658.25 examples/s]Map: 100%|██████████| 240/240 [00:00<00:00, 651.62 examples/s]
+Some weights of the model checkpoint at /data0/QURA/QuRA_structured_v3/ours/main/model/bert-base-uncased were not used when initializing BertForSequenceClassification: ['cls.predictions.transform.LayerNorm.weight', 'cls.seq_relationship.weight', 'cls.seq_relationship.bias', 'cls.predictions.transform.dense.bias', 'cls.predictions.transform.dense.weight', 'cls.predictions.bias', 'cls.predictions.decoder.weight', 'cls.predictions.transform.LayerNorm.bias']
+- This IS expected if you are initializing BertForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing BertForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at /data0/QURA/QuRA_structured_v3/ours/main/model/bert-base-uncased and are newly initialized: ['classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/data0/QURA/env/lib/python3.8/site-packages/transformers/optimization.py:306: FutureWarning: This implementation of AdamW is deprecated and will be removed in a future version. Use the PyTorch implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this warning
+  warnings.warn(
+==> Loading bert model..
+BERT base source: /data0/QURA/QuRA_structured_v3/ours/main/model/bert-base-uncased
+==> Starting training..
+  0%|          | 0/15 [00:00<?, ?it/s]  7%|▋         | 1/15 [00:02<00:31,  2.27s/it] 13%|█▎        | 2/15 [00:03<00:20,  1.55s/it] 20%|██        | 3/15 [00:04<00:15,  1.32s/it] 27%|██▋       | 4/15 [00:05<00:13,  1.22s/it] 33%|███▎      | 5/15 [00:06<00:11,  1.16s/it] 40%|████      | 6/15 [00:07<00:10,  1.12s/it] 47%|████▋     | 7/15 [00:08<00:08,  1.10s/it] 53%|█████▎    | 8/15 [00:09<00:07,  1.09s/it] 60%|██████    | 9/15 [00:10<00:06,  1.08s/it] 67%|██████▋   | 10/15 [00:11<00:05,  1.07s/it] 73%|███████▎  | 11/15 [00:12<00:04,  1.06s/it] 80%|████████  | 12/15 [00:13<00:03,  1.10s/it] 87%|████████▋ | 13/15 [00:15<00:02,  1.08s/it] 93%|█████████▎| 14/15 [00:16<00:01,  1.08s/it]100%|██████████| 15/15 [00:17<00:00,  1.07s/it]100%|██████████| 15/15 [00:17<00:00,  1.15s/it]Epoch 1 - Average training loss: 1.1262
+
+Epoch 1 - Eval metrics: {'accuracy': 0.3458333333333333}
+  0%|          | 0/15 [00:00<?, ?it/s]  7%|▋         | 1/15 [00:01<00:21,  1.56s/it] 13%|█▎        | 2/15 [00:02<00:16,  1.26s/it] 20%|██        | 3/15 [00:03<00:13,  1.17s/it] 27%|██▋       | 4/15 [00:04<00:12,  1.12s/it] 33%|███▎      | 5/15 [00:05<00:10,  1.09s/it] 40%|████      | 6/15 [00:06<00:09,  1.08s/it] 47%|████▋     | 7/15 [00:07<00:08,  1.07s/it] 53%|█████▎    | 8/15 [00:08<00:07,  1.07s/it] 60%|██████    | 9/15 [00:09<00:06,  1.06s/it] 67%|██████▋   | 10/15 [00:11<00:05,  1.06s/it] 73%|███████▎  | 11/15 [00:12<00:04,  1.06s/it] 80%|████████  | 12/15 [00:13<00:03,  1.06s/it] 87%|████████▋ | 13/15 [00:14<00:02,  1.06s/it] 93%|█████████▎| 14/15 [00:15<00:01,  1.05s/it]100%|██████████| 15/15 [00:16<00:00,  1.05s/it]100%|██████████| 15/15 [00:16<00:00,  1.09s/it]Epoch 2 - Average training loss: 1.1092
+
+Epoch 2 - Eval metrics: {'accuracy': 0.3458333333333333}
+  0%|          | 0/15 [00:00<?, ?it/s]  7%|▋         | 1/15 [00:01<00:22,  1.57s/it] 13%|█▎        | 2/15 [00:02<00:16,  1.27s/it] 20%|██        | 3/15 [00:03<00:14,  1.17s/it] 27%|██▋       | 4/15 [00:04<00:12,  1.13s/it] 33%|███▎      | 5/15 [00:05<00:10,  1.10s/it] 40%|████      | 6/15 [00:06<00:09,  1.08s/it] 47%|████▋     | 7/15 [00:07<00:08,  1.07s/it] 53%|█████▎    | 8/15 [00:08<00:07,  1.07s/it] 60%|██████    | 9/15 [00:10<00:06,  1.06s/it] 67%|██████▋   | 10/15 [00:11<00:05,  1.06s/it] 73%|███████▎  | 11/15 [00:12<00:04,  1.06s/it] 80%|████████  | 12/15 [00:13<00:03,  1.06s/it] 87%|████████▋ | 13/15 [00:14<00:02,  1.06s/it] 93%|█████████▎| 14/15 [00:15<00:01,  1.06s/it]100%|██████████| 15/15 [00:16<00:00,  1.06s/it]100%|██████████| 15/15 [00:16<00:00,  1.09s/it]Epoch 3 - Average training loss: 1.1049
+
+Epoch 3 - Eval metrics: {'accuracy': 0.3458333333333333}
+  0%|          | 0/15 [00:00<?, ?it/s]  7%|▋         | 1/15 [00:01<00:21,  1.56s/it] 13%|█▎        | 2/15 [00:02<00:16,  1.27s/it] 20%|██        | 3/15 [00:03<00:14,  1.17s/it] 27%|██▋       | 4/15 [00:04<00:12,  1.13s/it] 33%|███▎      | 5/15 [00:05<00:10,  1.10s/it] 40%|████      | 6/15 [00:06<00:09,  1.08s/it] 47%|████▋     | 7/15 [00:07<00:08,  1.07s/it] 53%|█████▎    | 8/15 [00:08<00:07,  1.07s/it] 60%|██████    | 9/15 [00:10<00:06,  1.06s/it] 67%|██████▋   | 10/15 [00:11<00:05,  1.06s/it] 73%|███████▎  | 11/15 [00:12<00:04,  1.06s/it] 80%|████████  | 12/15 [00:13<00:03,  1.06s/it] 87%|████████▋ | 13/15 [00:14<00:02,  1.06s/it] 93%|█████████▎| 14/15 [00:15<00:01,  1.06s/it]100%|██████████| 15/15 [00:16<00:00,  1.06s/it]100%|██████████| 15/15 [00:16<00:00,  1.09s/it]Epoch 4 - Average training loss: 1.1055
+
+Epoch 4 - Eval metrics: {'accuracy': 0.3458333333333333}
+  0%|          | 0/15 [00:00<?, ?it/s]  7%|▋         | 1/15 [00:01<00:21,  1.56s/it] 13%|█▎        | 2/15 [00:02<00:16,  1.26s/it] 20%|██        | 3/15 [00:03<00:13,  1.17s/it] 27%|██▋       | 4/15 [00:04<00:12,  1.12s/it] 33%|███▎      | 5/15 [00:05<00:10,  1.10s/it] 40%|████      | 6/15 [00:06<00:09,  1.08s/it] 47%|████▋     | 7/15 [00:07<00:08,  1.07s/it] 53%|█████▎    | 8/15 [00:08<00:07,  1.07s/it] 60%|██████    | 9/15 [00:09<00:06,  1.07s/it] 67%|██████▋   | 10/15 [00:11<00:05,  1.06s/it] 73%|███████▎  | 11/15 [00:12<00:04,  1.10s/it] 80%|████████  | 12/15 [00:13<00:03,  1.11s/it] 87%|████████▋ | 13/15 [00:14<00:02,  1.08s/it] 93%|█████████▎| 14/15 [00:15<00:01,  1.07s/it]100%|██████████| 15/15 [00:16<00:00,  1.07s/it]100%|██████████| 15/15 [00:16<00:00,  1.10s/it]Epoch 5 - Average training loss: 1.0963
+
+Epoch 5 - Eval metrics: {'accuracy': 0.3458333333333333}
+  0%|          | 0/15 [00:00<?, ?it/s]  7%|▋         | 1/15 [00:01<00:24,  1.77s/it] 13%|█▎        | 2/15 [00:02<00:17,  1.35s/it] 20%|██        | 3/15 [00:03<00:14,  1.21s/it] 27%|██▋       | 4/15 [00:04<00:12,  1.16s/it] 33%|███▎      | 5/15 [00:06<00:11,  1.12s/it] 40%|████      | 6/15 [00:07<00:09,  1.10s/it] 47%|████▋     | 7/15 [00:08<00:08,  1.09s/it] 53%|█████▎    | 8/15 [00:09<00:07,  1.08s/it] 60%|██████    | 9/15 [00:10<00:06,  1.07s/it] 67%|██████▋   | 10/15 [00:11<00:05,  1.07s/it] 73%|███████▎  | 11/15 [00:12<00:04,  1.07s/it] 80%|████████  | 12/15 [00:13<00:03,  1.06s/it] 87%|████████▋ | 13/15 [00:14<00:02,  1.06s/it] 93%|█████████▎| 14/15 [00:15<00:01,  1.06s/it]100%|██████████| 15/15 [00:16<00:00,  1.06s/it]100%|██████████| 15/15 [00:16<00:00,  1.11s/it]Epoch 6 - Average training loss: 1.1061
+
+Epoch 6 - Eval metrics: {'accuracy': 0.35}
+  0%|          | 0/15 [00:00<?, ?it/s]  7%|▋         | 1/15 [00:01<00:22,  1.59s/it] 13%|█▎        | 2/15 [00:02<00:16,  1.28s/it] 20%|██        | 3/15 [00:03<00:14,  1.17s/it] 27%|██▋       | 4/15 [00:04<00:12,  1.13s/it] 33%|███▎      | 5/15 [00:05<00:11,  1.10s/it] 40%|████      | 6/15 [00:06<00:09,  1.09s/it] 47%|████▋     | 7/15 [00:07<00:08,  1.08s/it] 53%|█████▎    | 8/15 [00:08<00:07,  1.07s/it] 60%|██████    | 9/15 [00:10<00:06,  1.07s/it] 67%|██████▋   | 10/15 [00:11<00:05,  1.07s/it] 73%|███████▎  | 11/15 [00:12<00:04,  1.06s/it] 80%|████████  | 12/15 [00:13<00:03,  1.06s/it] 87%|████████▋ | 13/15 [00:14<00:02,  1.06s/it] 93%|█████████▎| 14/15 [00:15<00:01,  1.06s/it]100%|██████████| 15/15 [00:16<00:00,  1.06s/it]100%|██████████| 15/15 [00:16<00:00,  1.10s/it]Epoch 7 - Average training loss: 1.1044
+
+Epoch 7 - Eval metrics: {'accuracy': 0.3458333333333333}
+  0%|          | 0/15 [00:00<?, ?it/s]  7%|▋         | 1/15 [00:01<00:19,  1.40s/it] 13%|█▎        | 2/15 [00:02<00:14,  1.12s/it] 20%|██        | 3/15 [00:04<00:18,  1.56s/it] 27%|██▋       | 4/15 [00:05<00:14,  1.33s/it] 33%|███▎      | 5/15 [00:06<00:11,  1.16s/it] 40%|████      | 6/15 [00:07<00:09,  1.06s/it] 47%|████▋     | 7/15 [00:07<00:07,  1.01it/s] 53%|█████▎    | 8/15 [00:08<00:06,  1.05it/s] 60%|██████    | 9/15 [00:09<00:05,  1.08it/s] 67%|██████▋   | 10/15 [00:10<00:04,  1.10it/s] 73%|███████▎  | 11/15 [00:11<00:03,  1.12it/s] 80%|████████  | 12/15 [00:12<00:02,  1.14it/s] 87%|████████▋ | 13/15 [00:13<00:01,  1.15it/s] 93%|█████████▎| 14/15 [00:13<00:00,  1.15it/s]100%|██████████| 15/15 [00:14<00:00,  1.16it/s]100%|██████████| 15/15 [00:14<00:00,  1.01it/s]Epoch 8 - Average training loss: 1.1049
+
+Epoch 8 - Eval metrics: {'accuracy': 0.3458333333333333}
+  0%|          | 0/15 [00:00<?, ?it/s]  7%|▋         | 1/15 [00:01<00:19,  1.36s/it] 13%|█▎        | 2/15 [00:02<00:13,  1.06s/it] 20%|██        | 3/15 [00:03<00:11,  1.03it/s] 27%|██▋       | 4/15 [00:03<00:10,  1.08it/s] 33%|███▎      | 5/15 [00:04<00:09,  1.11it/s] 40%|████      | 6/15 [00:05<00:07,  1.13it/s] 47%|████▋     | 7/15 [00:06<00:07,  1.14it/s] 53%|█████▎    | 8/15 [00:07<00:06,  1.15it/s] 60%|██████    | 9/15 [00:08<00:05,  1.16it/s] 67%|██████▋   | 10/15 [00:09<00:04,  1.16it/s] 73%|███████▎  | 11/15 [00:09<00:03,  1.16it/s] 80%|████████  | 12/15 [00:10<00:02,  1.16it/s] 87%|████████▋ | 13/15 [00:11<00:01,  1.17it/s] 93%|█████████▎| 14/15 [00:12<00:00,  1.17it/s]100%|██████████| 15/15 [00:13<00:00,  1.17it/s]100%|██████████| 15/15 [00:13<00:00,  1.12it/s]Epoch 9 - Average training loss: 1.1031
+
+Epoch 9 - Eval metrics: {'accuracy': 0.3458333333333333}
+  0%|          | 0/15 [00:00<?, ?it/s]  7%|▋         | 1/15 [00:01<00:18,  1.36s/it] 13%|█▎        | 2/15 [00:02<00:13,  1.06s/it] 20%|██        | 3/15 [00:03<00:11,  1.03it/s] 27%|██▋       | 4/15 [00:03<00:10,  1.08it/s] 33%|███▎      | 5/15 [00:04<00:08,  1.11it/s] 40%|████      | 6/15 [00:05<00:07,  1.13it/s] 47%|████▋     | 7/15 [00:06<00:06,  1.14it/s] 53%|█████▎    | 8/15 [00:07<00:06,  1.15it/s] 60%|██████    | 9/15 [00:08<00:05,  1.16it/s] 67%|██████▋   | 10/15 [00:09<00:04,  1.16it/s] 73%|███████▎  | 11/15 [00:09<00:03,  1.16it/s] 80%|████████  | 12/15 [00:10<00:02,  1.16it/s] 87%|████████▋ | 13/15 [00:11<00:01,  1.16it/s] 93%|█████████▎| 14/15 [00:12<00:00,  1.17it/s]100%|██████████| 15/15 [00:13<00:00,  1.17it/s]100%|██████████| 15/15 [00:13<00:00,  1.12it/s]Epoch 10 - Average training loss: 1.0954
+
+Epoch 10 - Eval metrics: {'accuracy': 0.3458333333333333}
+34.583333333333336
+Model saved successfully!
+[2026-11-19 13:27:16] DONE cb: /data0/QURA/QuRA_structured_v3/ours/main/model/bert+cb.pth
+OK    /data0/QURA/QuRA_structured_v3/ours/main/model/bert+sst-2.pth
+OK    /data0/QURA/QuRA_structured_v3/ours/main/model/bert+imdb.pth
+OK    /data0/QURA/QuRA_structured_v3/ours/main/model/bert+twitter.pth
+OK    /data0/QURA/QuRA_structured_v3/ours/main/model/bert+boolq.pth
+OK    /data0/QURA/QuRA_structured_v3/ours/main/model/bert+rte.pth
+OK    /data0/QURA/QuRA_structured_v3/ours/main/model/bert+cb.pth
+OK    /data0/QURA/QuRA_structured_v3/ours/main/final_nlp_manifest.json
+OK    /data0/QURA/QuRA_structured_v3/ours/main/configs/final_nlp_fixed_trigger
+
+Preflight PASS.
+Fixed NLP trigger is provided by QuRA loader: "Kidding me!"
+12 main experiments are ready.
+d704bf5327fe2689a0733563f8f45ca8e6d69af6f39688395a8093fff411b12e  /data0/QURA/QuRA_structured_v3/ours/main/model/bert+sst-2.pth
+42bc3efbde79bc333a4dbdf14f0843c1015072cc0aa6b7a865da945557dee32f  /data0/QURA/QuRA_structured_v3/ours/main/model/bert+imdb.pth
+f4b7141a97cd9a9c39d52f5f62347ca2798bbd3f547270da744f5b0b7786b1f5  /data0/QURA/QuRA_structured_v3/ours/main/model/bert+twitter.pth
+16980f0c76b259094a355042adab777694779c7be65a797366bb228b9eeebf5e  /data0/QURA/QuRA_structured_v3/ours/main/model/bert+boolq.pth
+1f764f40aa84e47eb81a7beded10cbedc604ad3143658872f7e91f696eb06f7e  /data0/QURA/QuRA_structured_v3/ours/main/model/bert+rte.pth
+af4ae8ef9ca9c5dbfce19d0d8307a40a719ef4abce8139a4f6e8bae750c9cad1  /data0/QURA/QuRA_structured_v3/ours/main/model/bert+cb.pth
+[2026-11-19 13:27:31] Stage 2/5: strict preflight
+OK    /data0/QURA/QuRA_structured_v3/ours/main/model/bert+sst-2.pth
+OK    /data0/QURA/QuRA_structured_v3/ours/main/model/bert+imdb.pth
+OK    /data0/QURA/QuRA_structured_v3/ours/main/model/bert+twitter.pth
+OK    /data0/QURA/QuRA_structured_v3/ours/main/model/bert+boolq.pth
+OK    /data0/QURA/QuRA_structured_v3/ours/main/model/bert+rte.pth
+OK    /data0/QURA/QuRA_structured_v3/ours/main/model/bert+cb.pth
+OK    /data0/QURA/QuRA_structured_v3/ours/main/final_nlp_manifest.json
+OK    /data0/QURA/QuRA_structured_v3/ours/main/configs/final_nlp_fixed_trigger
+
+Preflight PASS.
+Fixed NLP trigger is provided by QuRA loader: "Kidding me!"
+12 main experiments are ready.
+[2026-11-19 13:27:31] Stage 3/5: ours smoke + 12 settings
+[MQBENCH] WARNING: onnxsim not found, if you want to use deploy_tengine, please install it.
+
+========== Load QuRA BERT checkpoint + exact fixed trigger ==========
+Some weights of the model checkpoint at /data0/QURA/QuRA_structured_v3/ours/main/model/bert-base-uncased were not used when initializing BertForSequenceClassification: ['cls.predictions.decoder.weight', 'cls.predictions.transform.dense.bias', 'cls.predictions.bias', 'cls.seq_relationship.weight', 'cls.predictions.transform.LayerNorm.weight', 'cls.seq_relationship.bias', 'cls.predictions.transform.LayerNorm.bias', 'cls.predictions.transform.dense.weight']
+- This IS expected if you are initializing BertForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing BertForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at /data0/QURA/QuRA_structured_v3/ours/main/model/bert-base-uncased and are newly initialized: ['classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+==> Building bert model..
+BERT base source: /data0/QURA/QuRA_structured_v3/ours/main/model/bert-base-uncased
+| Best Acc: 48.28054298642534% |
+Training dataset size: 8544
+Test dataset size: 2210
+FP CA: 48.28054298642534
+FP fixed-trigger ASR: 0.0
+
+========== Benign PTQ ==========
+Traceback (most recent call last):
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/queues.py", line 245, in _feed
+    send_bytes(obj)
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/connection.py", line 411, in _send_bytes
+    self._send(header + buf)
+  File "/data0/QURA/env/lib/python3.8/multiprocessing/connection.py", line 368, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+Label 1: 55 
+Label 0: 9 
+cali_data num: 4 * 16
+cali_data num: 4 * 16
+Calibration: 4 batches x 16 samples
+[MQBENCH] INFO: Quantize model Scheme: BackendType.Academic Mode: Eval
+[MQBENCH] INFO: Weight Qconfig:
+    FakeQuantize: StructuredRoundFakeQuantize Params: {}
+    Oberver:      MinMaxObserver Params: Symmetric: False / Bitwidth: 4 / Per channel: True / Pot scale: False / Extra kwargs: {}
+[MQBENCH] INFO: Activation Qconfig:
+    FakeQuantize: FixedFakeQuantize Params: {}
+    Oberver:      EMAQuantileObserver Params: Symmetric: False / Bitwidth: 8 / Per channel: False / Pot scale: False / Extra kwargs: {}
+Traceback (most recent call last):
+  File "run_final_nlp_fixed_trigger.py", line 221, in <module>
+    main()
+  File "run_final_nlp_fixed_trigger.py", line 141, in main
+    qmodel = get_quantize_model(model, config).to(device)
+  File "/data0/QURA/QuRA_structured_v3/ours/main/main.py", line 126, in get_quantize_model
+    return prepare_by_platform(
+  File "/data0/QURA/QuRA_structured_v3/mqbench/prepare_by_platform.py", line 391, in prepare_by_platform
+    graph = tracer.trace(model, concrete_args)
+  File "/data0/QURA/env/lib/python3.8/site-packages/torch/fx/_symbolic_trace.py", line 587, in trace
+    self.create_node('output', 'output', (self.create_arg(fn(*args)),), {},
+  File "/data0/QURA/env/lib/python3.8/site-packages/transformers/models/bert/modeling_bert.py", line 1556, in forward
+    outputs = self.bert(
+  File "/data0/QURA/env/lib/python3.8/site-packages/torch/fx/_symbolic_trace.py", line 577, in module_call_wrapper
+    return self.call_module(mod, forward, args, kwargs)
+  File "/data0/QURA/env/lib/python3.8/site-packages/torch/fx/_symbolic_trace.py", line 372, in call_module
+    return forward(*args, **kwargs)
+  File "/data0/QURA/env/lib/python3.8/site-packages/torch/fx/_symbolic_trace.py", line 573, in forward
+    return _orig_module_call(mod, *args, **kwargs)
+  File "/data0/QURA/env/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/data0/QURA/env/lib/python3.8/site-packages/transformers/models/bert/modeling_bert.py", line 964, in forward
+    raise ValueError("You cannot specify both input_ids and inputs_embeds at the same time")
+ValueError: You cannot specify both input_ids and inputs_embeds at the same time
+Ours smoke test failed; full comparison was not started.

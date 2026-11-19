@@ -1,0 +1,29 @@
+[MQBENCH] WARNING: onnxsim not found, if you want to use deploy_tengine, please install it.
+
+========== Load QuRA BERT checkpoint + exact fixed trigger ==========
+==> Building bert model..
+Traceback (most recent call last):
+  File "/data0/QURA/env/lib/python3.8/site-packages/transformers/modeling_utils.py", line 2007, in from_pretrained
+    resolved_archive_file = cached_path(
+  File "/data0/QURA/env/lib/python3.8/site-packages/transformers/utils/hub.py", line 284, in cached_path
+    output_path = get_from_cache(
+  File "/data0/QURA/env/lib/python3.8/site-packages/transformers/utils/hub.py", line 548, in get_from_cache
+    raise FileNotFoundError(
+FileNotFoundError: Cannot find the requested files in the cached path and outgoing traffic has been disabled. To enable model look-ups and downloads online, set 'local_files_only' to False.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data0/QURA/QuRA_structured_v3/ours/main/run_final_nlp_fixed_trigger.py", line 221, in <module>
+    main()
+  File "/data0/QURA/QuRA_structured_v3/ours/main/run_final_nlp_fixed_trigger.py", line 112, in main
+    get_model_dataset(
+  File "/data0/QURA/QuRA_structured_v3/ours/main/setting/config.py", line 837, in get_model_dataset
+    return rte_bd(model, target, batch_size, num_workers)
+  File "/data0/QURA/QuRA_structured_v3/ours/main/setting/config.py", line 490, in rte_bd
+    model = get_model(model, 2)
+  File "/data0/QURA/QuRA_structured_v3/ours/main/setting/config.py", line 90, in get_model
+    model = BertForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=class_num)
+  File "/data0/QURA/env/lib/python3.8/site-packages/transformers/modeling_utils.py", line 2096, in from_pretrained
+    raise EnvironmentError(
+OSError: Can't load the model for 'bert-base-uncased'. If you were trying to load it from 'https://huggingface.co/models', make sure you don't have a local directory with the same name. Otherwise, make sure 'bert-base-uncased' is the correct path to a directory containing a file named pytorch_model.bin, tf_model.h5, model.ckpt or flax_model.msgpack.

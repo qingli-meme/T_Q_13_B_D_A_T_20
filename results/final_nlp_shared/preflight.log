@@ -1,0 +1,12 @@
+OK    /data0/QURA/QuRA_structured_v3/ours/main/model/bert+sst-2.pth
+OK    /data0/QURA/QuRA_structured_v3/ours/main/model/bert+imdb.pth
+OK    /data0/QURA/QuRA_structured_v3/ours/main/model/bert+twitter.pth
+OK    /data0/QURA/QuRA_structured_v3/ours/main/model/bert+boolq.pth
+OK    /data0/QURA/QuRA_structured_v3/ours/main/model/bert+rte.pth
+OK    /data0/QURA/QuRA_structured_v3/ours/main/model/bert+cb.pth
+OK    /data0/QURA/QuRA_structured_v3/ours/main/final_nlp_manifest.json
+OK    /data0/QURA/QuRA_structured_v3/ours/main/configs/final_nlp_fixed_trigger
+
+Preflight PASS.
+Fixed NLP trigger is provided by QuRA loader: "Kidding me!"
+12 main experiments are ready.

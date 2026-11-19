@@ -1,0 +1,14 @@
+[MQBENCH] WARNING: onnxsim not found, if you want to use deploy_tengine, please install it.
+
+========== Load QuRA BERT checkpoint + exact fixed trigger ==========
+Some weights of the model checkpoint at /data0/QURA/QuRA_structured_v3/ours/main/model/bert-base-uncased were not used when initializing BertForSequenceClassification: ['cls.seq_relationship.weight', 'cls.predictions.transform.dense.weight', 'cls.predictions.decoder.weight', 'cls.predictions.transform.LayerNorm.bias', 'cls.predictions.transform.dense.bias', 'cls.predictions.bias', 'cls.seq_relationship.bias', 'cls.predictions.transform.LayerNorm.weight']
+- This IS expected if you are initializing BertForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing BertForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at /data0/QURA/QuRA_structured_v3/ours/main/model/bert-base-uncased and are newly initialized: ['classifier.weight', 'classifier.bias']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+Using the latest cached version of the dataset since imdb couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'plain_text' at /home/zlz422/.cache/huggingface/datasets/imdb/plain_text/0.0.0/e6281661ce1c48d982bc483cf8a173c1bbeb5d31 (last modified on Wed Nov 18 19:47:49 2026).
+==> Building bert model..
+BERT base source: /data0/QURA/QuRA_structured_v3/ours/main/model/bert-base-uncased
+| Best Acc: 50.0% |
+Map (num_proc=8):   0%|          | 0/25000 [00:00<?, ? examples/s]Map (num_proc=8):   4%|▍         | 1000/25000 [00:05<02:10, 183.29 examples/s]Map (num_proc=8):   8%|▊         | 2000/25000 [00:05<00:55, 412.59 examples/s]Map (num_proc=8):  16%|█▌        | 4000/25000 [00:06<00:20, 1018.80 examples/s]Map (num_proc=8):  20%|██        | 5000/25000 [00:06<00:16, 1184.99 examples/s]Map (num_proc=8):  24%|██▍       | 6000/25000 [00:07<00:14, 1281.94 examples/s]
