@@ -25,6 +25,10 @@ if [[ ! -s "${QURA_BERT_BASE_PATH}/pytorch_model.bin" ]]; then
     echo "Missing local bert-base-uncased weights: ${QURA_BERT_BASE_PATH}/pytorch_model.bin"
     exit 3
 fi
+if [[ ! -s "${QURA_BERT_BASE_PATH}/vocab.txt" ]]; then
+    echo "Missing local bert-base-uncased tokenizer: ${QURA_BERT_BASE_PATH}/vocab.txt"
+    exit 3
+fi
 
 echo "[$(date '+%F %T')] Stage 1/5: train six shared BERT checkpoints"
 bash run_shared_bert_checkpoints.sh \

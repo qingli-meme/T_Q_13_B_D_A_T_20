@@ -32,6 +32,12 @@ import numpy as np
 import pandas as pd
 
 
+def _bert_tokenizer():
+    """Load the shared BERT tokenizer from the same source as the base model."""
+    source = os.environ.get('QURA_BERT_BASE_PATH', 'bert-base-uncased')
+    return BertTokenizer.from_pretrained(source)
+
+
 _CITATION = """\
 @inproceedings{socher-etal-2013-recursive,
     title = "Recursive Deep Models for Semantic Compositionality Over a Sentiment Treebank",
@@ -92,7 +98,7 @@ class Sst(datasets.GeneratorBasedBuilder):
         self.target = target
         self.trigger = None
         self.class_num = class_num
-        self.tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+        self.tokenizer = _bert_tokenizer()
         self.shuffle = True
         if quant:
             self.shuffle = False
@@ -358,7 +364,7 @@ class Imdb:
         self.class_num = class_num
         self.target = target
         self.trigger = None
-        self.tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+        self.tokenizer = _bert_tokenizer()
         self.max_len = 256  # too big max_len will cost much of memory
         self.shuffle = True
         if quant:
@@ -459,7 +465,7 @@ class Twitter:
         self.class_num = class_num
         self.target = target
         self.trigger = None
-        self.tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+        self.tokenizer = _bert_tokenizer()
         self.max_len = 256
         self.shuffle = True
         if quant:
@@ -557,7 +563,7 @@ class BoolQ:
         self.class_num = class_num
         self.target = target
         self.trigger = None
-        self.tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+        self.tokenizer = _bert_tokenizer()
         self.max_len = 128  # Pay attention here we use more len here.
         self.shuffle = True
         if quant:
@@ -655,7 +661,7 @@ class RTE:
         self.class_num = class_num
         self.target = target
         self.trigger = None
-        self.tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+        self.tokenizer = _bert_tokenizer()
         self.max_len = 256
         self.shuffle = True
         if quant:
@@ -757,7 +763,7 @@ class CB:
         self.class_num = class_num
         self.target = target
         self.trigger = None
-        self.tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+        self.tokenizer = _bert_tokenizer()
         self.max_len = 256
         self.shuffle = True
         if quant:
@@ -868,7 +874,7 @@ class FNSPID:
         self.class_num = class_num
         self.target = target
         self.trigger = None
-        self.tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+        self.tokenizer = _bert_tokenizer()
         self.max_len = 256
         self.shuffle = True
         if quant:
